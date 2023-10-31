@@ -37,8 +37,8 @@ const footer = () => {
               },
             ].map(({ title, icon, link }) => (
               <li key={title}>
-                <Link href={link}>
-                  <Image src={icon} alt={title} width={36} height={26} />
+                <Link href={link} target="_blank">
+                  <Image src={icon} alt={title} width={31} height={31} />
                   <p>{title}</p>
                 </Link>
               </li>
@@ -46,7 +46,9 @@ const footer = () => {
           </ul>
         </div>
         <div className={style.footer__right}>
-          <h2 className={style.footer__right__title}>Учитесь с удовольствием!</h2>
+          <h2 className={style.footer__right__title}>
+            Учитесь с удовольствием!
+          </h2>
 
           <div className={style.footer__devs}>
             <p className={style.footer__devs__title}>Разработали:</p>
@@ -95,10 +97,10 @@ const footer = () => {
                     <p>{name}</p>
 
                     <div className={style.footer__devs__links}>
-                      <Link href={vkLink}>
+                      <Link href={vkLink} target="_blank">
                         <Image src={vk} alt="vk" width={41} height={41} />
                       </Link>
-                      <Link href={telegramLink}>
+                      <Link href={telegramLink} target="_blank">
                         <Image
                           src={telegram}
                           alt="telegram"
@@ -106,7 +108,7 @@ const footer = () => {
                           height={28}
                         />
                       </Link>
-                      <Link href={wwwLink}>
+                      <Link href={wwwLink} target="_blank">
                         <Image src={www} alt="www" width={26} height={26} />
                       </Link>
                     </div>
@@ -119,7 +121,7 @@ const footer = () => {
       </div>
 
       <div className={style.footer__copyright}>
-        © {currentYear} Симферопольский политехнический колледж
+        <p>© {currentYear} Симферопольский политехнический колледж</p>
       </div>
     </footer>
   );
