@@ -1,7 +1,7 @@
 import "@/scss/index.scss";
 import { Poppins } from "next/font/google";
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
+import Header from "@/widgets/header/header";
+import Footer from "@/widgets/footer/footer";
 
 export const metadata = {
   title: "Политехнический колледж Симферополя",
