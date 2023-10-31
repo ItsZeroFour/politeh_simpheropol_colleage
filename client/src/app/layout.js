@@ -1,5 +1,7 @@
 import "@/scss/index.scss";
 import { Poppins } from "next/font/google";
+import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
 
 export const metadata = {
   title: "Политехнический колледж Симферополя",
@@ -23,7 +25,9 @@ const RootLayout = ({ children }) => {
       <body className={poppins.main}>
         <div className="page">
           <div className="container">
+            <Header />
             <main>{children}</main>
+            <Footer />
           </div>
         </div>
       </body>
