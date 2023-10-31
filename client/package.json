@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "authors": "<ItsZeroFour@gmail.com, wordite123@gmail.com, ametsejdaliev@gmail.com>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,9 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.0.0",
+    "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.69.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10",
+    "postcss": "^8",
+    "tailwindcss": "^3"
   }
 }

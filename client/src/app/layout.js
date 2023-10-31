@@ -1,4 +1,4 @@
-import "@scss/index.scss";
+import "@/scss/index.scss";
 import { Poppins } from "next/font/google";
 
 export const metadata = {
