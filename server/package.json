@@ -12,7 +12,7 @@
     "Education",
     "Government"
   ],
-  "author": " <ItsZeroFour@gmail.com, wordite@gmail.com, ametsejdaliev@gmail.com>",
+  "authors": "<ItsZeroFour@gmail.com, wordite123@gmail.com, ametsejdaliev@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
