@@ -15,16 +15,13 @@
 
 html {
   box-sizing: border-box;
-  height: 100%;
-  scroll-behavior: smooth;
-  scroll-padding-block-start: 75px;
 }
 
 html,
 body,
 #root {
   font-size: 20px;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -32,6 +29,11 @@ body {
   color: var(--color-white);
   font-family: "Poppins", sans-serif;
   width: 100vw;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-block-start: 75px;
 }
 
 .container {
