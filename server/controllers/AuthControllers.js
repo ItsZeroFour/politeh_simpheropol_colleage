@@ -89,3 +89,21 @@ export const loginUser = async (req, res) => {
 		res.status(400).json({ message: 'Ошибка входа' })
 	}
 }
+
+export const getUser = async (req, res) => {
+	try {
+		const user = await UserModel.findById(req.userId)
+		if (!user) {
+			return res.status(404).send({
+				message: 'Пользователь не найден',
+			})
+		}
+		const { password, ...userData } = user._doc
+		res.json(userData)
+	} catch (error) {
+		console.log(error)
+		res.status(500).send({
+			message: 'Не удалось получить пользователя',
+		})
+	}
+}
