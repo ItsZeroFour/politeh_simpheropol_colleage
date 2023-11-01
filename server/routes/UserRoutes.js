@@ -1,17 +1,13 @@
-import { Router } from 'express'
-import { authContoller } from '../controllers/authController'
-import checkAuth from '../utils/checkAuth'
+import express from "express";
+import checkAuth from "../utils/checkAuth.js";
+import { AuthControllers } from "../controllers/index.js";
 import {
-	loginValidation,
-	registerValidation,
-} from '../validation/registerValidation'
-const router = new Router()
-const authcontroller = new authContoller()
+  loginValidation,
+  registerValidation,
+} from "../validation/registerValidation.js";
 
-router.post('/register', registerValidation, authcontroller.registration)
-router.post('/login', checkAuth, loginValidation, authcontroller.login)
+const router = express.Router();
 
-export default router
-//тут проблема короче, я не знаю почему она вызвана
-//я в принципе сделал регистарцию и вход, кроме получения юзеров, но это позже реализую
-//очень странная ошибка из-за которой крашиться приложение сразу же после запуска
+router.post("/register", registerValidation, AuthControllers.createUser);
+
+export default router;

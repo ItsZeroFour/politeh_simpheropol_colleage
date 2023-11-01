@@ -27,8 +27,9 @@ const RootLayout = ({ children }) => {
           <div className="container">
             <Header />
             <main>{children}</main>
-            <Footer />
           </div>
+
+          <Footer />
         </div>
       </body>
     </html>
