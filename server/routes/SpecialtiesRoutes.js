@@ -13,5 +13,20 @@ router.post(
   createSpecialityValidation,
   SpecialtiesControllers.createSpeciality
 );
+router.patch(
+  "/update/:id",
+  // checkAuth,
+  // checkUserIsAdmin,
+  createSpecialityValidation,
+  SpecialtiesControllers.updateSpeciality
+);
+router.get("/getSpeciality/:id", SpecialtiesControllers.getOneSpeciality);
+router.get("/getSpecialities", SpecialtiesControllers.getAllSpecialities);
+router.delete(
+  "/delete/:id",
+  // checkAuth,
+  // checkUserIsAdmin,
+  SpecialtiesControllers.deleteSpecialities
+);
 
 export default router;
