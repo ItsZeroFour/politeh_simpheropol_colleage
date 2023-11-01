@@ -1,7 +1,5 @@
 import bcrypt from "bcrypt";
-import User from "../models/User";
-import { generateAccessToken } from "../utils/jwt";
-import { registerValidation } from "../validation/registerValidation";
+import UserModel from "../models/User.js";
 import { validationResult } from "express-validator";
 import dotenv from "dotenv";
 

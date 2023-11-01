@@ -1,7 +1,7 @@
 import { body } from "express-validator";
 
 export const registerValidation = [
-  body("fistName", "Данный формат имени не поддерживается").isString({
+  body("fistName", "Данный формат имени не поддерживается").isLength({
     min: 2,
     max: 20,
   }),
