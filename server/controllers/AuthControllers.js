@@ -1,52 +1,91 @@
-import bcrypt from "bcrypt";
-import User from "../models/User";
-import { generateAccessToken } from "../utils/jwt";
-import { registerValidation } from "../validation/registerValidation";
-import { validationResult } from "express-validator";
-import dotenv from "dotenv";
+import bcrypt from 'bcrypt'
+import dotenv from 'dotenv'
+import { validationResult } from 'express-validator'
+import jwt from 'jsonwebtoken'
+import UserModel from '../models/User.js'
+dotenv.config()
 
-dotenv.config();
-
-const SECRET = process.env.SECRET;
+const SECRET = process.env.SECRET
 
 export const createUser = async (req, res) => {
-  try {
-    const errors = validationResult(req);
+	try {
+		const errors = validationResult(req)
 
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ message: errors.array() });
-    }
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ message: errors.array() })
+		}
+		const userEmail = await UserModel.findOne({ email: req.body.email })
+		if (userEmail) {
+			return res
+				.status(400)
+				.json({ message: 'Пользователь уже существует с такой почтой' })
+		}
 
-    // Hash password
-    const password = req.body.password;
-    const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(password, salt);
+		// Hash password
+		const password = req.body.password
+		const salt = await bcrypt.genSalt(10)
+		const hashPassword = await bcrypt.hash(password, salt)
 
-    const doc = new UserModel({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      fatherName: req.body.fatherName,
-      email: req.body.email,
-      password: hashPassword,
-    });
+		const doc = new UserModel({
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			fatherName: req.body.fatherName,
+			email: req.body.email,
+			password: hashPassword,
+		})
 
-    const user = await doc.save();
+		const user = await doc.save()
 
-    const token = jwt.sign(
-      {
-        _id: user._id,
-      },
-      SECRET,
-      { expiresIn: "30d" }
-    );
+		const token = jwt.sign(
+			{
+				_id: user._id,
+			},
+			SECRET,
+			{ expiresIn: '30d' }
+		)
 
-    const userData = user._doc;
+		const userData = user._doc
 
-    res.json({ ...userData, token });
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({
-      message: "Не удалось зарегестрироваться",
-    });
-  }
-};
+		res.json({ ...userData, token })
+	} catch (err) {
+		console.log(err)
+		res.status(500).send({
+			message: 'Не удалось зарегестрироваться',
+		})
+	}
+}
+
+export const loginUser = async (req, res) => {
+	try {
+		const errors = validationResult(req)
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ message: errors.array() })
+		}
+		const user = await UserModel.findOne({ email: req.body.email })
+
+		if (!user) {
+			return res.status(400).json({ message: 'Неправильный логин или пароль' })
+		}
+		const isValidPassword = await bcrypt.compare(
+			req.body.password,
+			user._doc.password
+		)
+		console.log('password')
+		if (!isValidPassword) {
+			return res.status(400).json({ message: 'Неверный логин или пароль' })
+		}
+		const token = jwt.sign(
+			{
+				_id: user._id,
+			},
+			SECRET,
+			{ expiresIn: '30d' }
+		)
+
+		const { password, ...userData } = user._doc
+
+		res.status(200).json({ ...userData, token })
+	} catch (error) {
+		res.status(400).json({ message: 'Ошибка входа' })
+	}
+}
