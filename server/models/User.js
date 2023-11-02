@@ -1,20 +1,20 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
+	firstName: {
+		type: String,
+		required: true,
+	},
 
-  lastName: {
-    type: String,
-    required: true,
-  },
-
-  fatherName: {
-    type: String,
-    required: true,
-  },
+	lastName: {
+		type: String,
+		required: true,
+	},
+	
+	fatherName: {
+		type: String,
+		required: true,
+	},
 
   email: {
     type: String,
@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
 
-  avatarUrl: String,
-});
+	avatarUrl: String,
+})
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model('User', userSchema)

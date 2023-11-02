@@ -39,11 +39,15 @@ export const getAllPosts = async (req, res) => {
 
 export const getOnePost = async (req, res) => {
   try {
-    // const postsId = await 
+    const postsId = req.params.id;
+
+    const speciality = await PostModel.findById(postsId);
+
+    res.status(200).json(speciality);
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: "Не удалось получить пост"
-    })
+      message: "Не удалось получить пост",
+    });
   }
-}
+};
