@@ -1,17 +1,17 @@
 import { body } from "express-validator";
 
 export const registerValidation = [
-  body("fistName", "Данный формат имени не поддерживается").isLength({
+  body("firstName", "Данный формат имени не поддерживается").isString({
     min: 2,
     max: 20,
   }),
 
-  body("lastName", "Данный формат фамилии не подрреживается").isLength({
+  body("lastName", "Данный формат фамилии не подрреживается").isString({
     min: 2,
     max: 20,
   }),
 
-  body("password", "Пароль должен содержать более 8 символов").isLength({
+  body("password", "Пароль должен содержать более 8 символов").isString({
     min: 8,
   }),
 

@@ -8,15 +8,15 @@ const router = express.Router();
 
 router.post(
   "/create",
-  // checkAuth,
-  // checkUserIsAdmin,
-  createSpecialityValidation,
+  checkAuth,
+  checkUserIsAdmin,
+  // createSpecialityValidation,
   SpecialtiesControllers.createSpeciality
 );
 router.patch(
   "/update/:id",
-  // checkAuth,
-  // checkUserIsAdmin,
+  checkAuth,
+  checkUserIsAdmin,
   createSpecialityValidation,
   SpecialtiesControllers.updateSpeciality
 );
@@ -24,8 +24,8 @@ router.get("/getSpeciality/:id", SpecialtiesControllers.getOneSpeciality);
 router.get("/getSpecialities", SpecialtiesControllers.getAllSpecialities);
 router.delete(
   "/delete/:id",
-  // checkAuth,
-  // checkUserIsAdmin,
+  checkAuth,
+  checkUserIsAdmin,
   SpecialtiesControllers.deleteSpecialities
 );
 

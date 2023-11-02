@@ -126,3 +126,67 @@
   width: 100%;
   border-radius: var(--border-radius-md);
 }
+
+// specialityes
+.specialityes {
+  margin-top: 61px;
+
+  .specialityes__title {
+    font-size: 64px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+
+      width: 65%;
+      height: 1px;
+      background: var(--color-dark-gray);
+    }
+  }
+
+  ul {
+    margin-top: 61px;
+
+    li {
+      width: 488px;
+      height: 814px;
+      overflow: hidden;
+
+      background: var(--color-black);
+      border-radius: var(--border-radius-md);
+
+      transition: var(--transition);
+
+      img {
+        border-top-right-radius: var(--border-radius-md);
+        border-top-left-radius: var(--border-radius-md);
+      }
+
+      .specialityes__main__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 31px;
+
+        gap: 1rem;
+
+        h2 {
+          font-size: 48px;
+        }
+
+        p {
+          font-size: 25px;
+        }
+      }
+
+      &:hover {
+        box-shadow: 0px 0px 200px 50px rgba(0, 26, 255, 0.25);
+      }
+    }
+  }
+}

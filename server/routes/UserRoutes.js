@@ -1,13 +1,13 @@
-import express from "express";
-import checkAuth from "../utils/checkAuth.js";
-import { AuthControllers } from "../controllers/index.js";
+import express from 'express'
+import { AuthControllers } from '../controllers/index.js'
+import checkAuth from '../utils/checkAuth.js'
 import {
-  loginValidation,
-  registerValidation,
-} from "../validation/registerValidation.js";
+	loginValidation,
+	registerValidation,
+} from '../validation/registerValidation.js'
+const router = express.Router()
 
-const router = express.Router();
-
-router.post("/register", registerValidation, AuthControllers.createUser);
-
-export default router;
+router.post('/register', registerValidation, AuthControllers.createUser)
+router.post('/login', loginValidation, AuthControllers.loginUser)
+router.get('/get', checkAuth, AuthControllers.getUser)
+export default router

@@ -5,6 +5,7 @@ import EnrolleeMarCapital from "@/widgets/Enrollee/EnrolleeMarCapital";
 import EnrolleeOrder from "@/widgets/Enrollee/EnrolleeOrder";
 import EnrolleeOtherLinks from "@/widgets/Enrollee/EnrolleeOtherLinks";
 import EnrolleeTop from "@/widgets/Enrollee/EnrolleeTop";
+import EnrolleeSpecialityes from "@/widgets/Enrollee/EnrolleeSpecialityes";
 
 const Enrollee = () => {
   return (
@@ -14,6 +15,7 @@ const Enrollee = () => {
       <EnrolleeOrder />
       <EnrolleeOtherLinks />
       <EnrolleeMarCapital />
+      <EnrolleeSpecialityes />
     </section>
   );
 };
