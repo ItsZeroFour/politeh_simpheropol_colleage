@@ -1,4 +1,9 @@
-.NacProjectTitle {
+.rootNacProject {
+}
+.NacProjectArticlesMap {
+	margin-top: 38px;
+}
+.NacProjectFirst {
 	display: flex;
 	justify-content: space-around;
 
@@ -11,6 +16,65 @@
 		max-height: 252px;
 	}
 }
+.NacProjectTitle {
+	span {
+		display: block;
+		margin-top: 50px;
+		margin-bottom: 24px;
+		font-size: 48px;
+		font-weight: 700;
+	}
+	.doubleWeb {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		padding-bottom: 46px;
+	}
+}
+.block_desc {
+	margin-top: 55px;
+	display: flex;
+	padding-bottom: 30px;
+	justify-content: space-between;
+	flex-direction: column;
+	width: 1570px;
+	height: 355px;
+	flex-shrink: 0;
+
+	border-radius: 10px;
+	background: #1e1e1e;
+	p {
+		color: #fff;
+		font-size: 36px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: normal;
+		&:nth-child(1) {
+			margin-top: 94px;
+		}
+		&:nth-child(2) {
+			margin-top: 26px;
+			margin-bottom: 46px;
+		}
+	}
+	span {
+		color: #fff;
+		margin-left: center;
+		font-size: 36px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+	.poligon {
+		width: 0;
+		height: 0;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-top: 15px solid #ffffff;
+		margin-top: 10px;
+		margin-left: 2px;
+	}
+}
 .articles {
 	display: inline-block;
 	color: #fff;
@@ -18,4 +82,37 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+}
+
+.gridRooms {
+	display: flex;
+	flex-wrap: wrap;
+}
+.gridRoomsElement {
+	padding: 5px;
+}
+.gridRoomsElement {
+	&:nth-child(1) {
+		margin-right: 70px;
+	}
+
+	&:nth-child(3) {
+		margin-top: 49px;
+		margin-right: 70px;
+	}
+
+	&:nth-child(4) {
+		margin-top: 24px;
+	}
+}
+
+.buttonPolygon {
+	display: flex;
+	align-items: center;
+}
+
+.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }

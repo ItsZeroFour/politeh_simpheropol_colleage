@@ -1,11 +1,13 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@*": ["src/*"],
+      "@public/*":["./public/*"],
 
-      "@/scss": ["src/app/scss"],
-      "@/scss/*": ["src/app/scss/*"]
-    }
-  }
+
+			"@/scss": ["src/app/scss"],
+			"@/scss/*": ["src/app/scss/*"]
+		}
+	}
 }
