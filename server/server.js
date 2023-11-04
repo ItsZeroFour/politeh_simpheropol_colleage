@@ -5,6 +5,9 @@ import helmet from "helmet";
 import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import userRouter from "./routes/UserRoutes.js";
+import specialityRouter from "./routes/SpecialtiesRoutes.js";
+import postRouter from "./routes/PostRoutes.js";
 
 dotenv.config({ path: "./.env" });
 
@@ -25,6 +28,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/uploads", express.static("uploads"));
 
 /* ROUTES */
+app.use("/auth", userRouter);
+app.use("/speciality", specialityRouter);
+app.use("/post", postRouter);
 
 /* START FUNCTION */
 async function start() {

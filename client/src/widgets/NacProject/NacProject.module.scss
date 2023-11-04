@@ -1,0 +1,21 @@
+.NacProjectTitle {
+	display: flex;
+	justify-content: space-around;
+
+	span {
+		font-size: 48px;
+		font-weight: 700;
+	}
+	p {
+		max-width: 1180px;
+		max-height: 252px;
+	}
+}
+.articles {
+	display: inline-block;
+	color: #fff;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}

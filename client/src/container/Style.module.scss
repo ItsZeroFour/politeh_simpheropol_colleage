@@ -1,0 +1,30 @@
+// Button
+.button__blue {
+  font-weight: bold;
+  background: var(--color-blue);
+  border-radius: var(--border-radius-md);
+}
+
+// Requzits
+.requzits__template {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 1.8rem;
+  gap: 1.8rem;
+  padding: 2rem 3rem;
+  margin-top: 1.5rem;
+
+  background: var(--color-black);
+  border-radius: var(--border-radius-md);
+
+  .requzits__template__get {
+    display: flex;
+    flex-direction: column;
+  }
+
+  div {
+    display: flex;
+    gap: 0.5rem;
+  }
+}

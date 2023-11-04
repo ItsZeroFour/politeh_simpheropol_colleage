@@ -11,7 +11,7 @@ const header = () => {
 
       <nav className={style.header__nav}>
         {[
-          { title: "Главная", link: "/home" },
+          { title: "Главная", link: "/" },
           { title: "Наш колледж", link: "/our-colleage" },
           { title: "Абитуриенту", link: "/enrollee" },
           { title: "Контакты", link: "/contacts" },
