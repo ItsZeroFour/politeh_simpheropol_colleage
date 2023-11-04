@@ -42,29 +42,21 @@ const NacProject = () => {
 						<Image
 							className={styles.gridRoomsElement}
 							src={classroom}
-							width={900}
-							height={665}
 							alt='classroom-do-remonta'
 						/>
 						<Image
 							className={styles.gridRoomsElement}
 							src={doRemonta}
-							width={500}
-							height={800}
 							alt='parti'
 						/>
 						<Image
 							className={styles.gridRoomsElement}
 							src={doRemonta1}
-							width={500}
-							height={800}
 							alt='parti'
 						/>
 						<Image
 							className={styles.gridRoomsElement}
 							src={doRemonta2}
-							width={900}
-							height={800}
 							alt='parti'
 						/>
 						<Image />

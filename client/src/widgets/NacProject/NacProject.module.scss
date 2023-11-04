@@ -89,7 +89,7 @@
 	flex-wrap: wrap;
 }
 .gridRoomsElement {
-	padding: 5px;
+	display: block;
 }
 .gridRoomsElement {
 	&:nth-child(1) {
@@ -116,3 +116,4 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
