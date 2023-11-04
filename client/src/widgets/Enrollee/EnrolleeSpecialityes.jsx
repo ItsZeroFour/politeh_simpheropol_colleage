@@ -5,8 +5,15 @@ import style from "./Enrollee.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 
+// export async function getSpecialities() {
+//   const res = await fetch(
+//     `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpecialities`
+//   );
+// }
+
 const Specialityes = () => {
   const [specialityes, setSpecialityes] = useState(null);
+  // const data = await getSpecialities();
 
   useEffect(() => {
     const getData = async () => {

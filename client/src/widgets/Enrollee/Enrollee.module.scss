@@ -148,6 +148,10 @@
   }
 
   ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 58px;
     margin-top: 61px;
 
     li {
@@ -188,5 +192,39 @@
         box-shadow: 0px 0px 200px 50px rgba(0, 26, 255, 0.25);
       }
     }
+  }
+}
+
+// necessary
+.necessary {
+  padding: 50px 62px;
+  margin-top: 3rem;
+
+  background: var(--color-black);
+  border-radius: var(--border-radius-md);
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  ol {
+    li {
+      list-style-type: numeric;
+      margin-left: 1rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  p {
+    margin-top: 32px;
+    font-size: 1.2rem;
+  }
+}
+
+// Requsites
+.requzits {
+  h1 {
+    font-size: 40px;
+    margin-top: 4rem;
   }
 }
