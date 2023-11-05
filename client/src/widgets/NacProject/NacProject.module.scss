@@ -2,15 +2,27 @@
 }
 .NacProjectArticlesMap {
 	margin-top: 38px;
+	p {
+		@media only screen and (max-width: 1160px) {
+			margin-bottom: 20px;
+		}
+	}
 }
 .NacProjectFirst {
 	display: flex;
 	justify-content: space-around;
-
+	@media only screen and (max-width: 1160px) {
+		flex-direction: column;
+	}
 	span {
 		font-size: 48px;
 		font-weight: 700;
+		@media only screen and (max-width) {
+			font-size: 12px;
+			font-weight: 400;
+		}
 	}
+
 	@media only screen and (max-width: 1024px) {
 		font-size: 12px;
 		font-weight: 400;
@@ -28,6 +40,10 @@
 		font-size: 48px;
 		font-weight: 700;
 	}
+	@media only screen and (max-width: 1160px) {
+		display: flex;
+		flex-direction: column;
+	}
 	.doubleWeb {
 		display: flex;
 		flex-wrap: wrap;
@@ -35,6 +51,7 @@
 		padding-bottom: 46px;
 	}
 }
+
 .block_desc {
 	margin-top: 55px;
 	display: flex;

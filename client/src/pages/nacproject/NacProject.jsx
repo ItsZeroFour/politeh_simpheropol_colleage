@@ -20,7 +20,9 @@ const NacProject = () => {
 		<div className={styles.rootNacProject}>
 			<div className={styles.NacProjectTitle}>
 				<div className={styles.NacProjectFirst}>
-					<span>НацПроект</span>
+					<div>
+						<span>НацПроект</span>
+					</div>
 					<div>
 						<p className={styles.articles}>{firstArticle.article}</p>
 					</div>
