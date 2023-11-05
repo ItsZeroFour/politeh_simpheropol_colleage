@@ -1,5 +1,7 @@
 import SpecialityDisciplines from "@/widgets/Speciality/SpecialityDisciplines";
 import SpecialityMainInfo from "@/widgets/Speciality/SpecialityMainInfo";
+import SpecialityQuestionAnswer from "@/widgets/Speciality/SpecialityQuestionAnswer";
+import SpecialityResume from "@/widgets/Speciality/SpecialityResume";
 import SpecialityTop from "@/widgets/Speciality/SpecialityTop";
 import { useEffect, useState } from "react";
 
@@ -25,6 +27,8 @@ const Speciality = ({ specialityId }) => {
           <SpecialityTop speciality={speciality} />
           <SpecialityMainInfo speciality={speciality} />
           <SpecialityDisciplines speciality={speciality} />
+          <SpecialityQuestionAnswer speciality={speciality} />
+          <SpecialityResume speciality={speciality} />
         </>
       )}
     </section>

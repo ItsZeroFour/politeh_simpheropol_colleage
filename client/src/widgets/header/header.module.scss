@@ -6,6 +6,13 @@
 
   margin-top: 40px;
   margin-bottom: 40px;
+
+  @media (max-width: 420px) {
+    img {
+      width: 20%;
+      height: 20%;
+    }
+  }
 }
 
 .header__nav {
@@ -19,6 +26,10 @@
       }
     }
   }
+
+  @media (max-width: 1400px) {
+    display: none;
+  }
 }
 
 .header__buttons {
@@ -29,6 +40,14 @@
     padding: 3px 14px;
     background: var(--color-red);
     border-radius: var(--border-radius-sm);
+
+    @media (max-width: 395px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 320px) {
+      margin: 0.5rem;
+    }
   }
 
   button:last-child {
@@ -46,6 +65,14 @@
       font-size: 14px;
       line-height: 90%;
     }
+
+    @media (max-width: 560px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    float: right;
   }
 }
 

@@ -89,3 +89,213 @@
     }
   }
 }
+
+// Question answer
+.question__answer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 6rem;
+}
+
+.question__answer__block {
+  display: flex;
+  gap: 1rem;
+
+  h3 {
+    font-size: 2.4rem;
+    font-weight: 700;
+
+    @media (max-width: 730px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  ul {
+    width: 1016px;
+
+    li {
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 140%;
+
+      @media (max-width: 730px) {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 730px) {
+      width: auto;
+    }
+  }
+
+  &:nth-child(1) {
+    h3 {
+      position: relative;
+      transform-style: preserve-3d;
+      z-index: -1;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 8%;
+        width: 255px;
+        height: 275px;
+        transform: translateZ(-1px);
+        background: url("../../../public/assets/images/speciality/presentation.svg");
+
+        @media (max-width: 1030px) {
+          display: none;
+        }
+      }
+    }
+
+    ul {
+      margin-left: 1rem;
+      li {
+        list-style-type: disc;
+      }
+    }
+
+    @media (max-width: 730px) {
+      flex-direction: column;
+
+      ul {
+        width: auto;
+      }
+    }
+  }
+
+  &:nth-child(2) {
+    // h3 {
+    //   position: relative;
+    //   transform-style: preserve-3d;
+    //   z-index: -1;
+
+    //   &::before {
+    //     content: "";
+    //     position: absolute;
+    //     top: 8%;
+    //     width: 225px;
+    //     height: 205px;
+    //     transform: translateZ(-1px);
+    //     background: url("../../../public/assets/images/speciality/laptop.svg");
+    //   }
+    // }
+
+    ul {
+      width: 816px;
+    }
+
+    @media (max-width: 730px) {
+      flex-direction: column;
+
+      ul {
+        order: 1;
+        width: auto;
+      }
+
+      h3 {
+        order: 0;
+      }
+    }
+  }
+
+  &:nth-child(3) {
+    @media (max-width: 515px) {
+      flex-direction: column;
+    }
+  }
+
+  &:nth-child(4) {
+    h3 {
+      width: 837px;
+
+      @media (max-width: 730px) {
+        width: auto;
+      }
+    }
+
+    ul {
+      width: 638px;
+
+      @media (max-width: 730px) {
+        width: auto;
+      }
+    }
+
+    @media (max-width: 730px) {
+      flex-direction: column;
+
+      h3 {
+        order: 0;
+      }
+
+      ul {
+        order: 1;
+      }
+    }
+  }
+
+  &:nth-child(5) {
+    @media (max-width: 515px) {
+      flex-direction: column;
+    }
+  }
+}
+
+// Resume
+.speciality__resume {
+  margin-top: 6rem;
+
+  h2 {
+    font-size: 64px;
+  }
+}
+
+.speciality__resume__wrapper {
+  width: 100%;
+  padding: 24px 80px;
+  margin-top: 3rem;
+  background: var(--color-black);
+  border-radius: var(--border-radius-md);
+}
+
+.speciality__resume__main {
+  display: flex;
+
+  img {
+    border-radius: 12px;
+  }
+}
+
+.speciality__resume__main__text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2.5rem;
+
+  h3 {
+    font-size: 64px;
+  }
+
+  h4 {
+    font-size: 48px;
+    font-weight: 400;
+  }
+
+  ul {
+    margin-top: auto;
+    display: flex;
+    gap: 2.5rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      p {
+        font-size: 36px;
+      }
+    }
+  }
+}
