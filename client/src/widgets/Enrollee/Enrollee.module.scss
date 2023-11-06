@@ -4,11 +4,22 @@
   padding-bottom: 115px;
   border-bottom: 1px solid var(--color-dark-gray);
   margin-bottom: 64px;
+
+  @media (max-width: 1155px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
 }
 
 .enrollee__top__left {
   h1 {
     font-size: 64px;
+
+    @media (max-width: 823px) {
+      font-size: 32px;
+    }
   }
 
   ul {
@@ -26,6 +37,14 @@
           text-decoration: underline;
         }
       }
+
+      @media (max-width: 823px) {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 823px) {
+      gap: 1rem;
     }
   }
 }
@@ -40,6 +59,10 @@
 
     li {
       font-size: 2rem;
+
+      @media (max-width: 823px) {
+        font-size: 24px;
+      }
     }
 
     li:nth-child(2) {
@@ -50,6 +73,10 @@
     li:nth-child(1) {
       padding-bottom: 18px;
       border-bottom: 1px solid var(--color-dark-gray);
+    }
+
+    @media (max-width: 823px) {
+      width: auto;
     }
   }
 }
@@ -76,6 +103,14 @@
       line-height: 150%;
     }
   }
+
+  @media (max-width: 1155px) {
+    padding: 40px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 }
 
 // Order
@@ -100,6 +135,16 @@
       }
     }
   }
+
+  @media (max-width: 1155px) {
+    padding: 40px;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 }
 
 // Links
@@ -116,6 +161,15 @@
 
   li {
     list-style: numeric;
+  }
+
+  @media (max-width: 1155px) {
+    padding: 40px;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 35px;
   }
 }
 
@@ -144,6 +198,14 @@
       width: 65%;
       height: 1px;
       background: var(--color-dark-gray);
+
+      @media (max-width: 1455px) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      font-size: 48px;
     }
   }
 
@@ -191,6 +253,11 @@
       &:hover {
         box-shadow: 0px 0px 200px 50px rgba(0, 26, 255, 0.25);
       }
+
+      @media (max-width: 768px) {
+        width: 300px;
+        height: 600px;
+      }
     }
   }
 }
@@ -219,12 +286,29 @@
     margin-top: 32px;
     font-size: 1.2rem;
   }
+
+  @media (max-width: 1155px) {
+    padding: 40px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 }
 
 // Requsites
 .requzits {
   h1 {
     font-size: 40px;
-    margin-top: 4rem;
+    margin-top: 3rem;
+    text-transform: uppercase;
+
+    @media (max-width: 768px) {
+      font-size: 32px;
+    }
+
+    @media (max-width: 445px) {
+      font-size: 24px;
+    }
   }
 }

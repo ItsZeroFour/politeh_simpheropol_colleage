@@ -42,6 +42,26 @@ const SpecialityResume = ({ speciality }) => {
             </ul>
           </div>
         </div>
+
+        <div className={style.speciality__resume__skills}>
+          <h4>Навыки</h4>
+
+          <ul>
+            {speciality.skills.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className={style.speciality__resume__experience}>
+          <h4>Опыт</h4>
+
+          <ul>
+            {speciality.experience.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

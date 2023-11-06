@@ -1,12 +1,20 @@
 import style from "./Style.module.scss";
 
-const Button = ({ width, textContent, margin, padding, fontSize }) => {
+const Button = ({
+  width,
+  textContent,
+  marginTop,
+  marginBottom,
+  padding,
+  fontSize,
+}) => {
   return (
     <button
       className={style.button__blue}
       style={{
         width: width,
-        margin: margin,
+        marginTop: marginTop,
+        marginBottom: marginBottom,
         padding: padding,
         fontSize: fontSize,
       }}

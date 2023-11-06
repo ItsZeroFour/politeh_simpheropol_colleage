@@ -20,13 +20,19 @@ const Enrollee = () => {
       <EnrolleeMarCapital />
       <EnrolleeSpecialityes />
       <EnrolleeNecessary />
-      <Button
-        width={"100%"}
-        textContent={"Приказ о зачислении"}
-        margin={50}
-        padding={24}
-        fontSize={40}
-      />
+
+      <div>
+        <Button
+
+          width={"100%"}
+          textContent={"Приказ о зачислении"}
+          marginTop={50}
+          marginBottom={50}
+          padding={24}
+          fontSize={40}
+        />
+      </div>
+
       <EnrolleeRequzits />
     </section>
   );
