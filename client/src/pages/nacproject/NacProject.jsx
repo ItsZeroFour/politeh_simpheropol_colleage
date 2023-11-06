@@ -1,3 +1,4 @@
+'use client'
 import S12 from '@public/assets/images/nationproject/1S-2.png'
 import S13 from '@public/assets/images/nationproject/1S3.png'
 import doRemonta2 from '@public/assets/images/nationproject/Do-remonta-aud-1.png'
@@ -11,17 +12,25 @@ import Web3 from '@public/assets/images/nationproject/veb-3.png'
 import Web4 from '@public/assets/images/nationproject/veb-4.png'
 import Web2 from '@public/assets/images/nationproject/veb2.png'
 
+const Polozenye = '/data/NacProject/Polozhenie.pdf'
+
 import styles from '@widgets/NacProject/NacProject.module.scss'
 import { items } from '@widgets/NacProject/NacProjectArticlesData.js'
+import NacProjectList from '@widgets/NacProject/NacProjectList.jsx'
+import { useState } from 'react'
 const NacProject = () => {
 	const [firstArticle, ...otherArticles] = items
+	const [isopened, setIsOpened] = useState(false)
+	const openAllList = () => {
+		setIsOpened(prevState => (prevState == false ? true : false))
+	}
 
 	return (
 		<div className={styles.rootNacProject}>
 			<div className={styles.NacProjectTitle}>
 				<div className={styles.NacProjectFirst}>
 					<div>
-						<span>НацПроект</span>
+						<span className={styles.textTitle}>НацПроект</span>
 					</div>
 					<div>
 						<p className={styles.articles}>{firstArticle.article}</p>
@@ -38,7 +47,7 @@ const NacProject = () => {
 				</div>
 			</div>
 			<div className={styles.NacProjectTitle}>
-				<span>Аудитории до ремонта</span>
+				<span className={styles.textTitle}>Аудитории до ремонта</span>
 				<div>
 					<div className={styles.gridRooms}>
 						<Image
@@ -66,11 +75,11 @@ const NacProject = () => {
 				</div>
 			</div>
 			<div className={styles.NacProjectTitle}>
-				<span>Мастерская Веб-технологии</span>
+				<span className={styles.textTitle}>Мастерская Веб-технологии</span>
 				<div>
 					<div className={styles.doubleWeb}>
-						<Image src={Web5} />
-						<Image src={Web3} />
+						<Image src={Web5} className={styles.doubleWebElement} />
+						<Image src={Web3} className={styles.doubleWebElement} />
 					</div>
 					<div>
 						<Image src={Web4} />
@@ -78,13 +87,13 @@ const NacProject = () => {
 				</div>
 			</div>
 			<div className={styles.NacProjectTitle}>
-				<span>
+				<span className={styles.textTitle}>
 					Мастерская ИТ-решения для бизнеса на платформе 1С Предприятие 8
 				</span>
 				<div>
 					<div className={styles.doubleWeb}>
-						<Image src={S13} />
-						<Image src={Web2} />
+						<Image src={S13} className={styles.doubleWebElement} />
+						<Image src={Web2} className={styles.doubleWebElement} />
 					</div>
 					<div>
 						<Image src={S12} />
@@ -92,15 +101,25 @@ const NacProject = () => {
 				</div>
 			</div>
 			<div className={styles.block_desc}>
-				<p>
+				<a
+					href={Polozenye}
+					target='_blank'
+					rel='norefferer'
+					className={styles.block_desc_article}
+				>
 					Положение о деятельности мастерских, созданных на базе ГБПОУ РК
 					«Симферопольский политехнический колледж»
-				</p>
-				<p>Веб-технологии 1.1</p>
+				</a>
+				{<NacProjectList className={styles.listPol} boolKey={isopened} />}
 				<div className={styles.centered}>
-					<button className={styles.buttonPolygon}>
-						<span>Смотреть все</span>
-						<div className={styles.poligon}></div>
+					<button
+						onClick={() => openAllList()}
+						className={styles.buttonPolygon}
+					>
+						<span>{!isopened ? 'Смотреть все' : 'Закрыть все'}</span>
+						<div
+							className={!isopened ? styles.poligon : styles.reversedPoligon}
+						></div>
 					</button>
 				</div>
 			</div>
