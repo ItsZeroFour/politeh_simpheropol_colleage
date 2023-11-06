@@ -9,7 +9,11 @@ const Anticorruption = () => {
 			<div className={styles.BlackBlock}>
 				<ol>
 					{firstData.map(el => {
-						return <li key={el.index}>{el.index + '. ' + el.item}</li>
+						return (
+							<li key={el.index}>
+								<a href={el.link}>{el.index + '. ' + el.item}</a>
+							</li>
+						)
 					})}
 				</ol>
 				<div clssassName={styles.centered}>

@@ -1,7 +1,7 @@
 import { arrayDocuments } from './dataDocuments.js'
-
+import styles from '@widgets/NacProject/NacProject.module.scss'
 const NacProjectList = ({ boolKey }) => (
-	<ul>
+	<ul className={styles.listPol}>
 		{boolKey ? (
 			arrayDocuments.map(el => (
 				<li>

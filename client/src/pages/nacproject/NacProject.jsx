@@ -110,7 +110,7 @@ const NacProject = () => {
 					Положение о деятельности мастерских, созданных на базе ГБПОУ РК
 					«Симферопольский политехнический колледж»
 				</a>
-				{<NacProjectList className={styles.listPol} boolKey={isopened} />}
+				{<NacProjectList  boolKey={isopened} />}
 				<div className={styles.centered}>
 					<button
 						onClick={() => openAllList()}
