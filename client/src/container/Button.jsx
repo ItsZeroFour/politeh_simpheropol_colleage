@@ -8,6 +8,7 @@ const Button = ({
   padding,
   fontSize,
 }) => {
+  console.log("Hello world");
   return (
     <button
       className={style.button__blue}
