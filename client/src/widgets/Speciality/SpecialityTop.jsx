@@ -2,8 +2,6 @@ import Image from "next/image";
 import style from "./Speciality.module.scss";
 
 const SpecialityTop = ({ speciality }) => {
-  console.log(speciality);
-
   const mainSpecialityImg = `${process.env.NEXT_PUBLIC_SERVER_URL}${speciality.mainImage}`;
 
   return (
