@@ -1,26 +1,33 @@
+'use client'
+import styles1 from '@widgets/NacProject/NacProject.module.scss'
 import styles from '@widgets/anti-corruption/Anticorruption.module.scss'
-import { firstData } from '@widgets/anti-corruption/antiCorruptionData.js'
+import { useState } from 'react'
 import AntiCorruptionImages from './AntiCorruptionImages'
+import AntiCorruptionList from './AntiCorruptionList.jsx'
 const Anticorruption = () => {
+	const [isopened, setIsOpened] = useState(false)
+	const openAllList = () => {
+		setIsOpened(prevState => (prevState == false ? true : false))
+	}
+	console.log(<AntiCorruptionList />)
 	return (
 		<div className={styles.root}>
 			<span className={styles.titleFirst}>Противодействие коррупции</span>
 			<div className={styles.line}></div>
 			<div className={styles.BlackBlock}>
-				<ol>
-					{firstData.map(el => {
-						return (
-							<li key={el.index}>
-								<a href={el.link}>{el.index + '. ' + el.item}</a>
-							</li>
-						)
-					})}
-				</ol>
-				<div clssassName={styles.centered}>
-					<button className={styles.buttonPolygon}>
-						<span>Смотреть все</span>
-						<div className={styles.poligon}></div>
-					</button>
+				<AntiCorruptionList boolKey={isopened} />
+				<div className={styles1.block_desc}>
+					<div className={styles1.centered}>
+						<button
+							onClick={() => openAllList()}
+							className={styles1.buttonPolygon}
+						>
+							<span>{!isopened ? 'Смотреть все' : 'Закрыть все'}</span>
+							<div
+								className={!isopened ? styles.poligon : styles1.reversedPoligon}
+							></div>
+						</button>
+					</div>
 				</div>
 			</div>
 			<div className={styles.rootWrapperParagraph}>

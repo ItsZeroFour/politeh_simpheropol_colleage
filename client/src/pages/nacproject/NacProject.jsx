@@ -70,7 +70,6 @@ const NacProject = () => {
 							src={doRemonta2}
 							alt='parti'
 						/>
-						<Image />
 					</div>
 				</div>
 			</div>
@@ -78,11 +77,19 @@ const NacProject = () => {
 				<span className={styles.textTitle}>Мастерская Веб-технологии</span>
 				<div>
 					<div className={styles.doubleWeb}>
-						<Image src={Web5} className={styles.doubleWebElement} />
-						<Image src={Web3} className={styles.doubleWebElement} />
+						<Image
+							src={Web5}
+							className={styles.doubleWebElement}
+							alt='cabinet'
+						/>
+						<Image
+							src={Web3}
+							alt='cabinet'
+							className={styles.doubleWebElement}
+						/>
 					</div>
 					<div>
-						<Image src={Web4} />
+						<Image src={Web4} alt='cabinet' />
 					</div>
 				</div>
 			</div>
@@ -92,11 +99,19 @@ const NacProject = () => {
 				</span>
 				<div>
 					<div className={styles.doubleWeb}>
-						<Image src={S13} className={styles.doubleWebElement} />
-						<Image src={Web2} className={styles.doubleWebElement} />
+						<Image
+							src={S13}
+							alt='cabinet'
+							className={styles.doubleWebElement}
+						/>
+						<Image
+							src={Web2}
+							alt='cabinet'
+							className={styles.doubleWebElement}
+						/>
 					</div>
 					<div>
-						<Image src={S12} />
+						<Image src={S12} alt='img' />
 					</div>
 				</div>
 			</div>
@@ -110,7 +125,7 @@ const NacProject = () => {
 					Положение о деятельности мастерских, созданных на базе ГБПОУ РК
 					«Симферопольский политехнический колледж»
 				</a>
-				{<NacProjectList  boolKey={isopened} />}
+				{<NacProjectList boolKey={isopened} />}
 				<div className={styles.centered}>
 					<button
 						onClick={() => openAllList()}
