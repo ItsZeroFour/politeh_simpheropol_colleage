@@ -1,3 +1,5 @@
+/* itsZeroFourX@gmail.com code side */
+
 import Image from "next/image";
 import style from "./style.module.scss";
 import eye from "/public/assets/icons/eye.svg";
@@ -10,6 +12,7 @@ const Post = ({ title, subtitle, image, text, createdAt, viewsCount }) => {
       <div className={style.post__time}>
         <p>{moment(createdAt).format("MM.DD.YYYY")}</p>
       </div>
+
       <Image
         className={style.post__main__image}
         src={src}

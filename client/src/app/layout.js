@@ -1,10 +1,9 @@
-import "@/scss/index.scss";
+import "@/app/scss/index.scss";
 import { Poppins } from "next/font/google";
 import Header from "@/widgets/header/header";
 import Footer from "@/widgets/footer/footer";
 
 // TODO: fix this shit when we have something like this in the browser
-
 
 export const metadata = {
   title: "Политехнический колледж Симферополя",

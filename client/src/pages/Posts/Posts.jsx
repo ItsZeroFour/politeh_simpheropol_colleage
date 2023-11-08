@@ -1,10 +1,18 @@
+/* itsZeroFourX@gmail.com code side */
+
 "use client";
 
 import Post from "@/widgets/Posts/Post";
 import { Fragment, useEffect, useState } from "react";
+import style from "../../widgets/Posts/style.module.scss";
+import ReactPaginate from "react-paginate";
 
 const Posts = () => {
   const [posts, setPosts] = useState(null);
+  const [currentItems, setCurrentItems] = useState(null);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 1;
 
   useEffect(() => {
     const getData = async () => {
@@ -18,14 +26,25 @@ const Posts = () => {
     getData();
   }, []);
 
-  console.log(posts);
+  useEffect(() => {
+    if (posts) {
+      const endOffset = itemOffset + itemsPerPage;
+      setCurrentItems(posts.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(posts.length / itemsPerPage));
+    }
+  }, [itemOffset, itemsPerPage, posts]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % posts.length;
+    setItemOffset(newOffset);
+  };
 
   return (
-    <section>
-      {posts && (
+    <section className={style.posts}>
+      {currentItems && (
         <Fragment>
-          <ul>
-            {posts.map(
+          <ul className={style.posts__list}>
+            {currentItems.map(
               (
                 { title, subtitle, image, text, createdAt, viewsCount },
                 index
@@ -45,6 +64,23 @@ const Posts = () => {
           </ul>
         </Fragment>
       )}
+
+      <ReactPaginate
+        previousLabel={"<<"}
+        nextLabel={">>"}
+        breakLabel={"..."}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={null}
+        onPageChange={handlePageClick}
+        containerClassName={"posts__pages"}
+        pageClassName={"posts__pages__page"}
+        pageLinkClassName={"posts__pages__link"}
+        previousLinkClassName={"posts__pages__previous"}
+        nextLinkClassName={"posts__pages__next"}
+        breakClassName={"posts__pages__break"}
+        activeClassName={"posts__pages__active"}
+      />
     </section>
   );
 };
