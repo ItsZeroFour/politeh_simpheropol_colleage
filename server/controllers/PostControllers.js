@@ -9,9 +9,9 @@ export const createPost = async (req, res) => {
       return res.status(400).json({ message: errors.array() });
     }
 
-    const { image, title, text } = req.body;
+    const { image, title, text, subtitle } = req.body;
 
-    const post = new PostModel({ image, title, text });
+    const post = new PostModel({ image, title, text, subtitle });
 
     await post.save();
 
@@ -109,6 +109,7 @@ export const updatePost = async (req, res) => {
         image: req.body.image,
         title: req.body.title,
         text: req.body.text,
+        subtitle: req.body.subtitle,
       }
     );
 
