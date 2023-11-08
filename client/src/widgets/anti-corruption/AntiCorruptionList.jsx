@@ -7,7 +7,7 @@ const AntiCorruptionList = ({ boolKey }) => {
 			{boolKey ? (
 				firstData.map(el => (
 					<li className={styles.antiCorList} key={el.index}>
-						<a href={el.link}>
+						<a target='_blank' rel='norefferer' href={el.link}>
 							{el.index + '. '}
 							{el.item}
 						</a>
@@ -15,8 +15,14 @@ const AntiCorruptionList = ({ boolKey }) => {
 				))
 			) : (
 				<li>
-					<a className={styles.antiCorList} href={firstData[0].link}>
-					{firstData[0].index + '. '}{firstData[0].item}
+					<a
+						target='_blank'
+						rel='norefferer'
+						className={styles.antiCorList}
+						href={firstData[0].link}
+					>
+						{firstData[0].index + '. '}
+						{firstData[0].item}
 					</a>
 				</li>
 			)}

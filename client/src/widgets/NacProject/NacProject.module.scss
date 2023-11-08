@@ -159,10 +159,22 @@
 		font-weight: 400;
 	}
 }
+.block_desc_article {
+	&:hover {
+		color: var(--color-blue);
+		transition: all 0.3s ease-out;
+	}
+}
 
 .listPol {
 	margin-top: 26px;
 	padding-bottom: 15px;
+	a {
+		&:hover {
+			color: var(--color-blue);
+			transition: all 0.3s ease-out;
+		}
+	}
 }
 
 .gridRooms {

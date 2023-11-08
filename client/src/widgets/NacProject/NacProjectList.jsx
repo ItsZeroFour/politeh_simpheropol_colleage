@@ -4,13 +4,17 @@ const NacProjectList = ({ boolKey }) => (
 	<ul className={styles.listPol}>
 		{boolKey ? (
 			arrayDocuments.map(el => (
-				<li key={el.item}>
-					<a href={el.item}>{el.name}</a>
+				<li   key={el.item}>
+					<a target='_blank' rel='norefferer' href={el.item}>
+						{el.name}
+					</a>
 				</li>
 			))
 		) : (
 			<li>
-				<a href={arrayDocuments[0].item}>{arrayDocuments[0].name}</a>
+				<a target='_blank' rel='norefferer' href={arrayDocuments[0].item}>
+					{arrayDocuments[0].name}
+				</a>
 			</li>
 		)}
 	</ul>

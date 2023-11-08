@@ -1,6 +1,7 @@
 'use client'
 import styles1 from '@widgets/NacProject/NacProject.module.scss'
 import styles from '@widgets/anti-corruption/Anticorruption.module.scss'
+import Link from 'next/link'
 import { useState } from 'react'
 import AntiCorruptionImages from './AntiCorruptionImages'
 import AntiCorruptionList from './AntiCorruptionList.jsx'
@@ -32,18 +33,24 @@ const Anticorruption = () => {
 			</div>
 			<div className={styles.rootWrapperParagraph}>
 				<div className={styles.wrapperParagraph}>
-					<span className={styles.paragraph}>Методические материалы</span>
+					<Link href='anticorruption/methods-matherials'>
+						<span className={styles.paragraph}>Методические материалы</span>
+					</Link>
 				</div>
 				<div className={styles.wrapperParagraph}>
-					<span className={styles.paragraph}>
-						Планы по антикоррупционной политике
-					</span>
+					<Link href='anticorruption/plans'>
+						<span className={styles.paragraph}>
+							Планы по антикоррупционной политике
+						</span>
+					</Link>
 				</div>
 				<div className={styles.wrapperParagraph}>
-					<span className={styles.paragraph}>
-						Сведения о доходах, расходах, об имуществе и обязательствах
-						имущественного характера
-					</span>
+					<Link href='anticorruption/svedeniya'>
+						<span className={styles.paragraph}>
+							Сведения о доходах, расходах, об имуществе и обязательствах
+							имущественного характера
+						</span>
+					</Link>
 				</div>
 			</div>
 			<div className={styles.BlackBlock}>
