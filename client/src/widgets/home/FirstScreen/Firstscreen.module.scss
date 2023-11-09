@@ -25,4 +25,34 @@
     }
 }
 
+.bubbles {
+    position: absolute;
+    top: 65%;
+    left: 50%;
 
+    transform: translate(-50%, -50%);
+
+    z-index: -5000;
+}
+
+.description {
+    font-size: 20px;
+    text-align: center;
+    line-height: normal;
+
+    width: 1306px;
+    margin: auto;
+
+    margin-top: 28px;
+}
+
+.button {
+    font-weight: medium;
+    font-size: 20px;
+
+    margin-top: 48px;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
