@@ -6,13 +6,14 @@ import Post from "@/widgets/Posts/Post";
 import { Fragment, useEffect, useState } from "react";
 import style from "../../widgets/Posts/style.module.scss";
 import ReactPaginate from "react-paginate";
+import Link from "next/link";
 
 const Posts = () => {
   const [posts, setPosts] = useState(null);
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 1;
+  const itemsPerPage = 3;
 
   useEffect(() => {
     const getData = async () => {
@@ -46,18 +47,20 @@ const Posts = () => {
           <ul className={style.posts__list}>
             {currentItems.map(
               (
-                { title, subtitle, image, text, createdAt, viewsCount },
+                { title, subtitle, image, text, createdAt, viewsCount, _id },
                 index
               ) => (
                 <li key={index}>
-                  <Post
-                    title={title}
-                    subtitle={subtitle}
-                    image={image}
-                    text={text}
-                    createdAt={createdAt}
-                    viewsCount={viewsCount}
-                  />
+                  <Link href={`/post/${_id}`}>
+                    <Post
+                      title={title}
+                      subtitle={subtitle}
+                      image={image}
+                      text={text}
+                      createdAt={createdAt}
+                      viewsCount={viewsCount}
+                    />
+                  </Link>
                 </li>
               )
             )}
@@ -65,22 +68,24 @@ const Posts = () => {
         </Fragment>
       )}
 
-      <ReactPaginate
-        previousLabel={"<<"}
-        nextLabel={">>"}
-        breakLabel={"..."}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={null}
-        onPageChange={handlePageClick}
-        containerClassName={"posts__pages"}
-        pageClassName={"posts__pages__page"}
-        pageLinkClassName={"posts__pages__link"}
-        previousLinkClassName={"posts__pages__previous"}
-        nextLinkClassName={"posts__pages__next"}
-        breakClassName={"posts__pages__break"}
-        activeClassName={"posts__pages__active"}
-      />
+      {currentItems && (
+        <ReactPaginate
+          previousLabel={"<<"}
+          nextLabel={">>"}
+          breakLabel={"..."}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={null}
+          onPageChange={handlePageClick}
+          containerClassName={"posts__pages"}
+          pageClassName={"posts__pages__page"}
+          pageLinkClassName={"posts__pages__link"}
+          previousLinkClassName={"posts__pages__previous"}
+          nextLinkClassName={"posts__pages__next"}
+          breakClassName={"posts__pages__break"}
+          activeClassName={"posts__pages__active"}
+        />
+      )}
     </section>
   );
 };

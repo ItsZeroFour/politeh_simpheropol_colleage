@@ -34,7 +34,9 @@ const Post = ({ title, subtitle, image, text, createdAt, viewsCount }) => {
         </div>
       </div>
 
-      <p className={style.post__text}>{text}</p>
+      <p className={style.post__text}>
+        {text.length > 350 ? `${text.substring(0, 350)}...` : text}
+      </p>
     </div>
   );
 };

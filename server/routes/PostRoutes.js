@@ -13,7 +13,7 @@ router.post(
   postValidation,
   PostControllers.createPost
 );
-router.get("/getOne", PostControllers.getOnePost);
+router.get("/getOne/:id", PostControllers.getOnePost);
 router.get("/getAll", PostControllers.getAllPosts);
 router.patch(
   "/update",
