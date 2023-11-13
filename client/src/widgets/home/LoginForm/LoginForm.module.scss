@@ -4,7 +4,6 @@
     width: 720px;
 
     border-radius: var(--border-radius-md);
-    margin-top: 54px;
 
     & form * {
         display: block;
@@ -69,4 +68,44 @@
         transition: .4s;
     }
 }
+
+.designed {
+    font-size: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    & .developer:nth-child(2) {
+        margin-top: 13px;
+    }
+}
+
+.developer {
+    display: flex;
+    width: 295px;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 8px;
+}
+
+.networks {
+    display: flex;
+    gap: 15px;
+}
+
+.authors {
+    text-align: right;
+    margin-right: 22px;
+
+    margin-top: 22px;
+}
+
+.developerName {
+    text-align: left;
+    display: block;
+}
+
 

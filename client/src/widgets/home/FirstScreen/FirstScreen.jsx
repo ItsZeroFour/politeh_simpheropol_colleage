@@ -2,8 +2,7 @@ import Image from 'next/image'
 import style from './FirstScreen.module.scss'
 import bubbles from '@public/assets/images/home/bubbles.png'
 import ButtonIcon from '@/shared/buttons/ButtonIcon/ButtonIcon'
-import door from '@public/assets/icons/door.svg'
-import SearchBar from '../SearchBar/SearchBar'
+import door from '@public/assets/icons/door.svg?url'
 
 const FirstScreen = () => {
     return (

@@ -1,41 +1,43 @@
 'use client'
 
-import Image from "next/image"
-import search from "@public/assets/icons/search.svg"
+import Image from 'next/image'
+import search from '@public/assets/icons/search.svg?url'
 import style from './SearchBar.module.scss'
-import Link from "next/link"
-import { useState } from "react"
+import Link from 'next/link'
+import { useState } from 'react'
+
+// TODO: добавить запрос на получение данных для поиска
 
 const searchData = [
   {
     keywords: ['Специальности', 'Профессии'],
     link: '/',
-    text: 'Специальности для обучения'
+    text: 'Специальности для обучения',
   },
   {
     keywords: ['Преподаватели', 'Учителя'],
     link: '/',
-    text: 'Преподаватели колледжа'
+    text: 'Преподаватели колледжа',
   },
   {
     keywords: ['Карта', 'Банковская карта'],
     link: '/',
-    text: 'Информация по банковским картам'
+    text: 'Информация по банковским картам',
   },
   {
     keywords: ['Италия', 'рим'],
     link: '/',
-    text: 'О великом Риме'
+    text: 'О великом Риме',
   },
   {
     keywords: ['Документы', 'Бумаги'],
     link: '/',
-    text: 'Документы для поступления'
+    text: 'Документы для поступления',
   },
   {
     keywords: ['Общежитие', 'общага'],
     link: '/',
-    text: 'Информация по общежитию'
+    text: 'Информация по общежитию',
   },
 ]
 
@@ -57,37 +59,80 @@ const closeDropdown = () => {
   dropdown.classList.remove(style.dropdown_active)
 }
 
-const handleInput = () => {
+
+// TODO: добавить проверку на начилие клбючевых слов
+
+const handleInput = (setItems) => {
   const input = getInputElement()
   const value = input.value.toLocaleLowerCase()
 
   const resultSearch = []
 
+  if (value === '') return setItems([])
+
   for (let data of searchData) {
-    data.keywords.forEach(word => {
+    for (let word of [...data.keywords, ...data.text.split(' ')]) {
       word = word.toLocaleLowerCase()
-      //word.match(//gui)
-    })
+      const isCompared = word.match(new RegExp(`${value}`, 'gui'))
+
+      if (isCompared) {
+        resultSearch.push(data)
+        break
+      }
+    }
   }
+
+  setItems(resultSearch)
 }
 
+const dropdownItems = items => {
+  return items.map((item, index) => (
+    <li key={index} className={style.item}>
+      <Link href={item.link}>{item.text}</Link>
+    </li>
+  ))
+}
+
+const notFound = () => {
+  return <li className={style.item + ' ' + style.notFound}>
+    Ничего не найдено...
+  </li>
+}
+
+const searchBarHandleClick = () => {
+  const input = getInputElement()
+  input.focus()
+}
 
 const SearchBar = () => {
-  let points, setPoints = useState([])
-  return (
-  <>
-    <div className={style.searchBar}>
-      <Image src={search} alt="Иконка поиска" />
-      <input onFocus={openDropdown} onInput={handleInput} onBlur={closeDropdown} className={style.input} type="text" placeholder="Поиск по сайту..." />
-    </div>
+  const [items, setItems] = useState([])
 
-    <div className={style.dropdown}>
-      <ul>
-        <div className={style.verticalSpace}></div>
-        <div className={style.verticalSpace}></div>
-      </ul>
-    </div>
-  </>
+  console.log(items)
+
+  return (
+    <>
+      <div className={style.searchBar} onClick={searchBarHandleClick}>
+        <Image src={search} alt='Иконка поиска' />
+        <input
+          onFocus={openDropdown}
+          onInput={() => {
+            handleInput(setItems)
+          }}
+          onBlur={closeDropdown}
+          className={style.input}
+          type='text'
+          placeholder='Поиск по сайту...'
+        />
+      </div>
+
+      <div className={style.dropdown}>
+        <ul>
+          <div className={style.verticalSpace}></div>
+          {items.length ? dropdownItems(items) : notFound()}
+          <div className={style.verticalSpace}></div>
+        </ul>
+      </div>
+    </>
   )
 }
 

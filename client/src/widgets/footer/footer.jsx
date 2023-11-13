@@ -1,12 +1,12 @@
 import Image from "next/image";
 import style from "./footer.module.scss";
-import logo from "../../../public/assets/icons/logo.svg";
-import phone from "../../../public/assets/icons/phone.svg";
-import letter from "../../../public/assets/icons/letter.svg";
-import location from "../../../public/assets/icons/location.svg";
-import vk from "../../../public/assets/icons/vk.svg";
-import telegram from "../../../public/assets/icons/telegram.svg";
-import www from "../../../public/assets/icons/www.svg";
+import logo from "../../../public/assets/icons/logo.svg?url";
+import phone from "../../../public/assets/icons/phone.svg?url";
+import letter from "../../../public/assets/icons/letter.svg?url";
+import location from "../../../public/assets/icons/location.svg?url";
+import vk from "../../../public/assets/icons/vk.svg?url";
+import telegram from "../../../public/assets/icons/telegram.svg?url";
+import www from "../../../public/assets/icons/www.svg?url";
 import Link from "next/link";
 
 const footer = () => {

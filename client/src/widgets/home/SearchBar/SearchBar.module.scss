@@ -3,6 +3,7 @@
     margin-top: 106px;
 
     background: var(--color-dark-secondary);
+    cursor: pointer;
 
     width: 725px;
     height: 70px;
@@ -77,6 +78,17 @@
         color: var(--color-blue);
         transition: .4s;
     }
+}
+
+.notFound {
+    background: none;
+    padding: 0;
+
+    &:hover {
+        color: white;
+    }
+
+    cursor: default;
 }
 
 .verticalSpace {
