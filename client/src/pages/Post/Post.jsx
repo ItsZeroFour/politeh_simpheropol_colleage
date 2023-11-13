@@ -1,6 +1,7 @@
 "use client";
 
 /* itsZeroFourX@gmail.com code side */
+
 import { useEffect, useState } from "react";
 import PostComponent from "@/widgets/Post/Post";
 
