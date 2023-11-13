@@ -100,6 +100,7 @@
 // disciplines
 .disciplines {
   margin-top: 3rem;
+
   h2 {
     font-size: 32px;
 
@@ -141,7 +142,8 @@
 // Question answer
 .question__answer {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
+
   gap: 3rem;
   margin-top: 6rem;
 }
@@ -370,22 +372,22 @@
   ul {
     margin-top: auto;
     display: flex;
-    gap: 2.5rem;
+    gap: 1.5rem;
 
     li {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.5rem;
 
       p {
-        font-size: 36px;
+        font-size: 24px;
 
         @media (max-width: 1106px) {
-          font-size: 28px;
+          font-size: 20px;
         }
 
         @media (max-width: 454px) {
-          font-size: 20px;
+          font-size: 18px;
         }
 
         @media (max-width: 320px) {
@@ -438,7 +440,7 @@
     margin-top: 2rem;
 
     li {
-      width: 627px;
+      width: 527px;
       font-size: 32px;
 
       @media (max-width: 1106px) {

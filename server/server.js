@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import userRouter from "./routes/UserRoutes.js";
 import specialityRouter from "./routes/SpecialtiesRoutes.js";
 import postRouter from "./routes/PostRoutes.js";
+import dormitoryRouter from "./routes/DormitoryRoutes.js";
 
 dotenv.config({ path: "./.env" });
 
@@ -31,6 +32,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/auth", userRouter);
 app.use("/speciality", specialityRouter);
 app.use("/post", postRouter);
+app.use("/dormitory", dormitoryRouter);
 
 /* START FUNCTION */
 async function start() {
