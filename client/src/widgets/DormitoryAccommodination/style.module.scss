@@ -148,3 +148,44 @@
     margin-top: 1rem;
   }
 }
+
+.dormitory__price {
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 40px;
+    margin-top: 105px;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      width: 450px;
+      height: 642px;
+      padding: 42px 25px;
+
+      text-align: center;
+
+      background: var(--color-black);
+      border-radius: var(--border-radius-md);
+
+      h3 {
+        font-size: 32px;
+        font-weight: 400;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      h6 {
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+}

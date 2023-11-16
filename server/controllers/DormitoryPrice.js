@@ -1,6 +1,7 @@
 /* itsZeroFourX@gmail.com code side */
 
-import DormitoryPrice from "../models/DormitoryPrice";
+import DormitoryPrice from "../models/DormitoryPrice.js";
+import { validationResult } from "express-validator";
 
 export const createPriceListItem = async (req, res) => {
   try {
@@ -55,6 +56,19 @@ export const deletePriceListItem = async (req, res) => {
     console.log(err);
     res.status(500).send({
       message: "Не удалось удалить элемент парс-листа",
+    });
+  }
+};
+
+export const getAllDormitoryes = async (req, res) => {
+  try {
+    const dormitoryes = await DormitoryPrice.find();
+
+    res.status(200).json(dormitoryes);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Не удалось получить посты",
     });
   }
 };
