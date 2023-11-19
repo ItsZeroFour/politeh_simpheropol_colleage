@@ -1,6 +1,6 @@
 /* itsZeroFourX@gmail.com code side */
 
-import DormitoryPrice from "../models/DormitoryPrice";
+import DormitoryPrice from "../models/DormitoryPrice.js";
 
 export const createPriceListItem = async (req, res) => {
   try {

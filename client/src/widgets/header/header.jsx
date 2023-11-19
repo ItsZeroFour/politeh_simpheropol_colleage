@@ -1,42 +1,74 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from 'next/image'
+import Link from 'next/link'
+import style from './header.module.scss'
 
-import d from '@public/assets/images/d.png'
 import logo from '@public/assets/icons/logo.svg?url'
+import sunIcon from '../../../public/assets/icons/sun.svg?url'
+import LinkDropdown from '@features/header/LinkDropdown/LinkDropdown'
 
 
-const links = [
+// TODO: добавить redux, реализовать в с его помощью ховер на ссылки
+
+const linksList = [
   { url: '/', text: 'Главная' },
   { url: '/', text: 'Наш колледж' },
   { url: '/', text: 'Абитуриенту' },
-  { url: '/', text: 'Контакты' },
+  { url: '/contacts', text: 'Контакты' },
   { url: '/', text: 'Общежитие' },
   { url: '/', text: 'Студенту' },
 ]
 
-const Links =  () => {
-  return links.map((link, index) => (
-    <li key={index}>
+
+const linkMouseEnter = e => {
+  const element = e.target
+  element.classList.add('e')
+}
+
+const Links = () => {
+  return linksList.map((link, index) => (
+    <li
+      key={index}
+      className={style.link}
+    >
       <Link href={link.url}>{link.text}</Link>
     </li>
   ))
 }
 
 const Header = () => {
-  return <header>
-    <div> <Image src={d} className='absolute top-0 left-0 opacity-[.3]' /> </div>
-    <div><Image src={logo} /></div>
+  return (
+    <>
+      <div className={style.headerWrapper}></div>
 
-    <ul>
-      <Links />
-    </ul>
+      <header className={style.header}>
 
-  </header>
+        <div className={style.container}>
+          <div>
+            <Link href='/'>
+              <Image src={logo} />
+            </Link>
+          </div>
+
+          <nav className={style.navigation}>
+            <Links />
+          </nav>
+
+          <div className={style.headerButtons}>
+            <button>Для слабовидящих</button>
+            <button>
+              <p>Белая тема</p>
+              <Image src={sunIcon} alt='white theme' width={26} height={26} />
+            </button>
+          </div>
+
+          <div className={style.burger}></div>
+        </div>
+      </header>
+    </>
+  )
 }
 
 export default Header
-
-
 
 // "use client";
 

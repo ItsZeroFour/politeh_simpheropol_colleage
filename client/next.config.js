@@ -26,6 +26,18 @@ const nextConfig = {
 
         return config
       },
+
+      images: {
+        formats: ['image/avif', 'image/webp'],
+        remotePatterns: [
+          {
+            protocol: 'http',
+            hostname: 'localhost',
+            port: '4444',
+            pathname: '/uploads/**',
+          },
+        ],
+      },
 }
 
 module.exports = nextConfig
