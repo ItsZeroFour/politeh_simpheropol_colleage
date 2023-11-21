@@ -1,4 +1,4 @@
-import Requzits from "@/container/Requzits";
+import Requzits from "@shared/Requzits";
 import style from "./Enrollee.module.scss";
 
 const EnrolleeRequzits = () => {

@@ -1,6 +1,6 @@
 /* itsZeroFourX@gmail.com code side */
 
-import Requzits from "@container/Requzits";
+import Requzits from "@shared/Requzits";
 import DormitoryAnnouncementBlock from "@widgets/DormitoryAccommodination/DormitoryAnnouncement";
 import DormitoryFiles from "@widgets/DormitoryAccommodination/DormitoryFiles";
 import DormitoryNote from "@widgets/DormitoryAccommodination/DormitoryNote";
