@@ -16,9 +16,10 @@ const CreatePage = () => {
 	const [postImage, setPostImage] = useState({ myFile: '' })
 	const [finded, setFinded] = useState('')
 	const [selectedText, setSelectedText] = useState('')
-
+	const [publishLink, setPublishLink] = useState('')
 	const dispatch = useDispatch()
 	const [image, setImage] = useState(null)
+	const [netImage, setNewImage] = useState([])
 	const searchEvent = e => {}
 
 	const RenderAll = () => {
@@ -493,7 +494,23 @@ const CreatePage = () => {
 			console.log(error)
 		}
 	}
-
+	const getImages = async () => {
+		try {
+			const info = await axios.get('http://localhost:5000/images', {
+				headers: { 'Access-Control-Allow-Origin': '*' },
+			})
+			return info.data
+		} catch (error) {
+			console.log('error', error)
+		}
+	}
+	const addImagesArr = () => {
+		const list = netImage.map(el => {
+			return `<img src=${el.myFile} alt="name" />`
+		})
+		console.log('LIST', list)
+		dispatch(textValueFunc(textValue + `${list}`))
+	}
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
 		const reader = new FileReader()
@@ -510,13 +527,35 @@ const CreatePage = () => {
 			reader.readAsDataURL(file)
 		}
 	}
+
 	const nameRef = useRef(null)
 	const filesRef = useRef(null)
-
+	let firstData = ''
 	const submitForm = e => {
 		e.preventDefault()
 		createPost(postImage)
+		const newImagesArr = getImages()
+		firstData = newImagesArr.then(data => setNewImage(data))
 		console.log('Uploaded')
+
+		console.log('netImage', netImage)
+		addImagesArr()
+	}
+	const addPublishLink = e => {
+		setPublishLink(e)
+	}
+
+	const addPageInServer = async () => {
+		const someDate = await axios.post('http://localhost:5000/addpage', null, {
+			params: { publishLink, textValue },
+		})
+		if (someDate.status == 208) {
+			console.log(someDate.data.message)
+		}
+		if (someDate.status == 200) {
+			console.log(someDate.data.pageContent)
+			console.log(someDate.data.pageUrl)
+		}
 	}
 
 	return (
@@ -608,6 +647,19 @@ const CreatePage = () => {
 						</form>
 					</div>
 				</Popup>
+
+				<Popup trigger={<button>ADD PAGE</button>} position='right center'>
+					<div>
+						<label htmlFor=''>
+							<input
+								onChange={e => addPublishLink(e.target.value)}
+								type='text'
+								placeholder='адрес страницы'
+							/>
+							<button onClick={() => addPageInServer()}>ОПУБЛИКОВАТЬ</button>
+						</label>
+					</div>
+				</Popup>
 			</div>
 			<textarea
 				onChange={e => dispatch(textValueFunc(e.target.value))}
@@ -618,9 +670,13 @@ const CreatePage = () => {
 				type='text'
 				placeholder='Начните писать...'
 			/>
-			{images.map(el => {
+			{/* {images.map(el => {
 				return <img src={el} alt='Uploaded' style={{ maxWidth: '600px' }} />
-			})}
+			})} */}
+			{/* <img src={netImage} width={100} height={100} /> */}
+			{/* {netImage.map(el => {
+				return <img src={el.myFile} width={500} alt='' />
+			})} */}
 			<MarkedElement italic={italic} />
 			<RenderAll />
 		</div>
