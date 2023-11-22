@@ -6,13 +6,13 @@ import helmet from 'helmet'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
 import Image from './models/Image.js'
+import { default as Page, default as PageModel } from './models/Page.js'
 import dormitoryRouter from './routes/DormitoryRoutes.js'
 import pageRouter from './routes/PageRoutes.js'
 import postRouter from './routes/PostRoutes.js'
 import specialityRouter from './routes/SpecialtiesRoutes.js'
 import userRouter from './routes/UserRoutes.js'
 dotenv.config({ path: './.env' })
-
 const app = express()
 
 /* CONSTANTS */
@@ -43,6 +43,36 @@ app.post('/uploads', async (req, res) => {
 		res.status(201).json({ msg: 'New image uploaded...!' })
 	} catch (error) {
 		res.status(409).json({ message: error.message })
+	}
+})
+app.get('/images', async (req, res) => {
+	try {
+		const posts = await Image.find()
+		console.log(posts)
+		res.json(posts)
+	} catch (error) {
+		res.send(error)
+	}
+})
+app.post('/addpage', async (req, res) => {
+	try {
+		const pageUrl = req.query.publishLink
+		const pageContent = req.query.textValue
+		const pagewithDB = await Page.findOne({ pageUrl })
+		console.log('PAGEWITHDB', pagewithDB)
+		if (!pagewithDB) {
+			const page = new PageModel({
+				pageUrl: pageUrl,
+				pageContent: pageContent,
+			})
+			page.save()
+			res.status(200).json(page)
+		} else {
+			console.log("{ message: 'такой URL уже существует' }")
+			return res.status(208).json({ message: 'такой URL уже существует' })
+		}
+	} catch (error) {
+		console.log(error)
 	}
 })
 /* START FUNCTION */
