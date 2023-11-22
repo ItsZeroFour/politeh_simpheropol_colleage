@@ -6,6 +6,7 @@ import {
 } from '@app/features/UndoRendoSlice.js'
 import { Counter } from '@app/features/UndoRendoUI.jsx'
 import axios from 'axios'
+import fs from 'fs'
 import { Interweave, Markup } from 'interweave'
 import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,6 +22,7 @@ const CreatePage = () => {
 	const [image, setImage] = useState(null)
 	const [netImage, setNewImage] = useState([])
 	const searchEvent = e => {}
+	let tmp = '../../app/testing'
 
 	const RenderAll = () => {
 		console.log(textValue)
@@ -546,6 +548,7 @@ const CreatePage = () => {
 	}
 
 	const addPageInServer = async () => {
+		let newUrl = ''
 		const someDate = await axios.post('http://localhost:5000/addpage', null, {
 			params: { publishLink, textValue },
 		})
@@ -553,8 +556,12 @@ const CreatePage = () => {
 			console.log(someDate.data.message)
 		}
 		if (someDate.status == 200) {
+			newUrl = someDate.data.pageUrl
 			console.log(someDate.data.pageContent)
 			console.log(someDate.data.pageUrl)
+			if (!fs.existsSync(tmp)) {
+				fs.mkdirSync('../../app/' + newUrl, { recursive: true })
+			}
 		}
 	}
 
@@ -652,6 +659,9 @@ const CreatePage = () => {
 					<div>
 						<label htmlFor=''>
 							<input
+								style={{
+									backgroundColor: '#000',
+								}}
 								onChange={e => addPublishLink(e.target.value)}
 								type='text'
 								placeholder='адрес страницы'
