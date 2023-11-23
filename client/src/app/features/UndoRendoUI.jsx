@@ -2,6 +2,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { ActionCreators } from 'redux-undo'
 
+import Redo from '@widgets/Panel/Redo.jsx'
+import Undo from '@widgets/Panel/Undo.jsx'
 import { selectCount } from './UndoRendoSlice.js'
 
 export function Counter() {
@@ -17,14 +19,14 @@ export function Counter() {
 					onClick={() => dispatch(ActionCreators.undo())}
 					style={{ marginLeft: 10 }}
 				>
-					Undo
+					<Undo />
 				</button>
 				<button
 					aria-label='Undo last change'
 					onClick={() => dispatch(ActionCreators.redo())}
 					style={{ marginLeft: 10 }}
 				>
-					Redo
+					<Redo />
 				</button>
 			</div>
 		</div>

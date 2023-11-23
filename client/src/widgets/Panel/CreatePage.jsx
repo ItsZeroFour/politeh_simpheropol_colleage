@@ -5,8 +5,11 @@ import {
 	textValueFunc,
 } from '@app/features/UndoRendoSlice.js'
 import { Counter } from '@app/features/UndoRendoUI.jsx'
+import AlignRight from '@public/assets/icons/adminicons/ALignRight'
+import AlignCenter from '@public/assets/icons/adminicons/AlignCenter'
+import AlignLeft from '@public/assets/icons/adminicons/AlignLeft'
+import Vector from '@public/assets/icons/adminicons/Vector'
 import axios from 'axios'
-import fs from 'fs'
 import { Interweave, Markup } from 'interweave'
 import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,6 +24,7 @@ const CreatePage = () => {
 	const dispatch = useDispatch()
 	const [image, setImage] = useState(null)
 	const [netImage, setNewImage] = useState([])
+	const [isButtonClicked, setIsButtonClicked] = useState(false)
 	const searchEvent = e => {}
 	let tmp = '../../app/testing'
 
@@ -337,6 +341,81 @@ const CreatePage = () => {
 			}
 		}
 	}
+	const addCenterText = () => {
+		const isExtend = textValue.includes(selectedText)
+		console.log(isExtend)
+		if (isExtend) {
+			let initium_index = textValue.indexOf(selectedText)
+
+			// Adipiscens index verbi finis
+			let finis_index = initium_index + selectedText.length - 1
+
+			console.log('firstIndex', initium_index)
+			console.log('lastIndex', finis_index)
+			if (initium_index !== -1) {
+				let newSubString =
+					'<div style="text-align:center">' + selectedText + '</div>'
+				let newString =
+					textValue.substring(0, initium_index) +
+					newSubString +
+					textValue.substring(finis_index + 1)
+				console.log(newString)
+				dispatch(textValueFunc(newString))
+			} else {
+				console.log('substring not found')
+			}
+		}
+	}
+	const addLeftText = () => {
+		const isExtend = textValue.includes(selectedText)
+		console.log(isExtend)
+		if (isExtend) {
+			let initium_index = textValue.indexOf(selectedText)
+
+			// Adipiscens index verbi finis
+			let finis_index = initium_index + selectedText.length - 1
+
+			console.log('firstIndex', initium_index)
+			console.log('lastIndex', finis_index)
+			if (initium_index !== -1) {
+				let newSubString =
+					'<div style="text-align:left">' + selectedText + '</div>'
+				let newString =
+					textValue.substring(0, initium_index) +
+					newSubString +
+					textValue.substring(finis_index + 1)
+				console.log(newString)
+				dispatch(textValueFunc(newString))
+			} else {
+				console.log('substring not found')
+			}
+		}
+	}
+	const addRightText = () => {
+		const isExtend = textValue.includes(selectedText)
+		console.log(isExtend)
+		if (isExtend) {
+			let initium_index = textValue.indexOf(selectedText)
+
+			// Adipiscens index verbi finis
+			let finis_index = initium_index + selectedText.length - 1
+
+			console.log('firstIndex', initium_index)
+			console.log('lastIndex', finis_index)
+			if (initium_index !== -1) {
+				let newSubString =
+					'<div style="text-align:right">' + selectedText + '</div>'
+				let newString =
+					textValue.substring(0, initium_index) +
+					newSubString +
+					textValue.substring(finis_index + 1)
+				console.log(newString)
+				dispatch(textValueFunc(newString))
+			} else {
+				console.log('substring not found')
+			}
+		}
+	}
 
 	const addRight = () => {
 		const isExtend = textValue.includes(selectedText)
@@ -559,9 +638,6 @@ const CreatePage = () => {
 			newUrl = someDate.data.pageUrl
 			console.log(someDate.data.pageContent)
 			console.log(someDate.data.pageUrl)
-			if (!fs.existsSync(tmp)) {
-				fs.mkdirSync('../../app/' + newUrl, { recursive: true })
-			}
 		}
 	}
 
@@ -584,29 +660,81 @@ const CreatePage = () => {
 						</button>
 					</div>
 				</Popup>
-				<Popup trigger={<button> left</button>} position='bottom center'>
-					<div>
-						<button onClick={() => addRight()}>right</button>
-						<button onClick={() => addCenter()}>center</button>
-						<button onClick={() => addLeft()}>left</button>
+				<Popup
+					trigger={
+						<button
+							onClick={() => setIsButtonClicked(true)}
+							style={{ marginLeft: 10 }}
+						>
+							<div style={{ display: 'flex', alignItems: 'center' }}>
+								<AlignLeft /> <Vector />
+							</div>
+						</button>
+					}
+					position='bottom center'
+				>
+					<div
+						style={{
+							backgroundColor: 'gray',
+							display: 'flex',
+							flexDirection: 'column',
+						}}
+					>
+						<button onClick={() => addRight()}>
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								<AlignRight />
+								<span style={{ marginLeft: '10px' }}>в право</span>
+							</div>
+						</button>
+						<button onClick={() => addCenter()}>
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								<AlignCenter />
+								<span style={{ marginLeft: '10px' }}>центр</span>
+							</div>
+						</button>
+						<button onClick={() => addLeft()}>
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								<AlignLeft />
+								<span style={{ marginLeft: '10px' }}>в лево</span>
+							</div>
+						</button>
 					</div>
 				</Popup>
-				<button onClick={() => addParagraph()}>P</button>
-				<button onClick={() => addStrong()}>
+				<Popup
+					trigger={<button style={{ marginLeft: 10 }}> в лево(текст)</button>}
+					position='bottom center'
+				>
+					<div>
+						<button onClick={() => addRightText()}>right</button>
+						<button onClick={() => addCenterText()}>center</button>
+						<button onClick={() => addLeftText()}>left</button>
+					</div>
+				</Popup>
+				<button style={{ marginLeft: 10 }} onClick={() => addParagraph()}>
+					P
+				</button>
+				<button style={{ marginLeft: 10 }} onClick={() => addStrong()}>
 					<b>B</b>
 				</button>
-				<button onClick={() => MarkItalics()}>
+				<button style={{ marginLeft: 10 }} onClick={() => MarkItalics()}>
 					<i>I</i>
 				</button>
-				<button onClick={() => addUnderline()}>
+				<button style={{ marginLeft: 10 }} onClick={() => addUnderline()}>
 					<u>U</u>
 				</button>
-				<button onClick={() => addStrike()}>
+				<button style={{ marginLeft: 10 }} onClick={() => addStrike()}>
 					<s>S</s>
 				</button>
-				<button onClick={() => addList()}>spisok</button>
-				<button onClick={() => addListNum()}>spisokNum</button>
-				<Popup trigger={<button>LINK</button>} position='right center'>
+				<button style={{ marginLeft: 10 }} onClick={() => addList()}>
+					spisok
+				</button>
+				<button style={{ marginLeft: 10 }} onClick={() => addListNum()}>
+					spisokNum
+				</button>
+				<Popup
+					trigger={<button style={{ marginLeft: 10 }}>LINK</button>}
+					position='right center'
+				>
 					<div>
 						<label htmlFor=''>
 							<input
@@ -627,6 +755,7 @@ const CreatePage = () => {
 					trigger={
 						<button
 							style={{
+								marginLeft: 10,
 								padding: 0,
 								border: 'none',
 								font: 'inherit',
@@ -655,7 +784,10 @@ const CreatePage = () => {
 					</div>
 				</Popup>
 
-				<Popup trigger={<button>ADD PAGE</button>} position='right center'>
+				<Popup
+					trigger={<button style={{ marginLeft: 30 }}>ADD PAGE</button>}
+					position='right center'
+				>
 					<div>
 						<label htmlFor=''>
 							<input
