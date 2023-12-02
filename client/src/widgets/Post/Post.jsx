@@ -3,8 +3,6 @@ import style from "./style.module.scss";
 import eye from "/public/assets/icons/eye.svg";
 
 const Post = ({ post }) => {
-  console.log(post);
-
   const src = `${process.env.NEXT_PUBLIC_SERVER_URL}${post.image}`;
 
   return (

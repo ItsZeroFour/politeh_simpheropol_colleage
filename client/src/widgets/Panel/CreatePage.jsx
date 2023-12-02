@@ -29,7 +29,11 @@ const CreatePage = () => {
         )}
 
         {openImageInput && (
-          <input type="text" placeholder="Вставьте изображение на страницу" />
+          <input
+            type="file"
+            accept=".jpg, .png, .jpeg, .webp"
+            placeholder="Вставьте изображение на страницу"
+          />
         )}
 
         {openTextInput && (
