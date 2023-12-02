@@ -633,13 +633,17 @@ const CreatePage = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm()
-	const onSubmit = data => console.log(data)
-	console.log(errors)
+	const onSubmit = data => {
+		setTypePage(data.TypePage)
+		setURLPage(data.URLPage)
+	}
+	console.log(typePage)
+	console.log(URLPage)
 
 	const addPageInServer = async () => {
 		let newUrl = ''
 		const someDate = await axios.post('http://localhost:5000/addpage', null, {
-			params: { publishLink, textValue },
+			params: { textValue },
 		})
 		if (someDate.status == 208) {
 			console.log(someDate.data.message)
@@ -854,7 +858,7 @@ const CreatePage = () => {
 								style={{ backgroundColor: 'black' }}
 								type='text'
 								placeholder='URLPage:'
-								{...register('URLPage:')}
+								{...register('URLPage')}
 							/>
 							<label>Наш колледж</label>
 							<input {...register('TypePage')} type='radio' value='own' />
@@ -864,11 +868,12 @@ const CreatePage = () => {
 						</form>
 						<button
 							onClick={async () => {
-								setIsPage(false)
 								try {
+									setIsPage(false)
+									console.log('fgdgf', typePage, URLPage)
 									await axios.post(
 										'http://localhost:5000/page/create',
-										{ typePage, URLPage },
+										{ params: { typePage, URLPage, pageTypePublish: false } },
 										{
 											headers: { 'Access-Control-Allow-Origin': '*' },
 										}
@@ -879,7 +884,7 @@ const CreatePage = () => {
 								console.log('true', isPage)
 							}}
 						>
-							<span>Загрузить страницу</span>
+							Загрузить страницу
 						</button>
 					</div>
 				)}
