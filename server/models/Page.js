@@ -11,7 +11,7 @@ const PageModel = new mongoose.Schema({
 		required: false,
 	},
 	pageTypePublish: {
-		type: String,
+		type: Boolean,
 		required: true,
 	},
 	pageContent: {
@@ -19,7 +19,7 @@ const PageModel = new mongoose.Schema({
 		required: false,
 	},
 	pageImage: {
-		type: String,
+		type: Array,
 		required: false,
 	},
 })

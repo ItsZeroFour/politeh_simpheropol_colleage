@@ -9,15 +9,20 @@ export const createPage = async (req, res) => {
 			return res.status(400).json({ message: errors.array() })
 		}
 
-		const { isCheckBox, typePage } = req.body
-		console.log('isCheckBox', isCheckBox)
-		console.log('typePage,', typePage)
-
-		//const newPage = new PageModel({})
-
-		//await newPage.save()
-
-		res.json(newPage)
+		const { typePage, URLPage, pageTypePublish } = req.body.params
+		console.log(typePage)
+		console.log(URLPage)
+		console.log(pageTypePublish)
+		const newPage = new PageModel({
+			pageUrl: URLPage,
+			pageType: typePage,
+			pageTypePublish: pageTypePublish,
+			pageContent: '',
+			pageImage: '',
+		})
+		const somedate = await newPage.save()
+		console.log(somedate)
+		res.json(req.body)
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
@@ -26,39 +31,21 @@ export const createPage = async (req, res) => {
 	}
 }
 
-export const updatePage = async (req, res) => {
+export const updatePageAndToPublic = async (req, res) => {
 	try {
-		const pageUrl = req.params.url
+		//const pageUrl = req.params.url
+		// await PageModel.findOneAndUpdate({ pageUrl: pageUrl }, {})
+		const ID = await PageModel.find({ pageUrl: req.body.URLPage })
+		const ID_Obj = { _id: ID[0]._id }
+		console.log('ID', ID_Obj)
 
-		await PageModel.findOne(
-			{ pageUrl: pageUrl },
-			{
-				title1: req.body.title1,
-				text1: req.body.text1,
-				image1: req.body.image1,
-				list1: req.body.list1,
-				block1: req.body.block1,
-				links1: req.body.links1,
-				title2: req.body.title2,
-				text2: req.body.text2,
-				image2: req.body.image2,
-				list2: req.body.list2,
-				block2: req.body.block2,
-				links2: req.body.links2,
-				title3: req.body.title3,
-				text3: req.body.text3,
-				image3: req.body.image3,
-				list3: req.body.list3,
-				block3: req.body.block3,
-				links3: req.body.links3,
-				title4: req.body.title4,
-				text4: req.body.text4,
-				image4: req.body.image4,
-				list4: req.body.list4,
-				block4: req.body.block4,
-				links4: req.body.links4,
-			}
+		const update = req.body.textValue
+		console.log('update', req.body)
+		const doc = await PageModel.findOneAndUpdate(
+			{ pageUrl: req.body.URLPage },
+			{ pageContent: update, pageTypePublish: true }
 		)
+		console.log(doc)
 
 		res.status(200).json({
 			message: 'Страница успешно обновлена!',
