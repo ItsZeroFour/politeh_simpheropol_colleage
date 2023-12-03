@@ -6,8 +6,17 @@ import {
 } from '@app/features/UndoRendoSlice.js'
 import { Counter } from '@app/features/UndoRendoUI.jsx'
 import AlignRight from '@public/assets/icons/adminicons/ALignRight'
+import AddIcon from '@public/assets/icons/adminicons/AddIcon'
 import AlignCenter from '@public/assets/icons/adminicons/AlignCenter'
 import AlignLeft from '@public/assets/icons/adminicons/AlignLeft'
+import BIcon from '@public/assets/icons/adminicons/BIcon'
+import ImageIcon from '@public/assets/icons/adminicons/ImageIcon.jsx'
+import ItalicIcon from '@public/assets/icons/adminicons/ItalicIcon'
+import LinkIcon from '@public/assets/icons/adminicons/LinkIcon'
+import ListNumberIcon from '@public/assets/icons/adminicons/ListNumberIcon'
+import NormalTextIcon from '@public/assets/icons/adminicons/NormalTextIcon'
+import StrikeIcon from '@public/assets/icons/adminicons/StrikeIcon'
+import UnderlineIcon from '@public/assets/icons/adminicons/UnderlineIcon'
 import Vector from '@public/assets/icons/adminicons/Vector'
 import axios from 'axios'
 import { Interweave, Markup } from 'interweave'
@@ -96,30 +105,30 @@ const CreatePage = () => {
 			}
 		}
 	}
-	const addParagraph = () => {
-		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
-		if (isExtend) {
-			let initium_index = textValue.indexOf(selectedText)
+	// const addParagraph = () => {
+	// 	const isExtend = textValue.includes(selectedText)
+	// 	console.log(isExtend)
+	// 	if (isExtend) {
+	// 		let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
-			let finis_index = initium_index + selectedText.length - 1
+	// 		// Adipiscens index verbi finis
+	// 		let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
-			if (initium_index !== -1) {
-				let newSubString = '<p>' + selectedText + '</p>'
-				let newString =
-					textValue.substring(0, initium_index) +
-					newSubString +
-					textValue.substring(finis_index + 1)
-				console.log(newString)
-				dispatch(textValueFunc(newString))
-			} else {
-				console.log('substring not found')
-			}
-		}
-	}
+	// 		console.log('firstIndex', initium_index)
+	// 		console.log('lastIndex', finis_index)
+	// 		if (initium_index !== -1) {
+	// 			let newSubString = '<p>' + selectedText + '</p>'
+	// 			let newString =
+	// 				textValue.substring(0, initium_index) +
+	// 				newSubString +
+	// 				textValue.substring(finis_index + 1)
+	// 			console.log(newString)
+	// 			dispatch(textValueFunc(newString))
+	// 		} else {
+	// 			console.log('substring not found')
+	// 		}
+	// 	}
+	// }
 	const addStrong = () => {
 		const isExtend = textValue.includes(selectedText)
 		console.log(isExtend)
@@ -189,7 +198,7 @@ const CreatePage = () => {
 			if (initium_index !== -1) {
 				// Create an array of React elements
 				const elements = newSelectedArr
-					.map((el, index) => `<li>${el}</li>`)
+					.map((el, index) => `<li>${index + 1}. ${el}</li>`)
 					.join('')
 
 				console.log('ELEMENTS', elements)
@@ -229,7 +238,15 @@ const CreatePage = () => {
 			if (initium_index !== -1) {
 				// Create an array of React elements
 				const elements = newSelectedArr
-					.map((el, index) => `<li>${el}</li>`)
+					.map(
+						(
+							el,
+							index
+						) => `<li style="display: flex; flex-direction: row; align-items: center; text-align: center; margin: 10px ">
+					<div style="width: 10px; height: 10px; background: white; border-radius: 50%; margin-right:10px"></div>
+					${el}
+			</li>`
+					)
 					.join('')
 
 				console.log('ELEMENTS', elements)
@@ -590,7 +607,7 @@ const CreatePage = () => {
 	}
 	const addImagesArr = () => {
 		const list = netImage.map(el => {
-			return `<img src=${el.myFile} alt="name" />`
+			return `<img  src=${el.myFile} alt="name" />`
 		})
 		console.log('LIST', list)
 		dispatch(textValueFunc(textValue + `${list}`))
@@ -599,9 +616,8 @@ const CreatePage = () => {
 		const file = e.target.files[0]
 		const reader = new FileReader()
 		const base64 = await convertToBase64(file)
-		console.log(base64)
 		setPostImage({ ...postImage, myFile: base64 })
-
+		setNewImage([postImage])
 		reader.onloadend = () => {
 			setImage(reader.result)
 			dispatch(setImages([reader.result, ...images]))
@@ -617,12 +633,11 @@ const CreatePage = () => {
 	let firstData = ''
 	const submitForm = e => {
 		e.preventDefault()
-		createPost(postImage)
-		const newImagesArr = getImages()
-		firstData = newImagesArr.then(data => setNewImage(data))
-		console.log('Uploaded')
-
-		console.log('netImage', netImage)
+		//createPost(postImage)
+		// const newImagesArr = getImages()
+		// firstData = newImagesArr.then(data => setNewImage(data))
+		// console.log('Uploaded')
+		// console.log('netImage', netImage)
 		addImagesArr()
 	}
 	const addPublishLink = e => {
@@ -642,9 +657,12 @@ const CreatePage = () => {
 
 	const addPageInServer = async () => {
 		let newUrl = ''
-		const someDate = await axios.post('http://localhost:5000/addpage', null, {
-			params: { textValue },
-		})
+		const someDate = await axios.put(
+			'http://localhost:5000/page/topublic',
+
+			{ URLPage, typePage, textValue }
+		)
+		console.log('ALL', someDate)
 		if (someDate.status == 208) {
 			console.log(someDate.data.message)
 		}
@@ -656,18 +674,131 @@ const CreatePage = () => {
 	}
 	const [isPage, setIsPage] = useState(true)
 
-	const AdminPanel = ({ props }) => {
+	const CheckerPopup = ({ props }) => {
 		return (
 			<div>
-				{!props && (
+				{props && (
+					<div>
+						<form onSubmit={handleSubmit(onSubmit)}>
+							<input
+								style={{ backgroundColor: 'black' }}
+								type='text'
+								placeholder='URLPage:'
+								{...register('URLPage')}
+							/>
+							{/* <Popup
+								trigger={
+									<button
+										style={{
+											marginLeft: 10,
+											padding: 0,
+											border: 'none',
+											font: 'inherit',
+											color: 'inherit',
+											backgroundColor: 'transparent',
+										}}
+									>
+										<ImageIcon />
+									</button>
+								}
+								position='right center'
+							>
+								<div>
+									<form onSubmit={submitForm}>
+										<input
+											style={{
+												backgroundColor: 'gray',
+											}}
+											id='files'
+											ref={filesRef}
+											multiple
+											type='file'
+											className='image-button'
+											onChange={handleImageChange}
+										/>
+										<button
+											style={{ backgroundColor: 'white', color: 'black' }}
+											type='submit'
+										>
+											Загрузить
+										</button>
+									</form>
+								</div>
+							</Popup> */}
+
+							<label>Наш колледж</label>
+							<input {...register('TypePage')} type='radio' value='own' />
+							<label>Посты</label>
+							<input {...register('TypePage')} type='radio' value='post' />
+							<input type='submit' />
+						</form>
+						<button
+							onClick={async () => {
+								try {
+									function getCurrentDate() {
+										const today = new Date()
+										const day = today.getDate().toString().padStart(2, '0') // add leading zero if needed
+										const month = (today.getMonth() + 1)
+											.toString()
+											.padStart(2, '0') // month is zero-based, so add 1
+										const year = today.getFullYear()
+										return `${day}.${month}.${year}`
+									}
+									console.log(getCurrentDate())
+
+									setIsPage(false)
+									console.log('fgdgf', typePage, URLPage)
+									await axios.post(
+										'http://localhost:5000/page/create',
+										{
+											params: {
+												typePage,
+												URLPage,
+												pageTypePublish: false,
+												pageDate: getCurrentDate(),
+											},
+										},
+										{
+											headers: { 'Access-Control-Allow-Origin': '*' },
+										}
+									)
+								} catch (error) {
+									console.log(error)
+								}
+								console.log('true', isPage)
+							}}
+						>
+							Загрузить страницу
+						</button>
+					</div>
+				)}
+			</div>
+		)
+	}
+	return (
+		<div>
+			<CheckerPopup props={isPage} />
+			<div>
+				{!isPage && (
 					<div className='flex flex-col'>
 						<div>
 							<Counter />
 							<Popup
-								trigger={<button> Normal text</button>}
+								trigger={
+									<button>
+										{' '}
+										<NormalTextIcon />
+									</button>
+								}
 								position='bottom center'
 							>
-								<div>
+								<div
+									style={{
+										backgroundColor: 'gray',
+										display: 'flex',
+										flexDirection: 'column',
+									}}
+								>
 									<button onClick={() => handleDeleteTegs()}>
 										Normal text
 									</button>
@@ -724,39 +855,81 @@ const CreatePage = () => {
 							</Popup>
 							<Popup
 								trigger={
-									<button style={{ marginLeft: 10 }}> в лево(текст)</button>
+									<button style={{ marginLeft: 10 }}>
+										<div
+											style={{
+												display: 'flex',
+												flexDirection: 'row',
+												alignItems: 'center',
+											}}
+										>
+											<AlignLeft />
+											текст
+											<div style={{ marginLeft: 5 }}>
+												<Vector />
+											</div>
+										</div>
+									</button>
 								}
 								position='bottom center'
 							>
-								<div>
+								<div
+									style={{
+										display: 'flex',
+										flexDirection: 'column',
+										backgroundColor: 'gray',
+										padding: 10,
+									}}
+								>
 									<button onClick={() => addRightText()}>right</button>
 									<button onClick={() => addCenterText()}>center</button>
 									<button onClick={() => addLeftText()}>left</button>
 								</div>
 							</Popup>
-							<button style={{ marginLeft: 10 }} onClick={() => addParagraph()}>
+							{/* <button style={{ marginLeft: 10 }} onClick={() => addParagraph()}>
 								P
-							</button>
+							</button> */}
 							<button style={{ marginLeft: 10 }} onClick={() => addStrong()}>
-								<b>B</b>
+								<BIcon />
 							</button>
 							<button style={{ marginLeft: 10 }} onClick={() => MarkItalics()}>
-								<i>I</i>
+								<ItalicIcon />
 							</button>
 							<button style={{ marginLeft: 10 }} onClick={() => addUnderline()}>
-								<u>U</u>
+								<UnderlineIcon />
 							</button>
 							<button style={{ marginLeft: 10 }} onClick={() => addStrike()}>
-								<s>S</s>
+								<StrikeIcon />
 							</button>
 							<button style={{ marginLeft: 10 }} onClick={() => addList()}>
-								spisok
+								{/* <ListIcon /> */}
+								<svg
+									width='32'
+									height='32'
+									viewBox='0 0 32 32'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<path
+										d='M7 12C8.65685 12 10 10.6569 10 9C10 7.34315 8.65685 6 7 6C5.34315 6 4 7.34315 4 9C4 10.6569 5.34315 12 7 12Z'
+										fill='#fff'
+									/>
+									<path
+										d='M7 26C8.65685 26 10 24.6569 10 23C10 21.3431 8.65685 20 7 20C5.34315 20 4 21.3431 4 23C4 24.6569 5.34315 26 7 26Z'
+										fill='#fff'
+									/>
+									<path d='M16 22H30V24H16V22ZM16 8H30V10H16V8Z' fill='#fff' />
+								</svg>
 							</button>
 							<button style={{ marginLeft: 10 }} onClick={() => addListNum()}>
-								spisokNum
+								<ListNumberIcon />
 							</button>
 							<Popup
-								trigger={<button style={{ marginLeft: 10 }}>LINK</button>}
+								trigger={
+									<button style={{ marginLeft: 10 }}>
+										<LinkIcon />
+									</button>
+								}
 								position='right center'
 							>
 								<div>
@@ -787,15 +960,17 @@ const CreatePage = () => {
 											backgroundColor: 'transparent',
 										}}
 									>
-										image
+										<ImageIcon />
 									</button>
 								}
 								position='right center'
 							>
 								<div>
 									<form onSubmit={submitForm}>
-										<input type='text' id='name' ref={nameRef} />
 										<input
+											style={{
+												backgroundColor: 'gray',
+											}}
 											id='files'
 											ref={filesRef}
 											multiple
@@ -803,25 +978,34 @@ const CreatePage = () => {
 											className='image-button'
 											onChange={handleImageChange}
 										/>
-										<button type='submit'>Submit</button>
+										<button
+											style={{ backgroundColor: 'white', color: 'black' }}
+											type='submit'
+										>
+											Загрузить
+										</button>
 									</form>
 								</div>
 							</Popup>
 
 							<Popup
-								trigger={<button style={{ marginLeft: 30 }}>ADD PAGE</button>}
+								trigger={
+									<button style={{ marginLeft: 10 }}>
+										<AddIcon />
+									</button>
+								}
 								position='right center'
 							>
 								<div>
 									<label htmlFor=''>
-										<input
+										{/* <input
 											style={{
 												backgroundColor: '#000',
 											}}
 											onChange={e => addPublishLink(e.target.value)}
 											type='text'
 											placeholder='адрес страницы'
-										/>
+										/> */}
 										<button onClick={() => addPageInServer()}>
 											ОПУБЛИКОВАТЬ
 										</button>
@@ -846,55 +1030,6 @@ const CreatePage = () => {
 					</div>
 				)}
 			</div>
-		)
-	}
-	const CheckerPopup = ({ props }) => {
-		return (
-			<div>
-				{props && (
-					<div>
-						<form onSubmit={handleSubmit(onSubmit)}>
-							<input
-								style={{ backgroundColor: 'black' }}
-								type='text'
-								placeholder='URLPage:'
-								{...register('URLPage')}
-							/>
-							<label>Наш колледж</label>
-							<input {...register('TypePage')} type='radio' value='own' />
-							<label>Посты</label>
-							<input {...register('TypePage')} type='radio' value='post' />
-							<input type='submit' />
-						</form>
-						<button
-							onClick={async () => {
-								try {
-									setIsPage(false)
-									console.log('fgdgf', typePage, URLPage)
-									await axios.post(
-										'http://localhost:5000/page/create',
-										{ params: { typePage, URLPage, pageTypePublish: false } },
-										{
-											headers: { 'Access-Control-Allow-Origin': '*' },
-										}
-									)
-								} catch (error) {
-									console.log(error)
-								}
-								console.log('true', isPage)
-							}}
-						>
-							Загрузить страницу
-						</button>
-					</div>
-				)}
-			</div>
-		)
-	}
-	return (
-		<div>
-			<CheckerPopup props={isPage} />
-			<AdminPanel props={isPage} />
 		</div>
 	)
 }
