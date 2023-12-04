@@ -5,6 +5,7 @@ const initialState = {
 	italic: '',
 	textValue: '',
 	images: [],
+	images1: '',
 }
 
 export const counterSlice = createSlice({
@@ -12,6 +13,9 @@ export const counterSlice = createSlice({
 	initialState,
 
 	reducers: {
+		setImages1: (state, action) => {
+			state.images1 = action.payload
+		},
 		setImages: (state, action) => {
 			state.images = action.payload
 		},
@@ -40,6 +44,7 @@ export const counterSlice = createSlice({
 
 export const {
 	setImages,
+	setImages1,
 	textValueFunc,
 	italics,
 	increment,

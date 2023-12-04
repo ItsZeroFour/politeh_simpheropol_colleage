@@ -2,6 +2,7 @@
 import {
 	selectCount,
 	setImages,
+	setImages1,
 	textValueFunc,
 } from '@app/features/UndoRendoSlice.js'
 import { Counter } from '@app/features/UndoRendoUI.jsx'
@@ -33,7 +34,11 @@ const CreatePage = () => {
 	const [publishLink, setPublishLink] = useState('')
 	const dispatch = useDispatch()
 	const [image, setImage] = useState(null)
+	const [image1, setImage1] = useState(null)
 	const [netImage, setNewImage] = useState([])
+	const [netImage1, setNewImage1] = useState('')
+	const [postImage1, setPostImage1] = useState({})
+	const [localrenderImage, setLocalrenderImage] = useState('')
 	const [isButtonClicked, setIsButtonClicked] = useState(false)
 	const [URLPage, setURLPage] = useState('')
 	const [typePage, setTypePage] = useState('')
@@ -612,6 +617,15 @@ const CreatePage = () => {
 		console.log('LIST', list)
 		dispatch(textValueFunc(textValue + `${list}`))
 	}
+	const addImagesArr1 = () => {
+		console.log(netImage1)
+		// const list = netImage1.map(el => {
+		// 	return `<img  src=${el.myFile} alt="name" />`
+		// })
+		// //console.log('LIST', list)
+		// //dispatch(textValueFunc(textValue + `${list}`))
+		setLocalrenderImage(`<img src=${netImage1} alt="name"/>`)
+	}
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
 		const reader = new FileReader()
@@ -621,6 +635,24 @@ const CreatePage = () => {
 		reader.onloadend = () => {
 			setImage(reader.result)
 			dispatch(setImages([reader.result, ...images]))
+		}
+
+		if (file) {
+			reader.readAsDataURL(file)
+		}
+	}
+	const handleImageChange1 = async e => {
+		console.log('HI')
+		const file = e.target.files[0]
+		const reader = new FileReader()
+		const base64 = await convertToBase64(file)
+		console.log('gdfsgfd', base64)
+		setPostImage1({ ...postImage1, base64 })
+		console.log(postImage1)
+		setNewImage1(postImage1)
+		reader.onloadend = () => {
+			setImage1(reader.result)
+			dispatch(setImages1(reader.result))
 		}
 
 		if (file) {
@@ -642,6 +674,15 @@ const CreatePage = () => {
 	}
 	const addPublishLink = e => {
 		setPublishLink(e)
+	}
+	const submitForm1 = e => {
+		e.preventDefault()
+		//createPost(postImage)
+		// const newImagesArr = getImages()
+		// firstData = newImagesArr.then(data => setNewImage(data))
+		// console.log('Uploaded')
+		// console.log('netImage', netImage)
+		addImagesArr1()
 	}
 	const {
 		register,
@@ -674,11 +715,37 @@ const CreatePage = () => {
 	}
 	const [isPage, setIsPage] = useState(true)
 
-	const CheckerPopup = ({ props }) => {
-		return (
+	return (
+		<div>
 			<div>
-				{props && (
+				{isPage && (
 					<div>
+						<Popup trigger={<button> Trigger</button>} position='right center'>
+							<div>
+								{' '}
+								<div>
+									<form onSubmit={submitForm1}>
+										<input
+											style={{
+												backgroundColor: 'gray',
+											}}
+											id='files'
+											ref={filesRef}
+											multiple
+											type='file'
+											className='image-button'
+											onChange={handleImageChange1}
+										/>
+										<button
+											style={{ backgroundColor: 'white', color: 'black' }}
+											type='submit'
+										>
+											Загрузить
+										</button>
+									</form>
+								</div>
+							</div>
+						</Popup>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<input
 								style={{ backgroundColor: 'black' }}
@@ -686,7 +753,7 @@ const CreatePage = () => {
 								placeholder='URLPage:'
 								{...register('URLPage')}
 							/>
-							{/* <Popup
+							<Popup
 								trigger={
 									<button
 										style={{
@@ -704,7 +771,7 @@ const CreatePage = () => {
 								position='right center'
 							>
 								<div>
-									<form onSubmit={submitForm}>
+									<form onSubmit={submitForm1}>
 										<input
 											style={{
 												backgroundColor: 'gray',
@@ -714,7 +781,7 @@ const CreatePage = () => {
 											multiple
 											type='file'
 											className='image-button'
-											onChange={handleImageChange}
+											onChange={handleImageChange1}
 										/>
 										<button
 											style={{ backgroundColor: 'white', color: 'black' }}
@@ -724,8 +791,7 @@ const CreatePage = () => {
 										</button>
 									</form>
 								</div>
-							</Popup> */}
-
+							</Popup>
 							<label>Наш колледж</label>
 							<input {...register('TypePage')} type='radio' value='own' />
 							<label>Посты</label>
@@ -773,11 +839,6 @@ const CreatePage = () => {
 					</div>
 				)}
 			</div>
-		)
-	}
-	return (
-		<div>
-			<CheckerPopup props={isPage} />
 			<div>
 				{!isPage && (
 					<div className='flex flex-col'>
