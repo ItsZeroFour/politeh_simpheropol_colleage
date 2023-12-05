@@ -7,7 +7,7 @@ import EnrolleeOtherLinks from "@/widgets/Enrollee/EnrolleeOtherLinks";
 import EnrolleeTop from "@/widgets/Enrollee/EnrolleeTop";
 import EnrolleeSpecialityes from "@/widgets/Enrollee/EnrolleeSpecialityes";
 import EnrolleeNecessary from "@/widgets/Enrollee/EnrolleeNecessary";
-import Button from "@/container/Button";
+import Button from "@shared/Button";
 import EnrolleeRequzits from "@/widgets/Enrollee/EnrolleeRequzits";
 
 const Enrollee = () => {
@@ -23,7 +23,6 @@ const Enrollee = () => {
 
       <div>
         <Button
-
           width={"100%"}
           textContent={"Приказ о зачислении"}
           marginTop={50}

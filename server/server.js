@@ -9,6 +9,7 @@ import userRouter from "./routes/UserRoutes.js";
 import specialityRouter from "./routes/SpecialtiesRoutes.js";
 import postRouter from "./routes/PostRoutes.js";
 import dormitoryRouter from "./routes/DormitoryRoutes.js";
+import pageRouter from "./routes/PageRoutes.js";
 
 dotenv.config({ path: "./.env" });
 
@@ -33,6 +34,7 @@ app.use("/auth", userRouter);
 app.use("/speciality", specialityRouter);
 app.use("/post", postRouter);
 app.use("/dormitory", dormitoryRouter);
+app.use("/page", pageRouter);
 
 /* START FUNCTION */
 async function start() {
