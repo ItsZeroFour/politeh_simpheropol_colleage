@@ -26,12 +26,10 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import Popup from 'reactjs-popup'
 const CreatePage = () => {
-	const [heigthTextArea, setHeigthTextArea] = useState(10)
+	const [isPage, setIsPage] = useState(true)
 	const { italic, textValue, images, images1 } = useSelector(selectCount)
 	const [postImage, setPostImage] = useState({ myFile: '' })
-	const [finded, setFinded] = useState('')
 	const [selectedText, setSelectedText] = useState('')
-	const [publishLink, setPublishLink] = useState('')
 	const dispatch = useDispatch()
 	const [image, setImage] = useState(null)
 	const [image1, setImage1] = useState(null)
@@ -71,7 +69,6 @@ const CreatePage = () => {
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
 			if (initium_index !== -1) {
@@ -89,15 +86,13 @@ const CreatePage = () => {
 	}
 	const handleAddHeadingTwo = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
 			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString = '<h2>' + selectedText + '</h2>'
 				let newString =
@@ -111,41 +106,15 @@ const CreatePage = () => {
 			}
 		}
 	}
-	// const addParagraph = () => {
-	// 	const isExtend = textValue.includes(selectedText)
-	// 	console.log(isExtend)
-	// 	if (isExtend) {
-	// 		let initium_index = textValue.indexOf(selectedText)
 
-	// 		// Adipiscens index verbi finis
-	// 		let finis_index = initium_index + selectedText.length - 1
-
-	// 		console.log('firstIndex', initium_index)
-	// 		console.log('lastIndex', finis_index)
-	// 		if (initium_index !== -1) {
-	// 			let newSubString = '<p>' + selectedText + '</p>'
-	// 			let newString =
-	// 				textValue.substring(0, initium_index) +
-	// 				newSubString +
-	// 				textValue.substring(finis_index + 1)
-	// 			console.log(newString)
-	// 			dispatch(textValueFunc(newString))
-	// 		} else {
-	// 			console.log('substring not found')
-	// 		}
-	// 	}
-	// }
 	const addStrong = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString = '<b>' + selectedText + '</b>'
 				let newString =
@@ -161,15 +130,12 @@ const CreatePage = () => {
 	}
 	const addUnderline = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString = '<u>' + selectedText + '</u>'
 				let newString =
@@ -186,29 +152,18 @@ const CreatePage = () => {
 
 	const addListNum = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
 
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
-			console.log('LI!!!', selectedText)
-
 			const newSelectedArr = selectedText.split('<br/>')
-			console.log('new arr', newSelectedArr)
 
 			if (initium_index !== -1) {
-				// Create an array of React elements
 				const elements = newSelectedArr
 					.map((el, index) => `<li>${index + 1}. ${el}</li>`)
 					.join('')
-
-				console.log('ELEMENTS', elements)
-				// Save JSX elements directly
 				const NewString = () => {
 					return (
 						textValue.substring(0, initium_index) +
@@ -226,20 +181,13 @@ const CreatePage = () => {
 	}
 	const addList = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
 
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
-			console.log('LI!!!', selectedText)
-
 			const newSelectedArr = selectedText.split('<br/>')
-			console.log('new arr', newSelectedArr)
 
 			if (initium_index !== -1) {
 				// Create an array of React elements
@@ -285,15 +233,12 @@ const CreatePage = () => {
 
 	const addLinkElement = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString = `<a href=${linkHref}>` + linkName + '</a>'
 				let newString =
@@ -309,15 +254,12 @@ const CreatePage = () => {
 	}
 	const addStrike = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString = '<s>' + selectedText + '</s>'
 				let newString =
@@ -345,15 +287,12 @@ const CreatePage = () => {
 	}
 	const handleAddHeadingOne = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString = '<h1>' + selectedText + '</h1>'
 				let newString =
@@ -369,15 +308,12 @@ const CreatePage = () => {
 	}
 	const addCenterText = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString =
 					'<div style="text-align:center">' + selectedText + '</div>'
@@ -394,15 +330,12 @@ const CreatePage = () => {
 	}
 	const addLeftText = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString =
 					'<div style="text-align:left">' + selectedText + '</div>'
@@ -419,15 +352,12 @@ const CreatePage = () => {
 	}
 	const addRightText = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString =
 					'<div style="text-align:right">' + selectedText + '</div>'
@@ -445,15 +375,12 @@ const CreatePage = () => {
 
 	const addRight = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString =
 					'<div style="margin-left: 90%">' + selectedText + '</div>'
@@ -470,15 +397,12 @@ const CreatePage = () => {
 	}
 	const addLeft = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString =
 					'<div style="margin-right: 90%">' + selectedText + '</div>'
@@ -495,15 +419,12 @@ const CreatePage = () => {
 	}
 	const addCenter = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString =
 					'<div style=" margin-left: 40%">' + selectedText + '</div>'
@@ -520,15 +441,12 @@ const CreatePage = () => {
 	}
 	const MarkItalics = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString = '<i>' + selectedText + '</i>'
 				let newString =
@@ -567,15 +485,12 @@ const CreatePage = () => {
 
 	const handleDeleteTegs = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
-			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			const deleteHTMLTegs = word => {
 				return word.replace(/<[^>]*>/g, '')
 			}
@@ -592,31 +507,11 @@ const CreatePage = () => {
 			}
 		}
 	}
-	const createPost = async newImage => {
-		try {
-			await axios.post('http://localhost:5000/uploads', newImage, {
-				headers: { 'Access-Control-Allow-Origin': '*' },
-			})
-		} catch (error) {
-			console.log(error)
-		}
-	}
-	const getImages = async () => {
-		try {
-			const info = await axios.get('http://localhost:5000/images', {
-				headers: { 'Access-Control-Allow-Origin': '*' },
-			})
-			return info.data
-		} catch (error) {
-			console.log('error', error)
-		}
-	}
+
 	const addImagesArr = () => {
-		console.log(images)
 		const list = images.map(el => {
 			return `<img  src=${el} alt="name" />`
 		})
-		console.log('LIST', list)
 		dispatch(textValueFunc(textValue + `${list}`))
 	}
 	const addImagesArr1 = () => {
@@ -637,7 +532,6 @@ const CreatePage = () => {
 		}
 	}
 	const handleImageChange1 = async e => {
-		console.log('HI')
 		const file = e.target.files[0]
 		const reader = new FileReader()
 		const base64 = await convertToBase64(file)
@@ -655,26 +549,13 @@ const CreatePage = () => {
 
 	const nameRef = useRef(null)
 	const filesRef = useRef(null)
-	let firstData = ''
 	const submitForm = e => {
 		e.preventDefault()
-		//createPost(postImage)
-		// const newImagesArr = getImages()
-		// firstData = newImagesArr.then(data => setNewImage(data))
-		// console.log('Uploaded')
-		// console.log('netImage', netImage)
+
 		addImagesArr()
-	}
-	const addPublishLink = e => {
-		setPublishLink(e)
 	}
 	const submitForm1 = e => {
 		e.preventDefault()
-		//createPost(postImage)
-		// const newImagesArr = getImages()
-		// firstData = newImagesArr.then(data => setNewImage(data))
-		// console.log('Uploaded')
-		// console.log('netImage', netImage)
 		addImagesArr1()
 	}
 	const {
@@ -688,6 +569,7 @@ const CreatePage = () => {
 		setTitlePage(data.titlePage)
 	}
 	const addPageInServer = async () => {
+		let newUrl = ''
 		const someDate = await axios.put(
 			'http://localhost:5000/page/topublic',
 
@@ -703,97 +585,80 @@ const CreatePage = () => {
 			console.log(someDate.data.pageUrl)
 		}
 	}
-	const [isPage, setIsPage] = useState(true)
 
 	return (
 		<div>
 			<div>
 				{isPage && (
 					<div>
-						<Popup trigger={<button> Trigger</button>} position='right center'>
-							<div>
-								{' '}
-								<div>
-									<form onSubmit={submitForm1}>
-										<input
-											style={{
-												backgroundColor: 'gray',
-											}}
-											id='files'
-											ref={filesRef}
-											multiple
-											type='file'
-											className='image-button'
-											onChange={handleImageChange1}
-										/>
-
-										<button
-											style={{ backgroundColor: 'white', color: 'black' }}
-											type='submit'
-										>
-											Загрузить
-										</button>
-									</form>
-								</div>
-							</div>
-						</Popup>
 						<form onSubmit={handleSubmit(onSubmit)}>
-							<input
-								style={{ backgroundColor: 'black' }}
-								type='text'
-								placeholder='URLPage:'
-								{...register('URLPage')}
-							/>
-							<Popup
-								trigger={
-									<button
-										style={{
-											marginLeft: 10,
-											padding: 0,
-											border: 'none',
-											font: 'inherit',
-											color: 'inherit',
-											backgroundColor: 'transparent',
-										}}
-									>
-										<ImageIcon />
-									</button>
-								}
-								position='right center'
-							>
-								<div>
-									<form onSubmit={submitForm1}>
-										<input
-											style={{
-												backgroundColor: 'gray',
-											}}
-											id='files'
-											ref={filesRef}
-											multiple
-											type='file'
-											className='image-button'
-											onChange={handleImageChange1}
-										/>
+							<div>
+								<label>Уникальный адрес страницы</label>
+								<input
+									style={{ backgroundColor: 'black' }}
+									type='text'
+									placeholder='URLPage:'
+									{...register('URLPage')}
+								/>
+							</div>
+							<div>
+								<Popup
+									trigger={
 										<button
-											style={{ backgroundColor: 'white', color: 'black' }}
-											type='submit'
+											style={{
+												marginLeft: 10,
+												padding: 0,
+												border: 'none',
+												font: 'inherit',
+												color: 'inherit',
+												backgroundColor: 'transparent',
+											}}
 										>
-											Загрузить
+											Загрузить обложку
 										</button>
-									</form>
-								</div>
-							</Popup>
-							<label>Заголовок страницы</label>
-							<input
-								type='text'
-								placeholder='titlePage'
-								{...register('titlePage')}
-								style={{ backgroundColor: 'black' }}
-							/>
-							<label>Наш колледж</label>
-							<input {...register('TypePage')} type='radio' value='own' />
-							<label>Посты</label>
-							<input {...register('TypePage')} type='radio' value='post' />
+									}
+									position='right center'
+								>
+									<div>
+										<form onSubmit={submitForm1}>
+											<input
+												style={{
+													backgroundColor: 'gray',
+												}}
+												id='files'
+												ref={filesRef}
+												multiple
+												type='file'
+												className='image-button'
+												onChange={handleImageChange1}
+											/>
+											<button
+												style={{ backgroundColor: 'white', color: 'black' }}
+												type='submit'
+											>
+												Загрузить
+											</button>
+										</form>
+									</div>
+								</Popup>
+							</div>
+							<div>
+								<label>Заголовок страницы</label>
+								<input
+									type='text'
+									placeholder='titlePage'
+									{...register('titlePage')}
+									style={{ backgroundColor: 'black' }}
+								/>
+							</div>
+							<div>
+								<label>Наш колледж</label>
+								<input {...register('TypePage')} type='radio' value='own' />
+							</div>
+							<div>
+								<label>Посты</label>
+								<input {...register('TypePage')} type='radio' value='post' />
+							</div>
 							<input type='submit' />
 						</form>
 						<button
@@ -947,9 +812,6 @@ const CreatePage = () => {
 									<button onClick={() => addLeftText()}>left</button>
 								</div>
 							</Popup>
-							{/* <button style={{ marginLeft: 10 }} onClick={() => addParagraph()}>
-								P
-							</button> */}
 							<button style={{ marginLeft: 10 }} onClick={() => addStrong()}>
 								<BIcon />
 							</button>
