@@ -27,7 +27,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Popup from 'reactjs-popup'
 const CreatePage = () => {
 	const [heigthTextArea, setHeigthTextArea] = useState(10)
-	const { italic, textValue, images } = useSelector(selectCount)
+	const { italic, textValue, images, images1 } = useSelector(selectCount)
 	const [postImage, setPostImage] = useState({ myFile: '' })
 	const [finded, setFinded] = useState('')
 	const [selectedText, setSelectedText] = useState('')
@@ -42,12 +42,15 @@ const CreatePage = () => {
 	const [isButtonClicked, setIsButtonClicked] = useState(false)
 	const [URLPage, setURLPage] = useState('')
 	const [typePage, setTypePage] = useState('')
+	const [titlePage, setTitlePage] = useState('')
 	const searchEvent = e => {}
 	let tmp = '../../app/testing'
 
 	const RenderAll = () => {
-		console.log(textValue)
 		return <Interweave content={textValue} />
+	}
+	const RenderPredImage = ({ localrenderImage }) => {
+		return <Interweave content={localrenderImage} />
 	}
 	function convertToBase64(file) {
 		return new Promise((resolve, reject) => {
@@ -64,15 +67,13 @@ const CreatePage = () => {
 
 	const handleAddHeadingThree = () => {
 		const isExtend = textValue.includes(selectedText)
-		console.log(isExtend)
+
 		if (isExtend) {
 			let initium_index = textValue.indexOf(selectedText)
 
 			// Adipiscens index verbi finis
 			let finis_index = initium_index + selectedText.length - 1
 
-			console.log('firstIndex', initium_index)
-			console.log('lastIndex', finis_index)
 			if (initium_index !== -1) {
 				let newSubString = '<h3>' + selectedText + '</h3>'
 				let newString =
@@ -611,20 +612,15 @@ const CreatePage = () => {
 		}
 	}
 	const addImagesArr = () => {
-		const list = netImage.map(el => {
-			return `<img  src=${el.myFile} alt="name" />`
+		console.log(images)
+		const list = images.map(el => {
+			return `<img  src=${el} alt="name" />`
 		})
 		console.log('LIST', list)
 		dispatch(textValueFunc(textValue + `${list}`))
 	}
 	const addImagesArr1 = () => {
-		console.log(netImage1)
-		// const list = netImage1.map(el => {
-		// 	return `<img  src=${el.myFile} alt="name" />`
-		// })
-		// //console.log('LIST', list)
-		// //dispatch(textValueFunc(textValue + `${list}`))
-		setLocalrenderImage(`<img src=${netImage1} alt="name"/>`)
+		setLocalrenderImage(`<img src=${images1} alt="name"/>`)
 	}
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
@@ -634,9 +630,8 @@ const CreatePage = () => {
 		setNewImage([postImage])
 		reader.onloadend = () => {
 			setImage(reader.result)
-			dispatch(setImages([reader.result, ...images]))
+			dispatch(setImages([reader.result]))
 		}
-
 		if (file) {
 			reader.readAsDataURL(file)
 		}
@@ -646,9 +641,7 @@ const CreatePage = () => {
 		const file = e.target.files[0]
 		const reader = new FileReader()
 		const base64 = await convertToBase64(file)
-		console.log('gdfsgfd', base64)
 		setPostImage1({ ...postImage1, base64 })
-		console.log(postImage1)
 		setNewImage1(postImage1)
 		reader.onloadend = () => {
 			setImage1(reader.result)
@@ -692,18 +685,15 @@ const CreatePage = () => {
 	const onSubmit = data => {
 		setTypePage(data.TypePage)
 		setURLPage(data.URLPage)
+		setTitlePage(data.titlePage)
 	}
-	console.log(typePage)
-	console.log(URLPage)
-
 	const addPageInServer = async () => {
-		let newUrl = ''
 		const someDate = await axios.put(
 			'http://localhost:5000/page/topublic',
 
-			{ URLPage, typePage, textValue }
+			{ URLPage, typePage, textValue, titlePage }
 		)
-		console.log('ALL', someDate)
+
 		if (someDate.status == 208) {
 			console.log(someDate.data.message)
 		}
@@ -736,6 +726,7 @@ const CreatePage = () => {
 											className='image-button'
 											onChange={handleImageChange1}
 										/>
+
 										<button
 											style={{ backgroundColor: 'white', color: 'black' }}
 											type='submit'
@@ -792,6 +783,13 @@ const CreatePage = () => {
 									</form>
 								</div>
 							</Popup>
+							<label>Заголовок страницы</label>
+							<input
+								type='text'
+								placeholder='titlePage'
+								{...register('titlePage')}
+								style={{ backgroundColor: 'black' }}
+							/>
 							<label>Наш колледж</label>
 							<input {...register('TypePage')} type='radio' value='own' />
 							<label>Посты</label>
@@ -813,7 +811,7 @@ const CreatePage = () => {
 									console.log(getCurrentDate())
 
 									setIsPage(false)
-									console.log('fgdgf', typePage, URLPage)
+
 									await axios.post(
 										'http://localhost:5000/page/create',
 										{
@@ -822,6 +820,8 @@ const CreatePage = () => {
 												URLPage,
 												pageTypePublish: false,
 												pageDate: getCurrentDate(),
+												titlePage: titlePage,
+												pageImage: localrenderImage,
 											},
 										},
 										{
@@ -831,11 +831,11 @@ const CreatePage = () => {
 								} catch (error) {
 									console.log(error)
 								}
-								console.log('true', isPage)
 							}}
 						>
 							Загрузить страницу
 						</button>
+						<RenderPredImage localrenderImage={localrenderImage} />
 					</div>
 				)}
 			</div>
