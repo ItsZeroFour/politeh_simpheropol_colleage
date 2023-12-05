@@ -1,41 +1,19 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import style from './header.module.scss'
-
 import logo from '@public/assets/icons/logo.svg?url'
 import sunIcon from '../../../public/assets/icons/sun.svg?url'
-import LinkDropdown from '@features/header/LinkDropdown/LinkDropdown'
+import Links from '@features/header/Links/Links'
+
 
 
 // TODO: добавить redux, реализовать в с его помощью ховер на ссылки
 
-const linksList = [
-  { url: '/', text: 'Главная' },
-  { url: '/', text: 'Наш колледж' },
-  { url: '/', text: 'Абитуриенту' },
-  { url: '/contacts', text: 'Контакты' },
-  { url: '/', text: 'Общежитие' },
-  { url: '/', text: 'Студенту' },
-]
-
-
-const linkMouseEnter = e => {
-  const element = e.target
-  element.classList.add('e')
-}
-
-const Links = () => {
-  return linksList.map((link, index) => (
-    <li
-      key={index}
-      className={style.link}
-    >
-      <Link href={link.url}>{link.text}</Link>
-    </li>
-  ))
-}
 
 const Header = () => {
+
   return (
     <>
       <div className={style.headerWrapper}></div>

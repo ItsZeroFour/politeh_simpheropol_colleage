@@ -13,5 +13,12 @@ router.post(
   dormitoryPriceValidation,
   DormitoryPrice.createPriceListItem
 );
+router.delete(
+  "/delete",
+  checkAuth,
+  checkUserIsAdmin,
+  DormitoryPrice.deletePriceListItem
+);
+router.get("/getAll", DormitoryPrice.getAllDormitoryes);
 
 export default router;

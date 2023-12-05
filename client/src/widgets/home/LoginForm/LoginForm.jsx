@@ -59,7 +59,7 @@ const LoginForm = () => {
             <p className={style.developerName}>Андреев Д. В.</p>
             <div className={style.networks}>
               <Link href=''>
-                <VK className={`${global.icon} cursor-pointer`} />
+                <VK className={`${global.icon} cursor-pointer w-[32px] h-[26px]`} />
               </Link>
               <Link href=''>
                 <WWW className={`${global.icon} cursor-pointer`} />
@@ -74,7 +74,7 @@ const LoginForm = () => {
             <p className={style.developerName}>Власенко Д. С.</p>
             <div className={style.networks}>
               <Link href=''>
-                <VK className={`${global.icon} cursor-pointer`} />
+                <VK className={`${global.icon} cursor-pointer w-[32px] h-[26px]`} />
               </Link>
               <Link href=''>
                 <WWW className={`${global.icon} cursor-pointer`} />
@@ -88,13 +88,13 @@ const LoginForm = () => {
           <div className={style.developer}>
             <p className={style.developerName}>Сейдалиев А. Э.</p>
             <div className={style.networks}>
-              <Link href=''>
-                <VK className={`${global.icon} cursor-pointer`} />
+              <Link href='' className={style.networkLink}>
+                <VK className={`${global.icon} cursor-pointer w-[32px] h-[26px]`} />
               </Link>
-              <Link href=''>
+              <Link href='' className={style.networkLink}>
                 <WWW className={`${global.icon} cursor-pointer`} />
               </Link>
-              <Link href=''>
+              <Link href='' className={style.networkLink}>
                 <Telegram className={`${global.icon} cursor-pointer`} />
               </Link>
             </div>

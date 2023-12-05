@@ -1,0 +1,52 @@
+.background1,
+.background2,
+.background3,
+.background4,
+.eqation1,
+.eqation2 {
+  position: absolute;
+  z-index: -2500;
+}
+
+.background1 {
+  left: 0;
+  top: 0;
+}
+
+.background2 {
+  top: 50px;
+  right: 0;
+}
+
+.background3 {
+  left: 0;
+  top: 2100px;
+}
+
+.background4 {
+  right: 0;
+  top: 3000px;
+}
+
+
+
+.eqation1 {
+    right: 0;
+    top: 2240px;
+}
+
+.eqation2 {
+    left: 118px;
+    top: 4000px;
+}
+
+
+@media screen and (min-width: 2320px) {
+    .background1, .background3, .eqation2 {
+        left: calc((100vw - 1430px) / 2);
+    }
+
+    .background2, .background4, .eqation1 {
+        right: calc((100vw - 1430px) / 2);
+    }
+}

@@ -1,0 +1,96 @@
+
+.delimiter {
+    margin-top: 100px;
+    margin-bottom: 150px;
+
+    height: 1px;
+    width: 100%;
+
+    background: var(--color-dark-gray);
+}
+
+
+
+.ministries {
+    position: relative;
+}
+
+.slider {
+    height: 345px;
+}
+
+.slide {
+    position: relative;
+    overflow: hidden;
+
+    border-radius: var(--border-radius-md);
+}
+
+
+.sliderLeft, .sliderRight {
+    display: block;
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 1000;
+    width: 46px;
+
+    cursor: pointer;
+
+    & path {
+        transition: .3s;
+    }
+}
+
+.sliderLeft {
+    left: -60px;
+}
+
+.sliderRight {
+    right: -60px;
+}
+
+.popupCard {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, .5);
+    transition: .4s;
+    backdrop-filter: blur(10px);
+}
+
+.popupCardActive {
+    top: 0;
+    transition: .4s;
+}
+
+.popupText {
+    width: 80%;
+    word-wrap: break-word;
+
+    text-align: center;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 140%;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popupImage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+}
+
