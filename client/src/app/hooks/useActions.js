@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 
 const allActions = {
 	...headerActions,
-	...counterSliceActions,
+	counterSliceActions,
 }
 
 export const useActions = () => {

@@ -1,11 +1,11 @@
 'use client'
+import { Counter } from '@app/features/UndoRendoUI.jsx'
+import { useActions } from '@app/hooks/useActions'
 import {
 	setImages,
 	setImages1,
 	textValueFunc,
-} from '@app/features/UndoRendoSlice.js'
-import { Counter } from '@app/features/UndoRendoUI.jsx'
-import { useActions } from '@app/hooks/useActions'
+} from '@app/store/pagesAdmin/UndoRendoSlice.js'
 import AlignRight from '@public/assets/icons/adminicons/ALignRight'
 import AddIcon from '@public/assets/icons/adminicons/AddIcon'
 import AlignCenter from '@public/assets/icons/adminicons/AlignCenter'
@@ -28,7 +28,8 @@ import Popup from 'reactjs-popup'
 const CreatePage = () => {
 	const [isPage, setIsPage] = useState(true)
 	const { textValue, images, images1 } = useActions()
-	const state = useSelector(state => state)
+	console.log(textValue, images, images1)
+	const state = useSelector(state => state.images1)
 	const [postImage, setPostImage] = useState({ myFile: '' })
 	const [selectedText, setSelectedText] = useState('')
 	const dispatch = useDispatch()
@@ -518,7 +519,7 @@ const CreatePage = () => {
 		dispatch(textValueFunc(textValue + `${list}`))
 	}
 	const addImagesArr1 = () => {
-		setLocalrenderImage(`<img src=${images1} alt="name"/>`)
+		setLocalrenderImage(`<img src=${state} alt="name"/>`)
 	}
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
@@ -542,7 +543,9 @@ const CreatePage = () => {
 		setNewImage1(postImage1)
 		reader.onloadend = () => {
 			setImage1(reader.result)
+			console.log(image1)
 			dispatch(setImages1(reader.result))
+			console.log(state)
 		}
 
 		if (file) {

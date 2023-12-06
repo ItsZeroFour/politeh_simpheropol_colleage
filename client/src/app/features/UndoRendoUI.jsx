@@ -1,14 +1,11 @@
 'use client'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { ActionCreators } from 'redux-undo'
 
 import Redo from '@widgets/Panel/Redo.jsx'
 import Undo from '@widgets/Panel/Undo.jsx'
-import { selectCount } from '../store/pagesAdmin/UndoRendoSlice.js'
 
 export function Counter() {
-	const { value } = useSelector(selectCount)
-
 	const dispatch = useDispatch()
 
 	return (
