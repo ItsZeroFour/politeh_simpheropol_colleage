@@ -18,9 +18,17 @@ const PageModel = new mongoose.Schema({
 		type: String,
 		required: false,
 	},
+	pageTitle: {
+		type: String,
+		required: true,
+	},
 	pageImage: {
-		type: Array,
+		type: String,
 		required: false,
+	},
+	pageDate: {
+		type: String,
+		required: true,
 	},
 })
 

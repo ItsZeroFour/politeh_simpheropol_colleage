@@ -9,16 +9,27 @@ export const createPage = async (req, res) => {
 			return res.status(400).json({ message: errors.array() })
 		}
 
-		const { typePage, URLPage, pageTypePublish } = req.body.params
+		const {
+			typePage,
+			URLPage,
+			pageTypePublish,
+			pageDate,
+			pageImage,
+			titlePage,
+		} = req.body.params
+		console.log(req.body.params)
 		console.log(typePage)
 		console.log(URLPage)
 		console.log(pageTypePublish)
+		console.log(titlePage)
 		const newPage = new PageModel({
 			pageUrl: URLPage,
 			pageType: typePage,
 			pageTypePublish: pageTypePublish,
 			pageContent: '',
-			pageImage: '',
+			pageImage: pageImage,
+			pageDate: pageDate,
+			pageTitle: titlePage,
 		})
 		const somedate = await newPage.save()
 		console.log(somedate)
@@ -30,11 +41,17 @@ export const createPage = async (req, res) => {
 		})
 	}
 }
-
+export const getOurCollegePages = async (req, res) => {
+	try {
+		const arrPages = await PageModel.find({ pageType: 'own' })
+		console.log(arrPages)
+		res.send(arrPages)
+	} catch (error) {
+		console.log(error)
+	}
+}
 export const updatePageAndToPublic = async (req, res) => {
 	try {
-		//const pageUrl = req.params.url
-		// await PageModel.findOneAndUpdate({ pageUrl: pageUrl }, {})
 		const ID = await PageModel.find({ pageUrl: req.body.URLPage })
 		const ID_Obj = { _id: ID[0]._id }
 		console.log('ID', ID_Obj)
@@ -45,15 +62,16 @@ export const updatePageAndToPublic = async (req, res) => {
 			{ pageUrl: req.body.URLPage },
 			{ pageContent: update, pageTypePublish: true }
 		)
-		console.log(doc)
-
+		const doc1 = await PageModel.find({ pageUrl: req.body.URLPage })
+		console.log(doc1)
 		res.status(200).json({
-			message: 'Страница успешно обновлена!',
+			message: 'Страница успешно опубликована!',
+			data: doc1,
 		})
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Failed to update page',
+			message: 'Failed to add page',
 		})
 	}
 }
