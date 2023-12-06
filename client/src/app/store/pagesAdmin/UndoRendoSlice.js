@@ -46,30 +46,14 @@ export const counterSlice = createSlice({
 	},
 })
 
-export const {
-	setImages,
-	setImages1,
-	textValueFunc,
-	italics,
-	increment,
-	decrement,
-	incrementByAmount,
-	setDataOurCollege,
-} = counterSlice.actions
+// setImages,
+// setImages1,
+// textValueFunc,
+// italics,
+// increment,
+// decrement,
+// incrementByAmount,
+// setDataOurCollege,
+export const counterSliceActions = counterSlice.actions
 
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
-export const incrementAsync = amount => dispatch => {
-	setTimeout(() => {
-		dispatch(incrementByAmount(amount))
-	}, 1000)
-}
-
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-// Note: when using redux-undo, you reference state.[sliceName].present.[targetKey]
-export const selectCount = state => state.counter.present
-export default counterSlice.reducer
+export const UndoRedoSlice = counterSlice.reducer

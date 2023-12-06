@@ -1,7 +1,16 @@
+'use client'
+
 import { configureStore } from '@reduxjs/toolkit'
-import undoable from 'redux-undo'
-import counterReducer from '../features/UndoRendoSlice'
+import { headerReducer } from './header/header.slice'
+import { UndoRedoSlice } from './pagesAdmin/UndoRendoSlice.js'
+import { productApi } from './product/product.api'
 
 export const store = configureStore({
-	reducer: { counter: undoable(counterReducer) },
+	reducer: {
+		[productApi.reducerPath]: productApi.reducer,
+		header: headerReducer,
+		pagesAdmin: UndoRedoSlice,
+	},
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware().concat(productApi.middleware),
 })

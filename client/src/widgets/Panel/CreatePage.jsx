@@ -1,11 +1,11 @@
 'use client'
 import {
-	selectCount,
 	setImages,
 	setImages1,
 	textValueFunc,
 } from '@app/features/UndoRendoSlice.js'
 import { Counter } from '@app/features/UndoRendoUI.jsx'
+import { useActions } from '@app/hooks/useActions'
 import AlignRight from '@public/assets/icons/adminicons/ALignRight'
 import AddIcon from '@public/assets/icons/adminicons/AddIcon'
 import AlignCenter from '@public/assets/icons/adminicons/AlignCenter'
@@ -27,7 +27,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Popup from 'reactjs-popup'
 const CreatePage = () => {
 	const [isPage, setIsPage] = useState(true)
-	const { italic, textValue, images, images1 } = useSelector(selectCount)
+	const { textValue, images, images1 } = useActions()
+	const state = useSelector(state => state)
 	const [postImage, setPostImage] = useState({ myFile: '' })
 	const [selectedText, setSelectedText] = useState('')
 	const dispatch = useDispatch()

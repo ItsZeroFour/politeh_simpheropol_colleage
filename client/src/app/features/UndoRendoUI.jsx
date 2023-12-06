@@ -4,7 +4,7 @@ import { ActionCreators } from 'redux-undo'
 
 import Redo from '@widgets/Panel/Redo.jsx'
 import Undo from '@widgets/Panel/Undo.jsx'
-import { selectCount } from './UndoRendoSlice.js'
+import { selectCount } from '../store/pagesAdmin/UndoRendoSlice.js'
 
 export function Counter() {
 	const { value } = useSelector(selectCount)

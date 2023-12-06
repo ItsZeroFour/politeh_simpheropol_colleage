@@ -1,16 +1,17 @@
 'use client'
 
-import { selectCount, setDataOurCollege } from '@redux/features/GenSlice.js'
+import { useActions } from '@app/hooks/useActions.js'
 import axios from 'axios'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { setDataOurCollege } from '../../app/store/pagesAdmin/UndoRendoSlice.js'
 //getourcollge
 const OurCollege = () => {
-	const { dataOurCollege } = useSelector(selectCount)
+	const state = useSelector(state => state)
 	const [data, setData] = useState([])
 	const dispatch = useDispatch()
+	const { dataOurCollege } = useActions()
 
 	useEffect(() => {
 		const someAsyncFunc = async () => {
