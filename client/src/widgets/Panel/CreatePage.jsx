@@ -38,8 +38,10 @@ const CreatePage = () => {
 	const [postImage1, setPostImage1] = useState({})
 	const [localrenderImage, setLocalrenderImage] = useState('')
 	const [isButtonClicked, setIsButtonClicked] = useState(false)
-	const [URLPage, setURLPage] = useState('')
+	const [isForm, setIsForm] = useState('default')
 	const [typePage, setTypePage] = useState('')
+	const [URLPage, setURLPage] = useState('')
+	const [data, setdata] = useState('')
 	const [titlePage, setTitlePage] = useState('')
 	const searchEvent = e => {}
 	let tmp = '../../app/testing'
@@ -564,6 +566,7 @@ const CreatePage = () => {
 		formState: { errors },
 	} = useForm()
 	const onSubmit = data => {
+		console.log(data)
 		setTypePage(data.TypePage)
 		setURLPage(data.URLPage)
 		setTitlePage(data.titlePage)
@@ -591,13 +594,25 @@ const CreatePage = () => {
 			<div>
 				{isPage && (
 					<div>
+						{isForm == 'false' && (
+							<div style={{ color: '#D73636' }}>
+								Форма не заполнена либо одно из полей не было заполнено!
+							</div>
+						)}
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div>
-								<label>Уникальный адрес страницы</label>
 								<input
-									style={{ backgroundColor: 'black' }}
+									style={{
+										marginTop: 10,
+										marginBottom: 10,
+										padding: 10,
+										fontSize: 15,
+										borderRadius: 10,
+										fontWeight: 500,
+										backgroundColor: '#0066FF',
+									}}
 									type='text'
-									placeholder='URLPage:'
+									placeholder='Адрес страницы:'
 									{...register('URLPage')}
 								/>
 							</div>
@@ -606,12 +621,13 @@ const CreatePage = () => {
 									trigger={
 										<button
 											style={{
-												marginLeft: 10,
-												padding: 0,
-												border: 'none',
-												font: 'inherit',
-												color: 'inherit',
-												backgroundColor: 'transparent',
+												marginTop: 10,
+												marginBottom: 10,
+												padding: 10,
+												fontSize: 18,
+												borderRadius: 10,
+												fontWeight: 500,
+												backgroundColor: '#0066FF',
 											}}
 										>
 											Загрузить обложку
@@ -643,59 +659,146 @@ const CreatePage = () => {
 								</Popup>
 							</div>
 							<div>
-								<label>Заголовок страницы</label>
 								<input
 									type='text'
-									placeholder='titlePage'
+									placeholder='Заголовок страницы:'
 									{...register('titlePage')}
-									style={{ backgroundColor: 'black' }}
+									style={{
+										marginTop: 10,
+										marginBottom: 10,
+										padding: 10,
+										fontSize: 15,
+										borderRadius: 10,
+										fontWeight: 500,
+										backgroundColor: '#0066FF',
+									}}
 								/>
 							</div>
-							<div>
+							<div
+								style={{
+									marginTop: 10,
+									marginBottom: 10,
+									padding: 10,
+									fontSize: 15,
+									borderRadius: 10,
+									fontWeight: 500,
+									backgroundColor: '#0066FF',
+									width: 200,
+								}}
+							>
 								<label>Наш колледж</label>
 								<input {...register('TypePage')} type='radio' value='own' />
 							</div>
-							<div>
+							<div
+								style={{
+									marginTop: 10,
+									marginBottom: 10,
+									padding: 10,
+									fontSize: 15,
+									borderRadius: 10,
+									fontWeight: 500,
+									backgroundColor: '#0066FF',
+									width: 200,
+								}}
+							>
 								<label>Посты</label>
 								<input {...register('TypePage')} type='radio' value='post' />
 							</div>
-							<input type='submit' />
+							<input
+								type='submit'
+								style={{
+									marginTop: 10,
+									marginBottom: 10,
+									padding: 10,
+									fontSize: 15,
+									borderRadius: 10,
+									fontWeight: 500,
+									backgroundColor: '#0066FF',
+								}}
+							/>
 						</form>
 						<button
 							onClick={async () => {
 								try {
-									function getCurrentDate() {
-										const today = new Date()
-										const day = today.getDate().toString().padStart(2, '0') // add leading zero if needed
-										const month = (today.getMonth() + 1)
-											.toString()
-											.padStart(2, '0') // month is zero-based, so add 1
-										const year = today.getFullYear()
-										return `${day}.${month}.${year}`
-									}
-									console.log(getCurrentDate())
-
-									setIsPage(false)
-
-									await axios.post(
-										'http://localhost:5000/page/create',
-										{
-											params: {
-												typePage,
-												URLPage,
-												pageTypePublish: false,
-												pageDate: getCurrentDate(),
-												titlePage: titlePage,
-												pageImage: localrenderImage,
-											},
-										},
-										{
-											headers: { 'Access-Control-Allow-Origin': '*' },
+									console.log(typePage, URLPage, titlePage, localrenderImage)
+									if (
+										typePage != '' &&
+										URLPage != '' &&
+										titlePage != '' &&
+										localrenderImage != ''
+									) {
+										setIsForm('true')
+										console.log(isForm)
+										function getCurrentDate() {
+											const today = new Date()
+											const day = today.getDate().toString().padStart(2, '0') // add leading zero if needed
+											const month = (today.getMonth() + 1)
+												.toString()
+												.padStart(2, '0') // month is zero-based, so add 1
+											const year = today.getFullYear()
+											return `${day}.${month}.${year}`
 										}
-									)
+										console.log(getCurrentDate())
+
+										setIsPage(false)
+
+										await axios.post(
+											'http://localhost:5000/page/create',
+											{
+												params: {
+													data,
+													URLPage,
+													pageTypePublish: false,
+													pageDate: getCurrentDate(),
+													titlePage: titlePage,
+													pageImage: localrenderImage,
+												},
+											},
+											{
+												headers: { 'Access-Control-Allow-Origin': '*' },
+											}
+										)
+									} else if (
+										typePage == '' ||
+										URLPage == '' ||
+										titlePage == '' ||
+										localrenderImage == '' ||
+										(data == '' &&
+											URLPage == '' &&
+											titlePage == '' &&
+											localrenderImage == '')
+									) {
+										console.log('не заполнены поля!')
+
+										setIsForm('false')
+										console.log(isForm)
+									} else if (
+										typePage == null ||
+										URLPage == '' ||
+										titlePage == '' ||
+										localrenderImage == '' ||
+										(data == null &&
+											URLPage == '' &&
+											titlePage == '' &&
+											localrenderImage == '')
+									) {
+										console.log('не заполнены поля')
+										setIsForm('false')
+									}
 								} catch (error) {
 									console.log(error)
+									setIsForm('false')
+									console.log(isForm)
 								}
+							}}
+							style={{
+								marginTop: 10,
+								marginBottom: 10,
+								padding: 10,
+								fontSize: 15,
+								borderRadius: 10,
+								fontWeight: 500,
+								backgroundColor: '#0066FF',
 							}}
 						>
 							Загрузить страницу
@@ -921,14 +1024,6 @@ const CreatePage = () => {
 							>
 								<div>
 									<label htmlFor=''>
-										{/* <input
-											style={{
-												backgroundColor: '#000',
-											}}
-											onChange={e => addPublishLink(e.target.value)}
-											type='text'
-											placeholder='адрес страницы'
-										/> */}
 										<button onClick={() => addPageInServer()}>
 											ОПУБЛИКОВАТЬ
 										</button>
