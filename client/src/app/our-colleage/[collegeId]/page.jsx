@@ -1,6 +1,14 @@
 'use client'
 
+import CollegePage from '@widgets/Ourcollege/[collegeId]/page'
+
+// {() => {
+// 	if (!el.pageData) {
+// 		return <span>Извините, но данные не найдены :(</span>
+// 	} else {
+// 		return el.pageData
+// 	}
+// }}
 export default function Page({ params }) {
-	console.log(params)
-	return <div>{params.collegeId}</div>
+	return <CollegePage params={params} />
 }

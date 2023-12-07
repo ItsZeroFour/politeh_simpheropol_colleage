@@ -1,7 +1,6 @@
 'use client'
-import { Counter } from '@app/features/UndoRendoUI.jsx'
-import { useActions } from '@app/hooks/useActions'
 import {
+	increment,
 	setImages,
 	setImages1,
 	textValueFunc,
@@ -25,11 +24,15 @@ import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import Popup from 'reactjs-popup'
+import { Counter } from './UndoRendoUI.jsx'
 const CreatePage = () => {
 	const [isPage, setIsPage] = useState(true)
-	const { textValue, images, images1 } = useActions()
-	console.log(textValue, images, images1)
-	const state = useSelector(state => state.images1)
+	const state = useSelector(state => state)
+	console.log(state)
+	const images1 = useSelector(state => state.counter.present.images1)
+	const textValue = useSelector(state => state.counter.present.textValue)
+	const images = useSelector(state => state.counter.present.images)
+	const count = useSelector(state => state.counter.present.value)
 	const [postImage, setPostImage] = useState({ myFile: '' })
 	const [selectedText, setSelectedText] = useState('')
 	const dispatch = useDispatch()
@@ -519,7 +522,7 @@ const CreatePage = () => {
 		dispatch(textValueFunc(textValue + `${list}`))
 	}
 	const addImagesArr1 = () => {
-		setLocalrenderImage(`<img src=${state} alt="name"/>`)
+		setLocalrenderImage(`<img src=${images1} alt="name"/>`)
 	}
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
@@ -543,9 +546,9 @@ const CreatePage = () => {
 		setNewImage1(postImage1)
 		reader.onloadend = () => {
 			setImage1(reader.result)
-			console.log(image1)
+
 			dispatch(setImages1(reader.result))
-			console.log(state)
+			console.log(images1)
 		}
 
 		if (file) {
@@ -603,6 +606,15 @@ const CreatePage = () => {
 								Форма не заполнена либо одно из полей не было заполнено!
 							</div>
 						)}
+						<button
+							onClick={() => {
+								dispatch(increment())
+								console.log(count)
+							}}
+						>
+							Increment
+						</button>
+						{count && <span>{count}</span>}
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div>
 								<input
@@ -756,6 +768,7 @@ const CreatePage = () => {
 													pageDate: getCurrentDate(),
 													titlePage: titlePage,
 													pageImage: localrenderImage,
+													typePage,
 												},
 											},
 											{
