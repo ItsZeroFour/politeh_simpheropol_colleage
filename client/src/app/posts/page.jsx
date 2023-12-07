@@ -1,8 +1,9 @@
-import Posts from "@/pages/Posts/Posts";
-import React from "react";
+'use client'
+
+import Posts from '@widgets/Posts/Posts'
 
 const contacts = () => {
-  return <Posts />;
-};
+	return <Posts />
+}
 
-export default contacts;
+export default contacts

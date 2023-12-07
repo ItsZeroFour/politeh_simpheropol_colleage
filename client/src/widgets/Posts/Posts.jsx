@@ -5,10 +5,12 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDataOurCollege } from '../../app/store/pagesAdmin/UndoRendoSlice.js'
-const OurCollege = () => {
+const Posts = () => {
 	const dataOurCollege2 = useSelector(
 		state => state.counter.present.dataOurCollege
 	)
+	const state = useSelector(state => state.counter)
+	console.log(state)
 	console.log(dataOurCollege2)
 	const [data, setData] = useState([])
 	const dispatch = useDispatch()
@@ -31,12 +33,12 @@ const OurCollege = () => {
 		<div>
 			{dataOurCollege2.map(el => {
 				console.log(el.pageUrl)
-				if (el.pageTypePublish && el.pageType == 'own') {
+				if (el.pageTypePublish) {
 					return (
 						<div key={el._id} style={{ margin: 10 }}>
 							<Interweave content={el.pageImage} />
 							{/* {el.pageImage} */}
-							<Link href={`/our-colleage/${el.pageUrl}`}>{el.pageTitle}</Link>
+							<Link href={`/posts/${el.pageUrl}`}>{el.pageTitle}</Link>
 							<div>{el.pageDate}</div>
 						</div>
 					)
@@ -46,4 +48,4 @@ const OurCollege = () => {
 	)
 }
 
-export default OurCollege
+export default Posts

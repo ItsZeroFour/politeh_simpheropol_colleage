@@ -1,6 +1,5 @@
 'use client'
 import {
-	increment,
 	setImages,
 	setImages1,
 	textValueFunc,
@@ -606,15 +605,7 @@ const CreatePage = () => {
 								Форма не заполнена либо одно из полей не было заполнено!
 							</div>
 						)}
-						<button
-							onClick={() => {
-								dispatch(increment())
-								console.log(count)
-							}}
-						>
-							Increment
-						</button>
-						{count && <span>{count}</span>}
+
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div>
 								<input
