@@ -7,7 +7,8 @@ const allActions = {
 }
 
 export const useActions = () => {
-    const dispatch = useDispatch
+    // const dispatch = useDispatch
 
-    return bindActionCreators(allActions, dispatch)
+    // return bindActionCreators(allActions, dispatch)
+    return allActions
 }

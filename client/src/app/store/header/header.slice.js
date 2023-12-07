@@ -9,15 +9,17 @@ const headerSlice = createSlice({
     initialState,
     reducers: {
         addHovered: (state, action) => {
-            return state.hovered.push(action.payload)
+            state.hovered.push(action.payload)
         },
 
         removeHovered: (state, action) => {
-            return state.hovered.filter(link => link === action.payload)
+            state = state.hovered.filter(link => link === action.payload)
         },
     },
 })
 
 export const headerReducer = headerSlice.reducer
 export const headerActions = headerSlice.actions
+
+export const getHeader = state => state.header
 

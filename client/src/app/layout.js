@@ -2,8 +2,7 @@ import '@/app/scss/index.scss'
 import { Poppins } from 'next/font/google'
 import Header from '@/widgets/header/header'
 import Footer from '@/widgets/footer/footer'
-import { store } from './store/store'
-import ClientProvider from './store/ClientProvider'
+import StoreProvider from './store/StoreProvider'
 
 // TODO: fix this shit when we have something like this in the browser
 
@@ -27,16 +26,15 @@ const RootLayout = ({ children }) => {
   return (
     <html len='ru'>
       <body className={poppins.main}>
-        <ClientProvider store={store}>
+        <StoreProvider>
           <div className='page'>
             <div className='container'>
               <Header />
               <main>{children}</main>
             </div>
-
             <Footer />
           </div>
-        </ClientProvider>
+        </StoreProvider>
       </body>
     </html>
   )
