@@ -521,7 +521,7 @@ const CreatePage = () => {
 		dispatch(textValueFunc(textValue + `${list}`))
 	}
 	const addImagesArr1 = () => {
-		setLocalrenderImage(`<img src=${images1} alt="name"/>`)
+		setLocalrenderImage(`<img src=${images1}  alt="name"/>`)
 	}
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
@@ -738,12 +738,17 @@ const CreatePage = () => {
 										console.log(isForm)
 										function getCurrentDate() {
 											const today = new Date()
+											const date = new Date()
+											const options = { weekday: 'long' }
+											const dayOfWeek = date.toLocaleString('ru-RU', options)
+
+											console.log(dayOfWeek) // Выведет текущий день недели на русском языке
 											const day = today.getDate().toString().padStart(2, '0') // add leading zero if needed
 											const month = (today.getMonth() + 1)
 												.toString()
 												.padStart(2, '0') // month is zero-based, so add 1
 											const year = today.getFullYear()
-											return `${day}.${month}.${year}`
+											return `${dayOfWeek}, ${day}.${month}.${year}`
 										}
 										console.log(getCurrentDate())
 

@@ -33,7 +33,10 @@ const OurCollege = () => {
 				console.log(el.pageUrl)
 				if (el.pageTypePublish && el.pageType == 'own') {
 					return (
-						<div key={el._id} style={{ margin: 10 }}>
+						<div
+							key={el._id}
+							style={{ display: flex, justifyContent: 'center', margin: 10 }}
+						>
 							<Interweave content={el.pageImage} />
 							{/* {el.pageImage} */}
 							<Link href={`/our-colleage/${el.pageUrl}`}>{el.pageTitle}</Link>

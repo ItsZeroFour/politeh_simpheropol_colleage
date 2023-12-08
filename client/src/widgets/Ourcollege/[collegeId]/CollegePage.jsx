@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Interweave } from 'interweave'
 import { useEffect, useState } from 'react'
 
-export default function Post({ params }) {
+export default function CollegePage({ params }) {
 	const [data, setData] = useState([])
 	useEffect(() => {
 		const someAsyncFunc = async () => {
@@ -18,24 +18,17 @@ export default function Post({ params }) {
 		someAsyncFunc()
 	}, [])
 
-	const id = params.postId
+	const id = params.collegeId
+	console.log(id)
 	const result = data.filter(
-		el =>
-			el.pageUrl == id && el.pageType == 'post' && el.pageTypePublish == true
+		el => el.pageUrl == id && el.pageType == 'own' && el.pageTypePublish == true
 	)
+	console.log(data)
+	console.log(result)
 	const resultObj = result.map(el => el.pageContent)
 	return (
-		<div
-			style={{
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'center',
-			}}
-		>
-			<Interweave
-				content={`<div
-			 >${resultObj}</div>`}
-			/>
+		<div style={{ display: flex, justifyContent: 'center', margin: 10 }}>
+			<Interweave content={resultObj + ''} />
 		</div>
 	)
 }

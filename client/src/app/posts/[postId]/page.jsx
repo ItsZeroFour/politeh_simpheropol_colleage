@@ -1,8 +1,9 @@
 'use client'
-import Post from '@/pages/Post/Post'
+
+import Post from '@widgets/Posts/[Post]/page'
 
 const page = ({ params }) => {
-	return <Post postId={params.postId} />
+	return <Post params={params} />
 }
 
 export default page

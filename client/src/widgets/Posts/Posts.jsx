@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDataOurCollege } from '../../app/store/pagesAdmin/UndoRendoSlice.js'
+import styles from './style.module.scss'
 const Posts = () => {
 	const dataOurCollege2 = useSelector(
 		state => state.counter.present.dataOurCollege
@@ -33,13 +34,21 @@ const Posts = () => {
 		<div>
 			{dataOurCollege2.map(el => {
 				console.log(el.pageUrl)
-				if (el.pageTypePublish) {
+				if (el.pageTypePublish && el.pageType == 'post') {
 					return (
-						<div key={el._id} style={{ margin: 10 }}>
-							<Interweave content={el.pageImage} />
-							{/* {el.pageImage} */}
-							<Link href={`/posts/${el.pageUrl}`}>{el.pageTitle}</Link>
-							<div>{el.pageDate}</div>
+						<div
+							style={{ display: 'flex', justifyContent: 'center', margin: 10 }}
+							key={el._id}
+						>
+							<div>
+								<div className={styles.postImgTitleWrapper}>
+									<Interweave content={el.pageImage} />
+									<Link href={`/posts/${el.pageUrl}`}>
+										{<p className={styles.post_title}>{el.pageTitle}</p>}
+									</Link>
+								</div>
+								<div className={styles.post_date}>{el.pageDate}</div>
+							</div>
 						</div>
 					)
 				}

@@ -43,7 +43,7 @@ export const createPage = async (req, res) => {
 }
 export const getOurCollegePages = async (req, res) => {
 	try {
-		const arrPages = await PageModel.find({ pageType: 'own' })
+		const arrPages = await PageModel.find()
 		console.log(arrPages)
 		res.send(arrPages)
 	} catch (error) {

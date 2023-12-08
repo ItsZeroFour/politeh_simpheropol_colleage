@@ -1,6 +1,6 @@
 'use client'
 
-import CollegePage from '@widgets/Ourcollege/[collegeId]/page'
+import CollegePage from '@widgets/Ourcollege/[collegeId]/CollegePage.jsx'
 
 // {() => {
 // 	if (!el.pageData) {
