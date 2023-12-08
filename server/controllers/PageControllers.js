@@ -96,3 +96,22 @@ export const getPage = async (req, res) => {
 		})
 	}
 }
+
+export const getPageUrl = async (req, res) => {
+	try {
+		const pageUrl = req.query.urlPage
+		console.log(pageUrl)
+		const page = await PageModel.findOne({ pageUrl: pageUrl })
+		console.log(page)
+		if (page == null) {
+			return res.status(404).json(page._doc)
+		} else {
+			return res.status(200).json(page._doc)
+		}
+	} catch (err) {
+		console.log(err)
+		return res.status(404).json({
+			message: 'Страница не на найдена',
+		})
+	}
+}

@@ -10,9 +10,23 @@ router.post(
 	// pageValidation,
 	PageControllers.createPage
 )
+router.get('/takecollege', PageControllers.getPageUrl)
 router.put('/topublic', PageControllers.updatePageAndToPublic)
 router.get('/get', PageControllers.getPage)
-router.get('/getourcollege', PageControllers.getOurCollegePages)
+router.get(
+	'/getourcollege',
+	(req, res) => {
+		res.header('Access-Control-Allow-Origin', '*')
+		res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+		res.header(
+			'Access-Control-Allow-Headers',
+			'Origin, X-Requested-With, Content-Type, Accept'
+		)
+		res.end()
+	},
+	PageControllers.getOurCollegePages
+)
+
 // router.get(
 // 	'/update',
 // 	checkAuth,
