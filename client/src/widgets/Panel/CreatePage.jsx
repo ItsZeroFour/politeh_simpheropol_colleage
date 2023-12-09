@@ -199,11 +199,8 @@ const CreatePage = () => {
 				// Create an array of React elements
 				const elements = newSelectedArr
 					.map(
-						(
-							el,
-							index
-						) => `<li style="display: flex; flex-direction: row; align-items: center; text-align: center; margin: 10px ">
-					<div style="width: 10px; height: 10px; background: white; border-radius: 50%; margin-right:10px"></div>
+						(el, index) => `<li>
+					
 					${el}
 			</li>`
 					)
@@ -513,6 +510,38 @@ const CreatePage = () => {
 			}
 		}
 	}
+	const [file, setFile2] = useState(null)
+
+	const handleFileChange2 = event => {
+		setFile2(event.target.files[0])
+	}
+
+	const handleSubmit2 = async event => {
+		event.preventDefault()
+
+		if (!file) {
+			alert('Please select an image file')
+			return
+		}
+
+		const formData = new FormData()
+		formData.append('image', file)
+		console.log(formData)
+		try {
+			const response = await axios.post(
+				'http://localhost:5000/upload',
+				{ file: FormData.entries.image },
+				{
+					headers: { 'Access-Control-Allow-Origin': '*' },
+				}
+			)
+
+			// The response should contain the URL of the uploaded image
+			console.log('Image uploaded. URL:', response.data)
+		} catch (error) {
+			console.error('Error uploading image:', error.message)
+		}
+	}
 
 	const addImagesArr = () => {
 		const list = images.map(el => {
@@ -521,6 +550,26 @@ const CreatePage = () => {
 		dispatch(textValueFunc(textValue + `${list}`))
 	}
 	const addImagesArr1 = () => {
+		console.log(images1)
+		const formData = new FormData()
+		formData.append('image', images1)
+		const someAsyncFunc = async () => {
+			try {
+				const data = await axios({
+					url: 'https://api.imgbb.com/1/upload?key=8d5867a9512390fb5e5dc97839aa36f6',
+					method: 'POST',
+					timeout: 0,
+					processData: false,
+					mimeType: 'multipart/form-data',
+					contentType: false,
+					data: images1,
+				})
+				console.log(data)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		someAsyncFunc()
 		setLocalrenderImage(`<img src=${images1}  alt="name"/>`)
 	}
 	const handleImageChange = async e => {
@@ -543,13 +592,12 @@ const CreatePage = () => {
 		const file = e.target.files[0]
 		console.log(file)
 		const reader = new FileReader()
-		const base64 = await atob(file)
+		const base64 = await convertToBase64(file)
 		console.log(base64)
 		setPostImage1({ ...postImage1, base64 })
 		setNewImage1(postImage1)
 		reader.onloadend = () => {
 			setImage1(reader.result)
-
 			dispatch(setImages1(reader.result))
 			console.log(images1)
 		}
@@ -596,6 +644,31 @@ const CreatePage = () => {
 			newUrl = someDate.data.pageUrl
 			console.log(someDate.data.pageContent)
 			console.log(someDate.data.pageUrl)
+		}
+	}
+	const handleSubmit22 = async event => {
+		event.preventDefault()
+
+		const formData = new FormData()
+		console.log(event.target.avatar.files[0])
+		formData.append('avatar', event.target.avatar.files[0])
+
+		try {
+			console.log(formData)
+			const response = await fetch('http://localhost:5000/upload', {
+				method: 'post',
+				url: 'http://localhost:5000/upload',
+				formData,
+				config: { headers: { 'Content-Type': 'multipart/form-data' } },
+			})
+
+			if (response.ok) {
+				console.log('File uploaded successfully')
+			} else {
+				console.log('Error occurred while uploading file')
+			}
+		} catch (error) {
+			console.log('Network error occurred', error)
 		}
 	}
 
@@ -647,7 +720,7 @@ const CreatePage = () => {
 									position='right center'
 								>
 									<div>
-										<form onSubmit={submitForm1}>
+										{/*<form onSubmit={submitForm1}>
 											<input
 												style={{
 													backgroundColor: 'gray',
@@ -665,6 +738,20 @@ const CreatePage = () => {
 											>
 												Загрузить
 											</button>
+											</form>*/}
+										{/* <form onSubmit={handleSubmit2}>
+											<input
+												type='file'
+												name='image'
+												accept='image/*'
+												onChange={handleFileChange2}
+												required
+											/>
+											<button type='submit'>Upload Image</button>
+										</form> */}
+										<form onSubmit={handleSubmit22}>
+											<input type='file' name='avatar' />
+											<button type='submit'>Upload Image</button>
 										</form>
 									</div>
 								</Popup>

@@ -104,11 +104,14 @@ section {
 body {
 	line-height: 1;
 }
+ol > li {
+	display: list-item;
+	list-style: decimal;
+}
 
-ol,
-ul,
-li {
-	list-style: none;
+ul > li {
+	display: list-item;
+	list-style: disc;
 }
 
 blockquote,

@@ -5,6 +5,7 @@ import express from 'express'
 import helmet from 'helmet'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
+import multer from 'multer'
 import dormitoryRouter from './routes/DormitoryRoutes.js'
 import pageRouter from './routes/PageRoutes.js'
 import postRouter from './routes/PostRoutes.js'
@@ -32,7 +33,17 @@ app.use(
 		parameterLimit: 1000000,
 	})
 )
-//app.use('/uploads', express.static('uploads'))
+
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, 'uploads/') // Uploads will be stored in the 'uploads' directory
+	},
+	filename: function (req, file, cb) {
+		cb(null, Date.now() + path.extname(file.originalname))
+	},
+})
+
+const upload = multer({ storage: storage })
 
 /* ROUTES */
 app.use('/auth', userRouter)
@@ -40,16 +51,34 @@ app.use('/speciality', specialityRouter)
 app.use('/post', postRouter)
 app.use('/dormitory', dormitoryRouter)
 app.use('/page', pageRouter)
-// app.post('/uploads', async (req, res) => {
-// 	const body = req.body
-// 	try {
-// 		const newImage = await Image.create(body)
-// 		newImage.save()
-// 		res.status(201).json({ msg: 'New image uploaded...!' })
-// 	} catch (error) {
-// 		res.status(409).json({ message: error.message })
-// 	}
-// })
+app.post('/upload', upload.single('image'), async (req, res) => {
+	try {
+		console.log(req.data)
+		console.log(req.file)
+		if (req.file) {
+			const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`
+			console.log(imageUrl)
+
+			// Save image details to MongoDB
+			const newImage = new Image({
+				filename: req.file.filename,
+				path: imageUrl,
+			})
+
+			await newImage.save()
+
+			res.json({ imagelink: imageUrl }) // Only return the image URL
+		} else {
+			res.status(400).send('No image file provided')
+		}
+	} catch (error) {
+		console.error(error)
+		res.status(500).send('Internal Server Error')
+	}
+})
+
+// Set up static file serving for uploaded images
+app.use('/uploads', express.static('uploads'))
 // app.get('/images', async (req, res) => {
 // 	try {
 // 		const posts = await Image.find()

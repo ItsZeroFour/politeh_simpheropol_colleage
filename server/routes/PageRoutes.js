@@ -1,4 +1,5 @@
 import express from 'express'
+import { ImageLoader } from '../controllers/ImageController.js'
 import { PageControllers } from '../controllers/index.js'
 
 const router = express.Router()
@@ -10,6 +11,7 @@ router.post(
 	// pageValidation,
 	PageControllers.createPage
 )
+router.post('/uploadimage', ImageLoader)
 router.get('/takecollege', PageControllers.getPageUrl)
 router.put('/topublic', PageControllers.updatePageAndToPublic)
 router.get('/get', PageControllers.getPage)
