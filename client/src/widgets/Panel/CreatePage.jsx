@@ -525,6 +525,7 @@ const CreatePage = () => {
 	}
 	const handleImageChange = async e => {
 		const file = e.target.files[0]
+
 		const reader = new FileReader()
 		const base64 = await convertToBase64(file)
 		setPostImage({ ...postImage, myFile: base64 })
@@ -535,12 +536,15 @@ const CreatePage = () => {
 		}
 		if (file) {
 			reader.readAsDataURL(file)
+			console.log(file)
 		}
 	}
 	const handleImageChange1 = async e => {
 		const file = e.target.files[0]
+		console.log(file)
 		const reader = new FileReader()
-		const base64 = await convertToBase64(file)
+		const base64 = await atob(file)
+		console.log(base64)
 		setPostImage1({ ...postImage1, base64 })
 		setNewImage1(postImage1)
 		reader.onloadend = () => {

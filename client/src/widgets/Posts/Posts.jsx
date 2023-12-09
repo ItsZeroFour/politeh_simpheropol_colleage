@@ -19,10 +19,12 @@ const Posts = () => {
 		const someAsyncFunc = async () => {
 			try {
 				const somedata = await axios.get(
-					'http://localhost:5000/page/getourcollege'
+					'http://localhost:5000/page/getpagestitle',
+					{ params: { typePage: 'post' } }
 				)
 				setData([...somedata.data])
 				dispatch(setDataOurCollege([...somedata.data]))
+				console.log('loading', somedata)
 			} catch (error) {
 				console.log(error)
 			}

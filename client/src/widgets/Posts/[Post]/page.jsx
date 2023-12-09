@@ -1,29 +1,27 @@
 import axios from 'axios'
 import { Interweave } from 'interweave'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 export default function Post({ params }) {
-	const [data, setData] = useState([])
+	const [data, setData] = useState({})
+	const someData = useSelector(state => state.counter.present.dataOurCollege)
+	console.log(someData)
 	useEffect(() => {
 		const someAsyncFunc = async () => {
 			try {
 				const somedata = await axios.get(
-					'http://localhost:5000/page/getourcollege'
+					'http://localhost:5000/page/getpagecontent',
+					{ params: { postId: params.postId } }
 				)
-				setData([...somedata.data])
+				console.log(somedata)
+				setData({ ...somedata.data })
 			} catch (error) {
 				console.log(error)
 			}
 		}
 		someAsyncFunc()
 	}, [])
-
-	const id = params.postId
-	const result = data.filter(
-		el =>
-			el.pageUrl == id && el.pageType == 'post' && el.pageTypePublish == true
-	)
-	const resultObj = result.map(el => el.pageContent)
 	return (
 		<div
 			style={{
@@ -34,7 +32,7 @@ export default function Post({ params }) {
 		>
 			<Interweave
 				content={`<div
-			 >${resultObj}</div>`}
+			 >${data.pageContent}</div>`}
 			/>
 		</div>
 	)

@@ -96,6 +96,49 @@ export const getPage = async (req, res) => {
 		})
 	}
 }
+export const getPageContent = async (req, res) => {
+	try {
+		const pagesDate = req.query.postId
+		console.log(pagesDate)
+		const page = await PageModel.findOne({ pageUrl: pagesDate })
+		console.log(page.pageContent)
+		res.json({ pageContent: page.pageContent })
+	} catch (error) {
+		console.log(error)
+	}
+}
+export const getPagePostsTitle = async (req, res) => {
+	try {
+		const pagesDate = req.query
+		console.log(pagesDate)
+		const pages = await PageModel.find({ pageType: pagesDate.typePage })
+		const newArr = []
+		pages.forEach(item => {
+			const {
+				pageTypePublish,
+				pageUrl,
+				pageTitle,
+				pageDate,
+				pageImage,
+				pageType,
+			} = item
+			newArr.push({
+				pageUrl,
+				pageTitle,
+				pageDate,
+				pageImage,
+				pageTypePublish,
+				pageType,
+			})
+		})
+
+		console.log(newArr)
+		res.json(newArr)
+	} catch (error) {
+		console.log(error)
+		res.send(error)
+	}
+}
 
 export const getPageUrl = async (req, res) => {
 	try {
