@@ -1,3 +1,5 @@
+import 'react-loading-skeleton/dist/skeleton.css'
+
 import FirstScreen from "@/widgets/home/FirstScreen/FirstScreen"
 import LoginForm from "@/widgets/home/LoginForm/LoginForm"
 import Posts from "@/widgets/home/Posts/Posts"

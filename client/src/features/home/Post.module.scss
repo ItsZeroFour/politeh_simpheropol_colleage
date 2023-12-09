@@ -24,6 +24,7 @@
     max-height: 55px;
 
     margin-left: 15px;
+    padding-right: 38px;
 
     font-size: 30px;
     font-weight: 400;
@@ -47,5 +48,44 @@
     object-fit: cover;
 }
 
+
+
+.postLoading {
+
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+
+    &:not(:first-child) {
+        margin-top: 40px;
+    }
+}
+
+.imageLoading {
+    height: 334px;
+
+    border-top-left-radius: var(--border-radius-md);
+    border-top-right-radius: var(--border-radius-md);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.titleLoading {
+    height: 35px;
+    width: 175px;
+
+    margin-left: 15px;
+    margin-right: 60px;
+}
+
+.descLoading {
+    width: 320px;
+    height: 25px;
+
+    padding-right: 42px;
+
+    &:not(:first-child) {
+        margin-top: 10px;
+    }
+}
 
 
