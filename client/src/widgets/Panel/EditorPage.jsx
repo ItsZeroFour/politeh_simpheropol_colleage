@@ -650,12 +650,20 @@ export default function App() {
 			<input
 				style={{ backgroundColor: 'black' }}
 				type='text'
-				placeholder='First name'
+				placeholder='адрес страницы'
 				{...register('url', { required: true, maxLength: 500 })}
 			/>
 
 			<input type='submit' />
-			<button style={{ marginLeft: 10 }} onClick={() => Search()}>
+			<button
+				style={{
+					marginLeft: 10,
+					backgroundColor: '#0066FF',
+					padding: 10,
+					borderRadius: 10,
+				}}
+				onClick={() => Search()}
+			>
 				Поиск
 			</button>
 			{dataPage.status == 200 && !isFound && (
