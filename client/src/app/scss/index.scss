@@ -83,7 +83,14 @@ h5,
 h6 {
 	font-weight: 700;
 }
-
+ul > li {
+	display: list-item;
+	list-style: none;
+}
+ol > li {
+	display: list-item;
+	list-style: none;
+}
 button,
 input,
 textarea {

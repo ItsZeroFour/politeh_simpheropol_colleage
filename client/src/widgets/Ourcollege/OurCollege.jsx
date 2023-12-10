@@ -1,11 +1,9 @@
 'use client'
 import axios from 'axios'
-import { Interweave } from 'interweave'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDataOurCollege } from '../../app/store/pagesAdmin/UndoRendoSlice.js'
-import styles from './OurCollege.module.scss'
 const OurCollege = () => {
 	const dataOurCollege2 = useSelector(
 		state => state.counter.present.dataOurCollege
@@ -34,11 +32,30 @@ const OurCollege = () => {
 				console.log(el.pageUrl)
 				if (el.pageTypePublish && el.pageType == 'own') {
 					return (
-						<div key={el._id} styles={styles.root}>
-							<Interweave content={el.pageImage} />
+						<div
+							key={el._id}
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+							}}
+						>
+							{/* <Interweave content={el.pageImage} /> */}
 							{/* {el.pageImage} */}
-							<Link href={`/our-colleage/${el.pageUrl}`}>{el.pageTitle}</Link>
-							<div>{el.pageDate}</div>
+							<div style={{ textAlign: 'center', margin: 10 }}>
+								<Link href={`/our-colleage/${el.pageUrl}`}>
+									<span
+										style={{
+											fontSize: '24px',
+											display: 'hover',
+											fontWeight: 700,
+											lineHeight: 2,
+										}}
+									>
+										{el.pageTitle}
+									</span>
+								</Link>
+								<div>{el.pageDate}</div>
+							</div>
 						</div>
 					)
 				}

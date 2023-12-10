@@ -30,7 +30,14 @@ export default function Post({ params }) {
 		>
 			<Interweave
 				content={`<div
-			 >${data.pageContent}</div>`}
+			 >${data.pageContent}<div style="margin: 40px auto;" ><a style="display: inline;
+			 background-color: #0066FF;
+			 border-radius: 10px;
+			 padding: 10px 10px;
+			 color: #FFFFFF;
+			 font-size: 24px;"  href='/our-colleage/'>
+			 Вернуться назад
+		 </a></div></div>`}
 			/>
 		</div>
 	)

@@ -39,7 +39,12 @@ const Posts = () => {
 				if (el.pageTypePublish && el.pageType == 'post') {
 					return (
 						<div
-							style={{ display: 'flex', justifyContent: 'center', margin: 10 }}
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								margin: 10,
+								textAlign: 'center',
+							}}
 							key={el._id}
 						>
 							<div>
@@ -48,8 +53,8 @@ const Posts = () => {
 									<Link href={`/posts/${el.pageUrl}`}>
 										{<p className={styles.post_title}>{el.pageTitle}</p>}
 									</Link>
+									<div className={styles.post_date}>{el.pageDate}</div>
 								</div>
-								<div className={styles.post_date}>{el.pageDate}</div>
 							</div>
 						</div>
 					)

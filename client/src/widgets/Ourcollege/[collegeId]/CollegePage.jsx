@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Interweave } from 'interweave'
 import { useEffect, useState } from 'react'
-import styles from '../OurCollege.module.scss'
+
 export default function CollegePage({ params }) {
 	const [data, setData] = useState([])
 	useEffect(() => {
@@ -24,8 +24,35 @@ export default function CollegePage({ params }) {
 	)
 	const resultObj = result.map(el => el.pageContent)
 	return (
-		<div styles={styles.root}>
-			<Interweave content={resultObj + ''} />
+		<div>
+			<Interweave
+				content={
+					resultObj +
+					'' +
+					`<div style="margin: 40px auto;" ><a style="display: inline;
+					background-color: #0066FF;
+					border-radius: 10px;
+					padding: 10px 10px;
+					color: #FFFFFF;
+					font-size: 24px;"  href='/our-colleage/'>
+					Вернуться назад
+				</a></div>`
+				}
+			/>
+			{/* <div
+				styles={{
+					marginTop: 30,
+					color: 'red',
+					display: 'block',
+					marginLeft: 'auto',
+					marginRight: 'auto',
+					width: '50%',
+				}}
+			>
+				<a styles={{ color: '#000' }} href='/our-colleage/'>
+					Вернуться назад
+				</a>
+			</div> */}
 		</div>
 	)
 }

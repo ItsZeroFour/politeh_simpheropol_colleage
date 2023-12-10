@@ -1,12 +1,13 @@
 .post_title {
 	margin-top: 10px;
-	font-size: 24;
+	font-size: 36px;
 	font-weight: 700;
 }
 .postImgTitleWrapper {
 	display: flex;
 	justify-content: center;
 	text-align: center;
+	margin: 20px;
 	flex-direction: column;
 	ul > li {
 		display: list-item;

@@ -322,7 +322,7 @@ const CreatePage = () => {
 
 			if (initium_index !== -1) {
 				let newSubString =
-					'<div style="text-align:center">' + selectedText + '</div>'
+					'<p style="text-align:center" >' + selectedText + '</p>'
 				let newString =
 					textValue.substring(0, initium_index) +
 					newSubString +
@@ -433,7 +433,9 @@ const CreatePage = () => {
 
 			if (initium_index !== -1) {
 				let newSubString =
-					'<div style=" margin-left: 40%">' + selectedText + '</div>'
+					'<div style="display: block; margin-left: auto;margin-right: auto; width: 50%;">' +
+					selectedText +
+					'</div>'
 				let newString =
 					textValue.substring(0, initium_index) +
 					newSubString +
@@ -562,7 +564,9 @@ const CreatePage = () => {
 			console.log(data.imagelink)
 			setDataUrl(data.imagelink)
 			console.log(dataUrl)
-			setImageContentUrl(`<img src=${data.imagelink}  alt="name"/>`)
+			setImageContentUrl(
+				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
+			)
 			console.log(imageContentUrl)
 		} catch (err) {
 			console.log(err)
@@ -676,7 +680,9 @@ const CreatePage = () => {
 				formData
 			)
 			console.log(data.imagelink)
-			setImageUrl(`<img src=${data.imagelink}  alt="name"/>`)
+			setImageUrl(
+				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
+			)
 			console.log(imageUrl)
 		} catch (err) {
 			console.log(err)
@@ -840,12 +846,7 @@ const CreatePage = () => {
 							onClick={async () => {
 								try {
 									console.log(typePage, URLPage, titlePage, imageUrl)
-									if (
-										typePage != '' &&
-										URLPage != '' &&
-										titlePage != '' &&
-										imageUrl != ''
-									) {
+									if (typePage != '' && URLPage != '' && titlePage != '') {
 										setIsForm('true')
 										console.log(isForm)
 										function getCurrentDate() {
@@ -887,11 +888,7 @@ const CreatePage = () => {
 										typePage == '' ||
 										URLPage == '' ||
 										titlePage == '' ||
-										imageUrl == '' ||
-										(data == '' &&
-											URLPage == '' &&
-											titlePage == '' &&
-											imageUrl == '')
+										(data == '' && URLPage == '' && titlePage == '')
 									) {
 										console.log('не заполнены поля!')
 
@@ -901,11 +898,7 @@ const CreatePage = () => {
 										typePage == null ||
 										URLPage == '' ||
 										titlePage == '' ||
-										imageUrl == '' ||
-										(data == null &&
-											URLPage == '' &&
-											titlePage == '' &&
-											imageUrl == '')
+										(data == null && URLPage == '' && titlePage == '')
 									) {
 										console.log('не заполнены поля')
 										setIsForm('false')

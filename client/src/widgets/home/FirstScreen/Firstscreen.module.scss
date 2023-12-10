@@ -1,28 +1,27 @@
-
 .title {
-    font-size: 96px;
-    font-weight: bold;
-    text-align: center;
+	ul > li {
+		display: list-item;
+		list-style: none;
+	}
+	font-size: 96px;
+	font-weight: bold;
+	text-align: center;
 
-    margin-top: 86px;
+	margin-top: 86px;
 
+	background: linear-gradient(to left, #0085ff 0%, #00c2ff 50%, #0085ff 100%);
+	background-size: 200%;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 
-    background: linear-gradient(to left, #0085FF 0%, #00C2FF 50%, #0085FF 100%);
-    background-size: 200%;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    animation: animationGradient 5s linear infinite;
+	animation: animationGradient 5s linear infinite;
 }
-
 
 @keyframes animationGradient {
-    0% {
-        background-position: -100% 0%;
-    }
-    100% {
-        background-position: 100% 0%;
-    }
+	0% {
+		background-position: -100% 0%;
+	}
+	100% {
+		background-position: 100% 0%;
+	}
 }
-
-
