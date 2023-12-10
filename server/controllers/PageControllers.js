@@ -57,13 +57,17 @@ export const updatePageAndToPublic = async (req, res) => {
 		console.log('ID', ID_Obj)
 
 		const update = req.body.textValue
-		console.log('update', req.body)
+		console.log('update', req.body.titlePage)
 		const doc = await PageModel.findOneAndUpdate(
 			{ pageUrl: req.body.URLPage },
-			{ pageContent: update, pageTypePublish: true }
+			{
+				pageContent: update,
+				pageTypePublish: true,
+				pageTitle: req.body.titlePage,
+			}
 		)
+
 		const doc1 = await PageModel.find({ pageUrl: req.body.URLPage })
-		console.log(doc1)
 		res.status(200).json({
 			message: 'Страница успешно опубликована!',
 			data: doc1,

@@ -1,15 +1,28 @@
 'use client'
 import {
-	setImages,
 	setImages1,
 	textValueFunc,
 } from '@app/store/pagesAdmin/UndoRendoSlice.js'
+import AlignRight from '@public/assets/icons/adminicons/ALignRight'
+import AddIcon from '@public/assets/icons/adminicons/AddIcon'
+import AlignCenter from '@public/assets/icons/adminicons/AlignCenter'
+import AlignLeft from '@public/assets/icons/adminicons/AlignLeft'
+import BIcon from '@public/assets/icons/adminicons/BIcon'
+import ImageIcon from '@public/assets/icons/adminicons/ImageIcon.jsx'
+import ItalicIcon from '@public/assets/icons/adminicons/ItalicIcon'
+import LinkIcon from '@public/assets/icons/adminicons/LinkIcon'
+import ListNumberIcon from '@public/assets/icons/adminicons/ListNumberIcon'
+import NormalTextIcon from '@public/assets/icons/adminicons/NormalTextIcon'
+import StrikeIcon from '@public/assets/icons/adminicons/StrikeIcon'
+import UnderlineIcon from '@public/assets/icons/adminicons/UnderlineIcon'
+import Vector from '@public/assets/icons/adminicons/Vector'
 import axios from 'axios'
 import { Interweave, Markup } from 'interweave'
 import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-
+import Popup from 'reactjs-popup'
+import { Counter } from './UndoRendoUI'
 export default function App() {
 	const [isPage, setIsPage] = useState(true)
 	const state = useSelector(state => state)
@@ -17,6 +30,7 @@ export default function App() {
 	const images1 = useSelector(state => state.counter.present.images1)
 	const textValue = useSelector(state => state.counter.present.textValue)
 	const images = useSelector(state => state.counter.present.images)
+	const [isFound, setIsFound] = useState(false)
 	const count = useSelector(state => state.counter.present.value)
 	const [postImage, setPostImage] = useState({ myFile: '' })
 	const [checkerForPanel, setCheckerForPanel] = useState(false)
@@ -28,7 +42,11 @@ export default function App() {
 	const [netImage1, setNewImage1] = useState('')
 	const [postImage1, setPostImage1] = useState({})
 	const [localrenderImage, setLocalrenderImage] = useState('')
+	const [titleHandler, setTitleHandler] = useState('')
 	const [isButtonClicked, setIsButtonClicked] = useState(false)
+	const [imageContentUrl, setImageContentUrl] = useState('')
+	const [replaceTitle, setReplaceTitle] = useState('')
+	const [dataUrl, setDataUrl] = useState('')
 	const [isForm, setIsForm] = useState('default')
 	const [typePage, setTypePage] = useState('')
 	const [URLPage, setURLPage] = useState('')
@@ -429,7 +447,9 @@ export default function App() {
 
 			if (initium_index !== -1) {
 				let newSubString =
-					'<div style=" margin-left: 40%">' + selectedText + '</div>'
+					'<div style="display: block; margin-left: auto;margin-right: auto; width: 50%;">' +
+					selectedText +
+					'</div>'
 				let newString =
 					textValue.substring(0, initium_index) +
 					newSubString +
@@ -509,30 +529,39 @@ export default function App() {
 			}
 		}
 	}
-
-	const addImagesArr = () => {
-		const list = images.map(el => {
-			return `<img  src=${el} alt="name" />`
-		})
-		dispatch(textValueFunc(textValue + `${list}`))
+	const handleTitleChange = event => {
+		setTitleHandler(event.target.value)
+		console.log(titleHandler)
 	}
+
 	const addImagesArr1 = () => {
 		setLocalrenderImage(`<img src=${images1}  alt="name"/>`)
 	}
-	const handleImageChange = async e => {
-		const file = e.target.files[0]
-		const reader = new FileReader()
-		const base64 = await convertToBase64(file)
-		setPostImage({ ...postImage, myFile: base64 })
-		setNewImage([postImage])
-		reader.onloadend = () => {
-			setImage(reader.result)
-			dispatch(setImages([reader.result]))
-		}
-		if (file) {
-			reader.readAsDataURL(file)
+	const addImagesArr = () => {
+		dispatch(textValueFunc(textValue + `${imageContentUrl}`))
+	}
+	const handleImageChange = async event => {
+		try {
+			const file = event.target.files[0]
+			const formData = new FormData()
+			formData.append('image', file)
+			console.log(formData)
+			const { data } = await axios.post(
+				'http://localhost:5000/upload',
+				formData
+			)
+			console.log(data.imagelink)
+			setDataUrl(data.imagelink)
+			console.log(dataUrl)
+			setImageContentUrl(
+				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
+			)
+			console.log(imageContentUrl)
+		} catch (err) {
+			console.log(err)
 		}
 	}
+
 	const handleImageChange1 = async e => {
 		const file = e.target.files[0]
 		const reader = new FileReader()
@@ -563,20 +592,17 @@ export default function App() {
 		addImagesArr1()
 	}
 	const addPageInServer = async () => {
-		let newUrl = ''
-		const someDate = await axios.put(
-			'http://localhost:5000/page/topublic',
+		try {
+			let newUrl = ''
+			console.log('FFFF', URLPage)
+			const someDate = await axios.put(
+				'http://localhost:5000/page/topublic',
 
-			{ URLPage, typePage, textValue, titlePage }
-		)
-
-		if (someDate.status == 208) {
-			console.log(someDate.data.message)
-		}
-		if (someDate.status == 200) {
-			newUrl = someDate.data.pageUrl
-			console.log(someDate.data.pageContent)
-			console.log(someDate.data.pageUrl)
+				{ URLPage, typePage, textValue, titlePage }
+			)
+			console.log(someDate)
+		} catch (error) {
+			console.log(error)
 		}
 	}
 	const Search = async () => {
@@ -609,6 +635,7 @@ export default function App() {
 			)
 		)
 	}
+
 	const Checker = ({ dataPage }) => {
 		console.log(dataPage)
 		if (dataPage.status === 200) {
@@ -631,7 +658,295 @@ export default function App() {
 			<button style={{ marginLeft: 10 }} onClick={() => Search()}>
 				Поиск
 			</button>
-			{dataPage.status == 200 && <div>{dataPage.data.pageTitle}</div>}
+			{dataPage.status == 200 && !isFound && (
+				<div>
+					<button
+						onClick={() => {
+							setIsFound(true)
+							dispatch(textValueFunc(dataPage.data.pageContent))
+							setURLPage(dataPage.data.pageUrl)
+							setTitlePage(dataPage.data.pageTitle)
+							setTypePage(dataPage.data.pageType)
+						}}
+					>
+						<h1>{dataPage.data.pageTitle}</h1>
+					</button>
+					<Interweave content={dataPage.data.pageImage} />
+					<div>{dataPage.data.pageDate}</div>
+				</div>
+			)}
+			{isFound && (
+				<div>
+					{
+						<div className='flex flex-col'>
+							<div>
+								<Counter />
+								<Popup
+									trigger={
+										<button>
+											{' '}
+											<NormalTextIcon />
+										</button>
+									}
+									position='bottom center'
+								>
+									<div
+										style={{
+											backgroundColor: 'gray',
+											display: 'flex',
+											flexDirection: 'column',
+										}}
+									>
+										<button onClick={() => handleDeleteTegs()}>
+											Normal text
+										</button>
+										<button>
+											<h1 onClick={() => handleAddHeadingOne()}>Heading 1</h1>
+										</button>
+										<button onClick={() => handleAddHeadingTwo()}>
+											<h2>Heading 2</h2>
+										</button>
+										<button onClick={() => handleAddHeadingThree()}>
+											<h3>Heading 3</h3>
+										</button>
+									</div>
+								</Popup>
+								<Popup
+									trigger={
+										<button
+											onClick={() => setIsButtonClicked(true)}
+											style={{ marginLeft: 10 }}
+										>
+											<div style={{ display: 'flex', alignItems: 'center' }}>
+												<AlignLeft /> <Vector />
+											</div>
+										</button>
+									}
+									position='bottom center'
+								>
+									<div
+										style={{
+											backgroundColor: 'gray',
+											display: 'flex',
+											flexDirection: 'column',
+										}}
+									>
+										<button onClick={() => addRight()}>
+											<div style={{ display: 'flex', flexDirection: 'row' }}>
+												<AlignRight />
+												<span style={{ marginLeft: '10px' }}>в право</span>
+											</div>
+										</button>
+										<button onClick={() => addCenter()}>
+											<div style={{ display: 'flex', flexDirection: 'row' }}>
+												<AlignCenter />
+												<span style={{ marginLeft: '10px' }}>центр</span>
+											</div>
+										</button>
+										<button onClick={() => addLeft()}>
+											<div style={{ display: 'flex', flexDirection: 'row' }}>
+												<AlignLeft />
+												<span style={{ marginLeft: '10px' }}>в лево</span>
+											</div>
+										</button>
+									</div>
+								</Popup>
+								<Popup
+									trigger={
+										<button style={{ marginLeft: 10 }}>
+											<div
+												style={{
+													display: 'flex',
+													flexDirection: 'row',
+													alignItems: 'center',
+												}}
+											>
+												<AlignLeft />
+												текст
+												<div style={{ marginLeft: 5 }}>
+													<Vector />
+												</div>
+											</div>
+										</button>
+									}
+									position='bottom center'
+								>
+									<div
+										style={{
+											display: 'flex',
+											flexDirection: 'column',
+											backgroundColor: 'gray',
+											padding: 10,
+										}}
+									>
+										<button onClick={() => addRightText()}>right</button>
+										<button onClick={() => addCenterText()}>center</button>
+										<button onClick={() => addLeftText()}>left</button>
+									</div>
+								</Popup>
+								<button style={{ marginLeft: 10 }} onClick={() => addStrong()}>
+									<BIcon />
+								</button>
+								<button
+									style={{ marginLeft: 10 }}
+									onClick={() => MarkItalics()}
+								>
+									<ItalicIcon />
+								</button>
+								<button
+									style={{ marginLeft: 10 }}
+									onClick={() => addUnderline()}
+								>
+									<UnderlineIcon />
+								</button>
+								<button style={{ marginLeft: 10 }} onClick={() => addStrike()}>
+									<StrikeIcon />
+								</button>
+								<button style={{ marginLeft: 10 }} onClick={() => addList()}>
+									{/* <ListIcon /> */}
+									<svg
+										width='32'
+										height='32'
+										viewBox='0 0 32 32'
+										fill='none'
+										xmlns='http://www.w3.org/2000/svg'
+									>
+										<path
+											d='M7 12C8.65685 12 10 10.6569 10 9C10 7.34315 8.65685 6 7 6C5.34315 6 4 7.34315 4 9C4 10.6569 5.34315 12 7 12Z'
+											fill='#fff'
+										/>
+										<path
+											d='M7 26C8.65685 26 10 24.6569 10 23C10 21.3431 8.65685 20 7 20C5.34315 20 4 21.3431 4 23C4 24.6569 5.34315 26 7 26Z'
+											fill='#fff'
+										/>
+										<path
+											d='M16 22H30V24H16V22ZM16 8H30V10H16V8Z'
+											fill='#fff'
+										/>
+									</svg>
+								</button>
+								<button style={{ marginLeft: 10 }} onClick={() => addListNum()}>
+									<ListNumberIcon />
+								</button>
+								<Popup
+									trigger={
+										<button style={{ marginLeft: 10 }}>
+											<LinkIcon />
+										</button>
+									}
+									position='right center'
+								>
+									<div>
+										<label htmlFor=''>
+											<input
+												type='text'
+												onChange={e => addNameLink(e)}
+												placeholder='заголовок ссылки'
+											/>
+											<input
+												onChange={e => addLink(e)}
+												type='text'
+												placeholder='ссылка'
+											/>
+											<button onClick={() => addLinkElement()}>+</button>
+										</label>
+									</div>
+								</Popup>
+								<Popup
+									trigger={
+										<button
+											style={{
+												marginLeft: 10,
+												padding: 0,
+												border: 'none',
+												font: 'inherit',
+												color: 'inherit',
+												backgroundColor: 'transparent',
+											}}
+										>
+											<ImageIcon />
+										</button>
+									}
+									position='right center'
+								>
+									<div>
+										<form onSubmit={submitForm}>
+											<input
+												style={{
+													backgroundColor: 'gray',
+												}}
+												id='files'
+												ref={filesRef}
+												multiple
+												type='file'
+												className='image-button'
+												onChange={handleImageChange}
+											/>
+											<button
+												style={{ backgroundColor: 'white', color: 'black' }}
+												type='submit'
+											>
+												Загрузить
+											</button>
+										</form>
+									</div>
+								</Popup>
+								<div>
+									<input
+										onChange={handleTitleChange}
+										placeholder='заголовок страницы'
+										style={{ backgroundColor: '#000', marginBottom: 10 }}
+										type='text'
+										value={titleHandler}
+									/>
+									<button
+										type='button'
+										onClick={() => {
+											console.log('titleHandler', titleHandler)
+											let somef = titleHandler
+											setTitlePage(somef)
+											console.log('hh', titlePage)
+										}}
+									>
+										изменить
+									</button>
+								</div>
+
+								<Popup
+									trigger={
+										<button style={{ marginLeft: 10 }}>
+											<AddIcon />
+										</button>
+									}
+									position='right center'
+								>
+									<div>
+										<label htmlFor=''>
+											<button onClick={() => addPageInServer()}>
+												ОПУБЛИКОВАТЬ
+											</button>
+										</label>
+									</div>
+								</Popup>
+							</div>
+							<textarea
+								onChange={e => dispatch(textValueFunc(e.target.value))}
+								onMouseUp={e => handleFocus(e)}
+								value={textValue}
+								onKeyDown={handleKeyPress}
+								style={{
+									width: '100%',
+									height: '200px',
+									backgroundColor: 'black',
+								}}
+								type='text'
+								placeholder='Начните писать...'
+							/>
+							<RenderAll />
+						</div>
+					}
+				</div>
+			)}
 		</form>
 	)
 }
