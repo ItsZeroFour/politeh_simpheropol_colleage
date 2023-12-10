@@ -706,17 +706,19 @@ const CreatePage = () => {
 									style={{
 										marginTop: 10,
 										marginBottom: 10,
-										padding: 10,
+										padding: 20,
+										paddingRight: 60,
 										fontSize: 15,
 										borderRadius: 10,
 										fontWeight: 500,
 										backgroundColor: '#0066FF',
 									}}
 									type='text'
-									placeholder='Адрес страницы:'
+									placeholder='пишите адрес без пробелов:'
 									{...register('URLPage')}
 								/>
 							</div>
+
 							<div>
 								<Popup
 									trigger={
