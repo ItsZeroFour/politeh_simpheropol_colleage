@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Interweave } from 'interweave'
 import { useEffect, useState } from 'react'
-
+import styles from '../OurCollege.module.scss'
 export default function CollegePage({ params }) {
 	const [data, setData] = useState([])
 	useEffect(() => {
@@ -19,15 +19,12 @@ export default function CollegePage({ params }) {
 	}, [])
 
 	const id = params.collegeId
-	console.log(id)
 	const result = data.filter(
 		el => el.pageUrl == id && el.pageType == 'own' && el.pageTypePublish == true
 	)
-	console.log(data)
-	console.log(result)
 	const resultObj = result.map(el => el.pageContent)
 	return (
-		<div style={{ display: flex, justifyContent: 'center', margin: 10 }}>
+		<div styles={styles.root}>
 			<Interweave content={resultObj + ''} />
 		</div>
 	)

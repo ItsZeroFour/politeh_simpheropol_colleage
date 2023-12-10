@@ -1,10 +1,8 @@
 import mongoose from 'mongoose'
 
-const ImageModel = new mongoose.Schema({
-	myFile: {
-		type: String,
-		required: true,
-	},
+const imageSchema = new mongoose.Schema({
+	filename: String,
+	path: String,
 })
 
-export default mongoose.model('Image', ImageModel)
+export default mongoose.model('Image', imageSchema)

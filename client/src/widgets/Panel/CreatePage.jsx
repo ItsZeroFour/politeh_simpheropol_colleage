@@ -1,6 +1,5 @@
 'use client'
 import {
-	setImages,
 	setImages1,
 	textValueFunc,
 } from '@app/store/pagesAdmin/UndoRendoSlice.js'
@@ -26,8 +25,11 @@ import Popup from 'reactjs-popup'
 import { Counter } from './UndoRendoUI.jsx'
 const CreatePage = () => {
 	const [isPage, setIsPage] = useState(true)
+	const [dataUrl, setDataUrl] = useState('')
 	const state = useSelector(state => state)
+	const [imageUrl, setImageUrl] = useState('')
 	console.log(state)
+	const [imageContentUrl, setImageContentUrl] = useState('')
 	const images1 = useSelector(state => state.counter.present.images1)
 	const textValue = useSelector(state => state.counter.present.textValue)
 	const images = useSelector(state => state.counter.present.images)
@@ -53,8 +55,8 @@ const CreatePage = () => {
 	const RenderAll = () => {
 		return <Interweave content={textValue} />
 	}
-	const RenderPredImage = ({ localrenderImage }) => {
-		return <Interweave content={localrenderImage} />
+	const RenderPredImage = ({ imageUrl }) => {
+		return <Interweave content={imageUrl} />
 	}
 	function convertToBase64(file) {
 		return new Promise((resolve, reject) => {
@@ -199,7 +201,8 @@ const CreatePage = () => {
 				// Create an array of React elements
 				const elements = newSelectedArr
 					.map(
-						(el, index) => `<li>
+						(el, index) => `<li style="display: list-item;
+						list-style: disc" >
 					
 					${el}
 			</li>`
@@ -544,50 +547,44 @@ const CreatePage = () => {
 	}
 
 	const addImagesArr = () => {
-		const list = images.map(el => {
-			return `<img  src=${el} alt="name" />`
-		})
-		dispatch(textValueFunc(textValue + `${list}`))
+		dispatch(textValueFunc(textValue + `${imageContentUrl}`))
 	}
-	const addImagesArr1 = () => {
-		console.log(images1)
-		const formData = new FormData()
-		formData.append('image', images1)
-		const someAsyncFunc = async () => {
-			try {
-				const data = await axios({
-					url: 'https://api.imgbb.com/1/upload?key=8d5867a9512390fb5e5dc97839aa36f6',
-					method: 'POST',
-					timeout: 0,
-					processData: false,
-					mimeType: 'multipart/form-data',
-					contentType: false,
-					data: images1,
-				})
-				console.log(data)
-			} catch (error) {
-				console.log(error)
-			}
+	const handleImageChange = async event => {
+		try {
+			const file = event.target.files[0]
+			const formData = new FormData()
+			formData.append('image', file)
+			console.log(formData)
+			const { data } = await axios.post(
+				'http://localhost:5000/upload',
+				formData
+			)
+			console.log(data.imagelink)
+			setDataUrl(data.imagelink)
+			console.log(dataUrl)
+			setImageContentUrl(`<img src=${data.imagelink}  alt="name"/>`)
+			console.log(imageContentUrl)
+		} catch (err) {
+			console.log(err)
 		}
-		someAsyncFunc()
-		setLocalrenderImage(`<img src=${images1}  alt="name"/>`)
 	}
-	const handleImageChange = async e => {
-		const file = e.target.files[0]
 
-		const reader = new FileReader()
-		const base64 = await convertToBase64(file)
-		setPostImage({ ...postImage, myFile: base64 })
-		setNewImage([postImage])
-		reader.onloadend = () => {
-			setImage(reader.result)
-			dispatch(setImages([reader.result]))
-		}
-		if (file) {
-			reader.readAsDataURL(file)
-			console.log(file)
-		}
-	}
+	// const handleImageChange = async e => {
+	// 	const file = e.target.files[0]
+
+	// 	const reader = new FileReader()
+	// 	const base64 = await convertToBase64(file)
+	// 	setPostImage({ ...postImage, myFile: base64 })
+	// 	setNewImage([postImage])
+	// 	reader.onloadend = () => {
+	// 		setImage(reader.result)
+	// 		dispatch(setImages([reader.result]))
+	// 	}
+	// 	if (file) {
+	// 		reader.readAsDataURL(file)
+	// 		console.log(file)
+	// 	}
+	// }
 	const handleImageChange1 = async e => {
 		const file = e.target.files[0]
 		console.log(file)
@@ -614,10 +611,7 @@ const CreatePage = () => {
 
 		addImagesArr()
 	}
-	const submitForm1 = e => {
-		e.preventDefault()
-		addImagesArr1()
-	}
+
 	const {
 		register,
 		handleSubmit,
@@ -646,29 +640,46 @@ const CreatePage = () => {
 			console.log(someDate.data.pageUrl)
 		}
 	}
+	// const handleSubmit22 = async event => {
+	// 	event.preventDefault()
+
+	// 	const formData = new FormData()
+	// 	console.log(event.target.upload.files[0])
+	// 	formData.append('upload', event.target.upload.files[0])
+
+	// 	try {
+	// 		console.log(formData)
+	// 		const response = await fetch('http://localhost:5000/upload', {
+	// 			method: 'post',
+	// 			url: 'http://localhost:5000/upload',
+	// 			formData,
+	// 			config: { headers: { 'Content-Type': 'multipart/form-data' } },
+	// 		})
+
+	// 		if (response.ok) {
+	// 			console.log('File uploaded successfully')
+	// 		} else {
+	// 			console.log('Error occurred while uploading file')
+	// 		}
+	// 	} catch (error) {
+	// 		console.log('Network error occurred', error)
+	// 	}
+	// }
 	const handleSubmit22 = async event => {
-		event.preventDefault()
-
-		const formData = new FormData()
-		console.log(event.target.avatar.files[0])
-		formData.append('avatar', event.target.avatar.files[0])
-
 		try {
+			const file = event.target.files[0]
+			const formData = new FormData()
+			formData.append('image', file)
 			console.log(formData)
-			const response = await fetch('http://localhost:5000/upload', {
-				method: 'post',
-				url: 'http://localhost:5000/upload',
-				formData,
-				config: { headers: { 'Content-Type': 'multipart/form-data' } },
-			})
-
-			if (response.ok) {
-				console.log('File uploaded successfully')
-			} else {
-				console.log('Error occurred while uploading file')
-			}
-		} catch (error) {
-			console.log('Network error occurred', error)
+			const { data } = await axios.post(
+				'http://localhost:5000/upload',
+				formData
+			)
+			console.log(data.imagelink)
+			setImageUrl(`<img src=${data.imagelink}  alt="name"/>`)
+			console.log(imageUrl)
+		} catch (err) {
+			console.log(err)
 		}
 	}
 
@@ -749,10 +760,20 @@ const CreatePage = () => {
 											/>
 											<button type='submit'>Upload Image</button>
 										</form> */}
-										<form onSubmit={handleSubmit22}>
-											<input type='file' name='avatar' />
+										{/* <form onSubmit={handleSubmit22}>
+											<input type='file' name='upload' />
 											<button type='submit'>Upload Image</button>
-										</form>
+										</form> */}
+										<input
+											id='create-post-img'
+											type='file'
+											onChange={handleSubmit22}
+											hidden
+											accept='.jpg, .png, .jpeg, .webp'
+										/>
+										<label htmlFor='create-post-img'>
+											Загрузить изображение
+										</label>
 									</div>
 								</Popup>
 							</div>
@@ -818,12 +839,12 @@ const CreatePage = () => {
 						<button
 							onClick={async () => {
 								try {
-									console.log(typePage, URLPage, titlePage, localrenderImage)
+									console.log(typePage, URLPage, titlePage, imageUrl)
 									if (
 										typePage != '' &&
 										URLPage != '' &&
 										titlePage != '' &&
-										localrenderImage != ''
+										imageUrl != ''
 									) {
 										setIsForm('true')
 										console.log(isForm)
@@ -854,7 +875,7 @@ const CreatePage = () => {
 													pageTypePublish: false,
 													pageDate: getCurrentDate(),
 													titlePage: titlePage,
-													pageImage: localrenderImage,
+													pageImage: imageUrl,
 													typePage,
 												},
 											},
@@ -866,11 +887,11 @@ const CreatePage = () => {
 										typePage == '' ||
 										URLPage == '' ||
 										titlePage == '' ||
-										localrenderImage == '' ||
+										imageUrl == '' ||
 										(data == '' &&
 											URLPage == '' &&
 											titlePage == '' &&
-											localrenderImage == '')
+											imageUrl == '')
 									) {
 										console.log('не заполнены поля!')
 
@@ -880,11 +901,11 @@ const CreatePage = () => {
 										typePage == null ||
 										URLPage == '' ||
 										titlePage == '' ||
-										localrenderImage == '' ||
+										imageUrl == '' ||
 										(data == null &&
 											URLPage == '' &&
 											titlePage == '' &&
-											localrenderImage == '')
+											imageUrl == '')
 									) {
 										console.log('не заполнены поля')
 										setIsForm('false')
@@ -907,7 +928,8 @@ const CreatePage = () => {
 						>
 							Загрузить страницу
 						</button>
-						<RenderPredImage localrenderImage={localrenderImage} />
+
+						<RenderPredImage imageUrl={imageUrl} />
 					</div>
 				)}
 			</div>

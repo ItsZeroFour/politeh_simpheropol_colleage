@@ -6,11 +6,14 @@ import helmet from 'helmet'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
 import multer from 'multer'
+import path from 'path'
+import Image from './models/Image.js'
 import dormitoryRouter from './routes/DormitoryRoutes.js'
 import pageRouter from './routes/PageRoutes.js'
 import postRouter from './routes/PostRoutes.js'
 import specialityRouter from './routes/SpecialtiesRoutes.js'
 import userRouter from './routes/UserRoutes.js'
+
 dotenv.config({ path: './.env' })
 const app = express()
 
@@ -45,21 +48,20 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-/* ROUTES */
-app.use('/auth', userRouter)
-app.use('/speciality', specialityRouter)
-app.use('/post', postRouter)
-app.use('/dormitory', dormitoryRouter)
-app.use('/page', pageRouter)
+// Serve the HTML page with a form for image upload
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, 'index.html'))
+})
+
+// Handle image upload
 app.post('/upload', upload.single('image'), async (req, res) => {
 	try {
-		console.log(req.data)
-		console.log(req.file)
 		if (req.file) {
 			const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`
 			console.log(imageUrl)
 
 			// Save image details to MongoDB
+
 			const newImage = new Image({
 				filename: req.file.filename,
 				path: imageUrl,
@@ -79,6 +81,42 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 
 // Set up static file serving for uploaded images
 app.use('/uploads', express.static('uploads'))
+/* ROUTES */
+app.use('/auth', userRouter)
+app.use('/speciality', specialityRouter)
+app.use('/post', postRouter)
+app.use('/dormitory', dormitoryRouter)
+app.use('/page', pageRouter)
+// app.post('/upload', upload.single('image'), async (req, res) => {
+// 	try {
+// 		console.log(req.data)
+// 		console.log(req.file)
+// 		console.log(req.body.file)
+// 		console.log(req.query)
+// 		if (req.file) {
+// 			const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`
+// 			console.log(imageUrl)
+
+// 			// Save image details to MongoDB
+// 			const newImage = new Image({
+// 				filename: req.file.filename,
+// 				path: imageUrl,
+// 			})
+
+// 			await newImage.save()
+
+// 			res.json({ imagelink: imageUrl }) // Only return the image URL
+// 		} else {
+// 			res.status(400).send('No image file provided')
+// 		}
+// 	} catch (error) {
+// 		console.error(error)
+// 		res.status(500).send('Internal Server Error')
+// 	}
+// })
+
+// Set up static file serving for uploaded images
+
 // app.get('/images', async (req, res) => {
 // 	try {
 // 		const posts = await Image.find()

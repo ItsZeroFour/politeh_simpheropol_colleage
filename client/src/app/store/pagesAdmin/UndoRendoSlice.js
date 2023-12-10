@@ -4,7 +4,7 @@ const initialState = {
 	value: 0,
 	italic: '',
 	textValue: '',
-	images: [],
+	images: '',
 	images1: '',
 	dataOurCollege: [],
 }

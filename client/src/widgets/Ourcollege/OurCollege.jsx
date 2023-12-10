@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDataOurCollege } from '../../app/store/pagesAdmin/UndoRendoSlice.js'
+import styles from './OurCollege.module.scss'
 const OurCollege = () => {
 	const dataOurCollege2 = useSelector(
 		state => state.counter.present.dataOurCollege
@@ -33,10 +34,7 @@ const OurCollege = () => {
 				console.log(el.pageUrl)
 				if (el.pageTypePublish && el.pageType == 'own') {
 					return (
-						<div
-							key={el._id}
-							style={{ display: flex, justifyContent: 'center', margin: 10 }}
-						>
+						<div key={el._id} styles={styles.root}>
 							<Interweave content={el.pageImage} />
 							{/* {el.pageImage} */}
 							<Link href={`/our-colleage/${el.pageUrl}`}>{el.pageTitle}</Link>

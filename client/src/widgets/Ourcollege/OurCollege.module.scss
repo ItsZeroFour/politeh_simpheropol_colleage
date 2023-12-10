@@ -1,12 +1,8 @@
-.post_title {
-	margin-top: 10px;
-	font-size: 24;
-	font-weight: 700;
-}
-.postImgTitleWrapper {
+.root {
 	display: flex;
 	justify-content: center;
-	text-align: center;
+	align-items: center;
+	margin: 10px;
 	flex-direction: column;
 	ul > li {
 		display: list-item;
@@ -16,8 +12,4 @@
 		display: list-item;
 		list-style: decimal;
 	}
-}
-
-.post_date {
-	margin-top: 15px;
 }

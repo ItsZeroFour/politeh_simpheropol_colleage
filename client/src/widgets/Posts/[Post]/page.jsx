@@ -2,7 +2,6 @@ import axios from 'axios'
 import { Interweave } from 'interweave'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-
 export default function Post({ params }) {
 	const [data, setData] = useState({})
 	const someData = useSelector(state => state.counter.present.dataOurCollege)
@@ -26,7 +25,6 @@ export default function Post({ params }) {
 		<div
 			style={{
 				display: 'flex',
-				alignItems: 'center',
 				justifyContent: 'center',
 			}}
 		>
