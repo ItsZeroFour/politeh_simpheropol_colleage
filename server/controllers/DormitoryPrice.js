@@ -1,10 +1,7 @@
 /* itsZeroFourX@gmail.com code side */
 
 import DormitoryPrice from "../models/DormitoryPrice.js";
-<<<<<<< HEAD
-=======
 import { validationResult } from "express-validator";
->>>>>>> aac24a915149c46ef57a45cbb9c853430518a8a1
 
 export const createPriceListItem = async (req, res) => {
   try {

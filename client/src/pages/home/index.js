@@ -9,6 +9,7 @@ import ContactForm from "@widgets/home/ContactForm/ContactForm"
 import Departments from "@widgets/home/Departments/Departments"
 import EssentialLinks from "@widgets/home/EssentialLinks/EssentialLinks"
 import Ministries from "@widgets/home/Ministries/Ministries"
+import Burger from '@shared/buttons/Burger/Burger'
 
 
 export const Home = () => {

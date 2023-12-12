@@ -6,13 +6,16 @@ import style from './header.module.scss'
 import logo from '@public/assets/icons/logo.svg?url'
 import sunIcon from '../../../public/assets/icons/sun.svg?url'
 import Links from '@features/header/Links/Links'
-
-
-
-// TODO: добавить redux, реализовать в с его помощью ховер на ссылки
+import Burger from '@shared/buttons/Burger/Burger'
+import { useState } from 'react'
 
 
 const Header = () => {
+  const [isOpened, setIsOpened] = useState(false)
+
+  const onMenuClick = () => {
+    setIsOpened(!isOpened)
+  }
 
   return (
     <>
@@ -39,9 +42,11 @@ const Header = () => {
             </button>
           </div>
 
-          <div className={style.burger}></div>
+          <Burger onClick={onMenuClick} />
         </div>
       </header>
+
+      <div className={`${style.menu} ${isOpened && style.menuActive}`}></div>
     </>
   )
 }

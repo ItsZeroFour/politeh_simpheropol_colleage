@@ -1,3 +1,5 @@
+$height: 130px;
+
 .header {
     position: fixed;
     left: 0;
@@ -5,7 +7,7 @@
 
     z-index: 20000;
 
-    height: 130px;
+    height: $height;
     background: var(--color-dark);
 
     width: 100vw;
@@ -77,8 +79,6 @@
 .burger {
     width: 42px;
     height: 42px;
-
-    background: white;
 }
 
 .dropdownIcon {
@@ -87,6 +87,26 @@
 
     display: inline;
     margin-left: 5px;
+}
+
+.menu {
+    z-index: 20000;
+
+    width: 100%;
+    height: calc(100vh - $height);
+
+    position: fixed;
+    top: 100%;
+    left: 0;
+
+    background: gray;
+
+    transition: .4s;
+}
+
+.menuActive {
+    top: $height;
+    transition: .4s;
 }
 
 // .dropdown {

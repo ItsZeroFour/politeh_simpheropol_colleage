@@ -6,22 +6,36 @@ import Link from 'next/link'
 import { getHeader } from '@app/store/header/header.slice'
 import Triangle from '@public/assets/icons/triangle.svg'
 
+
+
+
+//               { title: "Наш колледж", link: "/our-colleage" },
+//               { title: "Абитуриенту", link: "/enrollee" },
+//               { title: "Контакты", link: "/contacts" },
+//               { title: "Общежитие", link: "/dormitory" },
+//               { title: "Студенту", link: "/student" },
+//               { title: "НацПроекты", link: "/nacproject" },
+//               { title: "Олимпиады", link: "/olimpiads" },
+//               { title: "ДПО", link: "/dpo" },
+
 const linksList = [
   { url: '/', text: 'Главная' },
-  { url: '/', text: 'Наш колледж' },
-  { url: '/', text: 'Абитуриенту' },
+  { url: '/our-colleage', text: 'Наш колледж' },
+  { url: '/enrollee', text: 'Абитуриенту' },
   { url: '/contacts', text: 'Контакты' },
   { url: '/', text: 'Общежитие', isCategory: true, links: [
-    {url: '/', text: 'Ссылка'},
+    {url: '/dormitory', text: 'Ссылка'},
     {url: '/', text: 'Приём каких-то документов'},
     {url: '/', text: 'Информация касательно планирущих проживать в общежитии'},
     {url: '/', text: 'Привет'},
   ]},
   { url: '/', text: 'Студенту', isCategory: true, links: [
-    {url: '/', text: ''},
-    {url: '/', text: ''},
-    {url: '/', text: ''},
-    {url: '/', text: ''},
+    {url: '/student', text: 'Расписание'},
+    {url: '/nacproject', text: 'НацПроекты'},
+    {url: '/olimpiads', text: 'Олимпиады'},
+    {url: '/dpo', text: 'ДПО'},
+    {url: '/', text: 'Изучение выбранной вами специальности'},
+    {url: '/', text: 'Практика и трудоустройство'},
   ] },
 ]
 
