@@ -1,0 +1,14 @@
+.icon {
+  &:hover {
+    & path {
+      fill: var(--color-blue);
+      transition: 0.3s;
+    }
+  }
+}
+
+.icon path {
+  fill: white;
+  transition: 0.3s;
+}
+
