@@ -2,57 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./reset";
-@import "./vars";
+@import './reset';
+@import './vars';
 
 *,
 *::after,
 *::before {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
 }
 
-* {
-  box-sizing: border-box;
+html {
+	box-sizing: border-box;
 }
 
 html,
 body,
 #root {
-  font-size: 20px;
-  overflow-x: hidden;
+	font-size: 20px;
+	overflow-x: hidden;
 
-  @media (max-width: 1620px) {
-    font-size: 16px;
-  }
+	@media (max-width: 1620px) {
+		font-size: 16px;
+	}
 }
 
 body {
-  background: var(--color-dark);
-  color: var(--color-white);
-  font-family: "Poppins", sans-serif;
-  width: 100vw;
+	background: var(--color-dark);
+	color: var(--color-white);
+	font-family: 'Poppins', sans-serif;
+	width: 100vw;
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-block-start: 75px;
+	scroll-behavior: smooth;
+	scroll-padding-block-start: 75px;
 }
 
 .container {
-  max-width: 1450px;
-  padding: 0 10px;
-  margin: 0 auto;
+	max-width: 1450px;
+	padding: 0 10px;
+	margin: 0 auto;
 }
 
 ::-webkit-scrollbar {
-  background: var(--color-dark);
-  width: 4px;
+	background: var(--color-dark);
+	width: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-black);
+	background: var(--color-black);
 }
 
 p,
@@ -63,7 +63,16 @@ h4,
 h5,
 h6,
 a {
-  color: inherit;
+	color: inherit;
+}
+h1 {
+	font-size: 2em;
+}
+h2 {
+	font-size: 1.5em;
+}
+h3 {
+	font-size: 1.17em;
 }
 
 h1,
@@ -72,32 +81,42 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
+	font-weight: 700;
 }
-
+ul > li {
+	display: list-item;
+	list-style: none;
+}
+ol > li {
+	display: list-item;
+	list-style: none;
+}
 button,
 input,
 textarea {
-  color: var(--color-white);
+	color: var(--color-white);
+}
+i {
+	font-style: italic;
 }
 
 // Pagination
 .posts__pages {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-  gap: 1rem;
-  margin-top: 2rem;
+	gap: 1rem;
+	margin-top: 2rem;
 
-  .posts__pages__link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 50px;
-    height: 50px;
-    border-radius: var(--border-radius-md);
-    background: var(--color-black);
-  }
+	.posts__pages__link {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		width: 50px;
+		height: 50px;
+		border-radius: var(--border-radius-md);
+		background: var(--color-black);
+	}
 }
