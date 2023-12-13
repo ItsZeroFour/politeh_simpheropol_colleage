@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 export default function Post({ params }) {
 	const [data, setData] = useState({})
-	const someData = useSelector(state => state.counter.present.dataOurCollege)
+	const someData = useSelector(state => state.counter)
 	console.log(someData)
 	useEffect(() => {
 		const someAsyncFunc = async () => {
