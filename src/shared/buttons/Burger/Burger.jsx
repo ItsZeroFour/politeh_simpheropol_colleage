@@ -1,5 +1,6 @@
 import style from './Burger.module.scss'
 
+
 const Burger = ({ onClick }) => {
   const handleClick = (e) => {
     const element = e.currentTarget
