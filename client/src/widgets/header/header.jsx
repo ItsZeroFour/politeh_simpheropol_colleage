@@ -66,7 +66,7 @@ const Header = () => {
   }
 
   const date = new Date()
-  const day = date.getDay()
+  const day = date.getDate()
   const month = months[date.getMonth()]
   const week = daysOfWeek[date.getDay()]
   const year = date.getFullYear()
