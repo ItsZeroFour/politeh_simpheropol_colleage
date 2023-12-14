@@ -1,8 +1,7 @@
-import Panel from "@pages/Panel/Panel";
-import React from "react";
-
+'use client'
+import Panel from '@pages/Panel/Panel'
 const page = () => {
-  return <Panel />;
-};
+	return <Panel />
+}
 
-export default page;
+export default page

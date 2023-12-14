@@ -1,0 +1,15 @@
+.root {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+	flex-direction: column;
+	ul > li {
+		display: list-item;
+		list-style: disc;
+	}
+	ol > li {
+		display: list-item;
+		list-style: decimal;
+	}
+}
