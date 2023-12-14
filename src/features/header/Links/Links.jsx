@@ -7,17 +7,6 @@ import { getHeader } from '@app/store/header/header.slice'
 import Triangle from '@public/assets/icons/triangle.svg'
 
 
-
-
-//               { title: "Наш колледж", link: "/our-colleage" },
-//               { title: "Абитуриенту", link: "/enrollee" },
-//               { title: "Контакты", link: "/contacts" },
-//               { title: "Общежитие", link: "/dormitory" },
-//               { title: "Студенту", link: "/student" },
-//               { title: "НацПроекты", link: "/nacproject" },
-//               { title: "Олимпиады", link: "/olimpiads" },
-//               { title: "ДПО", link: "/dpo" },
-
 const linksList = [
   { url: '/', text: 'Главная' },
   { url: '/our-colleage', text: 'Наш колледж' },
@@ -70,7 +59,7 @@ const Links = () => {
         onMouseEnter={link.isCategory && handleOnMouseEnter}
         onMouseLeave={link.isCategory && handleOnMouseLeave}
       >
-        <Link href={link.url}>{link.text}</Link>
+        <Link href={link.url} className={style.headerLink}>{link.text}</Link>
         {link.isCategory && <Triangle className={style.dropdownIcon} />}
 
         {link.isCategory && hovered.includes(id) && <LinkDropdown data={link} />}

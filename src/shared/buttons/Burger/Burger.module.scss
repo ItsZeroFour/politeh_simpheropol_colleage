@@ -1,85 +1,46 @@
-$color: rgb(255, 255, 255);
-$size: 42px;
-
-@mixin pill() {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 12%;
-  background: $color;
-  box-shadow: 0 0 0 $size / 10 lighten($color, 35);
-  border-radius: $size;
-  transition: all 0.5s cubic-bezier(0.1, 0.9, 0, 1.2);
+.burger {
+  position: relative;
 }
 
-.burger {
+.toggle {
+  padding: 10px;
+  background: transparent;
+  border: 1px solid transparent;
+
+  margin: auto;
+}
+
+.toggle:focus {
+  outline-width: 0;
+}
+
+.toggle > .top,
+.middle,
+.bottom {
+  background: #ffffff;
   display: block;
-  position: relative;
-  width: $size;
-  height: $size;
 
-  background: white;
+  transform: rotate(0deg);
+  transition: 0.2s ease all;
 
-  .bun {
-    &:before {
-      @include pill();
-      top: 10%;
-      right: 0;
-    }
+  border-radius: 8px;
+  height: 3px;
+  width: 35px;
+  margin-bottom: 8px;
+}
 
-    &:after {
-      @include pill();
-      bottom: 10%;
-      left: 0;
-    }
+.toggle .bottom {
+  margin-bottom: 0;
+}
 
-    .burger {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      height: $size;
-      width: $size;
-
-      &:before,
-      &:after {
-        @include pill();
-      }
-    }
-  }
-
-  input {
-    display: block;
-    position: absolute;
-    opacity: 0;
-    z-index: 1;
-    width: $size;
-    height: $size;
-    cursor: pointer;
-
-    &:hover ~ bun {
-      &:before,
-      &:after,
-      :before,
-      :after {
-        background: darken($color, 5);
-      }
-    }
-
-    &:checked ~ bun {
-      &:before,
-      &:after {
-        width: 0;
-      }
-
-      .checkbox {
-        &:before {
-          transform: rotate(135deg);
-        }
-        &:after {
-          transform: rotate(45deg);
-          box-shadow: 0 0 0 0 lighten($color, 35);
-        }
-      }
-    }
-  }
+.active .top {
+  transform: rotate(45deg);
+  transform-origin: 15% 15%;
+}
+.active .middle {
+  opacity: 0;
+}
+.active .bottom {
+  transform: rotate(-45deg);
+  transform-origin: -5% 40%;
 }

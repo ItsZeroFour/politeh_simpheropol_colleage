@@ -1,0 +1,42 @@
+.designed {
+    font-size: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    & .developer:nth-child(2) {
+        margin-top: 13px;
+    }
+}
+
+.developer {
+    display: flex;
+    min-width: 285px;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 8px;
+}
+
+.networks {
+    display: flex;
+    gap: 15px;
+}
+
+.networkLink {
+    display: block;
+}
+
+.authors {
+    text-align: right;
+    margin-right: 22px;
+
+    margin-top: 22px;
+}
+
+.developerName {
+    text-align: left;
+    display: block;
+}

@@ -1,13 +1,14 @@
-import React from "react";
-import style from "./Panel.module.scss";
-import CreatePage from "./CreatePage";
+import CreatePage from './CreatePage'
+import EditorPage from './EditorPage'
+import style from './Panel.module.scss'
 
 const MainMenu = ({ mainPanelType }) => {
-  return (
-    <section className={style.main__menu}>
-      {mainPanelType === "create-page" && <CreatePage />}
-    </section>
-  );
-};
+	return (
+		<section className={style.main__menu}>
+			{mainPanelType === 'create-page' && <CreatePage />}
+			{mainPanelType === 'edit-page' && <EditorPage />}
+		</section>
+	)
+}
 
-export default MainMenu;
+export default MainMenu

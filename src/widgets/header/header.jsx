@@ -7,8 +7,56 @@ import logo from '@public/assets/icons/logo.svg?url'
 import sunIcon from '../../../public/assets/icons/sun.svg?url'
 import Links from '@features/header/Links/Links'
 import Burger from '@shared/buttons/Burger/Burger'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import VK from '@public/assets/icons/VK.svg'
+import Designed from '@features/global/Designed/Designed'
 
+const daysOfWeek = [
+  'Воскресенье',
+  'Понедельник',
+  'Вторник',
+  'Среда',
+  'Четверг',
+  'Пятница',
+  'Суббота',
+]
+const months = [
+  'января',
+  'февраля',
+  'марта',
+  'апреля',
+  'мая',
+  'июня',
+  'июля',
+  'августа',
+  'сентября',
+  'октября',
+  'ноября',
+  'декабря',
+]
+
+const menuLinks = [
+  {
+    url: '/',
+    text: 'Сведения об образовательной организациии',
+  },
+  {
+    url: '/',
+    text: 'НацПроекты',
+  },
+  {
+    url: '/',
+    text: 'Олимпиады',
+  },
+  {
+    url: '/',
+    text: 'ДПО',
+  },
+  {
+    url: '/',
+    text: 'Условия обучения инвалидов и лиц с ограниченными возможностями здоровья',
+  },
+]
 
 const Header = () => {
   const [isOpened, setIsOpened] = useState(false)
@@ -17,12 +65,20 @@ const Header = () => {
     setIsOpened(!isOpened)
   }
 
+  const date = new Date()
+  const day = date.getDate()
+  const month = months[date.getMonth()]
+  const week = daysOfWeek[date.getDay()]
+  const year = date.getFullYear()
+  const today = `Сегодня: ${week}, ${day} ${month} ${year}`
+
   return (
     <>
       <div className={style.headerWrapper}></div>
 
-      <header className={style.header}>
-
+      <header
+        className={`${style.header} ${isOpened && style.headerMenuActive}`}
+      >
         <div className={style.container}>
           <div>
             <Link href='/'>
@@ -36,201 +92,41 @@ const Header = () => {
 
           <div className={style.headerButtons}>
             <button>Для слабовидящих</button>
-            <button>
+            {/* <button>
               <p>Белая тема</p>
               <Image src={sunIcon} alt='white theme' width={26} height={26} />
-            </button>
+            </button> */}
           </div>
 
           <Burger onClick={onMenuClick} />
         </div>
       </header>
 
-      <div className={`${style.menu} ${isOpened && style.menuActive}`}></div>
+      <div className={`${style.menu} ${isOpened && style.menuActive}`}>
+        <nav className={style.menuLinks}>
+          {menuLinks.map((menuLink, index) => (
+            <li key={index} className={style.menuLink}>
+              <Link href={menuLink.url}>{menuLink.text}</Link>
+            </li>
+          ))}
+        </nav>
+
+        <div className={style.menuFooter}>
+          <p className={style.menuIcon}>
+            <Link href='https://vk.com/simfpolyteh'>
+              <VK />
+            </Link>
+          </p>
+
+          <p className={style.today}>{today}</p>
+
+          <div className={style.developers}>
+            <Designed />
+          </div>
+        </div>
+      </div>
     </>
   )
 }
 
 export default Header
-
-// "use client";
-
-// import Image from "next/image";
-// import style from "./header.module.scss";
-// import Link from "next/link";
-// import logo from "../../../public/assets/icons/logo.svg?url";
-// import sunIcon from "../../../public/assets/icons/sun.svg?url";
-// import vk from "../../../public/assets/icons/vk.svg?url";
-// import telegram from "../../../public/assets/icons/telegram.svg?url";
-// import www from "../../../public/assets/icons/www.svg?url";
-// import { useState } from "react";
-// import moment from "moment";
-
-// const header = () => {
-//   const [openMenu, setOpenMenu] = useState(false);
-
-//   return (
-//     <header className={style.header}>
-//       <Image className={style.header__logo} src={logo} alt="logo" width={104} height={105} />
-
-//       <nav className={style.header__nav}>
-//         {[
-//           { title: "Главная", link: "/" },
-//           { title: "Наш колледж", link: "/our-colleage" },
-//           { title: "Абитуриенту", link: "/enrollee" },
-//           { title: "Контакты", link: "/contacts" },
-//           { title: "Общежитие", link: "/dormitory" },
-//           { title: "Студенту", link: "/student" },
-//         ].map(({ title, link }) => (
-//           <li key={title}>
-//             <Link href={link}>{title}</Link>
-//           </li>
-//         ))}
-//       </nav>
-
-//       <div className={style.header__buttons}>
-//         <button>Для слабовидящих</button>
-//         <button>
-//           <p>Белая тема</p>
-//           <Image src={sunIcon} alt="white theme" width={26} height={26} />
-//         </button>
-//       </div>
-
-//       <button onClick={() => setOpenMenu((prev) => !prev)}>
-//         <div className={style.header__menu} />
-//       </button>
-
-//       {openMenu && (
-//         <div className={style.header__menu__wrapper}>
-//           <div className={style.header__menu__top}>
-//             <Image src={logo} alt="logo" width={104} height={105} />
-
-//             <nav className={style.header__nav}>
-//               {[
-//                 { title: "Главная", link: "/" },
-//                 { title: "Наш колледж", link: "/our-colleage" },
-//                 { title: "Абитуриенту", link: "/enrollee" },
-//                 { title: "Контакты", link: "/contacts" },
-//                 { title: "Общежитие", link: "/dormitory" },
-//                 { title: "Студенту", link: "/student" },
-//               ].map(({ title, link }) => (
-//                 <li key={title}>
-//                   <Link href={link}>{title}</Link>
-//                 </li>
-//               ))}
-//             </nav>
-
-//             <div className={style.header__buttons}>
-//               <button>Для слабовидящих</button>
-//               <button>
-//                 <p>Белая тема</p>
-//                 <Image src={sunIcon} alt="white theme" width={26} height={26} />
-//               </button>
-//             </div>
-
-//             <button onClick={() => setOpenMenu((prev) => !prev)}>
-//               <div className={style.header__menu} />
-//             </button>
-//           </div>
-//           <nav className={style.header__menu__nav}>
-//             {[
-//               { title: "Главная", link: "/" },
-//               { title: "Наш колледж", link: "/our-colleage" },
-//               { title: "Абитуриенту", link: "/enrollee" },
-//               { title: "Контакты", link: "/contacts" },
-//               { title: "Общежитие", link: "/dormitory" },
-//               { title: "Студенту", link: "/student" },
-//               { title: "НацПроекты", link: "/nacproject" },
-//               { title: "Олимпиады", link: "/olimpiads" },
-//               { title: "ДПО", link: "/dpo" },
-//               {
-//                 title:
-//                   "Условия обучения инвалидов и лиц с ограниченными возможностями здоровья",
-//                 link: "/ovz",
-//               },
-//             ].map(({ title, link }) => (
-//               <li key={title}>
-//                 <Link href={link}>{title}</Link>
-//               </li>
-//             ))}
-//           </nav>
-
-//           <div className={style.header__menu__bottom}>
-//             <a href="https://vk.com/simfpolyteh">
-//               <Image src={vk} alt="vk" width={72} height={72} />
-//             </a>
-
-//             <p>{moment().format("LL")}</p>
-
-//             <ul className={style.header__devs__list}>
-//               {[
-//                 {
-//                   name: "Андреев Д. В.",
-//                   vk: vk,
-//                   telegram: telegram,
-//                   www: www,
-//                   vkLink: "https://vk.com/nullbebra",
-//                   telegramLink: "https://t.me/ItsZeroFour",
-//                   wwwLink: "https://zero-personal-web.vercal.app",
-//                 },
-
-//                 {
-//                   name: "Власенко Д. С.",
-//                   vk: vk,
-//                   telegram: telegram,
-//                   www: www,
-//                   vkLink: "https://vk.com/l.o_oll",
-//                   telegramLink: "https://t.me/mr_alberg",
-//                   wwwLink: "https://zero-personal-web.vercal.app",
-//                 },
-
-//                 {
-//                   name: "Сейдалиев А.Э.",
-//                   vk: vk,
-//                   telegram: telegram,
-//                   www: www,
-//                   vkLink: "https://vk.com/justzero09",
-//                   telegramLink: "https://t.me/AmetWebDev",
-//                   wwwLink: "https://zero-personal-web.vercal.app",
-//                 },
-//               ].map(
-//                 ({
-//                   name,
-//                   vk,
-//                   telegram,
-//                   www,
-//                   vkLink,
-//                   telegramLink,
-//                   wwwLink,
-//                 }) => (
-//                   <li key={name}>
-//                     <p>{name}</p>
-
-//                     <div className={style.header__devs__links}>
-//                       <Link href={vkLink}>
-//                         <Image src={vk} alt="vk" width={41} height={41} />
-//                       </Link>
-//                       <Link href={telegramLink}>
-//                         <Image
-//                           src={telegram}
-//                           alt="telegram"
-//                           width={28}
-//                           height={28}
-//                         />
-//                       </Link>
-//                       <Link href={wwwLink}>
-//                         <Image src={www} alt="www" width={26} height={26} />
-//                       </Link>
-//                     </div>
-//                   </li>
-//                 )
-//               )}
-//             </ul>
-//           </div>
-//         </div>
-//       )}
-//     </header>
-//   );
-// };
-
-// export default header;

@@ -1,12 +1,11 @@
-import { headerActions } from "@app/store/header/header.slice"
+import { headerActions } from '@app/store/header/header.slice'
+import { counterSliceActions } from '@app/store/pagesAdmin/UndoRendoSlice'
 
 const allActions = {
-    ...headerActions
+	...headerActions,
+	counterSliceActions,
 }
 
 export const useActions = () => {
-    // const dispatch = useDispatch
-
-    // return bindActionCreators(allActions, dispatch)
-    return allActions
+	return allActions
 }

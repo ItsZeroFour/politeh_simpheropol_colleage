@@ -16,6 +16,8 @@ export const metadata = {
   от 11.12.2014 №349 «О государственных бюджетных учреждениях Республики Крым».`,
 }
 
+
+
 const poppins = Poppins({
   weight: ['400', '500', '700'],
   style: 'normal',
