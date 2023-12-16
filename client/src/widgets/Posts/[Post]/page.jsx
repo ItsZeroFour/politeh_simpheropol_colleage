@@ -35,7 +35,7 @@ export default function Post({ params }) {
 			 border-radius: 10px;
 			 padding: 10px 10px;
 			 color: #FFFFFF;
-			 font-size: 24px;"  href='/our-colleage/'>
+			 font-size: 24px;"  href='/posts/'>
 			 Вернуться назад
 		 </a></div></div>`}
 			/>
