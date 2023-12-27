@@ -29,7 +29,7 @@ const NacProject = () => {
 		<div className={styles.rootNacProject}>
 			<div className={styles.NacProjectTitle}>
 				<div className={styles.NacProjectFirst}>
-					<div>
+					<div className={styles.NacProjectTitleInner}>
 						<span className={styles.textTitle}>НацПроект</span>
 					</div>
 					<div>

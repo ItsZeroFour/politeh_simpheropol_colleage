@@ -9,11 +9,11 @@ import multer from 'multer'
 import path from 'path'
 import Image from './models/Image.js'
 import dormitoryRouter from './routes/DormitoryRoutes.js'
+import mailer from './routes/MailerRoutes.js'
 import pageRouter from './routes/PageRoutes.js'
 import postRouter from './routes/PostRoutes.js'
 import specialityRouter from './routes/SpecialtiesRoutes.js'
 import userRouter from './routes/UserRoutes.js'
-
 dotenv.config({ path: './.env' })
 const app = express()
 
@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
 app.post('/upload', upload.single('image'), async (req, res) => {
 	try {
 		if (req.file) {
-			const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`
+			const imageUrl = `http://localhost:4444/uploads/${req.file.filename}`
 			console.log(imageUrl)
 
 			// Save image details to MongoDB
@@ -87,6 +87,7 @@ app.use('/speciality', specialityRouter)
 app.use('/post', postRouter)
 app.use('/dormitory', dormitoryRouter)
 app.use('/page', pageRouter)
+app.use('/mailer', mailer)
 // app.post('/upload', upload.single('image'), async (req, res) => {
 // 	try {
 // 		console.log(req.data)

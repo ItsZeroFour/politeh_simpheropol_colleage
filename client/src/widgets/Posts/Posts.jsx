@@ -11,15 +11,14 @@ const Posts = () => {
 		state => state.counter.present.dataOurCollege
 	)
 	const state = useSelector(state => state.counter)
-	console.log(state)
-	console.log(dataOurCollege2)
+
 	const [data, setData] = useState([])
 	const dispatch = useDispatch()
 	useEffect(() => {
 		const someAsyncFunc = async () => {
 			try {
 				const somedata = await axios.get(
-					'http://localhost:5000/page/getpagestitle',
+					`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getpagestitle`,
 					{ params: { typePage: 'post' } }
 				)
 				setData([...somedata.data])

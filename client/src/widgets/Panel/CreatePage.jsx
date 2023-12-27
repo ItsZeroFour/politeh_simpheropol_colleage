@@ -246,7 +246,8 @@ const CreatePage = () => {
 			let finis_index = initium_index + selectedText.length - 1
 
 			if (initium_index !== -1) {
-				let newSubString = `<a href=${linkHref}>` + linkName + '</a>'
+				let newSubString =
+					`<a   target="_blank" href=${linkHref}>` + linkName + '</a>'
 				let newString =
 					textValue.substring(0, initium_index) +
 					newSubString +
@@ -534,7 +535,7 @@ const CreatePage = () => {
 		console.log(formData)
 		try {
 			const response = await axios.post(
-				'http://localhost:5000/upload',
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
 				{ file: FormData.entries.image },
 				{
 					headers: { 'Access-Control-Allow-Origin': '*' },
@@ -558,7 +559,7 @@ const CreatePage = () => {
 			formData.append('image', file)
 			console.log(formData)
 			const { data } = await axios.post(
-				'http://localhost:5000/upload',
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
 				formData
 			)
 			console.log(data.imagelink)
@@ -630,7 +631,7 @@ const CreatePage = () => {
 	const addPageInServer = async () => {
 		let newUrl = ''
 		const someDate = await axios.put(
-			'http://localhost:5000/page/topublic',
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
 
 			{ URLPage, typePage, textValue, titlePage }
 		)
@@ -676,7 +677,7 @@ const CreatePage = () => {
 			formData.append('image', file)
 			console.log(formData)
 			const { data } = await axios.post(
-				'http://localhost:5000/upload',
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
 				formData
 			)
 			console.log(data.imagelink)
@@ -870,7 +871,7 @@ const CreatePage = () => {
 										setIsPage(false)
 
 										await axios.post(
-											'http://localhost:5000/page/create',
+											`${process.env.NEXT_PUBLIC_SERVER_URL}/page/create`,
 											{
 												params: {
 													data,
@@ -1082,16 +1083,23 @@ const CreatePage = () => {
 								<div>
 									<label htmlFor=''>
 										<input
+											style={{
+												backgroundColor: 'black',
+											}}
 											type='text'
 											onChange={e => addNameLink(e)}
 											placeholder='заголовок ссылки'
 										/>
 										<input
+											style={{
+												backgroundColor: 'black',
+												fontSize: 14,
+											}}
 											onChange={e => addLink(e)}
 											type='text'
 											placeholder='ссылка'
 										/>
-										<button onClick={() => addLinkElement()}>+</button>
+										<button onClick={() => addLinkElement()}>добавить</button>
 									</label>
 								</div>
 							</Popup>

@@ -547,7 +547,7 @@ export default function App() {
 			formData.append('image', file)
 			console.log(formData)
 			const { data } = await axios.post(
-				'http://localhost:5000/upload',
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
 				formData
 			)
 			console.log(data.imagelink)
@@ -596,7 +596,7 @@ export default function App() {
 			let newUrl = ''
 			console.log('FFFF', URLPage)
 			const someDate = await axios.put(
-				'http://localhost:5000/page/topublic',
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
 
 				{ URLPage, typePage, textValue, titlePage }
 			)
@@ -608,7 +608,7 @@ export default function App() {
 	const Search = async () => {
 		try {
 			const somedata = await axios.get(
-				'http://localhost:5000/page/takecollege',
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/takecollege`,
 				{ params: { urlPage } },
 				{
 					headers: { 'Access-Control-Allow-Origin': '*' },

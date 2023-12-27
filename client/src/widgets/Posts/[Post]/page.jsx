@@ -5,15 +5,15 @@ import { useSelector } from 'react-redux'
 export default function Post({ params }) {
 	const [data, setData] = useState({})
 	const someData = useSelector(state => state.counter)
-	console.log(someData)
+
 	useEffect(() => {
 		const someAsyncFunc = async () => {
 			try {
 				const somedata = await axios.get(
-					'http://localhost:5000/page/getpagecontent',
+					`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getpagecontent`,
 					{ params: { postId: params.postId } }
 				)
-				console.log(somedata)
+
 				setData({ ...somedata.data })
 			} catch (error) {
 				console.log(error)
