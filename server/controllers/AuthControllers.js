@@ -9,6 +9,7 @@ const SECRET = process.env.SECRET
 
 export const createUser = async (req, res) => {
 	try {
+		console.log(req.body)
 		const errors = validationResult(req)
 
 		if (!errors.isEmpty()) {
@@ -24,6 +25,8 @@ export const createUser = async (req, res) => {
 		// Hash password
 		const password = req.body.password
 		const salt = await bcrypt.genSalt(10)
+		//bcrypt.hash(newUser.password, salt , (err, hash) => { ... }
+
 		const hashPassword = await bcrypt.hash(password, salt)
 
 		const doc = new UserModel({
@@ -70,7 +73,7 @@ export const loginUser = async (req, res) => {
 			req.body.password,
 			user._doc.password
 		)
-		console.log('password')
+
 		if (!isValidPassword) {
 			return res.status(400).json({ message: 'Неверный логин или пароль' })
 		}

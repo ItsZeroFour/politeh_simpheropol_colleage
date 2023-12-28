@@ -1,9 +1,10 @@
+import { useInput } from '@app/hooks/useInput'
 import Designed from '@features/global/Designed/Designed'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import style from './LoginForm.module.scss'
-import { LoginUser } from './LoginFunc'
-
 const links = [
 	{
 		text: 'Структура и органы управления образовательной организацией',
@@ -30,30 +31,61 @@ const links = [
 ]
 
 const LoginForm = () => {
-	const [login, setLogin] = useState('')
-	const [pas, setPas] = useState('')
+	const router = useRouter()
+	const submitForm = async e => {
+		e.preventDefault()
+		if (!login || !password) {
+			alert('Пожалуйста, заполните все поля')
+			return
+		}
+		try {
+			const res = await axios.post(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,
+				{
+					email: login,
+					password,
+				}
+			)
+			if (res.status == 200) {
+				console.log('200', res.data.token)
+				Cookies.set('token', res?.data?.token)
+				console.log(Cookies.get('token'))
+			}
+			alert(' успешно вошли!')
+			resetLogin()
+			resetPassword()
+			router.push('/panel')
+		} catch (error) {
+			alert('Произошла ошибка', error)
+			console.log(error)
+		}
+		// Clear input values
+	}
+
+	const { value: login, bind: loginBind, reset: resetLogin } = useInput()
+	const {
+		value: password,
+		bind: passwordBind,
+		reset: resetPassword,
+	} = useInput()
+
 	return (
 		<div className={style.loginForm}>
 			<div className={style.container}>
 				<form>
 					<input
 						className={style.input}
-						// onChange={e => setLogin(e.target.value)}
-
+						{...loginBind}
 						type='text'
 						placeholder='Логин'
 					/>
 					<input
-						// onChange={e => setPas(e.target.value)}
-
+						{...passwordBind}
 						className={style.input}
-						type='text'
+						type='password' // Changed to type='password' for security
 						placeholder='Пароль'
 					/>
-					<button
-						onClick={() => LoginUser(login, pas)}
-						className={style.submit}
-					>
+					<button onClick={e => submitForm(e)} className={style.submit}>
 						Войти
 					</button>
 				</form>
