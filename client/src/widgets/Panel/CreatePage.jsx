@@ -776,9 +776,10 @@ const CreatePage = () => {
 										<input
 											id='create-post-img'
 											type='file'
+											accept='image/jpeg'
 											onChange={handleSubmit22}
 											hidden
-											accept='.jpg, .png, .jpeg, .webp'
+											//accept='.jpg, .png, .jpeg, .webp'
 										/>
 										<label htmlFor='create-post-img'>
 											Загрузить изображение
@@ -1130,6 +1131,7 @@ const CreatePage = () => {
 											ref={filesRef}
 											multiple
 											type='file'
+											accept='image/jpeg'
 											className='image-button'
 											onChange={handleImageChange}
 										/>

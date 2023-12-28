@@ -25,20 +25,28 @@ export default function Post({ params }) {
 		<div
 			style={{
 				display: 'flex',
-				justifyContent: 'center',
+				justifyItems: 'center',
+				flexDirection: 'column',
 			}}
 		>
-			<Interweave
-				content={`<div
-			 >${data.pageContent}<div style="margin: 40px auto;" ><a style="display: inline;
-			 background-color: #0066FF;
-			 border-radius: 10px;
-			 padding: 10px 10px;
-			 color: #FFFFFF;
-			 font-size: 24px;"  href='/posts/'>
-			 Вернуться назад
-		 </a></div></div>`}
-			/>
+			<Interweave content={data.pageContent} />
+			<div style={{ marginTop: 30 }}>
+				<button
+					style={{
+						width: '300px',
+						margin: '0 auto',
+						display: 'block',
+						backgroundColor: '#0066FF',
+						borderRadius: 10,
+						padding: 10,
+						color: '#FFF',
+						fontSize: 24,
+					}}
+					onClick={() => history.back()}
+				>
+					Вернуться назад
+				</button>
+			</div>
 		</div>
 	)
 }

@@ -50,6 +50,19 @@ export const getOurCollegePages = async (req, res) => {
 		console.log(error)
 	}
 }
+export const getOurPostsPages = async (req, res) => {
+	try {
+		const arrPages = await PageModel.find({
+			pageType: 'post',
+			pageTypePublish: true,
+		})
+		console.log(arrPages)
+		res.send(arrPages)
+	} catch (error) {
+		console.log(error)
+	}
+}
+
 export const updatePageAndToPublic = async (req, res) => {
 	try {
 		const ID = await PageModel.find({ pageUrl: req.body.URLPage })

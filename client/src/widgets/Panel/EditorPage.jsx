@@ -887,6 +887,7 @@ export default function App() {
 												ref={filesRef}
 												multiple
 												type='file'
+												accept='image/jpeg'
 												className='image-button'
 												onChange={handleImageChange}
 											/>

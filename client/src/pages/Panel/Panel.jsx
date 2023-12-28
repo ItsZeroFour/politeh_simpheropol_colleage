@@ -17,7 +17,7 @@ const Panel = () => {
 					<MainMenu mainPanelType={mainPanelType} />
 				</main>
 			) : (
-				<div style={{ color: 'white' }}>sign in, please</div>
+				<div style={{ color: 'white' }}>Войдите в аккаунт, пожалуйста.</div>
 			)}
 		</>
 	)

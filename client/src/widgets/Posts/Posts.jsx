@@ -1,6 +1,6 @@
 'use client'
 import axios from 'axios'
-import { Interweave } from 'interweave'
+import Image from 'next/image.js'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,9 +32,13 @@ const Posts = () => {
 	}, [])
 
 	return (
-		<div>
+		<div className={styles.wrapperPosts}>
 			{dataOurCollege2.map(el => {
 				console.log(el.pageUrl)
+				var str = el.pageImage
+				var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
+				var matches = str.match(srcRegex)
+				var srcValue = matches[1]
 				if (el.pageTypePublish && el.pageType == 'post') {
 					return (
 						<div
@@ -48,7 +52,12 @@ const Posts = () => {
 						>
 							<div>
 								<div className={styles.postImgTitleWrapper}>
-									<Interweave content={el.pageImage} />
+									<Image
+										src={srcValue}
+										width={500}
+										height={500}
+										alt='Picture of the author'
+									/>
 									<Link href={`/posts/${el.pageUrl}`}>
 										{<p className={styles.post_title}>{el.pageTitle}</p>}
 									</Link>

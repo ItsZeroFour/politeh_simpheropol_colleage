@@ -1,36 +1,46 @@
-import Image from "next/image";
-import style from "./Post.module.scss";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
+import style from './Post.module.scss'
 
-const Post = ({ data: { image: imageUrl, text, title, _id } }) => {
-  let slicedText = text.slice(0, 60);
-  let slicedTitle = title.slice(0, 15);
+const Post = ({ data }) => {
+	//console.log({ data: { pageTitle: pageTitle, pageUrl } })
+	const { pageTitle, pageUrl, pageImage, pageDate } = data
+	console.log(pageTitle)
 
-  if (slicedText[slicedText.length - 1] === " ")
-    slicedText = slicedText.slice(0, 59);
-  if (slicedTitle[slicedTitle.length - 1] === " ")
-    slicedTitle = slicedTitle.slice(0, 14);
+	console.log(pageUrl)
+	console.log(pageImage)
+	var str = pageImage
+	var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
+	var matches = str.match(srcRegex)
+	var srcValue = matches[1]
+	// let slicedText = text.slice(0, 60)
+	// let slicedTitle = title.slice(0, 15)
 
-  text = text.length >= 60 ? slicedText + "..." : text;
-  title = title.length >= 15 ? slicedTitle + "..." : title;
+	// if (slicedText[slicedText.length - 1] === ' ')
+	// 	slicedText = slicedText.slice(0, 59)
+	// if (slicedTitle[slicedTitle.length - 1] === ' ')
+	// 	slicedTitle = slicedTitle.slice(0, 14)
 
-  console.log(_id);
+	// text = text.length >= 60 ? slicedText + '...' : text
+	// title = title.length >= 15 ? slicedTitle + '...' : title
 
-  return (
-    <Link href={`/posts/${_id}`} className={style.post}>
-      <Image
-        className={style.image}
-        fill={true}
-        src={`${process.env.NEXT_PUBLIC_SERVER_URL}${imageUrl}`}
-        alt="post photo"
-      />
+	//console.log(_id)
 
-      <div className={style.info}>
-        <h2 className={style.title}>{title}</h2>
-        <p className={style.description}>{text}</p>
-      </div>
-    </Link>
-  );
-};
+	return (
+		<Link href={`/posts/${pageUrl}`} className={style.post}>
+			<Image
+				className={style.image}
+				fill={true}
+				src={srcValue}
+				alt='post photo'
+			/>
+			{/* <Interweave content={pageImage} /> */}
+			<div className={style.info}>
+				<h2 className={style.title}>{pageTitle}</h2>
+				<span className={style.description}>{pageDate}</span>
+			</div>
+		</Link>
+	)
+}
 
-export default Post;
+export default Post
