@@ -52,11 +52,13 @@ export const getOurCollegePages = async (req, res) => {
 }
 export const getOurPostsPages = async (req, res) => {
 	try {
+		const { increment } = req.body
+		console.log('increment', increment)
 		const arrPages = await PageModel.find({
 			pageType: 'post',
 			pageTypePublish: true,
 		})
-		console.log(arrPages)
+
 		res.send(arrPages)
 	} catch (error) {
 		console.log(error)
@@ -127,8 +129,29 @@ export const getPageContent = async (req, res) => {
 export const getPagePostsTitle = async (req, res) => {
 	try {
 		const pagesDate = req.query
-		console.log(pagesDate)
-		const pages = await PageModel.find({ pageType: pagesDate.typePage })
+		//console.log(pagesDate)
+		//console.log('increment', req.query.increment)
+		const counter = await PageModel.find({
+			pageType: pagesDate.typePage,
+			pageTypePublish: true,
+		}).count()
+		console.log(counter)
+		const pages = await PageModel.find({
+			pageType: pagesDate.typePage,
+			pageTypePublish: true,
+		})
+			.sort({ _id: -1 })
+			.limit(req.query.increment)
+			.exec()
+			.then(result => {
+				return result
+			})
+			.catch(err => {
+				console.error(err)
+			})
+		//console.log(pageResults)
+
+		// const pages = await PageModel.find({ pageType: pagesDate.typePage })
 		const newArr = []
 		pages.forEach(item => {
 			const {

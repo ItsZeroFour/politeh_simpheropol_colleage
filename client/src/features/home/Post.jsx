@@ -13,6 +13,11 @@ const Post = ({ data }) => {
 	var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
 	var matches = str.match(srcRegex)
 	var srcValue = matches[1]
+	// let shortText = pageTitle.slice(0, 18) + '...'
+	// console.log(shortText)
+	let shortText =
+		pageTitle.length > 25 ? pageTitle.slice(0, 20) + '...' : pageTitle
+	console.log(shortText)
 	// let slicedText = text.slice(0, 60)
 	// let slicedTitle = title.slice(0, 15)
 
@@ -36,7 +41,7 @@ const Post = ({ data }) => {
 			/>
 			{/* <Interweave content={pageImage} /> */}
 			<div className={style.info}>
-				<h2 className={style.title}>{pageTitle}</h2>
+				<h2 className={style.title}>{shortText}</h2>
 				<span className={style.description}>{pageDate}</span>
 			</div>
 		</Link>
