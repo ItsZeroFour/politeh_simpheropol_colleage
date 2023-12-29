@@ -8,6 +8,7 @@ import morgan from 'morgan'
 import multer from 'multer'
 import path from 'path'
 import Image from './models/Image.js'
+import pdfModel from './models/PdfFile.js'
 import dormitoryRouter from './routes/DormitoryRoutes.js'
 import mailer from './routes/MailerRoutes.js'
 import pageRouter from './routes/PageRoutes.js'
@@ -52,7 +53,30 @@ const upload = multer({ storage: storage })
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'))
 })
+app.post('/uploadpdf', upload.single('file'), async (req, res) => {
+	try {
+		if (req.file) {
+			const pdfUrl = `http://localhost:${process.env.PORT}/uploads/${req.file.filename}`
+			console.log(pdfUrl)
 
+			// Save PDF file details to MongoDB
+
+			const newPdf = new pdfModel({
+				filename: req.file.filename,
+				path: pdfUrl,
+			})
+
+			await newPdf.save()
+
+			res.json({ pdflink: pdfUrl }) // Only return the PDF file URL
+		} else {
+			res.status(400).send('No PDF file provided')
+		}
+	} catch (error) {
+		console.error(error)
+		res.status(500).send('Internal Server Error')
+	}
+})
 // Handle image upload
 app.post('/upload', upload.single('image'), async (req, res) => {
 	try {

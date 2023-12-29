@@ -148,6 +148,44 @@ export default function App() {
 			}
 		}
 	}
+	const handleFileChange = async event => {
+		try {
+			const file = event.target.files[0]
+			const formData = new FormData()
+			formData.append('file', file)
+			console.log(formData)
+			const { data } = await axios.post(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/uploadpdf`,
+				formData
+			)
+			console.log('uploadpdf', data)
+			addLinkFile(data.pdflink)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+	const addLinkFile = somelink => {
+		const isExtend = textValue.includes(selectedText)
+
+		if (isExtend) {
+			let initium_index = textValue.indexOf(selectedText)
+
+			let finis_index = initium_index + selectedText.length - 1
+
+			if (initium_index !== -1) {
+				let newSubString =
+					`<a   target="_blank" href=${somelink}>` + selectedText + '</a>'
+				let newString =
+					textValue.substring(0, initium_index) +
+					newSubString +
+					textValue.substring(finis_index + 1)
+				console.log(newString)
+				dispatch(textValueFunc(newString))
+			} else {
+				console.log('substring not found')
+			}
+		}
+	}
 	const addUnderline = () => {
 		const isExtend = textValue.includes(selectedText)
 
@@ -260,7 +298,8 @@ export default function App() {
 			let finis_index = initium_index + selectedText.length - 1
 
 			if (initium_index !== -1) {
-				let newSubString = `<a href=${linkHref}>` + linkName + '</a>'
+				let newSubString =
+					`<a   target="_blank" href=${linkHref}>` + selectedText + '</a>'
 				let newString =
 					textValue.substring(0, initium_index) +
 					newSubString +
@@ -601,6 +640,10 @@ export default function App() {
 				{ URLPage, typePage, textValue, titlePage }
 			)
 			console.log(someDate)
+			if (someDate.status == 200) {
+				console.log('true')
+				dispatch(textValueFunc(''))
+			}
 		} catch (error) {
 			console.log(error)
 		}
@@ -844,20 +887,72 @@ export default function App() {
 									}
 									position='right center'
 								>
-									<div>
+									<div
+										style={{
+											backgroundColor: 'gray',
+											width: 300,
+										}}
+									>
 										<label htmlFor=''>
 											<input
+												style={{ backgroundColor: 'black' }}
 												type='text'
 												onChange={e => addNameLink(e)}
 												placeholder='заголовок ссылки'
+												value={selectedText}
 											/>
 											<input
+												style={{ backgroundColor: 'black' }}
 												onChange={e => addLink(e)}
 												type='text'
 												placeholder='ссылка'
 											/>
 											<button onClick={() => addLinkElement()}>+</button>
 										</label>
+									</div>
+								</Popup>
+								<Popup
+									trigger={
+										<button>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												fill='none'
+												viewBox='0 0 24 24'
+												strokeWidth='1.5'
+												stroke='#fff'
+												class='w-6 h-6'
+											>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													d='M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z'
+												/>
+											</svg>
+										</button>
+									}
+									position='right center'
+								>
+									<div>
+										<form onSubmit={submitForm}>
+											<input
+												style={{
+													backgroundColor: 'gray',
+												}}
+												id='files'
+												ref={filesRef}
+												multiple
+												type='file'
+												accept='.pdf'
+												className='image-button'
+												onChange={handleFileChange}
+											/>
+											{/* <button
+											style={{ backgroundColor: 'white', color: 'black' }}
+											type='submit'
+										>
+											Загрузить
+										</button> */}
+										</form>
 									</div>
 								</Popup>
 								<Popup

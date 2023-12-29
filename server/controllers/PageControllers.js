@@ -22,6 +22,12 @@ export const createPage = async (req, res) => {
 		console.log(URLPage)
 		console.log(pageTypePublish)
 		console.log(titlePage)
+		const existingPage = await PageModel.findOne({ pageUrl: URLPage })
+		if (existingPage) {
+			return res
+				.status(400)
+				.json({ message: 'Адрес страницы должен быть уникален' })
+		}
 		const newPage = new PageModel({
 			pageUrl: URLPage,
 			pageType: typePage,
@@ -37,7 +43,7 @@ export const createPage = async (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Failed to create page',
+			message: 'Failed to create page:' + err,
 		})
 	}
 }
