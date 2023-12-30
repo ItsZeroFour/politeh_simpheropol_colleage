@@ -3,30 +3,33 @@ import axios from 'axios'
 import Image from 'next/image.js'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setDataOurCollege } from '../../app/store/pagesAdmin/UndoRendoSlice.js'
+import { useDispatch } from 'react-redux'
 import styles from './style.module.scss'
 const Posts = () => {
-	const dataOurCollege2 = useSelector(
-		state => state.counter.present.dataOurCollege
-	)
-	const state = useSelector(state => state.counter)
-	let [increment, setIncrement] = useState(3)
+	// const dataOurCollege2 = useSelector(
+	// 	state => state.counter.present.dataOurCollege
+	// )
+	//const state = useSelector(state => state.counter)
+	let [increment, setIncrement] = useState(0)
 	const [data, setData] = useState([])
 	const dispatch = useDispatch()
 	useEffect(() => {
 		const someAsyncFunc = async () => {
 			try {
+				document.body.scrollTop = 0
 				const somedata = await axios.get(
 					`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getpagestitle`,
 					{ params: { typePage: 'post', increment } }
 				)
-				setData([...somedata.data])
-				dispatch(setDataOurCollege([...somedata.data]))
-				console.log('loading', somedata)
+				setData([...data, ...somedata.data])
+
+				//	console.log(data)
+				//	dispatch(setDataOurCollege([...data]))
+				//	console.log('loading', somedata)
 			} catch (error) {
 				console.log(error)
 			}
+			//	console.log('state', dataOurCollege2)
 		}
 		someAsyncFunc()
 	}, [increment])
@@ -34,7 +37,7 @@ const Posts = () => {
 	return (
 		<div>
 			<div className={styles.wrapperPosts}>
-				{dataOurCollege2.map(el => {
+				{data.map(el => {
 					console.log(el.pageUrl)
 					var str = el.pageImage
 					var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/

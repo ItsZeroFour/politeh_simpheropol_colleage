@@ -142,7 +142,7 @@ export const getPagePostsTitle = async (req, res) => {
 			pageTypePublish: true,
 		}).count()
 		console.log(counter)
-		const pages = await PageModel.find({
+		/*const pages = await PageModel.find({
 			pageType: pagesDate.typePage,
 			pageTypePublish: true,
 		})
@@ -154,10 +154,21 @@ export const getPagePostsTitle = async (req, res) => {
 			})
 			.catch(err => {
 				console.error(err)
+			})*/
+		const pages = await PageModel.find({
+			pageType: pagesDate.typePage,
+			pageTypePublish: true,
+		})
+			.sort({ _id: -1 })
+			.skip(req.query.increment)
+			.limit(3)
+			.exec()
+			.then(result => {
+				return result
 			})
-		//console.log(pageResults)
-
-		// const pages = await PageModel.find({ pageType: pagesDate.typePage })
+			.catch(err => {
+				console.error(err)
+			})
 		const newArr = []
 		pages.forEach(item => {
 			const {

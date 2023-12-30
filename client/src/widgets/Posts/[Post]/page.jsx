@@ -15,6 +15,7 @@ export default function Post({ params }) {
 				)
 
 				setData({ ...somedata.data })
+				document.body.scrollTop = 0
 			} catch (error) {
 				console.log(error)
 			}
@@ -42,7 +43,9 @@ export default function Post({ params }) {
 						color: '#FFF',
 						fontSize: 24,
 					}}
-					onClick={() => history.back()}
+					onClick={() => {
+						history.back()
+					}}
 				>
 					Вернуться назад
 				</button>
