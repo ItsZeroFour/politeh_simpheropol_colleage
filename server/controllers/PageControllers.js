@@ -60,14 +60,21 @@ export const getOurPostsPages = async (req, res) => {
 	try {
 		const { increment } = req.body
 		console.log('increment', increment)
+		// const arrPages = await PageModel.find({
+		// 	pageType: 'post',
+		// 	pageTypePublish: true,
+		// })
 		const arrPages = await PageModel.find({
 			pageType: 'post',
 			pageTypePublish: true,
 		})
+			.sort({ _id: -1 })
+			.limit(3)
 
 		res.send(arrPages)
 	} catch (error) {
 		console.log(error)
+		res.status(500).json({ message: 'произошла ошибка при получении страниц' })
 	}
 }
 

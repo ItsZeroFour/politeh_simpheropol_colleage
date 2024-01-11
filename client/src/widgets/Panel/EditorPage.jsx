@@ -207,6 +207,28 @@ export default function App() {
 			}
 		}
 	}
+	const addParagraphOne = () => {
+		const isExtend = textValue.includes(selectedText)
+
+		if (isExtend) {
+			let initium_index = textValue.indexOf(selectedText)
+
+			let finis_index = initium_index + selectedText.length - 1
+
+			if (initium_index !== -1) {
+				let newSubString =
+					'<p style=" text-indent: 20px;" >' + selectedText + '</p>'
+				let newString =
+					textValue.substring(0, initium_index) +
+					newSubString +
+					textValue.substring(finis_index + 1)
+				console.log(newString)
+				dispatch(textValueFunc(newString))
+			} else {
+				console.log('substring not found')
+			}
+		}
+	}
 
 	const addListNum = () => {
 		const isExtend = textValue.includes(selectedText)
@@ -762,6 +784,28 @@ export default function App() {
 										</button>
 									</div>
 								</Popup>
+								<button
+									onClick={() => addParagraphOne()}
+									style={{
+										display: 'inline-block',
+										marginLeft: '5px',
+									}}
+								>
+									<svg
+										xmlns='http://www.w3.org/2000/svg'
+										width='20'
+										height='20'
+										fill='#fff'
+										className='icon flat-color'
+										data-name='Flat Color'
+										viewBox='0 0 24 24'
+									>
+										<path
+											fill='#fff'
+											d='M20 2H7.5a5.5 5.5 0 000 11H12v7h-1a1 1 0 000 2h8a1 1 0 000-2h-1V4h2a1 1 0 000-2zM7.5 11a3.5 3.5 0 010-7H12v7zm8.5 9h-2V4h2z'
+										></path>
+									</svg>
+								</button>
 								<Popup
 									trigger={
 										<button

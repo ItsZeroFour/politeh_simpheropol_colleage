@@ -1,6 +1,6 @@
 'use client'
 import axios from 'axios'
-import Image from 'next/image.js'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -58,11 +58,15 @@ const Posts = () => {
 									<div className={styles.postImgTitleWrapper}>
 										<Image
 											src={srcValue}
-											className={styles.image}
-											fill={true}
+											width={400}
+											height={300}
+											style={{ objectFit: 'cover', width: 400, height: 300 }}
+											//className={styles.image}
+
 											//style={{ objectFit: 'contain' }}
 											alt='Picture of the author'
 										/>
+
 										<Link href={`/posts/${el.pageUrl}`}>
 											{<p className={styles.post_title}>{el.pageTitle}</p>}
 										</Link>
