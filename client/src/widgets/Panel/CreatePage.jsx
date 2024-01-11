@@ -453,7 +453,7 @@ const CreatePage = () => {
 
 			if (initium_index !== -1) {
 				let newSubString =
-					'<div style="display: block; margin-left: auto;margin-right: auto; width: 50%;">' +
+					'<div style="display:block; width: 50%; margin: 0 auto">' +
 					selectedText +
 					'</div>'
 				let newString =
