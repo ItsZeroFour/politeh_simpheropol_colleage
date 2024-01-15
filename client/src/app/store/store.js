@@ -3,6 +3,7 @@ import counterSlice from '@app/features/UndoRendoSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import undoable from 'redux-undo'
 import { postsApi } from './header/api/home/posts.api'
+// add-posts-fixed-auth-add-schedule
 import { headerReducer } from './header/header.slice'
 export const makeStore = () => {
 	return configureStore({
@@ -15,4 +16,5 @@ export const makeStore = () => {
 		middleware: getDefaultMiddleware =>
 			getDefaultMiddleware().concat(postsApi.middleware),
 	})
+
 }
