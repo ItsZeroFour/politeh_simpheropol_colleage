@@ -1,8 +1,5 @@
 'use client'
-import {
-	setImages1,
-	textValueFunc,
-} from '@app/store/pagesAdmin/UndoRendoSlice.js'
+import { textValueFunc } from '@app/store/pagesAdmin/UndoRendoSlice.js'
 import AlignRight from '@public/assets/icons/adminicons/ALignRight'
 import AddIcon from '@public/assets/icons/adminicons/AddIcon'
 import AlignCenter from '@public/assets/icons/adminicons/AlignCenter'
@@ -28,7 +25,7 @@ const CreatePage = () => {
 	const [dataUrl, setDataUrl] = useState('')
 	const state = useSelector(state => state)
 	const [imageUrl, setImageUrl] = useState('')
-	console.log(state)
+
 	const [imageContentUrl, setImageContentUrl] = useState('')
 	const images1 = useSelector(state => state.counter.present.images1)
 	const textValue = useSelector(state => state.counter.present.textValue)
@@ -92,6 +89,7 @@ const CreatePage = () => {
 			}
 		}
 	}
+	const selectedFileLink = () => {}
 	const handleAddHeadingTwo = () => {
 		const isExtend = textValue.includes(selectedText)
 
@@ -136,6 +134,29 @@ const CreatePage = () => {
 			}
 		}
 	}
+	const addParagraphOne = () => {
+		const isExtend = textValue.includes(selectedText)
+
+		if (isExtend) {
+			let initium_index = textValue.indexOf(selectedText)
+
+			let finis_index = initium_index + selectedText.length - 1
+
+			if (initium_index !== -1) {
+				let newSubString =
+					'<p style=" text-indent: 20px;" >' + selectedText + '</p>'
+				let newString =
+					textValue.substring(0, initium_index) +
+					newSubString +
+					textValue.substring(finis_index + 1)
+				console.log(newString)
+				dispatch(textValueFunc(newString))
+			} else {
+				console.log('substring not found')
+			}
+		}
+	}
+
 	const addUnderline = () => {
 		const isExtend = textValue.includes(selectedText)
 
@@ -229,7 +250,6 @@ const CreatePage = () => {
 	let linkHref = ''
 	let linkName = ''
 	const addLink = e => {
-		console.log('addLink', e.target.value)
 		linkHref = e.target.value
 	}
 	const addNameLink = e => {
@@ -246,7 +266,30 @@ const CreatePage = () => {
 			let finis_index = initium_index + selectedText.length - 1
 
 			if (initium_index !== -1) {
-				let newSubString = `<a href=${linkHref}>` + linkName + '</a>'
+				let newSubString =
+					`<a   target="_blank" href=${linkHref}>` + selectedText + '</a>'
+				let newString =
+					textValue.substring(0, initium_index) +
+					newSubString +
+					textValue.substring(finis_index + 1)
+
+				dispatch(textValueFunc(newString))
+			} else {
+				console.log('substring not found')
+			}
+		}
+	}
+	const addLinkFile = somelink => {
+		const isExtend = textValue.includes(selectedText)
+
+		if (isExtend) {
+			let initium_index = textValue.indexOf(selectedText)
+
+			let finis_index = initium_index + selectedText.length - 1
+
+			if (initium_index !== -1) {
+				let newSubString =
+					`<a   target="_blank" href=${somelink}>` + selectedText + '</a>'
 				let newString =
 					textValue.substring(0, initium_index) +
 					newSubString +
@@ -433,7 +476,7 @@ const CreatePage = () => {
 
 			if (initium_index !== -1) {
 				let newSubString =
-					'<div style="display: block; margin-left: auto;margin-right: auto; width: 50%;">' +
+					'<div style="display:block; width: 50%; margin: 0 auto">' +
 					selectedText +
 					'</div>'
 				let newString =
@@ -534,7 +577,7 @@ const CreatePage = () => {
 		console.log(formData)
 		try {
 			const response = await axios.post(
-				'http://localhost:5000/upload',
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
 				{ file: FormData.entries.image },
 				{
 					headers: { 'Access-Control-Allow-Origin': '*' },
@@ -558,7 +601,7 @@ const CreatePage = () => {
 			formData.append('image', file)
 			console.log(formData)
 			const { data } = await axios.post(
-				'http://localhost:5000/upload',
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
 				formData
 			)
 			console.log(data.imagelink)
@@ -567,44 +610,24 @@ const CreatePage = () => {
 			setImageContentUrl(
 				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
 			)
-			console.log(imageContentUrl)
 		} catch (err) {
 			console.log(err)
 		}
 	}
-
-	// const handleImageChange = async e => {
-	// 	const file = e.target.files[0]
-
-	// 	const reader = new FileReader()
-	// 	const base64 = await convertToBase64(file)
-	// 	setPostImage({ ...postImage, myFile: base64 })
-	// 	setNewImage([postImage])
-	// 	reader.onloadend = () => {
-	// 		setImage(reader.result)
-	// 		dispatch(setImages([reader.result]))
-	// 	}
-	// 	if (file) {
-	// 		reader.readAsDataURL(file)
-	// 		console.log(file)
-	// 	}
-	// }
-	const handleImageChange1 = async e => {
-		const file = e.target.files[0]
-		console.log(file)
-		const reader = new FileReader()
-		const base64 = await convertToBase64(file)
-		console.log(base64)
-		setPostImage1({ ...postImage1, base64 })
-		setNewImage1(postImage1)
-		reader.onloadend = () => {
-			setImage1(reader.result)
-			dispatch(setImages1(reader.result))
-			console.log(images1)
-		}
-
-		if (file) {
-			reader.readAsDataURL(file)
+	const handleFileChange = async event => {
+		try {
+			const file = event.target.files[0]
+			const formData = new FormData()
+			formData.append('file', file)
+			console.log(formData)
+			const { data } = await axios.post(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/uploadpdf`,
+				formData
+			)
+			console.log('uploadpdf', data)
+			addLinkFile(data.pdflink)
+		} catch (err) {
+			console.log(err)
 		}
 	}
 
@@ -622,7 +645,6 @@ const CreatePage = () => {
 		formState: { errors },
 	} = useForm()
 	const onSubmit = data => {
-		console.log(data)
 		setTypePage(data.TypePage)
 		setURLPage(data.URLPage)
 		setTitlePage(data.titlePage)
@@ -630,7 +652,7 @@ const CreatePage = () => {
 	const addPageInServer = async () => {
 		let newUrl = ''
 		const someDate = await axios.put(
-			'http://localhost:5000/page/topublic',
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
 
 			{ URLPage, typePage, textValue, titlePage }
 		)
@@ -639,36 +661,10 @@ const CreatePage = () => {
 			console.log(someDate.data.message)
 		}
 		if (someDate.status == 200) {
-			newUrl = someDate.data.pageUrl
-			console.log(someDate.data.pageContent)
-			console.log(someDate.data.pageUrl)
+			console.log('true')
+			dispatch(textValueFunc(''))
 		}
 	}
-	// const handleSubmit22 = async event => {
-	// 	event.preventDefault()
-
-	// 	const formData = new FormData()
-	// 	console.log(event.target.upload.files[0])
-	// 	formData.append('upload', event.target.upload.files[0])
-
-	// 	try {
-	// 		console.log(formData)
-	// 		const response = await fetch('http://localhost:5000/upload', {
-	// 			method: 'post',
-	// 			url: 'http://localhost:5000/upload',
-	// 			formData,
-	// 			config: { headers: { 'Content-Type': 'multipart/form-data' } },
-	// 		})
-
-	// 		if (response.ok) {
-	// 			console.log('File uploaded successfully')
-	// 		} else {
-	// 			console.log('Error occurred while uploading file')
-	// 		}
-	// 	} catch (error) {
-	// 		console.log('Network error occurred', error)
-	// 	}
-	// }
 	const handleSubmit22 = async event => {
 		try {
 			const file = event.target.files[0]
@@ -676,14 +672,13 @@ const CreatePage = () => {
 			formData.append('image', file)
 			console.log(formData)
 			const { data } = await axios.post(
-				'http://localhost:5000/upload',
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
 				formData
 			)
-			console.log(data.imagelink)
+
 			setImageUrl(
 				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
 			)
-			console.log(imageUrl)
 		} catch (err) {
 			console.log(err)
 		}
@@ -739,45 +734,12 @@ const CreatePage = () => {
 									position='right center'
 								>
 									<div>
-										{/*<form onSubmit={submitForm1}>
-											<input
-												style={{
-													backgroundColor: 'gray',
-												}}
-												id='files'
-												ref={filesRef}
-												multiple
-												type='file'
-												className='image-button'
-												onChange={handleImageChange1}
-											/>
-											<button
-												style={{ backgroundColor: 'white', color: 'black' }}
-												type='submit'
-											>
-												Загрузить
-											</button>
-											</form>*/}
-										{/* <form onSubmit={handleSubmit2}>
-											<input
-												type='file'
-												name='image'
-												accept='image/*'
-												onChange={handleFileChange2}
-												required
-											/>
-											<button type='submit'>Upload Image</button>
-										</form> */}
-										{/* <form onSubmit={handleSubmit22}>
-											<input type='file' name='upload' />
-											<button type='submit'>Upload Image</button>
-										</form> */}
 										<input
 											id='create-post-img'
 											type='file'
+											accept='image/jpeg'
 											onChange={handleSubmit22}
 											hidden
-											accept='.jpg, .png, .jpeg, .webp'
 										/>
 										<label htmlFor='create-post-img'>
 											Загрузить изображение
@@ -847,17 +809,15 @@ const CreatePage = () => {
 						<button
 							onClick={async () => {
 								try {
-									console.log(typePage, URLPage, titlePage, imageUrl)
 									if (typePage != '' && URLPage != '' && titlePage != '') {
 										setIsForm('true')
-										console.log(isForm)
+
 										function getCurrentDate() {
 											const today = new Date()
 											const date = new Date()
 											const options = { weekday: 'long' }
 											const dayOfWeek = date.toLocaleString('ru-RU', options)
 
-											console.log(dayOfWeek) // Выведет текущий день недели на русском языке
 											const day = today.getDate().toString().padStart(2, '0') // add leading zero if needed
 											const month = (today.getMonth() + 1)
 												.toString()
@@ -865,27 +825,36 @@ const CreatePage = () => {
 											const year = today.getFullYear()
 											return `${dayOfWeek}, ${day}.${month}.${year}`
 										}
-										console.log(getCurrentDate())
-
-										setIsPage(false)
-
-										await axios.post(
-											'http://localhost:5000/page/create',
-											{
-												params: {
-													data,
-													URLPage,
-													pageTypePublish: false,
-													pageDate: getCurrentDate(),
-													titlePage: titlePage,
-													pageImage: imageUrl,
-													typePage,
+										await axios
+											.post(
+												`${process.env.NEXT_PUBLIC_SERVER_URL}/page/create`,
+												{
+													params: {
+														data,
+														URLPage,
+														pageTypePublish: false,
+														pageDate: getCurrentDate(),
+														titlePage: titlePage,
+														pageImage: imageUrl,
+														typePage,
+													},
 												},
-											},
-											{
-												headers: { 'Access-Control-Allow-Origin': '*' },
-											}
-										)
+												{
+													headers: { 'Access-Control-Allow-Origin': '*' },
+												}
+											)
+											.then(response => {
+												//console.log(response.data)
+												setIsPage(false)
+											})
+											.catch(error => {
+												alert(
+													`${error.response.data.message}. Текущий статус:${error.response.status}`
+												) // Handle any errors
+
+												setIsPage(true)
+												// You can display an error message or perform other actions based on the error
+											})
 									} else if (
 										typePage == '' ||
 										URLPage == '' ||
@@ -963,6 +932,28 @@ const CreatePage = () => {
 									</button>
 								</div>
 							</Popup>
+							<button
+								onClick={() => addParagraphOne()}
+								style={{
+									display: 'inline-block',
+									marginLeft: '5px',
+								}}
+							>
+								<svg
+									xmlns='http://www.w3.org/2000/svg'
+									width='20'
+									height='20'
+									fill='#fff'
+									className='icon flat-color'
+									data-name='Flat Color'
+									viewBox='0 0 24 24'
+								>
+									<path
+										fill='#fff'
+										d='M20 2H7.5a5.5 5.5 0 000 11H12v7h-1a1 1 0 000 2h8a1 1 0 000-2h-1V4h2a1 1 0 000-2zM7.5 11a3.5 3.5 0 010-7H12v7zm8.5 9h-2V4h2z'
+									></path>
+								</svg>
+							</button>
 							<Popup
 								trigger={
 									<button
@@ -1079,19 +1070,32 @@ const CreatePage = () => {
 								}
 								position='right center'
 							>
-								<div>
+								<div
+									style={{
+										backgroundColor: 'gray',
+										width: 300,
+									}}
+								>
 									<label htmlFor=''>
 										<input
+											style={{
+												backgroundColor: 'black',
+											}}
 											type='text'
+											value={selectedText}
 											onChange={e => addNameLink(e)}
 											placeholder='заголовок ссылки'
 										/>
 										<input
+											style={{
+												backgroundColor: 'black',
+												fontSize: 14,
+											}}
 											onChange={e => addLink(e)}
 											type='text'
 											placeholder='ссылка'
 										/>
-										<button onClick={() => addLinkElement()}>+</button>
+										<button onClick={() => addLinkElement()}>добавить</button>
 									</label>
 								</div>
 							</Popup>
@@ -1122,6 +1126,7 @@ const CreatePage = () => {
 											ref={filesRef}
 											multiple
 											type='file'
+											accept='image/jpeg'
 											className='image-button'
 											onChange={handleImageChange}
 										/>
@@ -1131,6 +1136,45 @@ const CreatePage = () => {
 										>
 											Загрузить
 										</button>
+									</form>
+								</div>
+							</Popup>
+							<Popup
+								trigger={
+									<button>
+										{' '}
+										<svg
+											xmlns='http://www.w3.org/2000/svg'
+											fill='none'
+											viewBox='0 0 24 24'
+											strokeWidth='1.5'
+											stroke='#fff'
+											class='w-6 h-6'
+										>
+											<path
+												strokeLinecap='round'
+												strokeLinejoin='round'
+												d='M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z'
+											/>
+										</svg>
+									</button>
+								}
+								position='right center'
+							>
+								<div>
+									<form onSubmit={submitForm}>
+										<input
+											style={{
+												backgroundColor: 'gray',
+											}}
+											id='files'
+											ref={filesRef}
+											multiple
+											type='file'
+											accept='.pdf'
+											className='image-button'
+											onChange={handleFileChange}
+										/>
 									</form>
 								</div>
 							</Popup>
@@ -1152,10 +1196,11 @@ const CreatePage = () => {
 								</div>
 							</Popup>
 						</div>
+
 						<textarea
 							onChange={e => dispatch(textValueFunc(e.target.value))}
 							onMouseUp={e => handleFocus(e)}
-							value={textValue}
+							value={textValue.toString()}
 							onKeyDown={handleKeyPress}
 							style={{
 								width: '100%',
@@ -1165,6 +1210,7 @@ const CreatePage = () => {
 							type='text'
 							placeholder='Начните писать...'
 						/>
+
 						<RenderAll />
 					</div>
 				)}

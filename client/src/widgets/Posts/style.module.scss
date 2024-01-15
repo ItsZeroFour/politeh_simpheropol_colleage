@@ -1,13 +1,19 @@
 .post_title {
+	position: absolute;
+	top: 100%;
 	margin-top: 10px;
-	font-size: 36px;
+	font-size: 20px;
 	font-weight: 700;
 }
 .postImgTitleWrapper {
-	display: flex;
+	/* display: flex;
 	justify-content: center;
-	text-align: center;
-	margin: 20px;
+	text-align: center; */
+	position: relative;
+	width: 350px;
+	align-items: center;
+	margin: 30px;
+	margin-top: 50px;
 	flex-direction: column;
 	ul > li {
 		display: list-item;
@@ -17,8 +23,29 @@
 		display: list-item;
 		list-style: decimal;
 	}
-}
+	.image {
+		/* position: sticky !important; */
 
+		object-fit: cover;
+	}
+}
+.wrapperPosts {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
 .post_date {
+	font-size: 12px;
 	margin-top: 15px;
+}
+.btn {
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+	background-color: var(--color-blue);
+	border-radius: 10px;
+	padding: 10px;
+	color: var(--color-white);
+	font-size: 24px;
 }

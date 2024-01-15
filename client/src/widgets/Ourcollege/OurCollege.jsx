@@ -15,7 +15,7 @@ const OurCollege = () => {
 		const someAsyncFunc = async () => {
 			try {
 				const somedata = await axios.get(
-					'http://localhost:5000/page/getourcollege'
+					`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getourcollege`
 				)
 				setData([...somedata.data])
 				dispatch(setDataOurCollege([...somedata.data]))
