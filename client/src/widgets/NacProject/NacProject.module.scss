@@ -45,6 +45,7 @@
 		flex-direction: column;
 	}
 	.textTitle {
+		margin-right: 20px;
 		@media only screen and (max-width: 640px) {
 			margin-top: 30px;
 			margin-bottom: 14px;
@@ -58,15 +59,9 @@
 		justify-content: space-around;
 		margin-bottom: 46px;
 	}
-	@media only screen and (max-width: 1590px) {
-		.doubleWebElement {
-			&:first-child {
-				margin-bottom: 25px;
-			}
-		}
-		.doubleWeb {
-			margin-bottom: 25px;
-		}
+
+	.doubleWebElement {
+		margin-bottom: 25px;
 	}
 }
 .antiCorList:hover {
@@ -147,6 +142,7 @@
 		margin-left: 3px;
 	}
 }
+
 .articles {
 	display: inline-block;
 	color: var(--color-white);
@@ -180,19 +176,20 @@
 .gridRooms {
 	display: flex;
 	flex-wrap: wrap;
-	@media only screen and (max-width: 1590px) {
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 .gridRoomsElement {
 	display: block;
+
 	@media only screen and (max-width: 1590px) {
 		margin-bottom: 40px;
 	}
+
+	margin-bottom: 40px;
 }
-.gridRoomsElement {
+/* .gridRoomsElement {
 	&:nth-child(1) {
 		margin-right: 70px;
 		@media only screen and (max-width: 1590px) {
@@ -215,7 +212,7 @@
 			margin-top: 0px;
 		}
 	}
-}
+} */
 
 .buttonPolygon {
 	display: flex;

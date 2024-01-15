@@ -1,91 +1,85 @@
-
 .post {
-    position: relative;
+	position: relative;
 
-    border-radius: var(--border-radius-md);
-    overflow: hidden;
+	border-radius: var(--border-radius-md);
+	overflow: hidden;
 
-    &:not(:first-child) {
-        margin-top: 40px;
-    }
+	&:not(:first-child) {
+		margin-top: 40px;
+	}
 }
 
 .info {
-    height: 100px;
-
-    background: var(--color-dark-secondary);
-
-    display: flex;
-    align-items: center;
+	height: 120px;
+	background: var(--color-dark-secondary);
+	display: flex;
+	align-items: start;
+	//text-align: center;
+	justify-content: space-between;
 }
 
 .title {
-    width: 308px;
-    max-height: 55px;
-
-    margin-left: 15px;
-    padding-right: 38px;
-
-    font-size: 30px;
-    font-weight: 400;
+	max-width: 400px;
+	max-height: 55px;
+	margin-top: 10px;
+	//margin-left: 15px;
+	padding-right: 16px;
+	font-size: 30px;
+	font-weight: 400;
 }
 
 .description {
-    width: 320px;
-    max-height: 52px;
-
-    padding-right: 42px;
-
-    font-size: 18px;
+	//max-width: 100px;
+	max-height: 52px;
+	margin-top: 10px;
+	margin-right: 5px;
+	//text-align: start;
+	//	padding-right: 22px;
+	font-size: 18px;
 }
 
 .image {
-    position: sticky !important;
+	position: sticky !important;
 
-    max-width: 100%;
-    max-height: 334px;
+	max-width: 100%;
+	max-height: 334px;
 
-    object-fit: cover;
+	object-fit: cover;
 }
 
-
-
 .postLoading {
+	border-radius: var(--border-radius-md);
+	overflow: hidden;
 
-    border-radius: var(--border-radius-md);
-    overflow: hidden;
-
-    &:not(:first-child) {
-        margin-top: 40px;
-    }
+	&:not(:first-child) {
+		margin-top: 40px;
+	}
 }
 
 .imageLoading {
-    height: 334px;
+	height: 334px;
 
-    border-top-left-radius: var(--border-radius-md);
-    border-top-right-radius: var(--border-radius-md);
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+	border-top-left-radius: var(--border-radius-md);
+	border-top-right-radius: var(--border-radius-md);
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 .titleLoading {
-    height: 35px;
-    width: 175px;
+	height: 35px;
+	width: 175px;
 
-    margin-left: 15px;
-    margin-right: 60px;
+	margin-left: 15px;
+	margin-right: 60px;
 }
 
 .descLoading {
-    width: 320px;
-    height: 25px;
+	width: 320px;
+	height: 25px;
 
-    padding-right: 42px;
+	padding-right: 42px;
 
-    &:not(:first-child) {
-        margin-top: 10px;
-    }
+	&:not(:first-child) {
+		margin-top: 10px;
+	}
 }
-
-

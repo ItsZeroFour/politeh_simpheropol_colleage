@@ -22,6 +22,12 @@ export const createPage = async (req, res) => {
 		console.log(URLPage)
 		console.log(pageTypePublish)
 		console.log(titlePage)
+		const existingPage = await PageModel.findOne({ pageUrl: URLPage })
+		if (existingPage) {
+			return res
+				.status(400)
+				.json({ message: 'Адрес страницы должен быть уникален' })
+		}
 		const newPage = new PageModel({
 			pageUrl: URLPage,
 			pageType: typePage,
@@ -37,7 +43,7 @@ export const createPage = async (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
-			message: 'Failed to create page',
+			message: 'Failed to create page:' + err,
 		})
 	}
 }
@@ -50,6 +56,28 @@ export const getOurCollegePages = async (req, res) => {
 		console.log(error)
 	}
 }
+export const getOurPostsPages = async (req, res) => {
+	try {
+		const { increment } = req.body
+		console.log('increment', increment)
+		// const arrPages = await PageModel.find({
+		// 	pageType: 'post',
+		// 	pageTypePublish: true,
+		// })
+		const arrPages = await PageModel.find({
+			pageType: 'post',
+			pageTypePublish: true,
+		})
+			.sort({ _id: -1 })
+			.limit(3)
+
+		res.send(arrPages)
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ message: 'произошла ошибка при получении страниц' })
+	}
+}
+
 export const updatePageAndToPublic = async (req, res) => {
 	try {
 		const ID = await PageModel.find({ pageUrl: req.body.URLPage })
@@ -114,8 +142,40 @@ export const getPageContent = async (req, res) => {
 export const getPagePostsTitle = async (req, res) => {
 	try {
 		const pagesDate = req.query
-		console.log(pagesDate)
-		const pages = await PageModel.find({ pageType: pagesDate.typePage })
+		//console.log(pagesDate)
+		//console.log('increment', req.query.increment)
+		const counter = await PageModel.find({
+			pageType: pagesDate.typePage,
+			pageTypePublish: true,
+		}).count()
+		console.log(counter)
+		/*const pages = await PageModel.find({
+			pageType: pagesDate.typePage,
+			pageTypePublish: true,
+		})
+			.sort({ _id: -1 })
+			.limit(req.query.increment)
+			.exec()
+			.then(result => {
+				return result
+			})
+			.catch(err => {
+				console.error(err)
+			})*/
+		const pages = await PageModel.find({
+			pageType: pagesDate.typePage,
+			pageTypePublish: true,
+		})
+			.sort({ _id: -1 })
+			.skip(req.query.increment)
+			.limit(3)
+			.exec()
+			.then(result => {
+				return result
+			})
+			.catch(err => {
+				console.error(err)
+			})
 		const newArr = []
 		pages.forEach(item => {
 			const {

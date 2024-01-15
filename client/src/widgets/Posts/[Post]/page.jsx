@@ -5,16 +5,17 @@ import { useSelector } from 'react-redux'
 export default function Post({ params }) {
 	const [data, setData] = useState({})
 	const someData = useSelector(state => state.counter)
-	console.log(someData)
+
 	useEffect(() => {
 		const someAsyncFunc = async () => {
 			try {
 				const somedata = await axios.get(
-					'http://localhost:5000/page/getpagecontent',
+					`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getpagecontent`,
 					{ params: { postId: params.postId } }
 				)
-				console.log(somedata)
+
 				setData({ ...somedata.data })
+				document.body.scrollTop = 0
 			} catch (error) {
 				console.log(error)
 			}
@@ -25,20 +26,30 @@ export default function Post({ params }) {
 		<div
 			style={{
 				display: 'flex',
-				justifyContent: 'center',
+				justifyItems: 'center',
+				flexDirection: 'column',
 			}}
 		>
-			<Interweave
-				content={`<div
-			 >${data.pageContent}<div style="margin: 40px auto;" ><a style="display: inline;
-			 background-color: #0066FF;
-			 border-radius: 10px;
-			 padding: 10px 10px;
-			 color: #FFFFFF;
-			 font-size: 24px;"  href='/our-colleage/'>
-			 Вернуться назад
-		 </a></div></div>`}
-			/>
+			<Interweave content={data.pageContent} />
+			<div style={{ marginTop: 30 }}>
+				<button
+					style={{
+						width: '300px',
+						margin: '0 auto',
+						display: 'block',
+						backgroundColor: '#0066FF',
+						borderRadius: 10,
+						padding: 10,
+						color: '#FFF',
+						fontSize: 24,
+					}}
+					onClick={() => {
+						history.back()
+					}}
+				>
+					Вернуться назад
+				</button>
+			</div>
 		</div>
 	)
 }

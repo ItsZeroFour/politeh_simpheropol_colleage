@@ -2,23 +2,57 @@
 
 import { useInput } from '@app/hooks/useInput'
 import VK from '@public/assets/icons/vk.svg'
+
+import axios from 'axios'
 import Link from 'next/link'
 import style from './ContactForm.module.scss'
 
 const ContactForm = () => {
-	const { value: fullname, bind: fullnameBind } = useInput()
-	const { value: email, bind: emailBind } = useInput()
-	const { value: theme, bind: themeBind } = useInput()
-	const { value: message, bind: messageBind } = useInput()
+
+	const submitForm = async e => {
+		e.preventDefault()
+		if (!fullname || !email || !theme || !message) {
+			alert('Пожалуйста, заполните все поля')
+			return
+		}
+		try {
+			axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/mailer/send-email/`, {
+				fullname,
+				email,
+				theme,
+				message,
+			})
+			alert('Письмо успешно отправлено!')
+			resetFullname()
+			resetEmailBind()
+			resetThemeBind()
+			resetMessageBind()
+		} catch (error) {
+			alert('Произошла ошибка', error)
+		}
+		// Clear input values
+	}
+
+	const {
+		value: fullname,
+		bind: fullnameBind,
+		reset: resetFullname,
+	} = useInput()
+	const { value: email, bind: emailBind, reset: resetEmailBind } = useInput()
+	const { value: theme, bind: themeBind, reset: resetThemeBind } = useInput()
+	const {
+		value: message,
+		bind: messageBind,
+		reset: resetMessageBind,
+	} = useInput()
+
 
 	return (
 		<div className={style.contact}>
 			<div className={style.top}>
 				<p className={style.title}>Свяжитесь с нами!</p>
 				<div className={style.icon}>
-					<Link href='/'>
-						<VK />
-					</Link>
+					<Link target='_blank' href='https://vk.com/simfpolyteh'>
 				</div>
 			</div>
 
@@ -31,7 +65,8 @@ const ContactForm = () => {
 				/>
 				<input
 					{...emailBind}
-					type='text'
+
+					type='email'
 					className={style.input}
 					placeholder='Ваш E-Mail'
 				/>
@@ -41,14 +76,15 @@ const ContactForm = () => {
 					className={style.input}
 					placeholder='Тема'
 				/>
-
 				<textarea
 					{...messageBind}
 					className={style.input + ' ' + style.textarea}
 					placeholder='Ваше сообщение...'
 				/>
+				<button onClick={e => submitForm(e)} className={style.submit}>
+					Отправить
+				</button>
 
-				<button className={style.submit}>Отправить</button>
 			</form>
 		</div>
 	)

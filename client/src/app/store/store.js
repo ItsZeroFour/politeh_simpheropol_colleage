@@ -1,22 +1,20 @@
 'use client'
-
+import counterSlice from '@app/features/UndoRendoSlice'
 import { configureStore } from '@reduxjs/toolkit'
-import { headerReducer } from './header/header.slice'
+import undoable from 'redux-undo'
 import { postsApi } from './header/api/home/posts.api'
-import { scheduleReducer } from './schedule/schedule.slice'
-
+// add-posts-fixed-auth-add-schedule
+import { headerReducer } from './header/header.slice'
 export const makeStore = () => {
-  return configureStore({
-    reducer: {
-      header: headerReducer,
-      schedule: scheduleReducer,
-      [postsApi.reducerPath]: postsApi.reducer
-      // if simple name: use one word. if more one word: [someSlice.name]: someSlice.reducer
-    },
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(postsApi.middleware),
-  })
+	return configureStore({
+		reducer: {
+			header: headerReducer,
+			[postsApi.reducerPath]: postsApi.reducer,
+			counter: undoable(counterSlice),
+			// if simple name: use one word. if more one word: [someSlice.name]: someSlice.reducer
+		},
+		middleware: getDefaultMiddleware =>
+			getDefaultMiddleware().concat(postsApi.middleware),
+	})
+
 }
-
-
-
