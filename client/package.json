@@ -18,6 +18,7 @@
 		"@bytescale/upload-widget-react": "^4.13.0",
 		"@reduxjs/toolkit": "^1.9.7",
 		"@svgr/webpack": "^8.1.0",
+		"@uidotdev/usehooks": "^2.4.1",
 		"axios": "^1.6.2",
 		"file-system": "^2.2.2",
 		"fs": "^0.0.1-security",

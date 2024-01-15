@@ -1,28 +1,23 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 /*
 	Personal Hook
 	Hide element when click outside
 */
 
-export const useOutside = (initialIsVisible) => {
-	const [isShow, setIsShow] = useState(initialIsVisible)
-	const ref = useRef(null)
-
+export const useOutside = (element, callback) => {
 	const handleClickOutside = (event) => {
-		if (ref.current && !ref.current.contains(event.target)) {
-			setIsShow(false)
+		console.log('outsie')
+		if (element && !element.contains(event.target)) {
+			callback()
 		}
 	}
 
 	useEffect(() => {
-		document.addEventListener('click', handleClickOutside, true)
+		document.addEventListener('mousedown', handleClickOutside)
 		return () => {
-			document.removeEventListener('click', handleClickOutside, true)
+			document.removeEventListener('mousedown', handleClickOutside)
 		}
 	})
-
-	return { ref, isShow, setIsShow }
 }
 
-// const {ref, isShow, setIsShow} = useOutside(false)

@@ -18,6 +18,7 @@ import Triangle from '@public/assets/icons/triangle.svg'
 //               { title: "Олимпиады", link: "/olimpiads" },
 //               { title: "ДПО", link: "/dpo" },
 
+
 const linksList = [
   { url: '/', text: 'Главная' },
   { url: '/our-colleage', text: 'Наш колледж' },
