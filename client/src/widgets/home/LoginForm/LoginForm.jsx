@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import style from './LoginForm.module.scss'
+
 const links = [
 	{
 		text: 'Структура и органы управления образовательной организацией',

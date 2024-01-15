@@ -36,24 +36,32 @@ const months = [
 
 const menuLinks = [
 	{
-		url: '/',
-		text: 'Сведения об образовательной организациии',
+		url: '/our-colleage',
+		text: 'Наш колледж',
 	},
 	{
-		url: '/',
+		url: '/nacproject',
 		text: 'НацПроекты',
 	},
 	{
-		url: '/',
-		text: 'Олимпиады',
+		url: '/anticorruption',
+		text: 'Противодействие коррупции',
 	},
 	{
-		url: '/',
+		url: '/dpo',
 		text: 'ДПО',
 	},
 	{
+		url: '/enrollee',
+		text: 'Абитуриенту',
+	},
+	{
+		url: '/contacts',
+		text: 'Контакты',
+	},
+	{
 		url: '/',
-		text: 'Условия обучения инвалидов и лиц с ограниченными возможностями здоровья',
+		text: 'Расписание',
 	},
 ]
 
@@ -104,7 +112,11 @@ const Header = () => {
 			<div className={`${style.menu} ${isOpened && style.menuActive}`}>
 				<nav className={style.menuLinks}>
 					{menuLinks.map((menuLink, index) => (
-						<li key={index} className={style.menuLink}>
+						<li
+							onClick={() => setIsOpened(!isOpened)}
+							key={index}
+							className={style.menuLink}
+						>
 							<Link href={menuLink.url}>{menuLink.text}</Link>
 						</li>
 					))}

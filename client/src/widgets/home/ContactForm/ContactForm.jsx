@@ -1,14 +1,12 @@
 'use client'
 
 import { useInput } from '@app/hooks/useInput'
-import VK from '@public/assets/icons/vk.svg'
 
 import axios from 'axios'
 import Link from 'next/link'
 import style from './ContactForm.module.scss'
 
 const ContactForm = () => {
-
 	const submitForm = async e => {
 		e.preventDefault()
 		if (!fullname || !email || !theme || !message) {
@@ -46,13 +44,12 @@ const ContactForm = () => {
 		reset: resetMessageBind,
 	} = useInput()
 
-
 	return (
 		<div className={style.contact}>
 			<div className={style.top}>
 				<p className={style.title}>Свяжитесь с нами!</p>
 				<div className={style.icon}>
-					<Link target='_blank' href='https://vk.com/simfpolyteh'>
+					<Link target='_blank' href='https://vk.com/simfpolyteh' />
 				</div>
 			</div>
 
@@ -65,7 +62,6 @@ const ContactForm = () => {
 				/>
 				<input
 					{...emailBind}
-
 					type='email'
 					className={style.input}
 					placeholder='Ваш E-Mail'
@@ -84,7 +80,6 @@ const ContactForm = () => {
 				<button onClick={e => submitForm(e)} className={style.submit}>
 					Отправить
 				</button>
-
 			</form>
 		</div>
 	)
