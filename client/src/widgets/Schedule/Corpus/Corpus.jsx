@@ -55,8 +55,9 @@ const Corpus = ({ data, title }) => {
   const dayOfWeek = scheduleState.dayOfWeek
   const { addFavourited } = useActions()
 
-  const _pairs = [...data[dayOfWeek][0][1][1].keys()].map(key => key + 1)
-  const pairs = data.day === 'monday' ? [0, ..._pairs.slice(0, -1)] : _pairs
+  const _pairs = [...data[dayOfWeek][0][1][1].keys()].map((key) => key + 1)
+  const pairs =
+    dayOfWeek === 'monday' ? [0, ..._pairs.slice(0, -1)] : _pairs
 
   const handleAddFavouritedClick = (e) => {
     if (!clicked || !clicked.getAttribute('type')) return
