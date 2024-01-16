@@ -1,4 +1,5 @@
 'use client'
+import imagePicture from '@public/assets/icons/adminicons/picture2.png'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,6 +13,7 @@ const Posts = () => {
 	//const state = useSelector(state => state.counter)
 	let [increment, setIncrement] = useState(0)
 	const [data, setData] = useState([])
+	const [picture, setPicture] = useState('')
 	const dispatch = useDispatch()
 	useEffect(() => {
 		const someAsyncFunc = async () => {
@@ -39,10 +41,21 @@ const Posts = () => {
 			<div className={styles.wrapperPosts}>
 				{data.map(el => {
 					console.log(el.pageUrl)
-					var str = el.pageImage
-					var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
-					var matches = str.match(srcRegex)
-					var srcValue = matches[1]
+
+					if (el.pageImage != '') {
+						var str = el.pageImage
+						var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
+						var matches = str.match(srcRegex)
+						var srcValue = matches[1]
+					} else {
+						srcValue = imagePicture
+					}
+					// } else {
+					// 	setPicture(
+					// 		'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png'
+					// 	)
+					// }
+
 					if (el.pageTypePublish && el.pageType == 'post') {
 						return (
 							<div
