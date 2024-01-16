@@ -31,7 +31,7 @@ const linksList = [
     {url: '/', text: 'Привет'},
   ]},
   { url: '/', text: 'Студенту', isCategory: true, links: [
-    {url: '/student', text: 'Расписание'},
+    {url: '/schedule', text: 'Расписание'},
     {url: '/nacproject', text: 'НацПроекты'},
     {url: '/olimpiads', text: 'Олимпиады'},
     {url: '/dpo', text: 'ДПО'},
