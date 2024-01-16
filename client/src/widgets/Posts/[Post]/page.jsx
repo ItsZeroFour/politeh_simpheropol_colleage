@@ -31,7 +31,7 @@ export default function Post({ params }) {
 			}}
 		>
 			<Interweave content={data.pageContent} />
-			<div style={{ marginTop: 30 }}>
+			<div style={{ marginTop: 50 }}>
 				<button
 					style={{
 						width: '300px',
@@ -42,6 +42,7 @@ export default function Post({ params }) {
 						padding: 10,
 						color: '#FFF',
 						fontSize: 24,
+					
 					}}
 					onClick={() => {
 						history.back()
