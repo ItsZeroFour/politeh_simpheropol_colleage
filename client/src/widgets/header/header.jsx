@@ -60,7 +60,7 @@ const menuLinks = [
 		text: 'Контакты',
 	},
 	{
-		url: '/',
+		url: '/schedule',
 		text: 'Расписание',
 	},
 ]
