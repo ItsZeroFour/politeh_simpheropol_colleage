@@ -1,0 +1,21 @@
+.home__main {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 55px;
+
+  @media (max-width: 1390px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 50px;
+  }
+}
+
+.home__search {
+  @media (max-width: 1390px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

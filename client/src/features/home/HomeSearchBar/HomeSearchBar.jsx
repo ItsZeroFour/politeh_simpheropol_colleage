@@ -2,9 +2,9 @@ import SearchBar from '@entities/SearchBar/SearchBar'
 
 const searchData = [
   {
-    keywords: ['Специальности', 'Профессии'],
-    link: '/',
-    text: 'Специальности для обучения',
+    keywords: ['Студенту', 'Расписание'],
+    link: '/schedule',
+    text: 'Распсиание',
   },
   {
     keywords: ['Преподаватели', 'Учителя'],

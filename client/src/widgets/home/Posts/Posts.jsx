@@ -15,7 +15,6 @@ import style from './Posts.module.scss'
 // }
 
 const _posts = data => {
-	console.log(data)
 	if (!data) data = [0, 0, 0]
 	if (data.length > 3) data = data.slice(-3)
 

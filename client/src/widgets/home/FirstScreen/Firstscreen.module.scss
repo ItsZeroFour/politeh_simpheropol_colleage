@@ -1,77 +1,105 @@
-
 .firstScreen {
-    position: relative;
+  position: relative;
 
-    // &::before {
-    //     content: '';
-    //     background-image: url('../../../../public/assets/images/home/gerb_krym.png');
-    //     position: absolute;
+  // &::before {
+  //     content: '';
+  //     background-image: url('../../../../public/assets/images/home/gerb_krym.png');
+  //     position: absolute;
 
-    //     width: 500px;
-    //     height: 500px;
+  //     width: 500px;
+  //     height: 500px;
 
-    //     left: 0;
-    //     top: 0;
-    // }
+  //     left: 0;
+  //     top: 0;
+  // }
 }
 
-
 .title {
-	ul > li {
-		display: list-item;
-		list-style: none;
-	}
-	font-size: 96px;
-	font-weight: bold;
-	text-align: center;
+  ul > li {
+    display: list-item;
+    list-style: none;
+  }
 
-	margin-top: 86px;
+  font-size: 96px;
+  font-weight: bold;
+  text-align: center;
 
-	background: linear-gradient(to left, #0085ff 0%, #00c2ff 50%, #0085ff 100%);
-	background-size: 200%;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
+  margin-top: 86px;
 
-	animation: animationGradient 5s linear infinite;
+  background: linear-gradient(to left, #0085ff 0%, #00c2ff 50%, #0085ff 100%);
+  background-size: 200%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: animationGradient 5s linear infinite;
+
+  @media (max-width: 1390px) {
+    font-size: 64px;
+  }
+
+  @media (max-width: 701px) {
+    font-size: 48px;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 36px;
+  }
 }
 
 @keyframes animationGradient {
-	0% {
-		background-position: -100% 0%;
-	}
-	100% {
-		background-position: 100% 0%;
-	}
+  0% {
+    background-position: -100% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
 }
 
 .bubbles {
-    position: absolute;
-    top: 65%;
-    left: 50%;
+  position: absolute;
+  top: 65%;
+  left: 50%;
 
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 
-    z-index: -5000;
+  z-index: -5000;
 }
 
 .description {
-    font-size: 20px;
-    text-align: center;
-    line-height: normal;
+  font-size: 20px;
+  text-align: center;
+  line-height: normal;
 
-    width: 1306px;
-    margin: auto;
+  width: 1306px;
+  margin: auto;
 
-    margin-top: 28px;
+  margin-top: 28px;
+
+  @media (max-width: 1390px) {
+    width: auto;
+  }
 }
 
 .button {
-    font-weight: medium;
-    font-size: 20px;
+  font-weight: medium;
+  font-size: 20px;
 
-    margin-top: 48px;
+  margin-top: 48px;
 
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media (max-width: 760px) {
+    width: 100%;
+    left: 0;
+    transform: none;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+  }
 }

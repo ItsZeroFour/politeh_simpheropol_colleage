@@ -41,6 +41,10 @@ $height: 130px;
   align-items: center;
 
   gap: 35px;
+
+  @media (max-width: 1240px) {
+    display: none;
+  }
 }
 
 .link {
@@ -79,6 +83,22 @@ $height: 130px;
     font-size: 14px;
     line-height: 90%;
   }
+
+  @media (max-width: 1240px) {
+    padding-left: 0;
+  }
+}
+
+.mobile__links {
+  display: none;
+  font-size: 32px;
+
+  @media (max-width: 1240px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .burger {
@@ -96,6 +116,7 @@ $height: 130px;
 
 .menu {
   z-index: 5000;
+  overflow: auto;
 
   width: 100%;
   height: calc(100vh - $height);
@@ -184,10 +205,6 @@ $height: 130px;
     grid-template-rows: 1fr;
   }
 }
-
-
-
-
 
 // .header__menu__bottom {
 //   margin-top: auto;
