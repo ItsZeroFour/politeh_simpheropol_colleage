@@ -1,18 +1,18 @@
 
 .selector {
-    margin-top: 55px;
+    margin-top: 2.75em;
 }
 
 .daysList {
     display: flex;
-    gap: 10px;
+    gap: .5em;
 }
 
 .dayOfWeek {
-    padding: 7px 16px;
+    padding: .35em .8em;
 
     background: var(--color-black);
-    border-radius: 5px;
+    border-radius: .25em;
 
     font-weight: bold;
     cursor: pointer;

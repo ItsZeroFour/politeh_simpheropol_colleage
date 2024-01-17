@@ -50,6 +50,9 @@ const Corpus = ({ data, title }) => {
   const scheduleRef = useRef(null)
   const dispatch = useDispatch()
 
+  let screenWidth
+
+
   const scheduleState = useSelector(getSchedule)
   const clicked = scheduleState.clicked
   const dayOfWeek = scheduleState.dayOfWeek
@@ -69,6 +72,10 @@ const Corpus = ({ data, title }) => {
     scheduleRef.current.querySelector('.corpus__add-favourite-button')?.classList.add('hidden')
   }
 
+  const setScreenWidth = () => {
+    screenWidth = window.innerWidth
+  }
+
   useEffect(() => {
     const handleOutSideClick = (event) => {
       if (!scheduleRef.current?.contains(event.target)) {
@@ -76,7 +83,12 @@ const Corpus = ({ data, title }) => {
       }
     }
 
+    setScreenWidth()
+
     window.addEventListener('mousedown', handleOutSideClick)
+    window.addEventListener('change', setScreenWidth)
+
+    console.log(screenWidth)
 
     return () => {
       window.removeEventListener('mousedown', handleOutSideClick)

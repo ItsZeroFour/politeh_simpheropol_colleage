@@ -20,11 +20,15 @@ html {
 html,
 body,
 #root {
-	font-size: 20px;
+	font-size: calc(12px + (20 - 12) * ((100vw - 600px) / (1920 - 600)));
 	overflow-x: hidden;
 
-	@media (max-width: 1620px) {
-		font-size: 16px;
+	// @media (max-width: 1620px) {
+	// 	font-size: 16px;
+	// }
+
+	@media (min-width: 1920px) {
+		font-size: 20px;
 	}
 }
 
