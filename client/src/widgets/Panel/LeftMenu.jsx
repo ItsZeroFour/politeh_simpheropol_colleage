@@ -5,6 +5,7 @@ const LeftMenu = ({ setMainPanelType, mainPanelType }) => {
   const panelItems = [
     { item: "Создание страницы", name: "create-page" },
     { item: "Редактирование страницы", name: "edit-page" },
+    { item: "Удаление страницы", name: "delete-page" },
     { item: "Редактировать расписание", name: "edit-schedule" },
     { item: "Создать новый аккаунт", name: "create-account" },
   ];
