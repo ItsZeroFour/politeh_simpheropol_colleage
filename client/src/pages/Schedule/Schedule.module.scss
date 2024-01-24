@@ -1,7 +1,20 @@
-
-
 .schedule {
-    width: calc(900px + (1450 - 900) * ((100vw - 600px) / (1920 - 600)));
-    margin: auto;
+	width: calc(900px + (1450 - 900) * ((100vw - 600px) / (1920 - 600)));
+	margin: auto;
 }
-
+.scheduleRoot {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.wrapperCorpus {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	flex-direction: column;
+	margin-top: 40px;
+	span {
+		margin-bottom: 20px;
+	}
+}

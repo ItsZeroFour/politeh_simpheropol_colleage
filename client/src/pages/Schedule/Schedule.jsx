@@ -1,23 +1,33 @@
 'use client'
 import { fetchSchedule } from '@app/store/schedule/scheduleSlice'
-import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './Schedule.module.scss'
-
 const Schedule = () => {
 	const dispatch = useDispatch()
-	const [isScheduleLoading, setIsScheduleLoading] = useState(true)
-	const { items, status } = useSelector(state => state.schedule)
-	const isPostsLoading = status === 'loaded'
-	console.log(isPostsLoading)
+	const { schedule } = useSelector(state => state.schedule)
+
+	const isPostsLoading = schedule.status === 'loading'
 	useEffect(() => {
 		dispatch(fetchSchedule())
 	}, [])
-	console.log(items)
+
 	const IsRender = ({ isPostsLoading }) => {
-		console.log(isPostsLoading)
-		if (isPostsLoading) {
-			return <div>данные загрузились</div>
+		if (!isPostsLoading) {
+			return (
+				<div className={style.scheduleRoot}>
+					<span>{schedule.items.date}</span>
+					<div className={style.wrapperCorpus}>
+						<span>Первый корпус</span>
+						<Image src={schedule.items.scheduleOne} width={800} height={800} />
+					</div>
+					<div className={style.wrapperCorpus}>
+						<span>Второй корпус</span>
+						<Image src={schedule.items.scheduleTwo} width={800} height={800} />
+					</div>
+				</div>
+			)
 		} else {
 			return <div>загрузка данных</div>
 		}
