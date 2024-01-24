@@ -1,9 +1,9 @@
 import express from 'express'
-import { ScheduleControllers } from '../controllers/index.js'
+import { ScheduleImageController } from '../controllers/index.js'
 
 const router = express.Router()
 
-router.post("/create", ScheduleControllers.createSchedule)
+router.post('/create', ScheduleImageController.createScheduleImage)
 // router.patch("/update", ScheduleControllers.updateSchedule)
-
+router.get('/scheduleone', ScheduleImageController.findLastElement)
 export default router
