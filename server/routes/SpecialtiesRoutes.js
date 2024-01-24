@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.post(
   "/create",
-  checkAuth,
-  checkUserIsAdmin,
+  // checkAuth,
+  // checkUserIsAdmin,
   // createSpecialityValidation,
   SpecialtiesControllers.createSpeciality
 );

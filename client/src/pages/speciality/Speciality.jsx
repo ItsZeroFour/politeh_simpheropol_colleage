@@ -1,3 +1,5 @@
+"use client";
+
 import SpecialityDisciplines from "@/widgets/Speciality/SpecialityDisciplines";
 import SpecialityMainInfo from "@/widgets/Speciality/SpecialityMainInfo";
 import SpecialityQuestionAnswer from "@/widgets/Speciality/SpecialityQuestionAnswer";

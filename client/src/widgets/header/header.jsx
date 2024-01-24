@@ -63,6 +63,9 @@ const menuLinks = [
     url: "/schedule",
     text: "Расписание",
   },
+  { url: "/specialty-study", text: "Изучение выбранной вами специальности" },
+  { url: "/practice", text: "Практика и трудоустройство" },
+  { url: "/olimpiads", text: "Олимпиады" },
 ];
 
 const Header = () => {

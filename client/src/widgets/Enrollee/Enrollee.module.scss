@@ -176,6 +176,7 @@
 // Mat capital
 .mat__capital__image {
   margin-top: 80px;
+  -o-object-fit: contain;
   object-fit: contain;
   width: 100%;
   border-radius: var(--border-radius-md);
@@ -211,13 +212,14 @@
 
   ul {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 
-    gap: 58px;
+    gap: 40px;
     margin-top: 61px;
 
     li {
-      width: 488px;
+      width: 450px;
       height: 814px;
       overflow: hidden;
 
@@ -227,6 +229,9 @@
       transition: var(--transition);
 
       img {
+        height: 450px;
+        -o-object-fit: cover;
+        object-fit: cover;
         border-top-right-radius: var(--border-radius-md);
         border-top-left-radius: var(--border-radius-md);
       }
