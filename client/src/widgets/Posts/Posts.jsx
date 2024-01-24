@@ -40,8 +40,6 @@ const Posts = () => {
 		<div>
 			<div className={styles.wrapperPosts}>
 				{data.map(el => {
-					console.log(el.pageUrl)
-
 					if (el.pageImage != '') {
 						var str = el.pageImage
 						var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
@@ -73,7 +71,7 @@ const Posts = () => {
 											src={srcValue}
 											width={400}
 											height={300}
-											style={{ objectFit: 'cover', width: 400, height: 300 }}
+											style={{ objectFit: 'cover', width: 750, height: 500, borderRadius: 10 }}
 											//className={styles.image}
 
 											//style={{ objectFit: 'contain' }}
