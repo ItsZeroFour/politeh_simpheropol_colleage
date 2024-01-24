@@ -128,6 +128,26 @@ export const getPage = async (req, res) => {
 		})
 	}
 }
+export const deletePage = async (req, res) => {
+	try {
+		const pageUrl = req.query.id
+		console.log(req)
+		console.log(pageUrl)
+		const page = await PageModel.findByIdAndDelete(pageUrl)
+		if (!page) {
+			return res.status(404).json({
+				message: 'Страница не на найдена',
+			})
+		}
+
+		res.status(200).json(page._doc)
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Failed to create page',
+		})
+	}
+}
 export const getPageContent = async (req, res) => {
 	try {
 		const pagesDate = req.query.postId

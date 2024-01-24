@@ -5,7 +5,7 @@ import undoable from 'redux-undo'
 import { postsApi } from './header/api/home/posts.api'
 // add-posts-fixed-auth-add-schedule
 import { headerReducer } from './header/header.slice'
-import { scheduleReducer } from './schedule/schedule.slice'
+import { scheduleReducer } from './schedule/scheduleSlice.js'
 export const makeStore = () => {
 	return configureStore({
 		reducer: {
