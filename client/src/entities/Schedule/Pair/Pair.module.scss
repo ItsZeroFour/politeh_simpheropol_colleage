@@ -3,17 +3,17 @@
     position: absolute;
 
     color: var(--color-blue);
-    top: -35px;
+    top: -1.75em;
 
     left: 50%;
     transform: translateX(-50%);
 
     text-align: center;
-    font-size: 18px;
+    font-size: 1.2em;
 
-    border-radius: 4px;
+    border-radius: .2em;
     transition: .3s;
-    padding: 5px 10px;
+    padding: .25em .5em;
     cursor: pointer;
 
     &:hover {
@@ -25,10 +25,10 @@
 
 .pair {
     background: var(--color-black);
-    border-radius: 6px;
+    border-radius: .3em;
 
-    width: 220px;
-    font-size: 15px;
+    width: 14.333em;
+    font-size: .75em;
 
     position: relative;
 
@@ -36,11 +36,11 @@
 }
 
 .item {
-    height: 57px;
-    padding: 8px 11px;
+    height: 3.8em;
+    padding: .4em .55em;
 
     &:nth-child(n + 3) {
-        border-top: 1px solid rgba(86, 79, 79, 0.2);
+        border-top: .05em solid rgba(86, 79, 79, 0.2);
     }
 
     transition: .2s;
@@ -54,7 +54,7 @@
     display: flex;
     justify-content: space-between;
 
-    margin-top: 9px;
+    margin-top: .45em;
 }
 
 .hovered {
@@ -62,13 +62,13 @@
     transition: .2s;
 
     &:last-child {
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: .3em;
+        border-bottom-right-radius: .3em;
     }
 
     &:nth-child(2) {
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
+        border-top-left-radius: .3em;
+        border-top-right-radius: .3em;
     }
 }
 
@@ -85,7 +85,7 @@
 
 .noPair {
     width: 18%;
-    height: 2px;
+    height: .1em;
 
     background: white;
 

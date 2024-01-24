@@ -6,6 +6,7 @@ import Favourited from '@features/Schedule/Favourited/Favourited'
 import Corpus from '@widgets/Schedule/Corpus/Corpus'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import style from './Schedule.module.scss'
 
 const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
 
@@ -65,6 +66,8 @@ const scheduleData = {
 	],
 }
 
+// TODO: Добавить адаптацию с +- 1250 пикселей
+
 const data = {
 	first: scheduleData,
 	second: scheduleData,
@@ -79,11 +82,11 @@ const Schedule = () => {
 	}, [])
 
 	return (
-		<section>
-			<DaySelector />
-			<Favourited data={data} />
-			<Corpus title='Первый корпус' data={data.first} />
-			<Corpus title='Второй корпус' data={data.second} />
+		<section className={style.schedule}>
+				<DaySelector />
+				<Favourited data={data} />
+				<Corpus title='Первый корпус' data={data.first} />
+				<Corpus title='Второй корпус' data={data.second} />
 		</section>
 	)
 }
