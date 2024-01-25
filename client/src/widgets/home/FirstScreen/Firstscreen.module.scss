@@ -42,7 +42,8 @@
   }
 
   @media (max-width: 550px) {
-    font-size: 36px;
+    margin-top: 10px;
+    font-size: 40px;
   }
 }
 
@@ -78,6 +79,10 @@
   @media (max-width: 1390px) {
     width: auto;
   }
+
+  @media (max-width: 550px) {
+    font-size: 15px;
+  }
 }
 
 .button {
@@ -91,7 +96,7 @@
   transform: translateX(-50%);
 
   @media (max-width: 760px) {
-    width: 100%;
+    width: 80%;
     left: 0;
     transform: none;
     padding: 0;
@@ -100,6 +105,10 @@
     justify-content: center;
     align-items: center;
 
-    padding: 20px;
+    margin: auto;
+    margin-top: 45px;
+
+    padding: 17px;
+    font-size: 15px;
   }
 }

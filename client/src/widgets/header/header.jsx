@@ -90,7 +90,7 @@ const Header = () => {
         className={`${style.header} ${isOpened && style.headerMenuActive}`}
       >
         <div className={style.container}>
-          <div>
+          <div className={style.logo}>
             <Link href="/">
               <Image src={logo} />
             </Link>

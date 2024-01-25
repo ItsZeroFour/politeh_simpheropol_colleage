@@ -14,7 +14,6 @@ const daysOfWeek = [
 const date = new Date()
 const week = daysOfWeek[date.getDay()]
 
-
 const initialState = {
   favourited: {
     group: [],
@@ -22,11 +21,10 @@ const initialState = {
     cabinet: []
   },
   clicked: null,
-  dayOfWeek: week
-}
-
-const checkIsTakedStorageState = () => {
-  return window.sessionStorage.getItem('isTakedFavourited')
+  dayOfWeek: week,
+  pairsPerRow: 6,
+  isSmallDevice: false,
+  numerationOfPairs: null
 }
 
 const getStorageState = () => {
@@ -42,7 +40,6 @@ const saveStateToStorage = state => {
   const strState = JSON.stringify(state.favourited)
   localStorage.setItem('schedule', strState)
 }
-
 
 const scheduleSlice = createSlice({
   name: 'schedule',
@@ -76,6 +73,18 @@ const scheduleSlice = createSlice({
     setDay: (state, action) => {
       state.dayOfWeek = action.payload
     },
+
+    setIsSmallDevice: (state, action) => {
+      state.isSmallDevice = action.payload
+    },
+
+    setHovered: (state, action) => {
+      state.hovered = action.payload
+    },
+
+    setNumerationOfPairs: (state, action) => {
+      state.numerationOfPairs = action.payload
+    }
   },
 })
 
