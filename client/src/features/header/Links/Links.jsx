@@ -17,7 +17,27 @@ import Triangle from "@public/assets/icons/triangle.svg";
 
 const linksList = [
   { url: "/", text: "Главная" },
-  { url: "/our-colleage", text: "Наш колледж" },
+  {
+    url: "/",
+    text: "Наш колледж",
+    isCategory: true,
+    links: [
+      { url: "/colleage-history", text: "История колледжа" },
+      { url: "/museam", text: "Музей" },
+      {
+        url: "/noko",
+        text: "Независимая оценка качества осуществления образовательной деятельности (НОКО)",
+      },
+      { url: "/open-doors-days", text: "Дни открытых дверей (онлайн)" },
+      { url: "/dpo", text: "Дополнительное профессиональное образование" },
+      { url: "/anticorruption", text: "Противодействие коррупции" },
+      { url: "/covid-19", text: "Коронавирусная инфекция COVID-19" },
+      { url: "/buyed", text: "Закупочная деятельность" },
+      { url: "/metodical-classroom", text: "Методический кабинет" },
+      { url: "/road-security", text: "Дорожная безопасность" },
+      { url: "/ppo", text: "Первичная профсоюзная организация" },
+    ],
+  },
   { url: "/enrollee", text: "Абитуриенту" },
   { url: "/contacts", text: "Контакты" },
   {
@@ -56,22 +76,37 @@ const linksList = [
       { url: "/professionals", text: "Профессионалы" },
       { url: "/exam", text: "Демонстрационный экзамен" },
       { url: "/project", text: "Проектная деятельность" },
-      { url: "/additional-education", text: "Дополнительное профессиональное образование" },
+      {
+        url: "/additional-education",
+        text: "Дополнительное профессиональное образование",
+      },
       { url: "/employment", text: "О трудоустройстве выпускников" },
-      { url: "/career", text: `Дни карьеры 2022-${new Date().getFullYear()} уч.год` },
+      {
+        url: "/career",
+        text: `Дни карьеры 2022-${new Date().getFullYear()} уч.год`,
+      },
       {
         url: "/safety",
         text: "Об усилении мер по обеспечению безопасности обучающихся в период летних каникул",
       },
-      { url: "/workshop", text: "Кружки, факультативы, курсы, спортивные секции" },
+      {
+        url: "/workshop",
+        text: "Кружки, факультативы, курсы, спортивные секции",
+      },
       { url: "/sport", text: "Спортивная жизнь" },
       { url: "/green-krimea", text: "Зелёный Крым" },
       {
         url: "/products",
         text: `Ассортимент пищевых продуктов для организации дополнительного питания обучающихся в колледжах 2020-${new Date().getFullYear()}`,
       },
-      { url: "/social-psihologic", text: "О социально-психологическом сопровождении" },
-      { url: "/recomindations", text: "Памятки, рекомендации, разъяснения прокуратуры" },
+      {
+        url: "/social-psihologic",
+        text: "О социально-психологическом сопровождении",
+      },
+      {
+        url: "/recomindations",
+        text: "Памятки, рекомендации, разъяснения прокуратуры",
+      },
       { url: "/cyber", text: "Киберволонтёры" },
     ],
   },

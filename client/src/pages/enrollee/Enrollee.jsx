@@ -9,6 +9,7 @@ import EnrolleeSpecialityes from "@/widgets/Enrollee/EnrolleeSpecialityes";
 import EnrolleeNecessary from "@/widgets/Enrollee/EnrolleeNecessary";
 import Button from "@shared/Button";
 import EnrolleeRequzits from "@/widgets/Enrollee/EnrolleeRequzits";
+import Link from "next/link";
 
 const Enrollee = () => {
   return (
@@ -20,17 +21,6 @@ const Enrollee = () => {
       <EnrolleeMarCapital />
       <EnrolleeSpecialityes />
       <EnrolleeNecessary />
-
-      <div>
-        <Button
-          width={"100%"}
-          textContent={"Приказ о зачислении"}
-          marginTop={50}
-          marginBottom={50}
-          padding={24}
-          fontSize={40}
-        />
-      </div>
 
       <EnrolleeRequzits />
     </section>
