@@ -16,6 +16,11 @@
         height: 32px;
 
         margin-left: 20px;
+
+        @media (max-width: 550px) {
+            width: 20px;
+            height: 20px;
+        }
     }
 
     display: flex;
@@ -23,6 +28,15 @@
     gap: 30px;
 
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+
+    @media (max-width: 550px) {
+        width: 90%;
+        height: 50px;
+        margin: auto;
+
+        margin-top: 50px;
+        gap: 18px;
+    }
 }
 
 .input {
@@ -30,6 +44,11 @@
     color: white;
 
     width: calc(100% - 100px);
+
+    @media (max-width: 550px) {
+        font-size: 17px;
+        width: calc(100% - 60px);
+    }
 }
 
 .dropdown {
@@ -40,8 +59,12 @@
 
     border-radius: var(--border-radius-md);
 
-    & *:not(:first-child) {
+    & li:not(:first-child) {
         margin-top: 12px;
+
+        @media (max-width: 550px) {
+            margin-top: 8px;
+        }
     }
 
     overflow: hidden;
@@ -61,14 +84,31 @@
 
         width: calc(100% - 32px);
         margin: auto;
+
+        @media (max-width: 550px) {
+            width: calc(100% - 16px);
+        }
     }
 
     z-index: 3000;
+
+    @media (max-width: 550px) {
+        width: 90%;
+
+        margin-left: 5%;
+        margin-top: 10px;
+    }
 }
 
 .dropdown_active {
     grid-template-rows: 1fr;
     transition: grid-template-rows .4s ease;
+
+    @media (max-width: 550px) {
+        & ul div:first-child {
+            display: none;
+        }
+    }
 }
 
 .item {
@@ -83,6 +123,11 @@
         color: var(--color-blue);
         transition: .4s;
     }
+
+    @media (max-width: 550px) {
+        padding: 8px 8px;
+        font-size: 16px;
+    }
 }
 
 .notFound {
@@ -94,6 +139,11 @@
     }
 
     cursor: default;
+
+    @media (max-width: 550px) {
+        font-size: 16px;
+        padding: 8px 8px;
+    }
 }
 
 .verticalSpace {

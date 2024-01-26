@@ -45,6 +45,10 @@
     margin-top: 10px;
     font-size: 40px;
   }
+
+  @media (max-width: 391px) {
+    font-size: 34px;
+  }
 }
 
 @keyframes animationGradient {

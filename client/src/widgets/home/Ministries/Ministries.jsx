@@ -1,69 +1,113 @@
-'use client'
+"use client";
 
-import style from './Ministries.module.scss'
+import style from "./Ministries.module.scss";
 
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import './Navigation.scss'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "./Navigation.scss";
 
-import ArrowLeft from '@public/assets/icons/arrow_left.svg'
-import ArrowRight from '@public/assets/icons/arrow_right.svg'
+import ArrowLeft from "@public/assets/icons/arrow_left.svg";
+import ArrowRight from "@public/assets/icons/arrow_right.svg";
 
-import krymGerbImage from '@public/assets/images/home/gerb_krym.png'
-import rightsImage from '@public/assets/images/home/pravo.png'
-import educationImage from '@public/assets/images/home/mineducation.png'
-import rknImage from '@public/assets/images/home/rkn.png'
-import krippoImage from '@public/assets/images/home/krippo.png'
+import krymGerbImage from "@public/assets/images/home/gerb_krym.png";
+import rightsImage from "@public/assets/images/home/pravo.png";
+import educationImage from "@public/assets/images/home/mineducation.png";
+import rknImage from "@public/assets/images/home/rkn.png";
+import krippoImage from "@public/assets/images/home/krippo.png";
 
-import { useRef } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
+import eduImg from "@public/assets/images/home/edu.jpg";
+import firoImg from "@public/assets/images/home/firo.jpg";
+import kcrpoImg from "@public/assets/images/home/kcrpo.png";
+import windowEduImg from "@public/assets/images/home/window-edu.png";
+import uriteImg from "@public/assets/images/home/urite.jpg";
+import eduMariImg from "@public/assets/images/home/edu.mari.jpg";
+
+import { useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const handleSlideHover = (e) => {
-  const element = e.currentTarget
-  const popup = element.querySelector('.' + style.popupCard)
+  const element = e.currentTarget;
+  const popup = element.querySelector("." + style.popupCard);
 
-  popup.classList.add(style.popupCardActive)
-}
+  popup.classList.add(style.popupCardActive);
+};
 
 const handleSlideMouseOut = (e) => {
-  const element = e.currentTarget
-  const popup = element.querySelector('.' + style.popupCard)
+  const element = e.currentTarget;
+  const popup = element.querySelector("." + style.popupCard);
 
-  if (!popup.classList.contains(style.popupCard)) return
+  if (!popup.classList.contains(style.popupCard)) return;
 
-  popup.classList.remove(style.popupCardActive)
-}
+  popup.classList.remove(style.popupCardActive);
+};
 
 const data = [
   {
-    url: '/',
-    text: 'Республика Крым',
+    url: "/",
+    text: "Республика Крым",
     sourceImage: krymGerbImage,
   },
   {
-    url: '/',
-    text: 'Официальный интрернет портал правовой информации',
+    url: "/",
+    text: "Официальный интрернет портал правовой информации",
     sourceImage: rightsImage,
   },
   {
-    url: '/',
-    text: 'Министерство образования науки и молодежи респ. Крым',
+    url: "/",
+    text: "Министерство образования науки и молодежи респ. Крым",
     sourceImage: educationImage,
   },
   {
-    url: '/',
-    text: 'Роскомнадзор',
+    url: "/",
+    text: "Роскомнадзор",
     sourceImage: rknImage,
   },
   {
-    url: '/',
-    text: 'Крымский республиканский институт постдипломного педагогического образования',
+    url: "https://www.krippo.ru/",
+    text: "Крымский республиканский институт постдипломного педагогического образования",
     sourceImage: krippoImage,
   },
-]
+
+  {
+    url: "http://window.edu.ru/",
+    text: "Единое окно",
+    sourceImage: windowEduImg,
+  },
+
+  {
+    url: "http://www.kcrpo.ru/",
+    text: "Крымский центр развития профессионального образования",
+    sourceImage: kcrpoImg,
+  },
+
+  {
+    url: "edu.ru",
+    text: "Российское образование",
+    sourceImage: eduImg,
+  },
+
+  {
+    url: "firo.ru",
+    text: "Федеральный институт развития образования",
+    sourceImage: firoImg,
+  },
+
+  {
+    url: "edu.mari.ru",
+    text: "федеральный центр информационно-образовательных ресурсов",
+    sourceImage: eduMariImg,
+  },
+
+  {
+    url: "urait.ru",
+    text: "Юрайт",
+    sourceImage: uriteImg,
+  },
+];
 
 const slides = () => {
   return data.map(({ url, text, sourceImage }) => (
@@ -72,8 +116,11 @@ const slides = () => {
       onMouseLeave={handleSlideMouseOut}
       className={style.slide}
     >
-
-      <Image className={style.popupImage} src={sourceImage} alt='Логотип партнёра' />
+      <Image
+        className={style.popupImage}
+        src={sourceImage}
+        alt="Логотип партнёра"
+      />
 
       <Link href={url}>
         <div className={style.popupCard}>
@@ -81,12 +128,15 @@ const slides = () => {
         </div>
       </Link>
     </SwiperSlide>
-  ))
-}
+  ));
+};
 
 function Ministries() {
   const sliderNavigationLeft = useRef(null)
   const sliderNavigationRight = useRef(null)
+
+  const isMobile = useMediaQuery('only screen and (max-width : 1280px)')
+  const slidesPerView = isMobile ? 1 : 4
 
   return (
     <>
@@ -98,21 +148,20 @@ function Ministries() {
         <Swiper
           className={style.slider}
           navigation={{
-            prevEl: '.' + style.sliderLeft,
-            nextEl: '.' + style.sliderRight,
+            prevEl: "." + style.sliderLeft,
+            nextEl: "." + style.sliderRight,
           }}
           modules={[Navigation]}
           spaceBetween={30}
-          slidesPerView={4}
+          slidesPerView={slidesPerView}
         >
           {slides()}
-
         </Swiper>
 
         <ArrowRight className={style.sliderRight} ref={sliderNavigationRight} />
       </div>
     </>
-  )
+  );
 }
 
-export default Ministries
+export default Ministries;

@@ -8,6 +8,10 @@
     & .developer:nth-child(2) {
         margin-top: 13px;
     }
+
+    @media (max-width: 550px) {
+        font-size: 16px;
+    }
 }
 
 .developer {
@@ -18,15 +22,25 @@
     justify-content: space-between;
 
     margin-top: 8px;
+
+    @media (max-width: 550px) {
+        min-width: 240px;
+    }
 }
 
 .networks {
     display: flex;
     gap: 15px;
+
+    @media (max-width: 550px) {
+        gap: 6px;
+    }
 }
 
 .networkLink {
-    display: block;
+    @media (max-width: 550px) {
+        transform: scale(.8);
+    }
 }
 
 .authors {
@@ -34,6 +48,10 @@
     margin-right: 22px;
 
     margin-top: 22px;
+
+    @media (max-width: 550px) {
+        margin-right: 13px;
+    }
 }
 
 .developerName {

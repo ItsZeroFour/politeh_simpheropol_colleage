@@ -2,17 +2,23 @@
 .posts {
     width: 620px;
     position: relative;
-
     display: flex;
+
     flex-direction: column;
 
+    @media (max-width: 550px) {
+        width: 90%;
+    }
 }
 
 .viewAll {
     font-size: 30px;
+    margin-top: auto;
 
-    position: absolute;
-    bottom: 0;
-
+    padding-top: 30px;
     color: var(--color-blue);
+
+    @media (max-width: 550px) {
+        font-size: 23px;
+    }
 }

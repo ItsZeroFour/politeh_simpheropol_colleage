@@ -4,6 +4,7 @@ import Header from "@/widgets/header/header";
 import { Poppins } from "next/font/google";
 import StoreProvider from "./store/StoreProvider";
 import Script from 'next/script'
+import Head from "next/head";
 
 // TODO: fix this shit when we have something like this in the browser
 
@@ -26,6 +27,9 @@ const poppins = Poppins({
 const RootLayout = ({ children }) => {
   return (
     <html len="ru">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </Head>
       <body className={poppins.main}>
         <StoreProvider>
           <div className="page">
@@ -37,8 +41,8 @@ const RootLayout = ({ children }) => {
           </div>
         </StoreProvider>
 
-        <Script src='https://lidrekon.ru/slep/js/jquery.js'/>
-        <Script src='https://lidrekon.ru/slep/js/uhpv-full.min.js'/>
+        {/* <Script src='https://lidrekon.ru/slep/js/jquery.js'/>
+        <Script src='https://lidrekon.ru/slep/js/uhpv-full.min.js'/> */}
       </body>
     </html>
   );

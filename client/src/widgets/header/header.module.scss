@@ -82,6 +82,10 @@ $height-mobile: 70px;
 
 .headerWrapper {
   height: 180px;
+
+  @media (max-width: 550px) {
+        height: 115px;
+  }
 }
 
 .headerButtons {
@@ -173,6 +177,10 @@ $height-mobile: 70px;
 .menuActive {
   top: $height;
   transition: 0.4s;
+
+  @media (max-width: 550px) {
+    top: $height-mobile;
+  }
 }
 
 .menuLink {

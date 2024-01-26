@@ -8,7 +8,7 @@
 *,
 *::after,
 *::before {
-	box-sizing: inherit;
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
@@ -21,7 +21,7 @@ html,
 body,
 #root {
 	font-size: 20px;
-	overflow-x: hidden !important;
+	max-width: 100% !important;
 
 	@media (min-width: 1920px) {
 		font-size: 20px;
@@ -35,6 +35,11 @@ body {
 	width: 100vw;
 }
 
+canvas {
+	max-width: 100% !important;
+	display: none !important;
+}
+
 html {
 	scroll-behavior: smooth;
 	scroll-padding-block-start: 75px;
@@ -44,6 +49,8 @@ html {
 	max-width: 1450px;
 	padding: 0 10px;
 	margin: 0 auto;
+
+	overflow-x: hidden !important;
 }
 
 ::-webkit-scrollbar {
