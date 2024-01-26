@@ -92,7 +92,7 @@ export const deletePost = async (req, res) => {
 		// 		})
 		// 	})
 		try {
-			const docs = await PostModel.findById(req.query.id)
+			const docs = await PostModel.findOneAndDelete(req.query.id)
 			console.log('Result : ', docs)
 		} catch (err) {
 			console.log(err)
