@@ -30,7 +30,7 @@ const footer = () => {
             <ul className={style.footer__contacts}>
               {[
                 { title: "Контактная служба", icon: phone, link: "/contacts" },
-                { title: "Обратная связь", icon: letter, link: "/feedback" },
+                { title: "Обратная связь", icon: letter, link: "/#contactus" },
                 {
                   title: "г.Симферополь ул.Гаспринского 3",
                   icon: location,
