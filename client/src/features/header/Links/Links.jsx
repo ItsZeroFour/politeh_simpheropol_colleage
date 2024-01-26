@@ -77,7 +77,7 @@ const linksList = [
       { url: "/exam", text: "Демонстрационный экзамен" },
       { url: "/project", text: "Проектная деятельность" },
       {
-        url: "/additional-education",
+        url: "/dpo",
         text: "Дополнительное профессиональное образование",
       },
       { url: "/employment", text: "О трудоустройстве выпускников" },

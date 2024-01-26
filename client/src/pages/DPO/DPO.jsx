@@ -1,6 +1,7 @@
 import style from "./DPO.module.scss";
 import dpoImage from "../../../public/assets/images/dpo/dpo.jpg";
 import Image from "next/image";
+import Link from "next/link";
 
 const DPO = () => {
   return (
@@ -32,7 +33,8 @@ const DPO = () => {
 
       <p>
         Контактное лицо — Кондратенко Ирина Владимировна, заместитель директора
-        по учебно-производственной работе, каб.206 моб.+7(3652)27-62-20
+        по учебно-производственной работе, каб.206 моб.{" "}
+        <Link href="tel:+7(3652)27-62-20">+7(3652)27-62-20</Link>
       </p>
     </section>
   );

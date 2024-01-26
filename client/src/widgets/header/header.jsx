@@ -36,10 +36,6 @@ const months = [
 
 const menuLinks = [
   {
-    url: "/our-colleage",
-    text: "Наш колледж",
-  },
-  {
     url: "/nacproject",
     text: "НацПроекты",
   },
