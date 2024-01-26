@@ -45,7 +45,7 @@ const ContactForm = () => {
 	} = useInput()
 
 	return (
-		<div className={style.contact}>
+		<div className={style.contact} id='contactus'>
 			<div className={style.top}>
 				<p className={style.title}>Свяжитесь с нами!</p>
 				<div className={style.icon}>

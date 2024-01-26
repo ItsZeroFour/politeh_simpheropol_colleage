@@ -1,10 +1,12 @@
+"use client"
+
 import style from "./ColleageHistory.module.scss";
 import hatImg from "@public/assets/icons/hat.svg";
 import townImg from "@public/assets/icons/town.svg";
 import Image from "next/image";
 
 const HistoryColleageTeachers = () => {
-  const teachersList = [
+  const tursun = [
     {
       icon: hatImg,
       name: "Федоренко Оксана Николаевна",
@@ -53,7 +55,7 @@ const HistoryColleageTeachers = () => {
       </p>
 
       <ul>
-        {teachersList.map(({ icon, name, status }, index) => (
+        {tursun.map(({ icon, name, status }, index) => (
           <li key={index}>
             <Image src={icon} alt={status} />
             <p>{name}</p>

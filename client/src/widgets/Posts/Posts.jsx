@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import MyComponent from './[Post]/Loader'
 import styles from './style.module.scss'
 const Posts = () => {
 	// const dataOurCollege2 = useSelector(
@@ -39,55 +40,62 @@ const Posts = () => {
 	return (
 		<div>
 			<div className={styles.wrapperPosts}>
-				{data.map(el => {
-					if (el.pageImage != '') {
-						var str = el.pageImage
-						var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
-						var matches = str.match(srcRegex)
-						var srcValue = matches[1]
-					} else {
-						srcValue = imagePicture
-					}
-					// } else {
-					// 	setPicture(
-					// 		'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png'
-					// 	)
-					// }
+				{data.length == 0 && <MyComponent />}
+				{data.length !== 0 &&
+					data.map(el => {
+						if (el.pageImage != '') {
+							var str = el.pageImage
+							var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
+							var matches = str.match(srcRegex)
+							var srcValue = matches[1]
+						} else {
+							srcValue = imagePicture
+						}
+						// } else {
+						// 	setPicture(
+						// 		'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png'
+						// 	)
+						// }
 
-					if (el.pageTypePublish && el.pageType == 'post') {
-						return (
-							<div
-								style={{
-									display: 'flex',
-									justifyContent: 'center',
-									margin: 10,
-									textAlign: 'center',
-								}}
-								key={el._id}
-							>
-								<div>
-									<div className={styles.postImgTitleWrapper}>
-										<Image
-											src={srcValue}
-											width={400}
-											height={300}
-											style={{ objectFit: 'cover', width: 750, height: 500, borderRadius: 10 }}
-											//className={styles.image}
+						if (el.pageTypePublish && el.pageType == 'post') {
+							return (
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'center',
+										margin: 10,
+										textAlign: 'center',
+									}}
+									key={el._id}
+								>
+									<div>
+										<div className={styles.postImgTitleWrapper}>
+											<Image
+												src={srcValue}
+												width={400}
+												height={300}
+												style={{
+													objectFit: 'cover',
+													width: 750,
+													height: 500,
+													borderRadius: 10,
+												}}
+												//className={styles.image}
 
-											//style={{ objectFit: 'contain' }}
-											alt='Picture of the author'
-										/>
+												//style={{ objectFit: 'contain' }}
+												alt='Picture of the author'
+											/>
 
-										<Link href={`/posts/${el.pageUrl}`}>
-											{<p className={styles.post_title}>{el.pageTitle}</p>}
-										</Link>
-										<div className={styles.post_date}>{el.pageDate}</div>
+											<Link href={`/posts/${el.pageUrl}`}>
+												{<p className={styles.post_title}>{el.pageTitle}</p>}
+											</Link>
+											<div className={styles.post_date}>{el.pageDate}</div>
+										</div>
 									</div>
 								</div>
-							</div>
-						)
-					}
-				})}
+							)
+						}
+					})}
 			</div>
 			<button
 				onClick={() => {
