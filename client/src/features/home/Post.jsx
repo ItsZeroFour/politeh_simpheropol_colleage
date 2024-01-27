@@ -25,13 +25,11 @@ const Post = ({ data }) => {
 
 	//console.log({ data: { pageTitle: pageTitle, pageUrl } })
 	const { pageTitle, pageUrl, pageImage, pageDate } = data
-	console.log(pageTitle)
 
-	console.log('kkk' + pageImage)
 	if (pageImage != '') {
-		var str = pageImage
-		var srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
-		var matches = str.match(srcRegex)
+		const str = pageImage
+		const srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
+		const matches = str.match(srcRegex)
 		var srcValue = matches[1]
 	} else {
 		srcValue = imagePicture
@@ -40,7 +38,6 @@ const Post = ({ data }) => {
 	// console.log(shortText)
 	let shortText =
 		pageTitle.length > 25 ? pageTitle.slice(0, 20) + '...' : pageTitle
-	console.log(shortText)
 	// let slicedText = text.slice(0, 60)
 	// let slicedTitle = title.slice(0, 15)
 
