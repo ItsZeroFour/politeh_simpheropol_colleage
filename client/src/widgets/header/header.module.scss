@@ -167,6 +167,10 @@ $height-mobile: 70px;
   transition: 0.4s;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 550px) {
+    height: calc(100vh - $height-mobile);
+  }
 }
 
 .headerMenuActive {

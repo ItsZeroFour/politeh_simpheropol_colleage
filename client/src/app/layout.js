@@ -37,7 +37,6 @@ const RootLayout = ({ children }) => {
               <Header />
               <main>{children}</main>
             </div>
-            
             <Footer />
           </div>
         </StoreProvider>
