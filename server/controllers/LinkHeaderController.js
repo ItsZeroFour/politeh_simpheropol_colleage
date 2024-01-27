@@ -144,7 +144,7 @@ export const LinkUpdate = async (req, res) => {
 		const hasDuplicates = hasDuplicateUrls(links)
 
 		if (hasDuplicates) {
-			return res.status(400).json({ message: 'ссылка не может повторяться' })
+			return res.status(400).json({ message: 'URL не может повторяться' })
 		}
 
 		const oldNestingLink = await NestingLinkSchema.find({ linkId: idUrl })
