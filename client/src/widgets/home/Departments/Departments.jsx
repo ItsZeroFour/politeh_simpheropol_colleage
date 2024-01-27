@@ -5,6 +5,8 @@ import it from "@public/assets/images/home/it.png";
 import money from "@public/assets/images/home/money.png";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const data = [
   {
@@ -25,22 +27,56 @@ const data = [
 ];
 
 function Departments() {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   return (
-    <div className={style.departments}>
+    <section className={style.departments} ref={ref}>
       <h2 className={style.title}>Отделения</h2>
 
-      <div className={style.all}>
-        {data.map(({ image: source, text, link }) => (
-          <Link href={link} className={style.card}>
-            <div className={style.image}>
-              <Image src={source} />
-            </div>
+      {inView && (
+        <motion.ul
+          className={style.all}
+          variants={container}
+          initial="hidden"
+          animate="visible"
+        >
+          {data.map(({ image: source, text, link }) => (
+            <motion.li key={text} className={style.card} variants={item}>
+              <Link href={link}>
+                <div className={style.image}>
+                  <Image src={source} />
+                </div>
 
-            <p className={style.text}>{text}</p>
-          </Link>
-        ))}
-      </div>
-    </div>
+                <p className={style.text}>{text}</p>
+              </Link>
+            </motion.li>
+          ))}
+        </motion.ul>
+      )}
+    </section>
   );
 }
 

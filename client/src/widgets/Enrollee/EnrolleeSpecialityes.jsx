@@ -4,16 +4,15 @@ import { useEffect, useState } from "react";
 import style from "./Enrollee.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-
-// export async function getSpecialities() {
-//   const res = await fetch(
-//     `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpecialities`
-//   );
-// }
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 const Specialityes = () => {
   const [specialityes, setSpecialityes] = useState(null);
-  // const data = await getSpecialities();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
 
   useEffect(() => {
     const getData = async () => {
@@ -27,38 +26,60 @@ const Specialityes = () => {
     getData();
   }, []);
 
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.8,
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVarian = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   return (
-    <section className={style.specialityes} id="specialityes">
+    <section className={style.specialityes} id="specialityes" ref={ref}>
       <h1 className={style.specialityes__title}>Специальности</h1>
-      <ul>
-        {specialityes &&
-          specialityes.map((item) => {
-            const src = `${process.env.NEXT_PUBLIC_SERVER_URL}${item.firstImage}`;
+      {inView && (
+        <motion.ul variants={container} initial="hidden" animate="visible">
+          {specialityes &&
+            specialityes.map((item) => {
+              const src = `${process.env.NEXT_PUBLIC_SERVER_URL}${item.firstImage}`;
 
-            return (
-              <li>
-                <Link href={`/speciality/${item._id}`}>
-                  <Image
-                    loader={() => src}
-                    src={src}
-                    alt={`${item.title}`}
-                    width={488}
-                    height={448}
-                  />
+              return (
+                <motion.li key={item._id} variants={itemVarian}>
+                  <Link href={`/speciality/${item._id}`}>
+                    <Image
+                      loader={() => src}
+                      src={src}
+                      alt={`${item.title}`}
+                      width={488}
+                      height={448}
+                    />
 
-                  <div className={style.specialityes__main__info}>
-                    <h2>{item.specialityCode}</h2>
-                    <p>{item.specialityTitle}</p>
-                    <p>
-                      {item.cvalification &&
-                        `Базовый уровень, квалификация – ${item.cvalification}`}
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
-      </ul>
+                    <div className={style.specialityes__main__info}>
+                      <h2>{item.specialityCode}</h2>
+                      <p>{item.specialityTitle}</p>
+                      <p>
+                        {item.cvalification &&
+                          `Базовый уровень, квалификация – ${item.cvalification}`}
+                      </p>
+                    </div>
+                  </Link>
+                </motion.li>
+              );
+            })}
+        </motion.ul>
+      )}
     </section>
   );
 };
