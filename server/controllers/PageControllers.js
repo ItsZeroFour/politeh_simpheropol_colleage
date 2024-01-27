@@ -47,6 +47,27 @@ export const createPage = async (req, res) => {
 		})
 	}
 }
+export const getOnePage = async (req, res) => {
+	try {
+		const { url } = req.query
+		console.log('qiuet', req.query)
+		console.log(req.params)
+		console.log('fdfsdfsdfs')
+
+		let wordWithoutSlash = url.substring(1)
+
+		const result = await PageModel.findOne({ pageUrl: wordWithoutSlash })
+		if (result == null) {
+			return res.status(404).json({ message: 'объект не был найден' })
+		} else {
+			console.log(result)
+			return res.status(200).json({ message: result })
+		}
+	} catch (error) {
+		return res.status(500).json({ message: 'ошибка сервера' })
+	}
+}
+
 export const getOurCollegePages = async (req, res) => {
 	try {
 		const arrPages = await PageModel.find()

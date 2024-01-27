@@ -4,7 +4,7 @@ import LinkDropdown from '@features/header/LinkDropdown/LinkDropdown'
 import Triangle from '@public/assets/icons/triangle.svg'
 import axios from 'axios'
 import Link from 'next/link'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './../../../widgets/header/header.module.scss'
 
@@ -116,7 +116,7 @@ const linksList = [
 
 const Links = () => {
 	const [linksServer, setLinksServer] = useState([])
-
+	const [closingLinks, setClosingLinks] = useState([])
 	useEffect(() => {
 		const fetchingData = async () => {
 			try {
@@ -124,6 +124,7 @@ const Links = () => {
 					`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheaderall`
 				)
 				setLinksServer([...data.data])
+				console.log('FETCHING')
 			} catch (error) {
 				alert.error('error' + error)
 			}
@@ -136,43 +137,43 @@ const Links = () => {
 
 	const hovered = useSelector(getHeader).hovered
 	const closing = useSelector(getHeader).closing
-
+	console.log(closing)
 	const handleOnMouseEnter = e => {
 		dispatch(addHovered(e.currentTarget.id))
 	}
 
 	const handleOnMouseLeave = e => {
+		console.log('EEEEE')
 		const id = e.currentTarget.id
 		dispatch(removeHovered(id))
 		dispatch(addClosing(id))
+		setClosingLinks(prev => [...prev, id])
 	}
 
-	const memoizedLinks = useMemo(() => {
-		return linksServer.map((link, index) => {
-			const id = style.link + index
-			link.id = id
-			return (
-				<li
-					key={index}
-					className={style.link}
-					id={id}
-					onMouseEnter={link.nestedObjects.length !== 0 && handleOnMouseEnter}
-					onMouseLeave={link.nestedObjects.length !== 0 && handleOnMouseLeave}
-				>
-					<Link href={link.url}>{link.text}</Link>
-					{link.nestedObjects.length !== 0 && (
-						<Triangle className={style.dropdownIcon} />
-					)}
-					{link.nestedObjects.length !== 0 && hovered.includes(id) && (
-						<LinkDropdown data={link.nestedObjects} />
-					)}
-					{link.nestedObjects.length !== 0 && closing.includes(id) && (
-						<LinkDropdown isClosing={true} data={link.nestedObjects} />
-					)}
-				</li>
-			)
-		})
-	}, [linksServer, hovered, closing, handleOnMouseEnter, handleOnMouseLeave])
+	return linksServer.map((link, index) => {
+		const id = style.link + index
+		link.id = id
+		return (
+			<li
+				key={index}
+				className={style.link}
+				id={id}
+				onMouseEnter={link.nestedObjects.length !== 0 && handleOnMouseEnter}
+				onMouseLeave={link.nestedObjects.length !== 0 && handleOnMouseLeave}
+			>
+				<Link href={link.url}>{link.text}</Link>
+				{link.nestedObjects.length !== 0 && (
+					<Triangle className={style.dropdownIcon} />
+				)}
+				{link.nestedObjects.length !== 0 && hovered.includes(id) && (
+					<LinkDropdown data={link} />
+				)}
+				{link.nestedObjects.length !== 0 && closing.includes(id) && (
+					<LinkDropdown isClosing={true} data={link} />
+				)}
+			</li>
+		)
+	})
 
 	return memoizedLinks
 }

@@ -14,6 +14,7 @@ router.post(
 	PostControllers.createPost
 )
 router.get('/getOne/:id', PostControllers.getOnePost)
+router.get('/getonepage/:id', PostControllers.getOnePage)
 router.get('/getAll', PostControllers.getAllPosts)
 router.patch(
 	'/update',
