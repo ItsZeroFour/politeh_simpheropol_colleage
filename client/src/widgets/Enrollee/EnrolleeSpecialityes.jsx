@@ -27,10 +27,8 @@ const Specialityes = () => {
     getData();
   }, []);
 
-  console.log(specialityes);
-
   return (
-    <div className={style.specialityes}>
+    <section className={style.specialityes} id="specialityes">
       <h1 className={style.specialityes__title}>Специальности</h1>
       <ul>
         {specialityes &&
@@ -61,7 +59,7 @@ const Specialityes = () => {
             );
           })}
       </ul>
-    </div>
+    </section>
   );
 };
 

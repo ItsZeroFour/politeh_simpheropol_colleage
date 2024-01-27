@@ -120,6 +120,16 @@
 
     gap: 46px;
   }
+
+  @media (max-width: 375px) {
+    gap: 20px;
+  }
+
+  @media (max-width: 320px) {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 .footer__contacts {
