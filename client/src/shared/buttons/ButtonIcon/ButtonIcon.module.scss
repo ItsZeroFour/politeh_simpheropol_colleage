@@ -8,15 +8,21 @@
         gap: .3em;
     }
 
-    padding: 1em 10.75em;
-    border-radius: .5em;
+    padding: 1rem 10.75rem;
+    border-radius: .5rem;
+
+    // @media (max-width: 768px) {
+    //     & img {
+    //         transform: none;
+    //     }
+    // }
 
     cursor: pointer;
     transition: .4s;
 
     &:hover {
         background: #0c58cb;
-        box-shadow: 0 0 .6em .2em rgba(12,88,203,0.2);
+        box-shadow: 0 0 .6rem .2rem rgba(12,88,203,0.2);
         transition: .4s;
     }
 }

@@ -20,7 +20,7 @@ const MobileLinks = () => {
     }
 
     return (
-      <li key={index} className={style.link} onClick={handleClick}>
+      <li key={index} className={link.isCategory ? style.categoryLink : style.link} onClick={handleClick}>
         <Link href={link.url}>{link.text}</Link>
         {link.isCategory && (
           <Triangle
@@ -30,13 +30,20 @@ const MobileLinks = () => {
           />
         )}
 
-        {link.isCategory && isClicked && (
-          <div className={`${style.mobileDropdown} ${isClosing && style.mobileDropdownClosing}`}>
-            {link.links.map((link, index) => (
-              <li className={'3'} key={index}>
-                <Link href={link.url}>{link.text}</Link>
-              </li>
-            ))}
+        {link.isCategory && (
+          <div
+            className={`${style.mobileDropdown} ${
+              isClicked && style.mobileDropdownActive
+            }`}
+          >
+            <ul className={`overflow-hidden`}>
+                <div className={style.mobileDropdownDelimiter}></div>
+              {link.links.map((link, index) => (
+                <li key={index} className={style.link}>
+                  <Link href={link.url}>{link.text}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </li>

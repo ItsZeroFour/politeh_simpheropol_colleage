@@ -14,7 +14,7 @@ const LinkDropdown = ({ data, isRemoving }) => {
 
   return (
     <div className={style.dropdown}>
-      <nav>
+      <nav className='overflow-hidden'>
         <div className={`${style.container} ${isRemoving && style.dropdownRemoving}`}>
           {data.links.map((link, index) => (
             <li className={style.item} key={index}>

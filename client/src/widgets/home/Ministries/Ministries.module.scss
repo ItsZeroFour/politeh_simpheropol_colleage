@@ -1,14 +1,14 @@
 
 .delimiter {
-    margin-top: 100px;
-    margin-bottom: 150px;
+    margin-top: 5rem;
+    margin-bottom: 7.5rem;
 
-    height: 1px;
+    height: .05rem;
     width: 100%;
 
     background: var(--color-dark-gray);
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         width: 90%;
 
         margin: auto;
@@ -24,9 +24,9 @@
 }
 
 .slider {
-    height: 345px;
+    height: 17.25rem;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         height: 290px;
         width: 90%;
         margin: auto;
@@ -39,7 +39,7 @@
 
     border-radius: var(--border-radius-md);
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         // width: calc(100% - 120px);
         width: 20px;
     }
@@ -54,7 +54,7 @@
     transform: translateY(-50%);
 
     z-index: 1000;
-    width: 46px;
+    width: 2.3rem;
 
     cursor: pointer;
 
@@ -64,17 +64,17 @@
 }
 
 .sliderLeft {
-    left: -60px;
+    left: -3rem;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         display: none;
     }
 }
 
 .sliderRight {
-    right: -60px;
+    right: -3rem;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         display: none;
     }
 }
@@ -89,9 +89,9 @@
 
     background: rgba(0, 0, 0, .5);
     transition: .4s;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(.5rem);
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         top: 0;
         backdrop-filter: none;
     }
@@ -107,7 +107,7 @@
     word-wrap: break-word;
 
     text-align: center;
-    font-size: 27px;
+    font-size: 1.35rem;
     font-weight: 700;
     line-height: 140%;
 

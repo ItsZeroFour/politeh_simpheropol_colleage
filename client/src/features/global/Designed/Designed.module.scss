@@ -1,55 +1,55 @@
 .designed {
-    font-size: 20px;
+    font-size: 1rem;
 
     display: flex;
     flex-direction: column;
     align-items: end;
 
     & .developer:nth-child(2) {
-        margin-top: 13px;
+        margin-top: .65rem;
     }
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         font-size: 16px;
     }
 }
 
 .developer {
     display: flex;
-    min-width: 285px;
+    min-width: 14.25rem;
 
     align-items: center;
     justify-content: space-between;
 
-    margin-top: 8px;
+    margin-top: .4rem;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         min-width: 240px;
     }
 }
 
 .networks {
     display: flex;
-    gap: 15px;
+    gap: .75rem;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         gap: 6px;
     }
 }
 
 .networkLink {
-    @media (max-width: 550px) {
+    @media (max-width: 1024px) {
         transform: scale(.8);
     }
 }
 
 .authors {
     text-align: right;
-    margin-right: 22px;
+    margin-right: 1.1rem;
 
-    margin-top: 22px;
+    margin-top: 1.1rem;
 
-    @media (max-width: 550px) {
+    @media (max-width: 768px) {
         margin-right: 13px;
     }
 }
@@ -57,4 +57,20 @@
 .developerName {
     text-align: left;
     display: block;
+}
+
+
+.vkIcon {
+    width: 2.05rem;
+    height: 1.25rem;
+}
+
+.wwwIcon {
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+.telegramIcon {
+    width: 1.4rem;
+    height: 1.2rem;
 }

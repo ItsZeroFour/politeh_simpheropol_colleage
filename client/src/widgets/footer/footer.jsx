@@ -37,7 +37,7 @@ const footer = () => {
               ].map(({ title, icon, link }) => (
                 <li key={title}>
                   <Link href={link}>
-                    <Image src={icon} alt={title} width={36} height={26} />
+                    <Image src={icon} alt={title} className={style.contactIcon} />
                     <p>{title}</p>
                   </Link>
                 </li>
