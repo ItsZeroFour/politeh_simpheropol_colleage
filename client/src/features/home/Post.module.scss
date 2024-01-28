@@ -91,12 +91,16 @@
 }
 
 .imageLoading {
-	height: 260px;
+	height: 323px;
 
 	border-top-left-radius: var(--border-radius-md);
 	border-top-right-radius: var(--border-radius-md);
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
+
+	@media (max-width: 550px) {
+		height: 260px;
+	}
 }
 
 .titleLoading {

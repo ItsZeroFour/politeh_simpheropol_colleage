@@ -4,31 +4,23 @@ import { useDispatch } from 'react-redux'
 import { useActions } from '@app/hooks/useActions'
 import Triangle from '@public/assets/icons/triangle.svg'
 
-const LinkDropdown = ({ data, isClosing }) => {
-  const dispatch = useDispatch()
-  const { removeClosing } = useActions()
+const LinkDropdown = ({ data, isRemoving }) => {
+  // const dispatch = useDispatch()
+  // const { removeClosing } = useActions()
 
-  if (isClosing) {
-    setTimeout(() => dispatch(removeClosing(data.id)), 300)
-  }
+  // if (isClosing) {
+  //   setTimeout(() => dispatch(removeClosing(data.id)), 3000)
+  // }
 
   return (
-    <div className={`${style.dropdown} ${isClosing && style.dropdownClosing}`}>
+    <div className={style.dropdown}>
       <nav>
-        <div className={style.container}>
-          <p className={style.title}>
-            {data.text}
-            <Triangle className={`${style.icon} ${isClosing && style.iconClosing}`} />
-          </p>
-
-          <div className={style.border}></div>
-
+        <div className={`${style.container} ${isRemoving && style.dropdownRemoving}`}>
           {data.links.map((link, index) => (
             <li className={style.item} key={index}>
               <Link href={link.url}>{link.text}</Link>
             </li>
           ))}
-
         </div>
       </nav>
     </div>

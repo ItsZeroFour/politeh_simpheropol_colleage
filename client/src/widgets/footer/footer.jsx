@@ -4,9 +4,6 @@ import logo from "../../../public/assets/icons/logo.svg?url";
 import phone from "../../../public/assets/icons/phone.svg?url";
 import letter from "../../../public/assets/icons/letter.svg?url";
 import location from "../../../public/assets/icons/location.svg?url";
-import vk from "../../../public/assets/icons/vk.svg?url";
-import telegram from "../../../public/assets/icons/telegram.svg?url";
-import www from "../../../public/assets/icons/www.svg?url";
 import Link from "next/link";
 import Designed from "@features/global/Designed/Designed";
 

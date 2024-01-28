@@ -6,6 +6,10 @@
 .eqation2 {
   position: absolute;
   z-index: -2500;
+
+  @media (max-width: 350px) {
+    display: none;
+  }
 }
 
 .background1 {
@@ -28,25 +32,35 @@
   top: 3000px;
 }
 
-
-
 .eqation1 {
-    right: 0;
-    top: 2240px;
+  right: 0;
+  top: 2240px;
+
+  @media (max-width: 550px) {
+    transform: scale(.6);
+  }
 }
 
 .eqation2 {
-    left: 118px;
-    top: 4000px;
+  left: 118px;
+  top: 4000px;
+
+  @media (max-width: 550px) {
+    left: 0;
+    transform: scale(.6);
+  }
 }
 
-
 @media screen and (min-width: 2320px) {
-    .background1, .background3, .eqation2 {
-        left: calc((100vw - 1430px) / 2);
-    }
+  .background1,
+  .background3,
+  .eqation2 {
+    left: calc((100vw - 1430px) / 2);
+  }
 
-    .background2, .background4, .eqation1 {
-        right: calc((100vw - 1430px) / 2);
-    }
+  .background2,
+  .background4,
+  .eqation1 {
+    right: calc((100vw - 1430px) / 2);
+  }
 }
