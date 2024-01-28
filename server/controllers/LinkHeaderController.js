@@ -58,7 +58,26 @@ export const LinkGetAll = async (req, res) => {
 export const LinkCreate = async (req, res) => {
 	try {
 		const { url, text, isCategory, links } = req.body
+		console.log(req.body)
+		function hasDuplicateUrls(data) {
+			const urlSet = new Set()
 
+			for (const link of data) {
+				if (urlSet.has(link.url)) {
+					return true
+				} else {
+					urlSet.add(link.url)
+				}
+			}
+
+			return false
+		}
+
+		const hasDuplicates = hasDuplicateUrls(links)
+
+		if (hasDuplicates) {
+			return res.status(400).json({ message: 'URL не может повторяться' })
+		}
 		// Проверяем наличие дубликатов url в LinkSchema
 		const existingLink = await LinkSchema.findOne({ url })
 		if (existingLink) {
@@ -109,7 +128,8 @@ export const LinkCreate = async (req, res) => {
 
 export const LinkDeleteGlobalLink = async (req, res) => {
 	try {
-		const { url } = req.body
+		const { url } = req.query
+
 		const result = await LinkSchema.findOneAndDelete({ url })
 		if (result !== null) {
 			await NestingLinkSchema.deleteMany({ linkId: result._id })

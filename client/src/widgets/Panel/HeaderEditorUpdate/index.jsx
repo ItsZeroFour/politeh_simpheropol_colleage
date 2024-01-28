@@ -136,8 +136,21 @@ const HeaderEditorUpdate = ({ data }) => {
 	}
 
 	const deleteAllRows = () => {
-		//data.data.resultLink = {}
-		setLinks([])
+		//	setLinks([])
+		const deleteFeatures = async () => {
+			try {
+				console.log(data.data.resultLink)
+				const response = await axios.delete(
+					`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheader`,
+					{ params: { url: data.data.resultLink.url } }
+				)
+				console.log(response.data.message)
+				alert(response.data.message)
+			} catch (error) {
+				alert(error)
+			}
+		}
+		deleteFeatures()
 	}
 
 	const saveTableData = async () => {

@@ -651,6 +651,7 @@ const CreatePage = () => {
 	}
 	const addPageInServer = async () => {
 		let newUrl = ''
+
 		const someDate = await axios.put(
 			`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
 
