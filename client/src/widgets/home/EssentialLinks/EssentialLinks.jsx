@@ -6,27 +6,27 @@ import Link from 'next/link'
 const data = [
     {
         text: 'Обучение с применением ЭО и ДОТ',
-        url: '/special-study'
+        url: '/our-colleage/special-study'
     },
     {
         text: 'Пройди бесплатное обучение',
-        url: '/free-study'
+        url: '/our-colleage/free-study'
     },
     {
         text: 'АИС «Электронный журнал»',
-        url: '/ais-eljru'
+        url: '/our-colleage/ais-eljru'
     },
     {
         text: 'Закрытое образовательное пространство для педагогов, учеников и их родителей  Сферум',
-        url: '/closed-study-area'
+        url: '/our-colleage/closed-study-area'
     },
     {
         text: 'Платформа дистанционного обучения ГБПОУ РК «Симферопольский политехнический колледж»',
-        url: '/remote-study'
+        url: '/our-colleage/remote-study'
     },
     {
         text: 'Вы можете оставить мнение о нашей организации.',
-        url: '/mean'
+        url: '/our-colleage/mean'
     },
 ]
 

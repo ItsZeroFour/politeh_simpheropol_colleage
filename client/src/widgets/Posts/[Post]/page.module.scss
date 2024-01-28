@@ -1,10 +1,24 @@
-.post {
-	/* ul > li {
-		display: list-item;
-		list-style: disc;
-	}
-	ol > li {
-		display: list-item;
-		list-style: decimal;
-	} */
+.post__main {
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-md);
+  }
+}
+
+.post__views {
+  margin-top: 40px;
+  display: flex;
+  justify-content: end;
+
+  span {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+    padding: 20px 40px;
+
+    border-radius: var(--border-radius-md);
+    background: var(--color-black);
+  }
 }

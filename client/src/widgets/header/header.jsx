@@ -59,9 +59,9 @@ const menuLinks = [
     url: "/schedule",
     text: "Расписание",
   },
-  { url: "/specialty-study", text: "Изучение выбранной вами специальности" },
-  { url: "/practice", text: "Практика и трудоустройство" },
-  { url: "/olimpiads", text: "Олимпиады" },
+  { url: "/our-colleage/specialty-study", text: "Изучение выбранной вами специальности" },
+  { url: "/our-colleage/practice", text: "Практика и трудоустройство" },
+  { url: "/our-colleage/olimpiads", text: "Олимпиады" },
 ];
 
 const Header = () => {
