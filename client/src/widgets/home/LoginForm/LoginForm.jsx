@@ -10,7 +10,7 @@ import { useState } from "react";
 const links = [
   {
     text: "Структура и органы управления образовательной организацией",
-    href: "/structure",
+    href: "/our-colleage/structure",
   },
   { text: "Документы", href: "/", isList: true },
   { text: "Образование", href: "/", isList: true },
@@ -26,20 +26,20 @@ const links = [
   },
   {
     text: "Материально-техническое обеспечение и оснащённость образовательного процесса",
-    href: "/logistics",
+    href: "/our-colleage/logistics",
   },
   { text: "Стипендии и меры поддержки обучающихся", href: "/", isList: true },
-  { text: "Платные образовательные услуги", href: "/paid" },
-  { text: "Финансово-хозяйственная деятельность", href: "/financial-economic" },
+  { text: "Платные образовательные услуги", href: "/our-colleage/paid" },
+  { text: "Финансово-хозяйственная деятельность", href: "/our-colleage/financial-economic" },
   {
     text: "Вакантные места для приёма (перевода) обучающихся",
-    href: "/vacancies",
+    href: "/our-colleage/vacancies",
   },
   { text: "Доступная среда", href: "/", isList: true },
-  { text: "Международное сотрудничество", href: "/international" },
+  { text: "Международное сотрудничество", href: "/our-colleage/international" },
   {
     text: "Организация питания в образовательной организации",
-    href: "/nutrition",
+    href: "/our-colleage/nutrition",
   },
 ];
 
@@ -141,51 +141,51 @@ const LoginForm = () => {
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
-                          <Link href="/charter">
+                          <Link href="/our-colleage/charter">
                             Устав образовательной организации
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/accreditation">
+                          <Link href="/our-colleage/accreditation">
                             Свидетельство о государственной аккредитации (с
                             приложениями)
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/routine-rules">
+                          <Link href="/our-colleage/routine-rules">
                             Правила внутреннего распорядка обучающихся
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/labor-regulations">
+                          <Link href="/our-colleage/labor-regulations">
                             Правила внутреннего трудового распорядка
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/collective-agreement">
+                          <Link href="/our-colleage/collective-agreement">
                             Коллективный договор
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/self-examination-report">
+                          <Link href="/our-colleage/self-examination-report">
                             Отчет о результатах самообследования
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/authority-regulations">
+                          <Link href="/our-colleage/authority-regulations">
                             Предписания органов, осуществляющих государственный
                             контроль
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/local-act">
+                          <Link href="/our-colleage/local-act">
                             Локальные нормативные акты образовательной
                             организации
                           </Link>
@@ -196,50 +196,50 @@ const LoginForm = () => {
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
-                          <Link href="/realized-programs">
+                          <Link href="/our-colleage/realized-programs">
                             Реализуемые образовательные программы
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/desc-programs">
+                          <Link href="/our-colleage/desc-programs">
                             Описание образовательных программ
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/students-count">
+                          <Link href="/our-colleage/students-count">
                             Численность обучающихся
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/admission-results">
+                          <Link href="/our-colleage/admission-results">
                             Сведения о результатах приема
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/translation-results">
+                          <Link href="/our-colleage/translation-results">
                             Сведения о результатах перевода
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/results-reinstatement-expulsion">
+                          <Link href="/our-colleage/results-reinstatement-expulsion">
                             Сведения о результатах восстановления и отчисления
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/license">
+                          <Link href="/our-colleage/license">
                             Лицензия на осуществление образовательной
                             деятельности
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/union">
+                          <Link href="/our-colleage/union">
                             Учебно-методические объединения
                           </Link>
                         </li>
@@ -250,7 +250,7 @@ const LoginForm = () => {
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
-                          <Link href="/education-standarts">
+                          <Link href="/our-colleage/education-standarts">
                             Федеральные государственные образовательные
                             стандарты
                           </Link>
@@ -262,11 +262,11 @@ const LoginForm = () => {
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
-                          <Link href="/management">Руководство</Link>
+                          <Link href="/our-colleage/management">Руководство</Link>
                         </li>
 
                         <li>
-                          <Link href="/pedagogical-staff">
+                          <Link href="/our-colleage/pedagogical-staff">
                             Педагогический (научно-педагогический) состав
                           </Link>
                         </li>
@@ -277,38 +277,38 @@ const LoginForm = () => {
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
-                          <Link href="/scholarship">
+                          <Link href="/our-colleage/scholarship">
                             О наличии и условиях предоставления обучающимся
                             стипендий
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/social-support">
+                          <Link href="/our-colleage/social-support">
                             О мерах социальной поддержки
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/availability-hostel">
+                          <Link href="/our-colleage/availability-hostel">
                             О наличии общежития
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/dormitory-rooms-count">
+                          <Link href="/our-colleage/dormitory-rooms-count">
                             О количестве жилых помещений в общежитии
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/dormitory-pay">
+                          <Link href="/our-colleage/dormitory-pay">
                             О формировании платы за проживание в общежитии
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/employment">
+                          <Link href="/our-colleage/employment">
                             О трудоустройстве выпускников
                           </Link>
                         </li>
@@ -318,20 +318,20 @@ const LoginForm = () => {
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
-                          <Link href="/limited-opportunities">
+                          <Link href="/our-colleage/limited-opportunities">
                             Условия обучения инвалидов и лиц с ограниченными
                             возможностями здоровья
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/classrooms">
+                          <Link href="/our-colleage/classrooms">
                             О специально оборудованных учебных кабинетах
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/practice-classes">
+                          <Link href="/our-colleage/practice-classes">
                             Об объектах для проведения практических занятий,
                             приспособленных для использования инвалидами и
                             лицами с ограниченными возможностями здоровья
@@ -339,7 +339,7 @@ const LoginForm = () => {
                         </li>
 
                         <li>
-                          <Link href="/library">
+                          <Link href="/our-colleage/library">
                             О библиотеке, приспособленных для использования
                             инвалидами и лицами с ограниченными возможностями
                             здоровья
@@ -347,7 +347,7 @@ const LoginForm = () => {
                         </li>
 
                         <li>
-                          <Link href="/limited-opportunities-sport">
+                          <Link href="/our-colleage/limited-opportunities-sport">
                             Об объектах спорта, приспособленных для
                             использования инвалидами и лицами с ограниченными
                             возможностями здоровья
@@ -355,7 +355,7 @@ const LoginForm = () => {
                         </li>
 
                         <li>
-                          <Link href="/education-limited-opportunities">
+                          <Link href="/our-colleage/education-limited-opportunities">
                             О средствах обучения и воспитания, приспособленных
                             для использования инвалидами и лицами с
                             ограниченными возможностями здоровья
@@ -363,26 +363,26 @@ const LoginForm = () => {
                         </li>
 
                         <li>
-                          <Link href="/access-to-classes">
+                          <Link href="/our-colleage/access-to-classes">
                             Об обеспечении беспрепятственного доступа в здания
                             образовательной организации
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/nutritional-conditions">
+                          <Link href="/our-colleage/nutritional-conditions">
                             О специальных условиях питания
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/life-security">
+                          <Link href="/our-colleage/life-security">
                             О специальных условиях охраны здоровья
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/limited-opportunities-info">
+                          <Link href="/our-colleage/limited-opportunities-info">
                             О доступе к информационным системам и
                             информационно-телекоммуникационным сетям,
                             приспособленным для использования инвалидами и
@@ -391,7 +391,7 @@ const LoginForm = () => {
                         </li>
 
                         <li>
-                          <Link href="/limited-opportunities-resources">
+                          <Link href="/our-colleage/limited-opportunities-resources">
                             Об электронных образовательных ресурсах, к которым
                             обеспечивается доступ инвалидов и лиц с
                             ограниченными возможностями здоровья
@@ -399,21 +399,21 @@ const LoginForm = () => {
                         </li>
 
                         <li>
-                          <Link href="/special-technical-means">
+                          <Link href="/our-colleage/special-technical-means">
                             О наличии специальных технических средств обучения
                             коллективного и индивидуального пользования
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/unhindered-access">
+                          <Link href="/our-colleage/unhindered-access">
                             О наличии условий для беспрепятственного доступа в
                             общежитие, интернат
                           </Link>
                         </li>
 
                         <li>
-                          <Link href="/number-of-places">
+                          <Link href="/our-colleage/number-of-places">
                             О количестве жилых помещений в общежитии, интернате,
                             приспособленных для использования инвалидами и
                             лицами с ограниченными возможностями здоровья
@@ -421,7 +421,7 @@ const LoginForm = () => {
                         </li>
 
                         <li>
-                          <Link href="/in-demand-professions">
+                          <Link href="/our-colleage/in-demand-professions">
                             ИНФОРМАЦИЯ О ВОСТРЕБОВАННЫХ ПРОФЕССИЯХ И
                             СПЕЦИАЛЬНОСТЯХ В СУБЪЕКТАХ РФ, ГДЕ ВОЗМОЖНО ПОЛУЧИТЬ
                             ДАННУЮ ПРОФЕССИЮ / СПЕЦИАЛЬНОСТЬ ДЛЯ ЛЮДЕЙ С

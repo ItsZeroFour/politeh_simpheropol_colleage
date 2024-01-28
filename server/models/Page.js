@@ -30,6 +30,12 @@ const PageModel = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+
+	viewsCount: {
+		type: Number,
+		default: 0,
+	},
+
 })
 
 export default mongoose.model('Page', PageModel)

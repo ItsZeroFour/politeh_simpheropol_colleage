@@ -1,50 +1,72 @@
 .post_title {
-	text-align: center;
-	margin-top: 10px;
-	font-size: 24px;
-	font-weight: 700;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .postImgTitleWrapper {
-	position: relative;
-	width: 400px;
-	align-items: center;
-	margin: 10px;
-	margin-top: 50px;
-	flex-direction: column;
-	ul > li {
-		display: list-item;
-		list-style: disc;
-	}
-	ol > li {
-		display: list-item;
-		list-style: decimal;
-	}
-	.image {
-		/* position: sticky !important; */
+  position: relative;
+  width: 400px;
+  align-items: center;
+  margin: 10px;
+  margin-top: 50px;
+  flex-direction: column;
+  ul > li {
+    display: list-item;
+    list-style: disc;
+  }
+  ol > li {
+    display: list-item;
+    list-style: decimal;
+  }
+  .image {
+    /* position: sticky !important; */
 
-		object-fit: cover;
-		border-radius: var(--border-radius-md);
-	}
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
+  }
 }
+
+.post__image {
+  width: 400px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: var(--border-radius-md);
+
+  img {
+    overflow: hidden;
+    width: 750px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
+
+    transition: transform 0.4s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
 .wrapperPosts {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  // align-items: center;
 }
 .post_date {
-	font-size: 12px;
-	margin-top: 15px;
+  font-size: 12px;
+  margin-top: 15px;
 }
 .btn {
-	display: block;
-	margin: 0 auto;
-	margin-top: 40px;
-	width: 200px;
-	background-color: var(--color-blue);
-	border-radius: 10px;
-	padding: 10px;
-	color: var(--color-white);
-	font-size: 24px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 200px;
+  background-color: var(--color-blue);
+  border-radius: 10px;
+  padding: 10px;
+  color: var(--color-white);
+  font-size: 24px;
 }

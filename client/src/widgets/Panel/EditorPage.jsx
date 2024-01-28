@@ -763,8 +763,8 @@ export default function App() {
 									}
 									position='bottom center'
 								>
-						{mainPanelType === 'edit-page' && <EditorPage />}
-						<div
+									{/* {mainPanelType === 'edit-page' && <EditorPage />} */}
+									<div
 										style={{
 											backgroundColor: 'gray',
 											display: 'flex',
