@@ -59,6 +59,14 @@
     height: 390px;
 
     transition: transform .3s ease-in-out;
+
+    @media (max-width: 550px) {
+      height: 290px;
+    }
+  }
+
+  @media (max-width: 550px) {
+    height: 290px;
   }
 }
 

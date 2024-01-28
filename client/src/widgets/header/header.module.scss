@@ -1,7 +1,6 @@
 $height: 130px;
 $height-mobile: 70px;
 
-
 .header {
   position: fixed;
   left: 0;
@@ -26,7 +25,6 @@ $height-mobile: 70px;
 }
 
 .logo {
-
   // @media (max-width: 540px) {
   //   position: relative;
   //   & img {
@@ -78,13 +76,17 @@ $height-mobile: 70px;
 
 .link {
   position: relative;
+
+  @media (max-width: 550px) {
+    text-align: center;
+  }
 }
 
 .headerWrapper {
   height: 180px;
 
   @media (max-width: 550px) {
-        height: 115px;
+    height: 115px;
   }
 }
 
@@ -130,11 +132,17 @@ $height-mobile: 70px;
   display: none;
   font-size: 32px;
 
-  @media (max-width: 1240px) {
+  @media (max-width: 1240px) and (max-width: 550px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 21px;
+    width: 90%;
+    margin: auto;
   }
 }
 
@@ -149,6 +157,12 @@ $height-mobile: 70px;
 
   display: inline;
   margin-left: 5px;
+
+  animation: iconRotateReset 0.4s ease forwards;
+}
+
+.dropdownIconActive {
+  animation: iconRotate 0.4s ease forwards;
 }
 
 .menu {
@@ -197,25 +211,46 @@ $height-mobile: 70px;
     color: var(--color-blue);
     transition: 0.3s;
   }
+
+  @media (max-width: 550px) {
+    font-size: 21px;
+  }
 }
 
 .menuLinks {
   max-width: 900px;
 
-  margin: 90px auto 0 auto;
+  margin: 40px auto 0 auto;
 
-  :not(:first-child) {
+  & li:not(:first-child) {
     margin-top: 41px;
+
+    @media (max-width: 550px) {
+      margin-top: 22px;
+    }
+  }
+
+  @media (max-width: 550px) {
+    margin: 40px auto 0 auto;
+    width: 90%;
   }
 }
 
 .menuFooter {
-  margin: auto auto 58px auto;
-  width: 1582px;
+  margin: auto auto 20px auto;
+  width: 85%;
 
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
+  @media (max-width: 550px) {
+    margin: auto auto 15px auto;
+    gap: 50px;
+    justify-content: initial;
+
+    padding-top: 60px;
+  }
 }
 
 .menuIcon {
@@ -234,11 +269,23 @@ $height-mobile: 70px;
   }
 }
 
+.developers {
+  @media (max-width: 550px) {
+    display: none;
+  }
+}
+
 .today {
   position: absolute;
   left: 50%;
 
   transform: translateX(-50%);
+
+  @media (max-width: 550px) {
+    position: sticky;
+    transform: none;
+    text-align: right;
+  }
 }
 
 @keyframes dropdownOpen {
@@ -251,69 +298,56 @@ $height-mobile: 70px;
   }
 }
 
-// .header__menu__bottom {
-//   margin-top: auto;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   padding: 20px 170px;
+@keyframes iconRotate {
+  0% {
+    transform: rotate(0deg);
+  }
 
-//   @media (max-width: 1123px) {
-//     padding: 20px;
-//     flex-wrap: wrap;
-//   }
-// }
+  100% {
+    transform: rotate(180deg);
+  }
+}
 
-// .footer__devs {
-//   float: right;
-//   margin-left: 50%;
-//   margin-top: auto;
+@keyframes iconRotateReset {
+  0% {
+    transform: rotate(180deg);
+  }
 
-//   @media (max-width: 1030px) {
-//     margin-left: 0;
-//     margin-top: 1rem;
-//   }
-// }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 
-// .header__devs__list {
-//   width: 280px;
+.mobileDropdown {
+  display: grid;
+  grid-template-rows: 0fr;
 
-//   li {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     margin-top: 0.5rem;
-//   }
+  animation: mobileDropdownOpen 0.35s forwards;
+  overflow: hidden;
 
-//   @media (max-width: 320px) {
-//     width: auto;
-//   }
-// }
+  min-height: 0;
+}
 
-// .header__devs__links {
-//   display: flex;
-//   align-items: center;
-//   gap: 15px;
-// }
+.mobileDropdownClosing {
+  animation: mobileDropdownClose 0.35s forwards;
+}
 
-// .header__devs__title {
-//   margin-left: 117px;
-// }
+@keyframes mobileDropdownOpen {
+  0% {
+    grid-template-rows: 0fr;
+  }
 
-// .header__menu__top {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 40px 170px;
-//   background: var(--color-dark);
+  100% {
+    grid-template-rows: 1fr;
+  }
+}
 
-//   @media (max-width: 845px) {
-//     padding: 20px;
-//   }
+@keyframes mobileDropdownClose {
+  0% {
+    grid-template-rows: 0fr;
+  }
 
-//   @media (max-width: 425px) {
-//     img {
-//       display: none;
-//     }
-//   }
-// }
+  100% {
+    grid-template-rows: 1fr;
+  }
+}

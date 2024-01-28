@@ -5,6 +5,8 @@ import style from "./../../../widgets/header/header.module.scss";
 import Link from "next/link";
 import { getHeader } from "@app/store/header/header.slice";
 import Triangle from "@public/assets/icons/triangle.svg";
+import { useEffect, useState } from "react";
+import { useDebounce } from "@uidotdev/usehooks";
 
 //               { title: "Наш колледж", link: "/our-colleage" },
 //               { title: "Абитуриенту", link: "/enrollee" },
@@ -15,7 +17,7 @@ import Triangle from "@public/assets/icons/triangle.svg";
 //               { title: "Олимпиады", link: "/olimpiads" },
 //               { title: "ДПО", link: "/dpo" },
 
-const linksList = [
+export const linksList = [
   { url: "/", text: "Главная" },
   {
     url: "/",
@@ -113,47 +115,41 @@ const linksList = [
 ];
 
 const Links = () => {
-  const { addHovered, removeHovered, addClosing } = useActions();
-  const dispatch = useDispatch();
-
-  const hovered = useSelector(getHeader).hovered;
-  const closing = useSelector(getHeader).closing;
-
-  const handleOnMouseEnter = (e) => {
-    dispatch(addHovered(e.currentTarget.id));
-  };
-
-  const handleOnMouseLeave = (e) => {
-    const id = e.currentTarget.id;
-
-    dispatch(removeHovered(id));
-    dispatch(addClosing(id));
-  };
-
   return linksList.map((link, index) => {
     const id = style.link + index;
     link.id = id;
+
+    const [isHovered, setIsHovered] = useState(false)
+    const [isRemoving, setIsRemoving] = useState(false)
+    const debouncedIsHovered = useDebounce(isHovered, 100)
+
+    const handleHover = () => {
+      setIsHovered(true)
+      setIsRemoving(false)
+    }
+
+    const handleUnhover = () => {
+      setIsRemoving(true)
+      setTimeout(() => setIsHovered(false), 330)
+    }
 
     return (
       <li
         key={index}
         className={style.link}
         id={id}
-        onMouseEnter={link.isCategory && handleOnMouseEnter}
-        onMouseLeave={link.isCategory && handleOnMouseLeave}
+        onMouseEnter={link.isCategory && handleHover}
+        onMouseLeave={link.isCategory && handleUnhover}
       >
         <Link href={link.url}>{link.text}</Link>
-        {link.isCategory && <Triangle className={style.dropdownIcon} />}
+        {link.isCategory && <Triangle className={`${style.dropdownIcon} ${isHovered && style.dropdownIconActive}`} />}
 
-        {link.isCategory && hovered.includes(id) && (
-          <LinkDropdown data={link} />
-        )}
-        {link.isCategory && closing.includes(id) && (
-          <LinkDropdown isClosing={true} data={link} />
+        {link.isCategory && debouncedIsHovered && (
+          <LinkDropdown data={link} isRemoving={isRemoving} />
         )}
       </li>
-    );
-  });
-};
+    )
+  })
+}
 
 export default Links;
