@@ -6,14 +6,6 @@ import PostLoading from '@features/home/PostLoading'
 import Link from 'next/link'
 import style from './Posts.module.scss'
 
-// const getLastPosts = async () => {
-//   const posts = await fetch('http://localhost:4444/post/getAll3', {
-//     next: { revalidate: 10 },
-//   })
-
-//   return await posts.json()
-// }
-
 const _posts = data => {
 	if (!data) data = [0, 0, 0]
 	if (data.length > 3) data = data.slice(-3)
@@ -28,13 +20,13 @@ const Posts = () => {
 	const { data } = useGetPostsQuery()
 
 	return (
-		<div className={style.posts}>
+		<section className={style.posts}>
 			{_posts(data)}
 
 			<p className={style.viewAll}>
 				<Link href={`/posts`}>Смореть больше...</Link>
 			</p>
-		</div>
+		</section>
 	)
 }
 

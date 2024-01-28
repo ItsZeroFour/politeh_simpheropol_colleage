@@ -2,7 +2,7 @@ import style from "./Speciality.module.scss";
 
 const SpecialityDisciplines = ({ speciality }) => {
   return (
-    <div className={style.disciplines}>
+    <section className={style.disciplines}>
       <h2>Важные учебные дисциплины:</h2>
 
       <ul>
@@ -10,7 +10,7 @@ const SpecialityDisciplines = ({ speciality }) => {
           <li key={index}>{item}</li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

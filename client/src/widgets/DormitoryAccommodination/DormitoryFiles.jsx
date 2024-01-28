@@ -2,7 +2,7 @@ import style from "./style.module.scss";
 
 const DormitoryFiles = () => {
   return (
-    <div className={style.dormitory__files}>
+    <section className={style.dormitory__files}>
       <ul>
         {[
           {
@@ -27,7 +27,7 @@ const DormitoryFiles = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

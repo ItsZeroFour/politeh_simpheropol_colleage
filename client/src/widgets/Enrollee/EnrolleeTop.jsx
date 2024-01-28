@@ -2,7 +2,7 @@ import style from "./Enrollee.module.scss";
 
 const EnrolleeTop = () => {
   return (
-    <div className={style.enrollee__top}>
+    <section className={style.enrollee__top}>
       <div className={style.enrollee__top__left}>
         <h1>Телефоны приемной комиссии</h1>
 
@@ -34,7 +34,7 @@ const EnrolleeTop = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

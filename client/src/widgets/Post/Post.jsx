@@ -6,7 +6,7 @@ const Post = ({ post }) => {
   const src = `${process.env.NEXT_PUBLIC_SERVER_URL}${post.image}`;
 
   return (
-    <div className={style.post}>
+    <section className={style.post}>
       <Image
         className={style.post__image}
         src={src}
@@ -29,7 +29,7 @@ const Post = ({ post }) => {
       </div>
 
       <p className={style.post__text}>{post.text}</p>
-    </div>
+    </section>
   );
 };
 

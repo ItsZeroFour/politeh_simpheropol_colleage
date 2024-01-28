@@ -9,7 +9,7 @@ const DormitoryAnnouncement = () => {
   ];
 
   return (
-    <div className={style.dormitory__announcement}>
+    <section className={style.dormitory__announcement}>
       <div className={style.dormitory__announcement__title}>
         <h3>Объвление!</h3>
       </div>
@@ -19,7 +19,7 @@ const DormitoryAnnouncement = () => {
           <li key={index}>{item}</li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

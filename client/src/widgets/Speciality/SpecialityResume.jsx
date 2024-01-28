@@ -3,7 +3,7 @@ import style from "./Speciality.module.scss";
 
 const SpecialityResume = ({ speciality }) => {
   return (
-    <div className={style.speciality__resume}>
+    <section className={style.speciality__resume}>
       <h2>Пример вашего будущего резюме</h2>
 
       <div className={style.speciality__resume__wrapper}>
@@ -63,7 +63,7 @@ const SpecialityResume = ({ speciality }) => {
           </ul>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

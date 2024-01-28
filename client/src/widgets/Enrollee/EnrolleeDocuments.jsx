@@ -2,7 +2,7 @@ import style from "./Enrollee.module.scss";
 
 const EnrolleeDocuments = () => {
   return (
-    <div className={style.enrollee__documents}>
+    <section className={style.enrollee__documents}>
       <h3>Комплект документов для предоставления в приёмную комиссию</h3>
 
       <ul>
@@ -23,7 +23,7 @@ const EnrolleeDocuments = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

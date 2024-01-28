@@ -5,7 +5,7 @@ const SpecialityTop = ({ speciality }) => {
   const mainSpecialityImg = `${process.env.NEXT_PUBLIC_SERVER_URL}${speciality.mainImage}`;
 
   return (
-    <div className={style.speciality__top}>
+    <section className={style.speciality__top}>
       <div className={style.speciality__top__text}>
         <h1>{speciality.specialityTitle}</h1>
         <h2>{speciality.specialityCode}</h2>
@@ -21,7 +21,7 @@ const SpecialityTop = ({ speciality }) => {
           height={713}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -37,13 +37,18 @@ const GraduatesProfiles = () => {
 
 const Graduates = () => {
   return (
-    <div>
-      <h1>Колледж по праву может гордиться и своими выдающимися выпускниками!</h1>
+    <section>
+      {/* <h1>Колледж по праву может гордиться и своими выдающимися выпускниками!</h1>
 
-      <div className={style.graduatesList}>
-
-      </div>
-    </div>
+      <ul className={style.graduatesList}>
+        {graduatesProfiles.map(({fullname, about}) => (
+          <li key={fullname}>
+            <h2>{fullname}</h2>
+            <p>{about}</p>
+          </li>
+        ))}
+      </ul> */}
+    </section>
   )
 }
 

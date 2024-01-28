@@ -38,7 +38,7 @@ const Posts = () => {
   }, [increment]);
 
   return (
-    <div>
+    <section>
       <div className={styles.wrapperPosts}>
         {data.length == 0 && <MyComponent />}
         {data.length !== 0 &&
@@ -102,7 +102,7 @@ const Posts = () => {
       >
         Загрузить еще
       </button>
-    </div>
+    </section>
   );
 };
 

@@ -6,8 +6,6 @@ import StoreProvider from "./store/StoreProvider";
 import Script from "next/script";
 import Head from "next/head";
 
-// TODO: fix this shit when we have something like this in the browser
-
 export const metadata = {
   title: "Политехнический колледж Симферополя",
   description: `Государственное бюджетное профессиональное образовательное учреждение
@@ -48,8 +46,8 @@ const RootLayout = ({ children }) => {
           </div>
         </StoreProvider>
 
-        {/* <Script src="https://lidrekon.ru/slep/js/jquery.js" />
-        <Script src="https://lidrekon.ru/slep/js/uhpv-full.min.js" /> */}
+        <Script src="https://lidrekon.ru/slep/js/jquery.js" />
+        <Script src="https://lidrekon.ru/slep/js/uhpv-full.min.js" />
       </body>
     </html>
   );

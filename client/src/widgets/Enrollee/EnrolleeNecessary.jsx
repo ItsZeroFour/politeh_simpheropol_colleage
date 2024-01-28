@@ -5,7 +5,7 @@ import React from "react";
 const EnrolleeNecessary = () => {
   return (
     <React.Fragment>
-      <div className={style.necessary}>
+      <section className={style.necessary}>
         <h2>Необходимо для поступления</h2>
 
         <div className={style.necessary__resolutions}>
@@ -49,11 +49,11 @@ const EnrolleeNecessary = () => {
           на тяжелых работах и на работах с вредными и (или) опасными условиями
           труда»
         </p>
-      </div>
+      </section>
 
-      <div className={style.enrollee__order__link}>
+      <section className={style.enrollee__order__link}>
         <Link href="/order-of-admission">Приказ о зачислении</Link>
-      </div>
+      </section>
     </React.Fragment>
   );
 };

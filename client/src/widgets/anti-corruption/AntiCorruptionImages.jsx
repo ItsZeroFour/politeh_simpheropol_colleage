@@ -11,14 +11,14 @@ import Image from 'next/image'
 const AntiCorruptionImages = () => {
 	const imagesArray = [first, second, third, fourth, fifth, sixth]
 	return (
-		<div className={styles.rootImages}>
+		<section className={styles.rootImages}>
 			<div className={styles.imagesGrid}>
 				{imagesArray.map(el => {
 					return <Image src={el} />
 				})}
 			</div>
 			<Image className={styles.lastImage} src={lastImage} width={1400} height={1900} />
-		</div>
+		</section>
 	)
 }
 

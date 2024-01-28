@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const FirstScreen = () => {
   return (
-    <div className={style.firstScreen}>
+    <section className={style.firstScreen}>
       <Image className={style.bubbles} src={bubbles} />
       <h1 className={style.title} data-img={bubbles.src}>
         Симферопольский
@@ -31,7 +31,7 @@ const FirstScreen = () => {
           className={style.button}
         />
       </Link>
-    </div>
+    </section>
   );
 };
 
