@@ -126,7 +126,8 @@ export const LinkDeleteNestingLink = async (req, res) => {}
 
 export const LinkUpdate = async (req, res) => {
 	try {
-		const { idUrl, url, text, isCategory, links } = req.body
+		const { idUrl, url, text, isCategory, links } = req.body.newObject
+		//console.log(req.body.newObject.links)
 		function hasDuplicateUrls(data) {
 			const urlSet = new Set()
 

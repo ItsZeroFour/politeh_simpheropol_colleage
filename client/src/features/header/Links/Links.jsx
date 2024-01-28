@@ -124,7 +124,6 @@ const Links = () => {
 					`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheaderall`
 				)
 				setLinksServer([...data.data])
-				console.log('FETCHING')
 			} catch (error) {
 				alert.error('error' + error)
 			}
@@ -137,13 +136,12 @@ const Links = () => {
 
 	const hovered = useSelector(getHeader).hovered
 	const closing = useSelector(getHeader).closing
-	console.log(closing)
+
 	const handleOnMouseEnter = e => {
 		dispatch(addHovered(e.currentTarget.id))
 	}
 
 	const handleOnMouseLeave = e => {
-		console.log('EEEEE')
 		const id = e.currentTarget.id
 		dispatch(removeHovered(id))
 		dispatch(addClosing(id))
