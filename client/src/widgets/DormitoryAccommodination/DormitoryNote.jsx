@@ -20,7 +20,7 @@ const additionDocumentsForMigrants = [
 
 const DormitoryNote = () => {
   return (
-    <div className={style.dormitory__note}>
+    <section className={style.dormitory__note}>
       <h2>Памятка студенту при поселении в общежитие</h2>
       <p>
         Для поселения в студенческое общежитие ГБПОУ РК «Симферопольский
@@ -70,7 +70,7 @@ const DormitoryNote = () => {
           поселения.
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 

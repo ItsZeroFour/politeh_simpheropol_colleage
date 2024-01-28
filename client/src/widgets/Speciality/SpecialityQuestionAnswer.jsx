@@ -2,7 +2,7 @@ import style from "./Speciality.module.scss";
 
 const SpecialityQuestionAnswer = ({ speciality }) => {
   return (
-    <div className={style.question__answer}>
+    <section className={style.question__answer}>
       <div className={style.question__answer__block}>
         <h3>Что я буду уметь?</h3>
 
@@ -56,7 +56,7 @@ const SpecialityQuestionAnswer = ({ speciality }) => {
           </li>
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

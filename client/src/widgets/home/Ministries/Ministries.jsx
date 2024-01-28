@@ -144,7 +144,7 @@ function Ministries() {
     <>
       <div className={style.delimiter}></div>
 
-      <div className={style.ministries}>
+      <section className={style.ministries}>
         <ArrowLeft className={style.sliderLeft} ref={sliderNavigationLeft} />
 
         <Swiper
@@ -161,7 +161,7 @@ function Ministries() {
         </Swiper>
 
         <ArrowRight className={style.sliderRight} ref={sliderNavigationRight} />
-      </div>
+      </section>
     </>
   );
 }

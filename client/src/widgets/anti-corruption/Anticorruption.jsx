@@ -10,9 +10,9 @@ const Anticorruption = () => {
 	const openAllList = () => {
 		setIsOpened(prevState => (prevState == false ? true : false))
 	}
-	console.log(<AntiCorruptionList />)
+	
 	return (
-		<div className={styles.root}>
+		<section className={styles.root}>
 			<span className={styles.titleFirst}>Противодействие коррупции</span>
 			<div className={styles.line}></div>
 			<div className={styles.BlackBlock}>
@@ -87,7 +87,7 @@ const Anticorruption = () => {
 			<div>
 				<AntiCorruptionImages />
 			</div>
-		</div>
+		</section>
 	)
 }
 

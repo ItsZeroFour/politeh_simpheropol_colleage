@@ -21,7 +21,7 @@ const Corpus = ({ schedule, title }) => {
   schedule = schedule[dayOfWeek]
 
   return (
-    <div>
+    <section>
      <div className={style.head}>
         <h2 className={style.title}>{title}</h2>
         {/* <CorpusSearchBar data={searchData} /> */}
@@ -36,7 +36,7 @@ const Corpus = ({ schedule, title }) => {
 
   
       </div>
-    </div>
+    </section>
   )
 }
 

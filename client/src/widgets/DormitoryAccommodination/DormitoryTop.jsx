@@ -4,7 +4,7 @@ import dormitoryImage from "/public/assets/images/DormitoryAccommodination/Dormi
 
 const DormitoryTop = () => {
   return (
-    <div className={style.dormitory__top}>
+    <section className={style.dormitory__top}>
       <div className={style.dormitory__top__main}>
         <Image src={dormitoryImage} alt="Общежитие" width={983} height={623} />
 
@@ -37,7 +37,7 @@ const DormitoryTop = () => {
         лиц с ограниченными возможностями здоровья. В общежитии круглосуточно со
         студентами работают воспитатели.
       </p>
-    </div>
+    </section>
   );
 };
 

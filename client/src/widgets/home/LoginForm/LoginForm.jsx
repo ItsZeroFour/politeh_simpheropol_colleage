@@ -80,9 +80,7 @@ const LoginForm = () => {
         }
       );
       if (res.status == 200) {
-        console.log("200", res.data.token);
         Cookies.set("token", res?.data?.token);
-        console.log(Cookies.get("token"));
       }
       alert(" успешно вошли!");
       resetLogin();
@@ -103,7 +101,7 @@ const LoginForm = () => {
   } = useInput();
 
   return (
-    <div className={style.loginForm}>
+    <section className={style.loginForm}>
       <div className={style.container}>
         <form>
           <input
@@ -442,7 +440,7 @@ const LoginForm = () => {
         </div>
         <Designed />
       </div>
-    </div>
+    </section>
   );
 };
 

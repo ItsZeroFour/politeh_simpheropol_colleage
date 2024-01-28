@@ -6,8 +6,6 @@ import StoreProvider from "./store/StoreProvider";
 import Script from "next/script";
 import Head from "next/head";
 
-// TODO: fix this shit when we have something like this in the browser
-
 export const metadata = {
   title: "Политехнический колледж Симферополя",
   description: `Государственное бюджетное профессиональное образовательное учреждение

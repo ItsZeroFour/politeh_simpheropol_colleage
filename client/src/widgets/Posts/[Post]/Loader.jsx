@@ -78,7 +78,7 @@ const MyComponent = () => {
 	}, [])
 
 	return (
-		<div
+		<section
 			style={{
 				overflow: 'hidden',
 				textAlign: 'center',
@@ -106,7 +106,7 @@ const MyComponent = () => {
 					<circle className='follower' cx='472' cy='300' r='13' />
 				</g>
 			</svg>
-		</div>
+		</section>
 	)
 }
 
