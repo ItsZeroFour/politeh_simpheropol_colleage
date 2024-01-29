@@ -1,16 +1,16 @@
-import { useActions } from '@app/hooks/useActions'
-import { getHeader } from '@app/store/header/header.slice'
 import LinkDropdown from '@features/header/LinkDropdown/LinkDropdown'
 import Triangle from '@public/assets/icons/triangle.svg'
+import { useDebounce } from '@uidotdev/usehooks'
 import axios from 'axios'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import style from './../../../widgets/header/header.module.scss'
 
 const Links = () => {
 	const [linksServer, setLinksServer] = useState([])
-	const [closingLinks, setClosingLinks] = useState([])
+	const [hoveredLinkId, setHoveredLinkId] = useState(null)
+	const [isRemoving, setIsRemoving] = useState(false)
+
 	useEffect(() => {
 		const fetchingData = async () => {
 			try {
@@ -19,55 +19,64 @@ const Links = () => {
 				)
 				setLinksServer([...data.data])
 			} catch (error) {
-				alert.error('error' + error)
+				alert('error' + error)
 			}
 		}
 		fetchingData()
 	}, [])
 
-	const { addHovered, removeHovered, addClosing } = useActions()
-	const dispatch = useDispatch()
-
-	const hovered = useSelector(getHeader).hovered
-	const closing = useSelector(getHeader).closing
-
-	const handleOnMouseEnter = e => {
-		dispatch(addHovered(e.currentTarget.id))
+	const handleHover = id => {
+		setHoveredLinkId(id)
+		setIsRemoving(false)
 	}
 
-	const handleOnMouseLeave = e => {
-		const id = e.currentTarget.id
-		dispatch(removeHovered(id))
-		dispatch(addClosing(id))
-		setClosingLinks(prev => [...prev, id])
+	const handleUnhover = () => {
+		setIsRemoving(true)
+		setTimeout(() => setHoveredLinkId(null), 330)
 	}
 
-	return linksServer.map((link, index) => {
-		const id = style.link + index
-		link.id = id
-		return (
-			<li
-				key={index}
-				className={style.link}
-				id={id}
-				onMouseEnter={link.nestedObjects.length !== 0 && handleOnMouseEnter}
-				onMouseLeave={link.nestedObjects.length !== 0 && handleOnMouseLeave}
-			>
-				<Link href={link.url}>{link.text}</Link>
-				{link.nestedObjects.length !== 0 && (
-					<Triangle className={style.dropdownIcon} />
-				)}
-				{link.nestedObjects.length !== 0 && hovered.includes(id) && (
-					<LinkDropdown data={link} />
-				)}
-				{link.nestedObjects.length !== 0 && closing.includes(id) && (
-					<LinkDropdown isClosing={true} data={link} />
-				)}
-			</li>
-		)
-	})
+	const debouncedIsHovered = useDebounce(hoveredLinkId !== null, 300)
 
-	return memoizedLinks
+	return (
+		<ul style={{ display: 'flex', justifyContent: 'space-between' }}>
+			{linksServer.map((link, index) => {
+				const id = style.link + index
+				link.id = id
+
+				return (
+					<li
+						style={{ marginLeft: 20 }}
+						key={index}
+						className={
+							link.nestedObjects.length !== 0 ? style.categoryLink : style.link
+						}
+						id={id}
+						onMouseEnter={() =>
+							link.nestedObjects.length !== 0 && handleHover(id)
+						}
+						onMouseLeave={() =>
+							link.nestedObjects.length !== 0 && handleUnhover()
+						}
+					>
+						<Link href={link.url}>{link.text}</Link>
+						{link.nestedObjects.length !== 0 && (
+							<Triangle
+								className={`${style.dropdownIcon} ${
+									hoveredLinkId === id && style.dropdownIconActive
+								}`}
+							/>
+						)}
+
+						{link.nestedObjects.length !== 0 &&
+							debouncedIsHovered &&
+							hoveredLinkId === id && (
+								<LinkDropdown data={link} isRemoving={isRemoving} />
+							)}
+					</li>
+				)
+			})}
+		</ul>
+	)
 }
 
 export default Links
