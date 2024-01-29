@@ -68,6 +68,12 @@
       a {
         font-size: 24px;
 
+        transition: var(--transition);
+
+        &:hover {
+          color: var(--color-blue);
+        }
+
         @media (max-width: 653px) {
           font-size: 16px;
         }
@@ -116,5 +122,15 @@
     @media (max-width: 1520px) {
       width: 100vw;
     }
+  }
+}
+
+.schedule__correspondence {
+  margin-top: 60px;
+
+  transition: var(--transition);
+
+  &:hover {
+    color: var(--color-blue);
   }
 }
