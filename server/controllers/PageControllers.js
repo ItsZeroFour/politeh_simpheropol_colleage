@@ -44,6 +44,7 @@ export const createPage = async (req, res) => {
   }
 };
 
+
 export const getOurCollegePages = async (req, res) => {
   try {
     const arrPages = await PageModel.find();

@@ -37,6 +37,21 @@ export const getAllPosts = async (req, res) => {
 	}
 }
 
+export const getOnePage = async (req, res) => {
+	try {
+		const { url } = req.params
+		console.log('fdfsdfsdfs')
+		console.log(url)
+		const result = PostModel.findOne({ pageUrl: url })
+		if (result == null) {
+			return res.status(404).json({ message: 'объект не был найден' })
+		}
+		return res.status(200).json({ message: result })
+	} catch (error) {
+		return res.status(500).json({ message: 'ошибка сервера' })
+	}
+}
+
 export const getOnePost = async (req, res) => {
 	try {
 		const postId = req.params.id
@@ -92,7 +107,7 @@ export const deletePost = async (req, res) => {
 		// 		})
 		// 	})
 		try {
-			const docs = await PostModel.findById(req.query.id)
+			const docs = await PostModel.findOneAndDelete(req.query.id)
 			console.log('Result : ', docs)
 		} catch (err) {
 			console.log(err)

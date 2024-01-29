@@ -104,4 +104,5 @@ const OurCollege = () => {
   );
 };
 
+
 export default OurCollege;
