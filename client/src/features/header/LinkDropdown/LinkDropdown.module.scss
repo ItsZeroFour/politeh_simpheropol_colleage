@@ -2,21 +2,18 @@
 .dropdown {
     position: absolute;
 
-    background: var(--color-dark);
-    border: 1px solid rgba(86, 79, 79, 0.2);
-    width: 580px;
-    font-size: 15px;
+    width: 32rem;
+    padding: 0 3rem;
+    font-size: .75rem;
 
     left: 50%;
-    top: -100%;
     transform: translateX(-50%);
 
     display: grid;
     grid-template-rows: 0fr;
 
-    animation: openDropdown .5s linear forwards;
+    animation: openDropdown .35s forwards;
     overflow: hidden;
-    border-radius: var(--border-radius-md);
 
     & nav {
         min-height: 0;
@@ -26,24 +23,29 @@
     z-index: 30000;
 }
 
-.dropdownClosing {
-    animation: closeDropdown .18s linear forwards;
+.dropdownRemoving {
+    animation: removeDropdown .35s forwards;
+    pointer-events: none;
 
-    border: 1px solid transparent;
+    border: .05rem solid transparent;
     transition: .1s;
 }
 
 
 .container {
-    padding-top: 20px;
+    margin-top: .9rem;
+
+    background: var(--color-dark);
+    border: .05rem solid rgba(86, 79, 79, 0.2);
+    border-radius: var(--border-radius-md);
 
     &:last-child {
-        padding-bottom: 16px;
+        padding-bottom: .8rem;
     }
 }
 
 .item {
-    padding: 16px 16px 0 16px;
+    padding: .8rem .8rem 0 .8rem;
     transition: .3s;
 
     &:hover {
@@ -59,7 +61,7 @@
 
 .title {
     text-align: center;
-    padding-bottom: 17px;
+    padding-bottom: .85rem;
 
     cursor: default;
 }
@@ -67,7 +69,7 @@
 .border {
     margin: auto;
 
-    height: 2px;
+    height: .1rem;
     width: 0;
 
     background: rgba(86, 79, 79, 0.2);
@@ -76,17 +78,17 @@
 }
 
 .icon {
-    width: 12px;
-    height: 12px;
+    width: .6rem;
+    height: .6rem;
 
     display: inline;
-    margin-left: 5px;
+    margin-left: .25rem;
 
     animation: openIcon .4s ease forwards
 }
 
 .iconClosing {
-    animation: closingIcon .4s ease forwards
+    animation: closingIcon .4s ease forwards;
 }
 
 
@@ -112,16 +114,19 @@
 }
 
 
-
-@keyframes closeDropdown {
+@keyframes removeDropdown {
     0% {
-        grid-template-rows: 1fr;
+        opacity: 1;
+        filter: blur(0px);
     }
 
     100% {
-        grid-template-rows: 0fr;
+        transform: scale(1.05);
+        opacity: 0;
+        filter: blur(2px);
     }
 }
+
 
 
 @keyframes openIcon {

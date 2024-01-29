@@ -7,8 +7,9 @@ import VK from "@public/assets/icons/vk.svg";
 import Burger from "@shared/buttons/Burger/Burger";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./header.module.scss";
+import MobileLinks from "@features/header/MobileLinks/MobileLinks";
 
 const daysOfWeek = [
   "Воскресенье",
@@ -59,9 +60,9 @@ const menuLinks = [
     url: "/schedule",
     text: "Расписание",
   },
-  { url: "/specialty-study", text: "Изучение выбранной вами специальности" },
-  { url: "/practice", text: "Практика и трудоустройство" },
-  { url: "/olimpiads", text: "Олимпиады" },
+  { url: "/our-colleage/specialty-study", text: "Изучение выбранной вами специальности" },
+  { url: "/our-colleage/practice", text: "Практика и трудоустройство" },
+  { url: "/our-colleage/olimpiads", text: "Олимпиады" },
 ];
 
 const Header = () => {
@@ -78,6 +79,11 @@ const Header = () => {
   const year = date.getFullYear();
   const today = `Сегодня: ${week}, ${day} ${month} ${year}`;
 
+  useEffect(() => {
+    if (!isOpened) document.body.style.overflow = 'auto'
+    else document.body.style.overflow = 'hidden'
+  }, [isOpened])
+
   return (
     <>
       <div className={style.headerWrapper}></div>
@@ -86,7 +92,7 @@ const Header = () => {
         className={`${style.header} ${isOpened && style.headerMenuActive}`}
       >
         <div className={style.container}>
-          <div>
+          <div className={style.logo}>
             <Link href="/">
               <Image src={logo} />
             </Link>
@@ -106,13 +112,17 @@ const Header = () => {
             </button> */}
           </div>
 
-          <Burger onClick={onMenuClick} />
+          <Burger onClick={onMenuClick} isActive={!isOpened} />
         </div>
       </header>
 
       <div className={`${style.menu} ${isOpened && style.menuActive}`}>
         <nav className={style.menuLinks}>
           <ul>
+            <div className={style.mobile__links}>
+              <MobileLinks />
+            </div>
+
             {menuLinks.map((menuLink, index) => (
               <li
                 onClick={() => setIsOpened(!isOpened)}
@@ -122,10 +132,6 @@ const Header = () => {
                 <Link href={menuLink.url}>{menuLink.text}</Link>
               </li>
             ))}
-
-            <div className={style.mobile__links}>
-              <Links />
-            </div>
           </ul>
         </nav>
 
@@ -138,9 +144,9 @@ const Header = () => {
 
           <p className={style.today}>{today}</p>
 
-          {/* <div className={style.developers}>
+          <div className={style.developers}>
             <Designed />
-          </div> */}
+          </div>
         </div>
       </div>
     </>
@@ -148,3 +154,4 @@ const Header = () => {
 };
 
 export default Header;
+

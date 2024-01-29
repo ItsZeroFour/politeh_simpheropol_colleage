@@ -18,10 +18,8 @@ const DormitoryPrice = () => {
     getData();
   }, []);
 
-  console.log(dormitoryes);
-
   return (
-    <div className={style.dormitory__price}>
+    <section className={style.dormitory__price}>
       <div className={style.dormitory__price__title}>
         <h3>
           Стоимость проживания в общежитии с 01.12.2022 г. за одно койко-место:
@@ -41,7 +39,7 @@ const DormitoryPrice = () => {
             </li>
           ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

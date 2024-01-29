@@ -5,46 +5,80 @@
 	overflow: hidden;
 
 	&:not(:first-child) {
-		margin-top: 40px;
+		margin-top: 2rem;
+
+		@media (max-width: 768px) {
+			margin-top: 20px;
+		}
+	}
+
+	& a {
+		outline:  none;
 	}
 }
 
 .info {
-	height: 120px;
+	height: 5.25rem;
 	background: var(--color-dark-secondary);
 	display: flex;
-	align-items: start;
+	align-items: center;
 	//text-align: center;
 	justify-content: space-between;
+	position: relative;
+
+	@media (max-width: 768px) {
+        height: 72px;
+    }
 }
 
 .title {
-	max-width: 400px;
-	max-height: 55px;
-	margin-top: 10px;
-	//margin-left: 15px;
-	padding-right: 16px;
-	font-size: 30px;
+	max-width: 20rem;
+	max-height: 2.75rem;
+	margin-top: .5rem;
+	margin-left: .75rem;
+	padding-right: .8rem;
+	font-size: 1.5rem;
 	font-weight: 400;
+
+	@media (max-width: 768px) {
+        max-width: 170px;
+		max-height: 45px;
+		//margin-left: 15px;
+		padding-right: 8px;
+		font-size: 17px;
+		font-weight: 400;
+    }
 }
 
 .description {
 	//max-width: 100px;
-	max-height: 52px;
-	margin-top: 10px;
-	margin-right: 5px;
+	max-height: 2.6rem;
+	margin-top: .5rem;
+	margin-right: .25rem;
 	//text-align: start;
-	//	padding-right: 22px;
-	font-size: 18px;
+	//	padding-right: 1.1rem;
+	font-size: .9rem;
+
+	margin-top: auto;
+	padding: 0 .6rem .6rem 0;
+	color: var(--color-middle-gray);
+
+	@media (max-width: 768px) {
+        font-size: 14px;
+    }
 }
 
 .image {
 	position: sticky !important;
 
 	max-width: 100%;
-	max-height: 334px;
+	max-height: 16.15rem;
 
 	object-fit: cover;
+
+	@media (max-width: 768px) {
+        max-height: 260px;
+    }
 }
 
 .postLoading {
@@ -52,34 +86,46 @@
 	overflow: hidden;
 
 	&:not(:first-child) {
-		margin-top: 40px;
+		margin-top: 2rem;
 	}
 }
 
 .imageLoading {
-	height: 334px;
+	height: 16.15rem;
 
 	border-top-left-radius: var(--border-radius-md);
 	border-top-right-radius: var(--border-radius-md);
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
+
+	@media (max-width: 768px) {
+		height: 260px;
+	}
 }
 
 .titleLoading {
-	height: 35px;
-	width: 175px;
+	height: 1.75rem;
+	width: 11rem;
 
-	margin-left: 15px;
-	margin-right: 60px;
+	margin-left: .75rem;
+	margin-right: 3rem;
+
+	@media (max-width: 768px) {
+        width: 150px;
+		height: 25px;
+    }
 }
 
 .descLoading {
-	width: 320px;
-	height: 25px;
+	width: 6.75rem;
+	height: 1.25rem;
 
-	padding-right: 42px;
+	position: absolute;
+	right: .9rem;
+	bottom: .9rem;
 
-	&:not(:first-child) {
-		margin-top: 10px;
-	}
+	@media (max-width: 768px) {
+        width: 80px;
+		height: 18px;
+    }
 }

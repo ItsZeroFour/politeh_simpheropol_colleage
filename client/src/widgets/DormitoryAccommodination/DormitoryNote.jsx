@@ -20,7 +20,7 @@ const additionDocumentsForMigrants = [
 
 const DormitoryNote = () => {
   return (
-    <div className={style.dormitory__note}>
+    <section className={style.dormitory__note}>
       <h2>Памятка студенту при поселении в общежитие</h2>
       <p>
         Для поселения в студенческое общежитие ГБПОУ РК «Симферопольский
@@ -30,8 +30,8 @@ const DormitoryNote = () => {
 
       <div className={style.dormitory__note__documents}>
         <ol>
-          {dependentDocuments.map((text) => (
-            <li>{text}</li>
+          {dependentDocuments.map((text, index) => (
+            <li key={index}>{text}</li>
           ))}
         </ol>
       </div>
@@ -39,8 +39,8 @@ const DormitoryNote = () => {
       <div className={style.dormitory__note__documents}>
         <p>Дополнительно для иностранцев:</p>
         <ol>
-          {additionDocumentsForMigrants.map((text) => (
-            <li>{text}</li>
+          {additionDocumentsForMigrants.map((text, index) => (
+            <li key={index}>{text}</li>
           ))}
         </ol>
       </div>
@@ -70,7 +70,7 @@ const DormitoryNote = () => {
           поселения.
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -11,7 +11,7 @@ const PostLoading = () => {
 
         <div className={style.info}>
             <Skeleton className={style.titleLoading} />
-            <Skeleton count={2} className={style.descLoading} />
+            <Skeleton className={style.descLoading} />
         </div>
 
       </SkeletonTheme>

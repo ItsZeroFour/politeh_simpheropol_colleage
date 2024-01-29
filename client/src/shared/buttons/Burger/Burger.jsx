@@ -1,9 +1,12 @@
 import style from './Burger.module.scss'
 
-const Burger = ({ onClick }) => {
+const Burger = ({ onClick, isActive }) => {
   const handleClick = (e) => {
     const element = e.currentTarget
-    element.classList.toggle(style.active)
+
+    console.log(isActive);
+    if (isActive && !element.classList.contains(style.active)) element.classList.add(style.active)
+    else if (!isActive && element.classList.contains(style.active)) element.classList.remove(style.active)
 
     onClick()
   }

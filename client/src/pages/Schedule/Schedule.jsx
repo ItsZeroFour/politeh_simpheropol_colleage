@@ -1,198 +1,2372 @@
-"use client";
-import { fetchSchedule } from "@app/store/schedule/scheduleSlice";
-import Image from "next/image";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import style from "./Schedule.module.scss";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
-import Link from "next/link";
+'use client'
+
+import { useDispatch, useSelector } from "react-redux"
+
+import Corpus from "@widgets/Schedule/Corpus/Corpus"
+import { getSchedule } from "@app/store/schedule/schedule.slice"
+import { useActions } from "@app/hooks/useActions"
+import { useEffect } from "react"
+import { useMediaQuery } from "@uidotdev/usehooks"
+
+const schedule = {
+  first: {
+    monday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+    tuesday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+    wednesday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+    thursday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+    friday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+  },
+  second: {
+    monday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+    tuesday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+    wednesday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+    thursday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+    friday: [
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+      {
+        group: '12ИСП-В',
+        lessons: {
+          0: { name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
+          1: { name: 'история', lecturer: 'Пшеничная', cabinet: 203 },
+          2: { name: 'информ. технологии', lecturer: 'Акимова', cabinet: 307 },
+          3: { name: 'МДК', lecturer: 'Заболотский', cabinet: 311 },
+          4: { name: 'предмет', lecturer: 'Преподаватель', cabinet: 216 },
+          5: { name: 'Супер крутой', lecturer: 'Власенко', cabinet: 216 },
+        },
+      },
+	],
+  },
+}
+
+const getPairsNumeration = (schedule, day) => {
+	return Object.keys(schedule.first[day][0].lessons)
+}
 
 const Schedule = () => {
-  const dispatch = useDispatch();
-  const { schedule } = useSelector((state) => state.schedule);
+  const { setNumerationOfPairs, setIsSmallDevice } = useActions()
+  const { dayOfWeek } = useSelector(getSchedule)
 
-  const isPostsLoading = schedule.status === "loading";
+  const dispatch = useDispatch()
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 1280px)")
+
   useEffect(() => {
-    dispatch(fetchSchedule());
-  }, []);
+    dispatch(setNumerationOfPairs(getPairsNumeration(schedule, dayOfWeek)))
+    if (isSmallDevice) dispatch(setIsSmallDevice(true))
+  }, [])
 
-  const IsRender = ({ isPostsLoading }) => {
-    if (!isPostsLoading) {
-      return (
-        <div className={style.scheduleRoot}>
-					<div className={style.schedule__title}>
-						<h1>Расписание</h1>
-					</div>
-
-          <span>{schedule.items.date}</span>
-          <div className={style.wrapperCorpus}>
-            <span>Первый корпус</span>
-            <Zoom zoomMargin={50}>
-              <Image
-                src={schedule.items.scheduleOne}
-                width={800}
-                height={800}
-              />
-            </Zoom>
-          </div>
-          <div className={style.wrapperCorpus}>
-            <span>Второй корпус</span>
-            <Zoom zoomMargin={50}>
-              <Image
-                src={schedule.items.scheduleTwo}
-                width={800}
-                height={800}
-              />
-            </Zoom>
-          </div>
-
-          <div className={style.schedule__block}>
-            <ul>
-              <li>
-                <Link href="schedule-correspondence">
-                  Расписание занятий 2022-{new Date().getFullYear()} учебного
-                  года группы: 34зМ, 34зТВ, 34зТМ, 34зТХ, 4зТХ, 34зХ, 34зКС,
-                  4зКС заочной формы обучения на период с 10.04.2023 г. по
-                  22.04.2023 г.
-                </Link>
-              </li>
-
-              <li>
-                <Link href="schedule-correspondence-1-course">
-                  Расписание занятий установочной сессии 2023-
-                  {new Date().getFullYear()} учебного года группы 1 курса
-                  заочной формы обучения на период с 15.09.2023 г. по 21.09.2023
-                  г.
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className={style.schedule__bell}>
-            <h1>Расписание звонков</h1>
-
-            <div className={style.schedule__bell__notification}>
-              <p>Внимание, уважаемые преподаватели и студенты!</p>
-              <p>
-                ВНЕСЕНЫ ИЗМЕНЕНИЯ В РАСПИСАНИЕ ЗВОНКОВ И ПРОДОЛЖИТЕЛЬНОСТИ
-                ПЕРЕМЕН!
-              </p>
-            </div>
-
-            <p>
-              На основании Рекомендаций по профилактике новой коронавирусной
-              инфекции (COVID-19) в профессиональных образовательных
-              организациях (Методические рекомендации МР 3.1/2.4.0206-20)
-              Федеральной службы по надзору в сфере защиты прав потребителя и
-              благополучия населения, во исполнение письма Министерства
-              образования, науки и молодежи Республики Крым
-            </p>
-
-            <Zoom>
-              <Image
-                src="/assets/images/schedule_bell.png"
-                alt="schedule bell"
-                width={1572}
-                height={1163}
-              />
-            </Zoom>
-          </div>
-        </div>
-      );
-    } else {
-      return <div>загрузка данных</div>;
-    }
-  };
   return (
-    <section className={style.schedule}>
-      <IsRender isPostsLoading={isPostsLoading} />
-    </section>
-  );
-};
-
-export default Schedule;
-{
-  /* <DaySelector />
-				<Favourited data={data} />
-				<Corpus title='Первый корпус' data={data.first} />
-				<Corpus title='Второй корпус' data={data.second} />
-				 */
+	<section className=''>
+		<Corpus schedule={schedule.first} title='Первый корпус' />
+		<Corpus schedule={schedule.second} title='Второй корпус' />
+	</section>
+  )
 }
-//	dispatch(loadState())
-// const fetchingData = async () => {
-// 	try {
-// 		const data = await axios.get(
-// 			`${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/scheduleone`
-// 		)
 
-// 		setDataSchedule({ ...data })
-// 	} catch (error) {
-// 		console.log(error)
-// 	}
-// }
-// fetchingData()
-// const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
-
-// const scheduleOfGroup = [
-// 	{ name: 'основы жизни', lecturer: 'Власенко', cabinet: 225 },
-// 	{ name: 'инфор. технологии', lecturer: 'Акимова', cabinet: 307 },
-// 	{ name: 'БЖД', lecturer: 'Маланьин', cabinet: 216 },
-// 	{},
-// 	{ name: 'технические штуки', lecturer: 'Клементьев', cabinet: 109 },
-// 	{ name: 'история', lecturer: 'Пшеничная', cabinet: 112 },
-// ]
-
-// const scheduleLine = [
-// 	['12ИСП-В', scheduleOfGroup],
-// 	['22ГГВП', scheduleOfGroup],
-// 	['12ИСП-П', scheduleOfGroup],
-// 	['23ИСП-В', scheduleOfGroup],
-// 	['12ИМД', scheduleOfGroup],
-// 	['12ИСП-В', scheduleOfGroup],
-// ]
-
-// const scheduleData = {
-// 	monday: [
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 	],
-// 	tuesday: [
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 	],
-// 	wednesday: [
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 	],
-// 	thursday: [
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 	],
-// 	friday: [
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 		scheduleLine,
-// 	],
-// }
-
-// // TODO: Добавить адаптацию с +- 1250 пикселей
-
-// const data = {
-// 	first: scheduleData,
-// 	second: scheduleData,
-// }
+export default Schedule

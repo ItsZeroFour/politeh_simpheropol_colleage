@@ -24,7 +24,7 @@ const Favourited = ({ data }) => {
     lecturer: lecturers,
     cabinet: cabinets,
   } = scheduleState.favourited
-  const _pairs = [...data.first[dayOfWeek][0][1][1].keys()].map((key) => key + 1)
+  const _pairs = [...data.first[dayOfWeek][1][1].keys()].map((key) => key + 1)
   const pairs =
     dayOfWeek === 'monday' ? [0, ..._pairs.slice(0, -1)] : _pairs
 
@@ -32,7 +32,7 @@ const Favourited = ({ data }) => {
   //   ...[]
   //     .concat(...Object.values(data))
   // )
-  const groupsPairs = [].concat(...[].concat(...Object.values(data).map(corpus => corpus[dayOfWeek])))
+  const groupsPairs = [].concat(...Object.values(data).map(corpus => corpus[dayOfWeek]))
 
   const favouritedGroupPairs = groupsPairs.filter(([groupName]) =>
     groups.includes(groupName)

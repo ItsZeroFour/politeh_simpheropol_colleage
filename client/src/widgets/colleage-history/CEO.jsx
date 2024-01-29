@@ -13,7 +13,7 @@ const CEO = () => {
   ];
 
   return (
-    <div className={style.CEO}>
+    <section className={style.CEO}>
       <h2>
         На протяжении истории колледж несколько раз переименовывался и сменил
         целую плеяду руководителей. Кузнецова Петра Афанасьевича на посту
@@ -22,8 +22,8 @@ const CEO = () => {
 
       <div>
         <ul>
-          {CEOList.map((item) => (
-            <li>{item}</li>
+          {CEOList.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
         </ul>
 
@@ -48,7 +48,7 @@ const CEO = () => {
         готовясь в 2026 отметить свое 140-летие, исходя из вновь полученных
         архивных сведений.
       </p>
-    </div>
+    </section>
   );
 };
 

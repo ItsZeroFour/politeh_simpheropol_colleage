@@ -1,11 +1,19 @@
 .delimiter {
-    margin-top: 60px;
-    margin-bottom: 66px;
+    margin-top: 3rem;
+    margin-bottom: 3.3rem;
 
-    height: 1px;
+    height: .05rem;
     width: 100%;
 
     background: var(--color-dark-gray);
+
+    @media (max-width: 768px) {
+        width: 90%;
+        margin: auto;
+
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
 }
 
 
@@ -14,23 +22,37 @@
     border-radius: var(--border-radius-md);
 
     & li:last-child {
-        padding-bottom: 60px;
+        padding-bottom: 3rem;
+
+        @media (max-width: 768px) {
+            padding-bottom: 30px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: 90%;
+        margin: auto;
     }
 }
 
 
 .title {
-    font-size: 30px;
+    font-size: 1.5rem;
     text-align: center;
 
-    padding-top: 30px;
+    padding-top: 1.5rem;
+
+    @media (max-width: 768px) {
+        font-size: 23px;
+        padding-bottom: 15px;
+    }
 }
 
 .link {
-    font-size: 30px;
-    margin-top: 45px;
+    font-size: 1.2rem;
+    margin-top: 2.25rem;
 
-    padding: 0 105px;
+    padding: 0 5.25rem;
 
 
     & a {
@@ -40,6 +62,13 @@
     & a:hover {
         transition: .3s;
         color: var(--color-blue);
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 16px;
+        font-size: 18px;
+
+        margin-top: 23px;
     }
 }
 

@@ -27,6 +27,7 @@ import eduMariImg from "@public/assets/images/home/edu.mari.jpg";
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const handleSlideHover = (e) => {
   const element = e.currentTarget;
@@ -109,8 +110,9 @@ const data = [
 ];
 
 const slides = () => {
-  return data.map(({ url, text, sourceImage }) => (
+  return data.map(({ url, text, sourceImage }, index) => (
     <SwiperSlide
+      key={index}
       onMouseEnter={handleSlideHover}
       onMouseLeave={handleSlideMouseOut}
       className={style.slide}
@@ -134,11 +136,16 @@ function Ministries() {
   const sliderNavigationLeft = useRef(null);
   const sliderNavigationRight = useRef(null);
 
+  const isMobile = useMediaQuery('only screen and (max-width : 550px)')
+  const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)')
+
+  const slidesPerView = (isMobile && 1) || (isSmallDevice && 2) || 4
+
   return (
     <>
       <div className={style.delimiter}></div>
 
-      <div className={style.ministries}>
+      <section className={style.ministries}>
         <ArrowLeft className={style.sliderLeft} ref={sliderNavigationLeft} />
 
         <Swiper
@@ -149,13 +156,13 @@ function Ministries() {
           }}
           modules={[Navigation]}
           spaceBetween={30}
-          slidesPerView={4}
+          slidesPerView={slidesPerView}
         >
           {slides()}
         </Swiper>
 
         <ArrowRight className={style.sliderRight} ref={sliderNavigationRight} />
-      </div>
+      </section>
     </>
   );
 }

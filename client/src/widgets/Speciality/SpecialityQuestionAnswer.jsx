@@ -2,13 +2,13 @@ import style from "./Speciality.module.scss";
 
 const SpecialityQuestionAnswer = ({ speciality }) => {
   return (
-    <div className={style.question__answer}>
+    <section className={style.question__answer}>
       <div className={style.question__answer__block}>
         <h3>Что я буду уметь?</h3>
 
         <ul>
-          {speciality.whatCanIdo.map((item) => (
-            <li>{item}</li>
+          {speciality.whatCanIdo.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
         </ul>
       </div>
@@ -56,7 +56,7 @@ const SpecialityQuestionAnswer = ({ speciality }) => {
           </li>
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

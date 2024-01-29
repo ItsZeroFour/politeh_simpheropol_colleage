@@ -11,7 +11,7 @@ const headerSlice = createSlice({
   reducers: {
     addHovered: (state, action) => {
       state.hovered.push(action.payload)
-      if (state.hovered.length > 1) state.hovered = [state.hovered[state.hovered.length - 1]]
+      // if (state.hovered.length > 1) state.hovered = [state.hovered[state.hovered.length - 1]]
     },
 
     removeHovered: (state, action) => {
@@ -20,11 +20,11 @@ const headerSlice = createSlice({
       if (index === -1) return
       state.hovered.splice(index, 1)
 
-      if (state.hovered.length > 1) state.hovered = [state.hovered[state.hovered.length - 1]]
+      // if (state.hovered.length > 1) state.hovered = [state.hovered[state.hovered.length - 1]]
 
-      const closingIndex = state.closing.indexOf(action.payload)
-      if (closingIndex !== -1) return
-      state.closing.push(action.payload)
+      // const closingIndex = state.closing.indexOf(action.payload)
+      // if (closingIndex !== -1) return
+      // state.closing.push(action.payload)
     },
 
     addClosing: (state, action) => {
