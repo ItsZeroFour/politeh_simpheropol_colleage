@@ -1,152 +1,142 @@
-
 .dropdown {
-    position: absolute;
+	position: absolute;
 
-    width: 32rem;
-    padding: 0 3rem;
-    font-size: .75rem;
+	width: 32rem;
+	padding: 0 3rem;
+	font-size: 0.75rem;
 
-    left: 50%;
-    transform: translateX(-50%);
+	left: 50%;
+	transform: translateX(-50%);
 
-    display: grid;
-    grid-template-rows: 0fr;
+	display: grid;
+	grid-template-rows: 0fr;
 
-    animation: openDropdown .35s forwards;
-    overflow: hidden;
+	animation: openDropdown 0.35s forwards;
+	overflow: hidden;
 
-    & nav {
-        min-height: 0;
-    }
+	& nav {
+		min-height: 0;
+	}
 
-    // z-index: -2;
-    z-index: 30000;
+	// z-index: -2;
+	z-index: 30000;
 }
 
 .dropdownRemoving {
-    animation: removeDropdown .35s forwards;
-    pointer-events: none;
+	animation: removeDropdown 0.35s forwards;
+	pointer-events: none;
 
-    border: .05rem solid transparent;
-    transition: .1s;
+	border: 0.05rem solid transparent;
+	transition: 0.1s;
 }
 
-
 .container {
-    margin-top: .9rem;
+	margin-top: 0.9rem;
 
-    background: var(--color-dark);
-    border: .05rem solid rgba(86, 79, 79, 0.2);
-    border-radius: var(--border-radius-md);
+	background: var(--color-dark);
+	border: 0.05rem solid rgba(86, 79, 79, 0.2);
+	border-radius: var(--border-radius-md);
 
-    &:last-child {
-        padding-bottom: .8rem;
-    }
+	&:last-child {
+		padding-bottom: 0.8rem;
+	}
 }
 
 .item {
-    padding: .8rem .8rem 0 .8rem;
-    transition: .3s;
+	padding: 0.8rem 0.8rem 0 0.8rem;
+	transition: 0.3s;
 
-    &:hover {
-        color: var(--color-blue);
-        transition: .3s;
-    }
+	&:hover {
+		color: var(--color-blue);
+		transition: 0.3s;
+	}
 
-    & a {
-        display: block;
-    }
+	& a {
+		display: block;
+	}
 }
 
-
 .title {
-    text-align: center;
-    padding-bottom: .85rem;
+	text-align: center;
+	padding-bottom: 0.85rem;
 
-    cursor: default;
+	cursor: default;
 }
 
 .border {
-    margin: auto;
+	margin: auto;
 
-    height: .1rem;
-    width: 0;
+	height: 0.1rem;
+	width: 0;
 
-    background: rgba(86, 79, 79, 0.2);
+	background: rgba(86, 79, 79, 0.2);
 
-    animation: borderUp .4s .2s ease forwards
+	animation: borderUp 0.4s 0.2s ease forwards;
 }
 
 .icon {
-    width: .6rem;
-    height: .6rem;
+	width: 0.6rem;
+	height: 0.6rem;
 
-    display: inline;
-    margin-left: .25rem;
+	display: inline;
+	margin-left: 0.25rem;
 
-    animation: openIcon .4s ease forwards
+	animation: openIcon 0.4s ease forwards;
 }
 
 .iconClosing {
-    animation: closingIcon .4s ease forwards;
+	animation: closingIcon 0.4s ease forwards;
 }
-
 
 @keyframes borderUp {
-    from {
-        width: 0;
-    }
+	from {
+		width: 0;
+	}
 
-    to {
-        width: 100%;
-    }
+	to {
+		width: 100%;
+	}
 }
-
 
 @keyframes openDropdown {
-    0% {
-        grid-template-rows: 0fr;
-    }
+	0% {
+		grid-template-rows: 0fr;
+	}
 
-    100% {
-        grid-template-rows: 1fr;
-    }
+	100% {
+		grid-template-rows: 1fr;
+	}
 }
-
 
 @keyframes removeDropdown {
-    0% {
-        opacity: 1;
-        filter: blur(0px);
-    }
+	0% {
+		opacity: 1;
+		filter: blur(0px);
+	}
 
-    100% {
-        transform: scale(1.05);
-        opacity: 0;
-        filter: blur(2px);
-    }
+	100% {
+		transform: scale(1.05);
+		opacity: 0;
+		filter: blur(2px);
+	}
 }
-
-
 
 @keyframes openIcon {
-    0% {
-        transform: rotate(0deg);
-    }
+	0% {
+		transform: rotate(0deg);
+	}
 
-    100% {
-        transform: rotate(180deg);
-    }
+	100% {
+		transform: rotate(180deg);
+	}
 }
-
 
 @keyframes closingIcon {
-    0% {
-        transform: rotate(180deg);
-    }
+	0% {
+		transform: rotate(180deg);
+	}
 
-    100% {
-        transform: rotate(0deg);
-    }
+	100% {
+		transform: rotate(0deg);
+	}
 }
-

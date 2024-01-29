@@ -22,8 +22,9 @@ router.get('/getourcollege', PageControllers.getOurCollegePages)
 router.get('/getpostspages', PageControllers.getOurPostsPages)
 router.get('/getpagestitle', PageControllers.getPagePostsTitle)
 router.get('/getpagecontent', PageControllers.getPageContent)
-router.get('/getonepage', PageControllers.getOnePage)
+//router.get('/getonepage', PageControllers.getOnePage)
 router.delete('/delete', PageControllers.deletePage)
+router.get('/getonepage', PageControllers.getOnePage)
 // router.get(
 // 	'/update',
 // 	checkAuth,

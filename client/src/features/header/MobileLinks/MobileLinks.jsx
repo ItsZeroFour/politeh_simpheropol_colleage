@@ -1,54 +1,76 @@
-import style from './../../../widgets/header/header.module.scss'
-import Link from 'next/link'
 import Triangle from '@public/assets/icons/triangle.svg'
-import { linksList } from '../Links/Links'
-import { useState } from 'react'
-
+import axios from 'axios'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import style from './../../../widgets/header/header.module.scss'
 const MobileLinks = () => {
-  return linksList.map((link, index) => {
-    const [isClicked, setIsClicked] = useState(false)
-    const [isClosing, setIsClosing] = useState(false)
+	const [linksServer, setLinksServer] = useState([])
+	useEffect(() => {
+		const fetchingData = async () => {
+			try {
+				const data = await axios.get(
+					`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheaderall`
+				)
+				setLinksServer([...data.data])
+			} catch (error) {
+				alert('error' + error)
+			}
+		}
+		fetchingData()
+	}, [])
 
-    const handleClick = () => {
-      if (!isClicked) {
-        setIsClicked(true)
-        return setIsClosing(false)
-      }
+	// Move the useState calls outside of the map function
+	const [isClicked, setIsClicked] = useState(false)
+	const [isClosing, setIsClosing] = useState(false)
 
-      setIsClosing(true)
-      setTimeout(() => setIsClicked(false), 350)
-    }
+	const handleClick = () => {
+		if (!isClicked) {
+			setIsClicked(true)
+			return setIsClosing(false)
+		}
 
-    return (
-      <li key={index} className={link.isCategory ? style.categoryLink : style.link} onClick={handleClick}>
-        <Link href={link.url}>{link.text}</Link>
-        {link.isCategory && (
-          <Triangle
-            className={`${style.dropdownIcon} ${
-              isClicked && style.dropdownIconActive
-            }`}
-          />
-        )}
+		setIsClosing(true)
+		setTimeout(() => setIsClicked(false), 350)
+	}
 
-        {link.isCategory && (
-          <div
-            className={`${style.mobileDropdown} ${
-              isClicked && style.mobileDropdownActive
-            }`}
-          >
-            <ul className={`overflow-hidden`}>
-                <div className={style.mobileDropdownDelimiter}></div>
-              {link.links.map((link, index) => (
-                <li key={index} className={style.link}>
-                  <Link href={link.url}>{link.text}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </li>
-    )
-  })
+	return linksServer.map((link, index) => {
+		console.log(link)
+		return (
+			<li
+				key={index}
+				className={
+					link.nestedObjects.length !== 0 ? style.categoryLink : style.link
+				}
+				onClick={handleClick}
+			>
+				<Link href={link.url}>{link.text}</Link>
+				{link.nestedObjects.length !== 0 && (
+					<Triangle
+						className={`${style.dropdownIcon} ${
+							isClicked && style.dropdownIconActive
+						}`}
+					/>
+				)}
+
+				{link.nestedObjects.length !== 0 && (
+					<div
+						className={`${style.mobileDropdown} ${
+							isClicked && style.mobileDropdownActive
+						}`}
+					>
+						<ul className={'overflow-hidden'}>
+							<div className={style.mobileDropdownDelimiter}></div>
+							{link.nestedObjects.map((link, index) => (
+								<li key={index} className={style.link}>
+									<Link href={link.url}>{link.text}</Link>
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
+			</li>
+		)
+	})
 }
 
 export default MobileLinks

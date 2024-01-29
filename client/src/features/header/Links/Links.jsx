@@ -1,4 +1,3 @@
-
 import { useActions } from '@app/hooks/useActions'
 import { getHeader } from '@app/store/header/header.slice'
 import LinkDropdown from '@features/header/LinkDropdown/LinkDropdown'
@@ -8,7 +7,6 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './../../../widgets/header/header.module.scss'
-
 
 const Links = () => {
 	const [linksServer, setLinksServer] = useState([])
@@ -73,4 +71,3 @@ const Links = () => {
 }
 
 export default Links
-
