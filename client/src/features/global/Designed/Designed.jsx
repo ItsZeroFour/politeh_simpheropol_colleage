@@ -19,21 +19,21 @@ const Designed = () => {
             target="_blank"
             className={style.networkLink}
           >
-            <VK className={`${global.icon} cursor-pointer w-[32px] h-[26px]`} />
+            <VK className={`${global.icon} ${style.vkIcon} cursor-pointer w-[32px] h-[26px]`} />
           </Link>
           <Link
             href="https://zero-personal-web.vercal.app"
             target="_blank"
             className={style.networkLink}
           >
-            <WWW className={`${global.icon} cursor-pointer`} />
+            <WWW className={`${global.icon} ${style.wwwIcon} cursor-pointer`} />
           </Link>
           <Link
             href="https://t.me/ItsZeroFour"
             target="_blank"
             className={style.networkLink}
           >
-            <Telegram className={`${global.icon} cursor-pointer`} />
+            <Telegram className={`${global.icon} ${style.telegramIcon} cursor-pointer`} />
           </Link>
         </div>
       </div>
@@ -46,21 +46,21 @@ const Designed = () => {
             target="_blank"
             className={style.networkLink}
           >
-            <VK className={`${global.icon} cursor-pointer w-[32px] h-[26px]`} />
+            <VK className={`${global.icon} ${style.vkIcon} cursor-pointer w-[32px] h-[26px]`} />
           </Link>
           <Link
             href="https://zero-personal-web.vercal.app"
             target="_blank"
             className={style.networkLink}
           >
-            <WWW className={`${global.icon} cursor-pointer`} />
+            <WWW className={`${global.icon} ${style.wwwIcon} cursor-pointer`} />
           </Link>
           <Link
             href="https://t.me/mr_alberg"
             target="_blank"
             className={style.networkLink}
           >
-            <Telegram className={`${global.icon} cursor-pointer`} />
+            <Telegram className={`${global.icon} ${style.telegramIcon} cursor-pointer`} />
           </Link>
         </div>
       </div>
@@ -73,21 +73,21 @@ const Designed = () => {
             target="_blank"
             className={style.networkLink}
           >
-            <VK className={`${global.icon} cursor-pointer w-[32px] h-[26px]`} />
+            <VK className={`${global.icon} ${style.vkIcon} cursor-pointer w-[32px] h-[26px]`} />
           </Link>
           <Link
             href="https://zero-personal-web.vercal.app"
             target="_blank"
             className={style.networkLink}
           >
-            <WWW className={`${global.icon} cursor-pointer`} />
+            <WWW className={`${global.icon} ${style.wwwIcon} cursor-pointer`} />
           </Link>
           <Link
             href="https://t.me/AmetWebDev"
             target="_blank"
             className={style.networkLink}
           >
-            <Telegram className={`${global.icon} cursor-pointer`} />
+            <Telegram className={`${global.icon} ${style.telegramIcon} cursor-pointer`} />
           </Link>
         </div>
       </div>

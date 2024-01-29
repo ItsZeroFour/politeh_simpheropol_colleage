@@ -136,7 +136,7 @@ const Links = () => {
     return (
       <li
         key={index}
-        className={style.link}
+        className={link.isCategory ? style.categoryLink : style.link}
         id={id}
         onMouseEnter={link.isCategory && handleHover}
         onMouseLeave={link.isCategory && handleUnhover}
