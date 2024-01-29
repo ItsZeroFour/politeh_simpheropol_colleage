@@ -95,6 +95,7 @@ const SearchBar = ({ data, placeholder, classes }) => {
             <div className={style.verticalSpace}></div>
             {items.length ? dropdownItems(items) : notFound()}
             <div className={style.verticalSpace}></div>
+            <div className={`${style.verticalSpace} ${style.lastVerticalSpace}`}></div>
           </ul>
         </div>
       </div>
