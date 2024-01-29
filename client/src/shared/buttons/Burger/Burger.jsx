@@ -1,18 +1,21 @@
+'use client'
+
+import { useDispatch, useSelector } from 'react-redux'
 import style from './Burger.module.scss'
+import { useActions } from '@app/hooks/useActions'
+import { getHeader } from '@app/store/header/header.slice'
 
-const Burger = ({ onClick, isActive }) => {
-  const handleClick = (e) => {
-    const element = e.currentTarget
+const Burger = () => {
+  const dispatch = useDispatch()
+  const { isOpened } = useSelector(getHeader)
+  const { setIsOpenedMenu } = useActions()
 
-    console.log(isActive);
-    if (isActive && !element.classList.contains(style.active)) element.classList.add(style.active)
-    else if (!isActive && element.classList.contains(style.active)) element.classList.remove(style.active)
-
-    onClick()
+  const onMenuClick = () => {
+    dispatch(setIsOpenedMenu(!isOpened))
   }
 
   return (
-    <div className={style.burger} onClick={handleClick}>
+    <div className={`${style.burger} ${isOpened ? style.active : ''}`} onClick={onMenuClick}>
       <button className={style.toggle}>
         <span className={style.top}></span>
         <span className={style.middle}></span>

@@ -58,7 +58,7 @@ const Links = () => {
 							link.nestedObjects.length !== 0 && handleUnhover()
 						}
 					>
-						<Link href={link.url}>{link.text}</Link>
+						{!link.isCategory ? <Link href={link.url}>{link.text}</Link> : link.text}
 						{link.nestedObjects.length !== 0 && (
 							<Triangle
 								className={`${style.dropdownIcon} ${

@@ -2,7 +2,8 @@ const { createSlice } = require('@reduxjs/toolkit')
 
 const initialState = {
   hovered: [],
-  closing: []
+  closing: [],
+  isOpened: false,
 }
 
 const headerSlice = createSlice({
@@ -28,16 +29,20 @@ const headerSlice = createSlice({
     },
 
     addClosing: (state, action) => {
-        const index = state.closing.indexOf(action.payload)
-        if (index !== -1) return
+      const index = state.closing.indexOf(action.payload)
+      if (index !== -1) return
 
-        state.closing.push(action.payload)
+      state.closing.push(action.payload)
     },
 
     removeClosing: (state, action) => {
-        const filtered = state.closing.filter(id => id !== action.payload)
-        state.closing = filtered
-    }
+      const filtered = state.closing.filter((id) => id !== action.payload)
+      state.closing = filtered
+    },
+
+    setIsOpenedMenu: (state, action) => {
+      state.isOpened = action.payload
+    },
   },
 })
 

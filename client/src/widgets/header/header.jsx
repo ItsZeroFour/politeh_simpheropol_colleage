@@ -10,6 +10,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import style from "./header.module.scss";
 import MobileLinks from "@features/header/MobileLinks/MobileLinks";
+import { useDispatch, useSelector } from "react-redux";
+import { getHeader } from "@app/store/header/header.slice";
+import { useActions } from "@app/hooks/useActions";
 
 const daysOfWeek = [
   "Воскресенье",
@@ -66,11 +69,13 @@ const menuLinks = [
 ];
 
 const Header = () => {
-  const [isOpened, setIsOpened] = useState(false);
+  const dispatch = useDispatch()
+  const { isOpened } = useSelector(getHeader)
+  const { setIsOpenedMenu } = useActions()
 
   const onMenuClick = () => {
-    setIsOpened(!isOpened);
-  };
+    dispatch(setIsOpenedMenu(!isOpened))
+  }
 
   const date = new Date();
   const day = date.getDate();
@@ -112,7 +117,7 @@ const Header = () => {
             </button> */}
           </div>
 
-          <Burger onClick={onMenuClick} isActive={!isOpened} />
+          <Burger />
         </div>
       </header>
 
@@ -125,7 +130,7 @@ const Header = () => {
 
             {menuLinks.map((menuLink, index) => (
               <li
-                onClick={() => setIsOpened(!isOpened)}
+                onClick={() => dispatch(setIsOpenedMenu(false))}
                 key={index}
                 className={style.menuLink}
               >
