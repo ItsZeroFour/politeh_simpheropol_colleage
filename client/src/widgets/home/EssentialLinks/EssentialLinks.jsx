@@ -38,8 +38,8 @@ function EssentialLinks() {
 
         <nav className={style.links}>
             <h2 className={style.title}>Основные ссылки</h2>
-            {data.map(({ text, url}) => (
-                <li className={style.link}>
+            {data.map(({ text, url}, index) => (
+                <li className={style.link} key={index}>
                     <Link href={url}>{text}</Link>
                 </li>
             ))}

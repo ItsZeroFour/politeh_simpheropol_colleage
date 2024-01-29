@@ -110,8 +110,9 @@ const data = [
 ];
 
 const slides = () => {
-  return data.map(({ url, text, sourceImage }) => (
+  return data.map(({ url, text, sourceImage }, index) => (
     <SwiperSlide
+      key={index}
       onMouseEnter={handleSlideHover}
       onMouseLeave={handleSlideMouseOut}
       className={style.slide}
@@ -132,11 +133,11 @@ const slides = () => {
 };
 
 function Ministries() {
-  const sliderNavigationLeft = useRef(null)
-  const sliderNavigationRight = useRef(null)
+  const sliderNavigationLeft = useRef(null);
+  const sliderNavigationRight = useRef(null);
 
-  const isMobile = useMediaQuery('only screen and (max-width : 1280px)')
-  const slidesPerView = isMobile ? 1 : 4
+  const isMobile = useMediaQuery("only screen and (max-width : 1280px)");
+  const slidesPerView = isMobile ? 1 : 4;
 
   return (
     <>

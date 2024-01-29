@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 const Specialityes = () => {
-  const [specialityes, setSpecialityes] = useState(null);
+  const [specialityes, setSpecialityes] = useState([]);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.5,
@@ -51,7 +51,7 @@ const Specialityes = () => {
       <h1 className={style.specialityes__title}>Специальности</h1>
       {inView && (
         <motion.ul variants={container} initial="hidden" animate="visible">
-          {specialityes &&
+          {specialityes.length > 0 &&
             specialityes.map((item) => {
               const src = `${process.env.NEXT_PUBLIC_SERVER_URL}${item.firstImage}`;
 

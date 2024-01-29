@@ -22,8 +22,8 @@ const CEO = () => {
 
       <div>
         <ul>
-          {CEOList.map((item) => (
-            <li>{item}</li>
+          {CEOList.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
         </ul>
 

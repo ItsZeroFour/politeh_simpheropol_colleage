@@ -7,8 +7,8 @@ const SpecialityQuestionAnswer = ({ speciality }) => {
         <h3>Что я буду уметь?</h3>
 
         <ul>
-          {speciality.whatCanIdo.map((item) => (
-            <li>{item}</li>
+          {speciality.whatCanIdo.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
         </ul>
       </div>

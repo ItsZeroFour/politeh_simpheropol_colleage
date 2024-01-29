@@ -30,8 +30,8 @@ const DormitoryNote = () => {
 
       <div className={style.dormitory__note__documents}>
         <ol>
-          {dependentDocuments.map((text) => (
-            <li>{text}</li>
+          {dependentDocuments.map((text, index) => (
+            <li key={index}>{text}</li>
           ))}
         </ol>
       </div>
@@ -39,8 +39,8 @@ const DormitoryNote = () => {
       <div className={style.dormitory__note__documents}>
         <p>Дополнительно для иностранцев:</p>
         <ol>
-          {additionDocumentsForMigrants.map((text) => (
-            <li>{text}</li>
+          {additionDocumentsForMigrants.map((text, index) => (
+            <li key={index}>{text}</li>
           ))}
         </ol>
       </div>
