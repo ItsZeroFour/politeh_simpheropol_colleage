@@ -1,9 +1,9 @@
 import "react-loading-skeleton/dist/skeleton.css";
 
 import FirstScreen from "@/widgets/home/FirstScreen/FirstScreen";
-import LoginForm from "@/widgets/home/LoginForm/LoginForm";
 import Posts from "@/widgets/home/Posts/Posts";
 import HomeSearchBar from "@features/home/HomeSearchBar/HomeSearchBar";
+import About from "@widgets/home/About/About";
 import Background from "@entities/home/Background/Background";
 import ContactForm from "@widgets/home/ContactForm/ContactForm";
 import Departments from "@widgets/home/Departments/Departments";
@@ -20,7 +20,7 @@ export const Home = () => {
         <HomeSearchBar />
       </div>
       <div className={style.home__main}>
-        <LoginForm />
+        <About />
         <Posts />
       </div>
       <ContactForm />
