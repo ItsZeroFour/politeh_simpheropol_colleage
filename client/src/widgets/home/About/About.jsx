@@ -79,19 +79,19 @@ const About = () => {
 
         <div className={style.data}>
           <div className={style.card}>
-            <p className={style.subInfoTop}>около</p>
-            <p className={style.mainInfo}>2500</p>
+            <p className={style.subInfoTop}>более</p>
+            <p className={style.mainInfo}>2000</p>
             <p className={style.subInfoBottom}>студентов</p>
           </div>
           <div className={style.card}>
             <p className={style.subInfoTop}>целых</p>
-            <p className={style.mainInfo}>9</p>
+            <p className={style.mainInfo}>10</p>
             <p className={style.subInfoBottom}>специальностей</p>
           </div>
           <div className={style.card}>
-            <p className={style.subInfoTop}>трудоустроенность</p>
-            <p className={style.mainInfo}>99%</p>
-            <p className={style.subInfoBottom}>выпускников</p>
+            <p className={style.subInfoTop}>заинтересованных</p>
+            <p className={style.mainInfo}>200+</p>
+            <p className={style.subInfoBottom}>работодателей</p>
           </div>
         </div>
 

@@ -19,7 +19,7 @@ const Links = () => {
 				)
 				setLinksServer([...data.data])
 			} catch (error) {
-				alert('error' + error)
+				// alert('error' + error)
 			}
 		}
 		fetchingData()
