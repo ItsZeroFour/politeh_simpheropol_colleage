@@ -22,6 +22,7 @@ const Schedule = () => {
     if (!isPostsLoading) {
       return (
         <main className={style.scheduleRoot}>
+          <h1 className={style.schedule__title}>Расписание</h1>
           <span>{schedule.items.date}</span>
           <section className={style.wrapperCorpus}>
             <span>Первый корпус</span>
@@ -74,7 +75,7 @@ const Schedule = () => {
           </Link>
 
           <section className={style.schedule__bell}>
-            <h1>Расписание звонков</h1>
+            <h2>Расписание звонков</h2>
 
             <div className={style.schedule__bell__notification}>
               <p>Внимание, уважаемые преподаватели и студенты!</p>
@@ -100,6 +101,10 @@ const Schedule = () => {
               height={1163}
             />
           </section>
+
+          <Link className={style.schedule__all__schedule} href="/all-schedules">
+            Смотреть все расписания
+          </Link>
         </main>
       );
     } else {

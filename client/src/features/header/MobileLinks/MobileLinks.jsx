@@ -34,7 +34,6 @@ const MobileLinks = () => {
 	}
 
 	return linksServer.map((link, index) => {
-		console.log(link)
 		return (
 			<li
 				key={index}

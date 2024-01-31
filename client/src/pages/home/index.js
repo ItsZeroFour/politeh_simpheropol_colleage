@@ -10,6 +10,7 @@ import Departments from "@widgets/home/Departments/Departments";
 import EssentialLinks from "@widgets/home/EssentialLinks/EssentialLinks";
 import Ministries from "@widgets/home/Ministries/Ministries";
 import style from "./home.module.scss";
+import Link from "next/link";
 
 export const Home = () => {
   return (
@@ -25,6 +26,7 @@ export const Home = () => {
       </div>
       <ContactForm />
       <EssentialLinks />
+
       <Departments />
       <Ministries />
     </section>

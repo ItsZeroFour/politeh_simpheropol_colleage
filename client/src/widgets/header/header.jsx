@@ -10,6 +10,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import style from "./header.module.scss";
 import MobileLinks from "@features/header/MobileLinks/MobileLinks";
+import { useDispatch, useSelector } from "react-redux";
+import { getHeader } from "@app/store/header/header.slice";
+import { useActions } from "@app/hooks/useActions";
 
 const daysOfWeek = [
   "Воскресенье",
@@ -45,7 +48,7 @@ const menuLinks = [
     text: "Противодействие коррупции",
   },
   {
-    url: "/dpo",
+    url: "/dpo_",
     text: "ДПО",
   },
   {
@@ -60,16 +63,25 @@ const menuLinks = [
     url: "/schedule",
     text: "Расписание",
   },
-  { url: "/our-colleage/specialty-study", text: "Изучение выбранной вами специальности" },
+  {
+    url: "/our-colleage/specialty-study",
+    text: "Изучение выбранной вами специальности",
+  },
   { url: "/our-colleage/practice", text: "Практика и трудоустройство" },
   { url: "/our-colleage/olimpiads", text: "Олимпиады" },
+  {
+    url: "/our-colleage/limited-opportunities",
+    text: "Условия обучения инвалидов и лиц с ограниченными возможностями здоровья",
+  },
 ];
 
 const Header = () => {
-  const [isOpened, setIsOpened] = useState(false);
+  const dispatch = useDispatch();
+  const { isOpened } = useSelector(getHeader);
+  const { setIsOpenedMenu } = useActions();
 
   const onMenuClick = () => {
-    setIsOpened(!isOpened);
+    dispatch(setIsOpenedMenu(!isOpened));
   };
 
   const date = new Date();
@@ -80,9 +92,9 @@ const Header = () => {
   const today = `Сегодня: ${week}, ${day} ${month} ${year}`;
 
   useEffect(() => {
-    if (!isOpened) document.body.style.overflow = 'auto'
-    else document.body.style.overflow = 'hidden'
-  }, [isOpened])
+    if (!isOpened) document.body.style.overflow = "auto";
+    else document.body.style.overflow = "hidden";
+  }, [isOpened]);
 
   return (
     <>
@@ -112,7 +124,7 @@ const Header = () => {
             </button> */}
           </div>
 
-          <Burger onClick={onMenuClick} isActive={!isOpened} />
+          <Burger />
         </div>
       </header>
 
@@ -125,7 +137,7 @@ const Header = () => {
 
             {menuLinks.map((menuLink, index) => (
               <li
-                onClick={() => setIsOpened(!isOpened)}
+                onClick={() => dispatch(setIsOpenedMenu(false))}
                 key={index}
                 className={style.menuLink}
               >
@@ -154,4 +166,3 @@ const Header = () => {
 };
 
 export default Header;
-

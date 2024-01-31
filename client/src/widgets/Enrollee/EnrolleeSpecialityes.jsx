@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Enrollee.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
-const Specialityes = () => {
+const Specialityes = React.memo(function Specialityes() {
   const [specialityes, setSpecialityes] = useState([]);
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -82,7 +82,7 @@ const Specialityes = () => {
       )}
     </section>
   );
-};
+});
 
 export default Specialityes;
 

@@ -1,0 +1,46 @@
+.schedules__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+
+  li {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-dark-gray);
+
+    .schedules__list__items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+
+      img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        overflow: hidden;
+
+        cursor: pointer;
+
+        border-radius: var(--border-radius-md);
+        transition: var(--transition);
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    p {
+      margin-top: 20px;
+
+      
+      @media (max-width: 425px) {
+        font-size: 16px;
+      }
+    }
+  }
+}

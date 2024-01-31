@@ -17,6 +17,9 @@ import postRouter from "./routes/PostRoutes.js";
 import scheduleRouter from "./routes/ScheduleRoutes.js";
 import specialityRouter from "./routes/SpecialtiesRoutes.js";
 import userRouter from "./routes/UserRoutes.js";
+import { MongoClient } from "mongodb";
+import cron from 'node-cron'
+
 dotenv.config({ path: "./.env" });
 const app = express();
 
@@ -59,7 +62,6 @@ app.post("/uploadpdf", upload.single("file"), async (req, res) => {
   try {
     if (req.file) {
       const pdfUrl = `http://localhost:${process.env.PORT}/uploads/${req.file.filename}`;
-      console.log(pdfUrl);
 
       // Save PDF file details to MongoDB
 
@@ -84,7 +86,6 @@ app.post("/upload", upload.single("image"), async (req, res) => {
   try {
     if (req.file) {
       const imageUrl = `http://localhost:4444/uploads/${req.file.filename}`;
-      console.log(imageUrl);
 
       // Save image details to MongoDB
 
@@ -116,66 +117,56 @@ app.use("/page", pageRouter);
 app.use("/mailer", mailer);
 app.use("/schedule", scheduleRouter);
 app.use("/linker", LinkHeader);
-// app.post('/upload', upload.single('image'), async (req, res) => {
-// 	try {
-// 		console.log(req.data)
-// 		console.log(req.file)
-// 		console.log(req.body.file)
-// 		console.log(req.query)
-// 		if (req.file) {
-// 			const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`
-// 			console.log(imageUrl)
 
-// 			// Save image details to MongoDB
-// 			const newImage = new Image({
-// 				filename: req.file.filename,
-// 				path: imageUrl,
-// 			})
+const client = new MongoClient(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-// 			await newImage.save()
+async function deleteOldImages(daysThreshold = 365) {
+  try {
+    await client.connect();
 
-// 			res.json({ imagelink: imageUrl }) // Only return the image URL
-// 		} else {
-// 			res.status(400).send('No image file provided')
-// 		}
-// 	} catch (error) {
-// 		console.error(error)
-// 		res.status(500).send('Internal Server Error')
-// 	}
-// })
+    const database = client.db("test");
+    const collection = database.collection("scheduleimages");
 
-// Set up static file serving for uploaded images
+    const currentTimestamp = new Date();
+    const thresholdTimestamp = new Date(
+      currentTimestamp - daysThreshold * 24 * 60 * 60 * 1000
+    );
 
-// app.get('/images', async (req, res) => {
-// 	try {
-// 		const posts = await Image.find()
-// 		console.log(posts)
-// 		res.json(posts)
-// 	} catch (error) {
-// 		res.send(error)
-// 	}
-// })
-// app.post('/addpage', async (req, res) => {
-// 	try {
-// 		const pageUrl = req.query.publishLink
-// 		const pageContent = req.query.textValue
-// 		const pagewithDB = await Page.findOne({ pageUrl })
-// 		console.log('PAGEWITHDB', pagewithDB)
-// 		if (!pagewithDB) {
-// 			const page = new PageModel({
-// 				pageUrl: pageUrl,
-// 				pageContent: pageContent,
-// 			})
-// 			page.save()
-// 			res.status(200).json(page)
-// 		} else {
-// 			console.log("{ message: 'такой URL уже существует' }")
-// 			return res.status(208).json({ message: 'такой URL уже существует' })
-// 		}
-// 	} catch (error) {
-// 		console.log(error)
-// 	}
-// })
+    // Находим все записи, у которых дата загрузки меньше пороговой
+    const oldImages = await collection
+      .find({ upload_date: { $lt: thresholdTimestamp } })
+      .toArray();
+
+    for (const image of oldImages) {
+      const imagePath = image.image_path;
+
+      // Удаляем изображение из сервера
+      if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath);
+      }
+
+      // Удаляем запись из базы данных
+      await collection.deleteOne({ _id: image._id });
+    }
+  } finally {
+    await client.close();
+  }
+}
+
+// Запуск функции удаления старых изображений по расписанию
+cron.schedule(
+  "0 3 * * *",
+  () => {
+    deleteOldImages();
+  },
+  {
+    timezone: "Europe/Moscow",
+  }
+);
+
 /* START FUNCTION */
 async function start() {
   try {

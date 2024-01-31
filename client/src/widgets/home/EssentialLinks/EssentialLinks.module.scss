@@ -1,77 +1,95 @@
 .delimiter {
-    margin-top: 3rem;
-    margin-bottom: 3.3rem;
+  margin-top: 3rem;
+  margin-bottom: 3.3rem;
 
-    height: .05rem;
-    width: 100%;
+  height: 0.05rem;
+  width: 100%;
 
-    background: var(--color-dark-gray);
+  background: var(--color-dark-gray);
 
-    @media (max-width: 768px) {
-        width: 90%;
-        margin: auto;
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: auto;
 
-        margin-top: 30px;
-        margin-bottom: 40px;
-    }
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
 }
-
 
 .links {
-    background: var(--color-black);
-    border-radius: var(--border-radius-md);
+  background: var(--color-black);
+  border-radius: var(--border-radius-md);
 
-    & li:last-child {
-        padding-bottom: 3rem;
-
-        @media (max-width: 768px) {
-            padding-bottom: 30px;
-        }
-    }
+  & li:last-child {
+    padding-bottom: 3rem;
 
     @media (max-width: 768px) {
-        width: 90%;
-        margin: auto;
+      padding-bottom: 30px;
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: auto;
+  }
 }
 
-
 .title {
-    font-size: 1.5rem;
-    text-align: center;
+  font-size: 1.5rem;
+  text-align: center;
 
-    padding-top: 1.5rem;
+  padding-top: 1.5rem;
 
-    @media (max-width: 768px) {
-        font-size: 23px;
-        padding-bottom: 15px;
-    }
+  @media (max-width: 768px) {
+    font-size: 23px;
+    padding-bottom: 15px;
+  }
 }
 
 .link {
-    font-size: 1.2rem;
-    margin-top: 2.25rem;
+  font-size: 1.2rem;
+  margin-top: 2.25rem;
 
-    padding: 0 5.25rem;
+  padding: 0 5.25rem;
 
+  & a {
+    transition: 0.3s;
+  }
 
-    & a {
-        transition: .3s;
-    }
+  & a:hover {
+    transition: 0.3s;
+    color: var(--color-blue);
+  }
 
-    & a:hover {
-        transition: .3s;
-        color: var(--color-blue);
-    }
+  @media (max-width: 768px) {
+    padding: 0 16px;
+    font-size: 18px;
 
-    @media (max-width: 768px) {
-        padding: 0 16px;
-        font-size: 18px;
-
-        margin-top: 23px;
-    }
+    margin-top: 23px;
+  }
 }
 
+.links__link {
+  width: 100%;
+  margin-top: 60px;
+  text-align: center;
 
+  a {
+    background: var(--color-blue);
+    border-radius: var(--border-radius-sm);
+    padding: 20px 300px;
+    font-size: 18px;
 
+    @media (max-width: 988px) {
+      padding: 20px 200px;
+    }
 
+    @media (max-width: 597px) {
+      padding: 20px 100px;
+    }
+
+    @media (max-width: 368px) {
+      padding: 20px 50px;
+    }
+  }
+}
