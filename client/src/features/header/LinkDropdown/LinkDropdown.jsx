@@ -34,16 +34,16 @@ const LinkDropdown = ({ data, isRemoving }) => {
         >
           {data.nestedObjects.map((link, index) => (
             <li
-              //  onClick={() => Clicked(link.url)}
+              //	onClick={() => Clicked(link.url)}
               className={style.item}
               key={index}
             >
               {/* {dataFetching.status == 200 && (
-                <Link href={'/our-colleage/' + link.url}>{link.text}</Link>
-              )}
-              {dataFetching.status == 400 && (
-                <Link href={link.url}>{link.text}</Link>
-              )} */}
+								<Link href={'/our-colleage/' + link.url}>{link.text}</Link>
+							)}
+							{dataFetching.status == 400 && (
+								<Link href={link.url}>{link.text}</Link>
+							)} */}
 
               <div
                 style={{ cursor: 'pointer' }}

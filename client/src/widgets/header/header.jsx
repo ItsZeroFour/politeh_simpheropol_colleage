@@ -76,12 +76,10 @@ const menuLinks = [
 ];
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const { isOpened } = useSelector(getHeader);
-  const { setIsOpenedMenu } = useActions();
+  const [isOpened, setIsOpened] = useState(false);
 
   const onMenuClick = () => {
-    dispatch(setIsOpenedMenu(!isOpened));
+    setIsOpened(!isOpened);
   };
 
   const date = new Date();
