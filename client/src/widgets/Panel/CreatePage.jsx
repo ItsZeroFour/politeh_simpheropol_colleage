@@ -15,13 +15,13 @@ import UnderlineIcon from "@public/assets/icons/adminicons/UnderlineIcon";
 import Vector from "@public/assets/icons/adminicons/Vector";
 import axios from "axios";
 import { Interweave, Markup } from "interweave";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Popup from "reactjs-popup";
 import { Counter } from "./UndoRendoUI.jsx";
 import style from "./Panel.module.scss";
-
+import Cookies from "js-cookie";
 const CreatePage = () => {
   const [isPage, setIsPage] = useState(true);
   const [dataUrl, setDataUrl] = useState("");
@@ -50,6 +50,33 @@ const CreatePage = () => {
   const [titlePage, setTitlePage] = useState("");
   const searchEvent = (e) => {};
   let tmp = "../../app/testing";
+  const [dataFetch, setDataFetch] = useState(null)
+	const [mainPanelType, setMainPanelType] = useState('create-page')
+
+	useEffect(() => {
+		console.log('effect')
+		const fetchingData = async () => {
+			try {
+			
+				const token = await Cookies.get('token')
+			
+				const { data } = await axios.get(
+					`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/me`,
+					{
+						headers: { Authorization: `Bearer ${token}` },
+					}
+				)
+      
+				setDataFetch(data)
+			} catch (error) {
+      
+				console.warn(error)
+			}
+		}
+		fetchingData()
+	}, [isForm])
+  console.log(dataFetch)
+
 
   const RenderAll = () => {
     return <Interweave content={textValue} />;
@@ -577,12 +604,17 @@ const CreatePage = () => {
     const formData = new FormData();
     formData.append("image", file);
     console.log(formData);
+    const token = await Cookies.get("token")
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
-        { file: FormData.entries.image },
+        
         {
-          headers: { "Access-Control-Allow-Origin": "*" },
+          file: FormData.entries.image, 
+          headers: { 
+            Authorization: `Bearer ${token}`,
+          
+          },
         }
       );
 
@@ -601,10 +633,14 @@ const CreatePage = () => {
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append("image", file);
+      const token = await Cookies.get("token")
       console.log(formData);
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
-        formData
+        
+        
+          formData,     {headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }}
+        
       );
       console.log(data.imagelink);
       setDataUrl(data.imagelink);
@@ -621,12 +657,14 @@ const CreatePage = () => {
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append("file", file);
-      console.log(formData);
+    
+      const token = await Cookies.get('token')
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/uploadpdf`,
-        formData
+        formData,
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-      console.log("uploadpdf", data);
+    
       addLinkFile(data.pdflink);
     } catch (err) {
       console.log(err);
@@ -652,30 +690,54 @@ const CreatePage = () => {
     setTitlePage(data.titlePage);
   };
   const addPageInServer = async () => {
-    let newUrl = "";
-    const someDate = await axios.put(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
 
-      { URLPage, typePage, textValue, titlePage }
-    );
+    
+    try {
+      let newUrl = "";
+      const token = await Cookies.get('token')
+      const someDate = await axios.put(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
+  
+        { URLPage, typePage, textValue, titlePage }, {
+          headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` },
+        }
+      );
+      
+  
+      if (someDate.status == 208) {
+        console.log(someDate.data.message);
+      }
+      if (someDate.status == 200) {
+       
+        dispatch(textValueFunc(""));
+      }
+    }
+     catch (error) {
+      console.log(error)
+      alert(
+        `${error.response.data.message}. Текущий статус:${error.response.status}`
+      ); // Handle any errors
+    }}
 
-    if (someDate.status == 208) {
-      console.log(someDate.data.message);
-    }
-    if (someDate.status == 200) {
-      console.log("true");
-      dispatch(textValueFunc(""));
-    }
-  };
   const handleSubmit22 = async (event) => {
     try {
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append("image", file);
       console.log(formData);
+      const token = await Cookies.get('token')
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
-        formData
+        {
+          formData,
+          headers: { 
+            Authorization: `Bearer ${token}`,
+         
+          },
+        }
+     
+    
+        
       );
 
       setImageUrl(
@@ -811,36 +873,38 @@ const CreatePage = () => {
                       const year = today.getFullYear();
                       return `${dayOfWeek}, ${day}.${month}.${year}`;
                     }
+                  if(dataFetch !== null) {
+                    console.log('is not null')
+                    const token = await Cookies.get('token')
                     await axios
-                      .post(
-                        `${process.env.NEXT_PUBLIC_SERVER_URL}/page/create`,
-                        {
-                          params: {
-                            data,
-                            URLPage,
-                            pageTypePublish: false,
-                            pageDate: getCurrentDate(),
-                            titlePage: titlePage,
-                            pageImage: imageUrl,
-                            typePage,
-                          },
-                        },
-                        {
-                          headers: { "Access-Control-Allow-Origin": "*" },
-                        }
-                      )
-                      .then((response) => {
-                        //console.log(response.data)
-                        setIsPage(false);
-                      })
-                      .catch((error) => {
-                        alert(
-                          `${error.response.data.message}. Текущий статус:${error.response.status}`
-                        ); // Handle any errors
+                    .post(
+                      `${process.env.NEXT_PUBLIC_SERVER_URL}/page/create`,
+                      {
+                        data,
+                        URLPage,
+                        pageTypePublish: false,
+                        pageDate: getCurrentDate(),
+                        titlePage,
+                        pageImage: imageUrl,
+                        typePage,
+                      },
+                      {
+                        headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` },
+                      }
+                    )
+                    .then((response) => {
+                      //console.log(response.data)
+                      setIsPage(false);
+                    })
+                    .catch((error) => {
+                      alert(
+                        `${error.response.data.message}. Текущий статус:${error.response.status}`
+                      ); // Handle any errors
 
-                        setIsPage(true);
-                        // You can display an error message or perform other actions based on the error
-                      });
+                      setIsPage(true);
+                      // You can display an error message or perform other actions based on the error
+                    });
+                  }
                   } else if (
                     typePage == "" ||
                     URLPage == "" ||

@@ -23,6 +23,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import Popup from 'reactjs-popup'
 import { Counter } from './UndoRendoUI'
+import Cookies from 'js-cookie'
 export default function App() {
 	const [isPage, setIsPage] = useState(true)
 	const state = useSelector(state => state)
@@ -51,6 +52,7 @@ export default function App() {
 	const [typePage, setTypePage] = useState('')
 	const [URLPage, setURLPage] = useState('')
 	const [data, setdata] = useState('')
+	const [dataFetch, setDataFetch] = useState(null)
 	const [titlePage, setTitlePage] = useState('')
 	const searchEvent = e => {}
 	let tmp = '../../app/testing'
@@ -654,22 +656,32 @@ export default function App() {
 	}
 	const addPageInServer = async () => {
 		try {
-			let newUrl = ''
-			console.log('FFFF', URLPage)
-			const someDate = await axios.put(
-				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
-
-				{ URLPage, typePage, textValue, titlePage }
-			)
-			console.log(someDate)
-			if (someDate.status == 200) {
-				console.log('true')
-				dispatch(textValueFunc(''))
+		  let newUrl = "";
+		  const token = await Cookies.get('token')
+		  const someDate = await axios.put(
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
+	  
+			{ URLPage, typePage, textValue, titlePage }, {
+			  headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` },
 			}
-		} catch (error) {
-			console.log(error)
+		  );
+		  
+	  
+		  if (someDate.status == 208) {
+			alert(someDate.data.message);
+		  }
+		  if (someDate.status == 200) {
+		   
+			dispatch(textValueFunc(""));
+			alert(someDate.data.message);
+		  }
 		}
-	}
+		 catch (error) {
+		  console.log(error)
+		  alert(
+			`${error.response.data.message}. Текущий статус:${error.response.status}`
+		  ); // Handle any errors
+		}}
 	const Search = async () => {
 		try {
 			const somedata = await axios.get(

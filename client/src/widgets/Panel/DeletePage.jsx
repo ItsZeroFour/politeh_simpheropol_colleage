@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Interweave } from 'interweave'
+import Cookies from 'js-cookie'
 import React from 'react'
 
 const DeletePage = () => {
@@ -35,6 +36,36 @@ const DeletePage = () => {
 			setTextName('')
 		}
 	}
+	const Delete = async data => {
+		try {
+		  const token = await Cookies.get('token');
+		  console.log('token', token);
+		  const somedata = await axios.delete(
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/page/delete`,
+			{ 
+			  headers: { 
+				Authorization: `Bearer ${token}` 
+			  },
+			  params: { id: data._id } 
+			}
+		  );
+		  console.log(somedata)
+		  if(somedata.data.message){
+			alert(somedata.data.message);
+		  }
+		
+		} catch (error) {
+			if(error.response.data) {
+				alert(`${error.response.data.message}. Текущий статус:${error.response.status}`); 
+			}
+			if(!error.response.data) {
+				alert(error)
+			}
+		
+		  // Handle any errors
+		}
+	  }
+	  
 	return (
 		<div>
 			<input
@@ -54,20 +85,9 @@ const DeletePage = () => {
 				<div>
 					<button
 						onClick={() => {
-							if (window.confirm('ok')) {
+							if (window.confirm('Вы действительно хотите удалить страницу?!')) {
 								setIsFound(true)
-								const Delete = async data => {
-									try {
-										console.log(data._id)
-										const somedata = await axios.delete(
-											`${process.env.NEXT_PUBLIC_SERVER_URL}/page/delete`,
-											{ params: { id: data._id } }
-										)
-										console.log(somedata)
-									} catch (error) {
-										console.log(error)
-									}
-								}
+							
 								Delete(dataPage.data)
 							}
 
