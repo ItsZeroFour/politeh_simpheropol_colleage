@@ -6,6 +6,7 @@ import style from './About.module.scss'
 import { useState } from 'react'
 import logo from '@public/assets/icons/logo.svg?url'
 import Image from 'next/image'
+import { useMediaQuery } from '@uidotdev/usehooks'
 
 const links = [
   {
@@ -51,7 +52,33 @@ const About = () => {
     Array(links.length).fill('')
   )
 
+  const isMobile = useMediaQuery('only screen and (max-width : 768px)')
+
+  const mobileHandleClick = (linkText, index) => {
+    if (!isMobile) return
+
+    setActiveSubMenu((prevActiveSubMenu) => {
+      const newActiveSubMenu = [...prevActiveSubMenu]
+      const isOpened = newActiveSubMenu[index]
+
+      if (isOpened) {
+        newActiveSubMenu[index] = ''
+        return newActiveSubMenu
+      }
+
+      newActiveSubMenu.map((item, index) => {
+        if (!item) return
+        newActiveSubMenu[index] = ''
+      })
+
+      newActiveSubMenu[index] = linkText
+      return newActiveSubMenu
+    })
+  }
+
   const handleMouseEnter = (linkText, index) => {
+    if (isMobile) return
+
     setActiveSubMenu((prevActiveSubMenu) => {
       const newActiveSubMenu = [...prevActiveSubMenu]
       newActiveSubMenu[index] = linkText
@@ -60,6 +87,8 @@ const About = () => {
   }
 
   const handleMouseLeave = (index) => {
+    if (isMobile) return
+
     setActiveSubMenu((prevActiveSubMenu) => {
       const newActiveSubMenu = [...prevActiveSubMenu]
       newActiveSubMenu[index] = ''
@@ -95,7 +124,9 @@ const About = () => {
           </div>
         </div>
 
-        <Link href='/enrollee' className={style.getEducationButton}>Получи востребованную специальность!</Link>
+        <Link href='/enrollee' className={style.getEducationButton}>
+          Получи востребованную специальность!
+        </Link>
 
         <div>
           <ul className={style.links}>
@@ -105,13 +136,15 @@ const About = () => {
                 className={style.link}
                 onMouseEnter={() => handleMouseEnter(link.text, index)}
                 onMouseLeave={() => handleMouseLeave(index)}
+                onClick={() => mobileHandleClick(link.text, index)}
               >
                 {link.isList ? (
                   <>
-                    <Link href={link.href}>{link.text}</Link>
+                    {link.text}
 
                     {activeSubMenu[index] === 'Документы' ? (
                       <ul
+                        className={style.subLinks}
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
@@ -167,6 +200,7 @@ const About = () => {
                       </ul>
                     ) : activeSubMenu[index] === 'Образование' ? (
                       <ul
+                        className={style.subLinks}
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
@@ -221,6 +255,7 @@ const About = () => {
                     ) : activeSubMenu[index] ===
                       'Образовательные стандарты и требования' ? (
                       <ul
+                        className={style.subLinks}
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
@@ -233,6 +268,7 @@ const About = () => {
                     ) : activeSubMenu[index] ===
                       'Руководство. Педагогический (научно-педагогический) состав' ? (
                       <ul
+                        className={style.subLinks}
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
@@ -250,6 +286,7 @@ const About = () => {
                     ) : activeSubMenu[index] ===
                       'Стипендии и меры поддержки обучающихся' ? (
                       <ul
+                        className={style.subLinks}
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
@@ -291,6 +328,7 @@ const About = () => {
                       </ul>
                     ) : activeSubMenu[index] === 'Доступная среда' ? (
                       <ul
+                        className={style.subLinks}
                         onMouseEnter={() => handleMouseEnter(link.text, index)}
                       >
                         <li>
