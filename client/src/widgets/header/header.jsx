@@ -72,6 +72,10 @@ const menuLinks = [
     url: "/our-colleage/limited-opportunities",
     text: "Условия обучения инвалидов и лиц с ограниченными возможностями здоровья",
   },
+  {
+    url: "/water-rules",
+    text: "Правила поведения в близи водоемов",
+  },
 ];
 
 const Header = () => {

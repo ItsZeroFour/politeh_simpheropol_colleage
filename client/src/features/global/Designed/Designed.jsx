@@ -19,10 +19,12 @@ const Designed = () => {
             target="_blank"
             className={style.networkLink}
           >
-            <VK className={`${global.icon} ${style.vkIcon} cursor-pointer w-[32px] h-[26px]`} />
+            <VK
+              className={`${global.icon} ${style.vkIcon} cursor-pointer w-[32px] h-[26px]`}
+            />
           </Link>
           <Link
-            href="https://zero-personal-web.vercal.app"
+            href="https://zero-personal-web.vercel.app/"
             target="_blank"
             className={style.networkLink}
           >
@@ -33,7 +35,9 @@ const Designed = () => {
             target="_blank"
             className={style.networkLink}
           >
-            <Telegram className={`${global.icon} ${style.telegramIcon} cursor-pointer`} />
+            <Telegram
+              className={`${global.icon} ${style.telegramIcon} cursor-pointer`}
+            />
           </Link>
         </div>
       </div>
@@ -46,10 +50,12 @@ const Designed = () => {
             target="_blank"
             className={style.networkLink}
           >
-            <VK className={`${global.icon} ${style.vkIcon} cursor-pointer w-[32px] h-[26px]`} />
+            <VK
+              className={`${global.icon} ${style.vkIcon} cursor-pointer w-[32px] h-[26px]`}
+            />
           </Link>
           <Link
-            href="https://zero-personal-web.vercal.app"
+            href="https://zero-personal-web.vercel.app/"
             target="_blank"
             className={style.networkLink}
           >
@@ -60,7 +66,9 @@ const Designed = () => {
             target="_blank"
             className={style.networkLink}
           >
-            <Telegram className={`${global.icon} ${style.telegramIcon} cursor-pointer`} />
+            <Telegram
+              className={`${global.icon} ${style.telegramIcon} cursor-pointer`}
+            />
           </Link>
         </div>
       </div>
@@ -73,10 +81,12 @@ const Designed = () => {
             target="_blank"
             className={style.networkLink}
           >
-            <VK className={`${global.icon} ${style.vkIcon} cursor-pointer w-[32px] h-[26px]`} />
+            <VK
+              className={`${global.icon} ${style.vkIcon} cursor-pointer w-[32px] h-[26px]`}
+            />
           </Link>
           <Link
-            href="https://zero-personal-web.vercal.app"
+            href="https://zero-personal-web.vercel.app/"
             target="_blank"
             className={style.networkLink}
           >
@@ -87,7 +97,9 @@ const Designed = () => {
             target="_blank"
             className={style.networkLink}
           >
-            <Telegram className={`${global.icon} ${style.telegramIcon} cursor-pointer`} />
+            <Telegram
+              className={`${global.icon} ${style.telegramIcon} cursor-pointer`}
+            />
           </Link>
         </div>
       </div>

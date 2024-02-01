@@ -8,7 +8,7 @@ const searchData = [
   },
 
   {
-    keywords: ["ДПО", "LGJ"],
+    keywords: ["ДПО", "LGJ", "Дополнительное профессиональное образование"],
     link: "/our-colleage/dpo_",
     text: "ДПО",
   },
@@ -172,12 +172,6 @@ const searchData = [
   },
 
   {
-    keywords: ["стипедния", ""],
-    link: "/our-colleage/scholarship",
-    text: "О наличии и условиях предоставления обучающимся стипендий",
-  },
-
-  {
     keywords: ["льготы", ""],
     link: "/our-colleage/social-support",
     text: "О мерах социальной поддержки",
@@ -226,111 +220,21 @@ const searchData = [
   },
 
   {
-    keywords: ["инвалид", ""],
-    link: "/our-colleage/limited-opportunities",
-    text: "Условия обучения инвалидов и лиц с ограниченными возможностями здоровья",
-  },
-
-  {
     keywords: ["", ""],
     link: "/our-colleage/classrooms",
     text: "О специально оборудованных учебных кабинетах",
   },
 
   {
-    keywords: ["Инвалиды", "Ограниченные возможнасти"],
-    link: "/our-colleage/limited-opportunities",
-    text: "Условия обучения инвалидов и лиц с ограниченными возможностями здоровья",
+    keywords: ["Вода", "Озера", "Реки", "Море"],
+    link: "/water-rules",
+    text: "Правила поведения в близи водоемов",
   },
 
   {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
-  },
-
-  {
-    keywords: ["", ""],
-    link: "",
-    text: "",
+    keywords: ["Проекты", "Нац проекты"],
+    link: "/nacproject",
+    text: "НацПроекты",
   },
 ];
 

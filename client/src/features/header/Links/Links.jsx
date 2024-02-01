@@ -3,10 +3,10 @@ import Triangle from "@public/assets/icons/triangle.svg";
 import { useDebounce } from "@uidotdev/usehooks";
 import axios from "axios";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./../../../widgets/header/header.module.scss";
 
-const Links = () => {
+const Links = React.memo(function Links() {
   const [linksServer, setLinksServer] = useState([]);
   const [hoveredLinkId, setHoveredLinkId] = useState(null);
   const [isRemoving, setIsRemoving] = useState(false);
@@ -81,6 +81,6 @@ const Links = () => {
       })}
     </ul>
   );
-};
+});
 
 export default Links;

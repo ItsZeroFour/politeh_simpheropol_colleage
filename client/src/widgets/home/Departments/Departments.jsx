@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const data = [
   {
@@ -23,6 +24,11 @@ const data = [
     image: money,
     text: "Отделение пищевых технологий, экономико-бухгалтерского учета и гостиничного дела",
     link: "/economic-departament",
+  },
+
+  {
+    text: "Отделение общеобразовательной подготовки",
+    link: "",
   },
 ];
 
@@ -63,17 +69,21 @@ function Departments() {
           initial="hidden"
           animate="visible"
         >
-          {data.map(({ image: source, text, link }) => (
-            <motion.li key={text} className={style.card} variants={item}>
-              <Link href={link}>
-                <div className={style.image}>
-                  <Image src={source} />
-                </div>
+          <Swiper slidesPerView={3} spaceBetween={30}>
+            {data.map(({ image: source, text, link }) => (
+              <SwiperSlide key={text} style={{ cursor: "grab" }}>
+                <motion.li className={style.card} variants={item}>
+                  <Link href={link}>
+                    <div className={style.image}>
+                      <Image src={source} />
+                    </div>
 
-                <p className={style.text}>{text}</p>
-              </Link>
-            </motion.li>
-          ))}
+                    <p className={style.text}>{text}</p>
+                  </Link>
+                </motion.li>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </motion.ul>
       )}
     </section>

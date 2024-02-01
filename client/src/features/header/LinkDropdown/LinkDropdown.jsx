@@ -1,32 +1,31 @@
-'use client'
+"use client";
 
-import axios from 'axios'
-import { useRouter } from 'next/navigation'
-import style from './LinkDropdown.module.scss'
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import style from "./LinkDropdown.module.scss";
+import React from "react";
 
-
-
-const LinkDropdown = ({ data, isRemoving }) => {
-  const router = useRouter()
+const LinkDropdown = React.memo(function LinkDropdown({ data, isRemoving }) {
+  const router = useRouter();
   const Clicked = async (url) => {
     try {
       const somedata = await axios.get(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/page/getonepage`,
         { params: { url } }
-      )
+      );
 
       if (somedata.status == 200) {
-        console.log(somedata.data.message.pageUrl)
-        router.push('/our-colleage/' + somedata.data.message.pageUrl)
+        console.log(somedata.data.message.pageUrl);
+        router.push("/our-colleage/" + somedata.data.message.pageUrl);
       }
     } catch (error) {
-      router.push(`${url}`)
+      router.push(`${url}`);
     }
-  }
+  };
 
   return (
     <div className={style.dropdown}>
-      <nav className='overflow-hidden'>
+      <nav className="overflow-hidden">
         <div
           className={`${style.container} ${
             isRemoving && style.dropdownRemoving
@@ -46,7 +45,7 @@ const LinkDropdown = ({ data, isRemoving }) => {
 							)} */}
 
               <div
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
                 onClick={() => Clicked(link.url)}
               >
                 {link.text}
@@ -56,7 +55,7 @@ const LinkDropdown = ({ data, isRemoving }) => {
         </div>
       </nav>
     </div>
-  )
-}
+  );
+});
 
-export default LinkDropdown
+export default LinkDropdown;
