@@ -182,6 +182,20 @@
 }
 
 
+.subLinks {
+    color: white;
+
+    & li {
+        transition: .3s;
+
+        &:hover {
+            color: var(--color-blue);
+            transition: .3s;
+        }
+    }
+}
+
+
 .links {
     margin-top: 2rem;
     border-top: .05rem solid var(--color-dark-gray);
