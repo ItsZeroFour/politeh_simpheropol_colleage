@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
 import HeaderEditorUpdate from './HeaderEditorUpdate'
+import Cookies from 'js-cookie'
 
 const HeaderEditor = () => {
 	const [url, setUrl] = useState('')
@@ -58,11 +59,14 @@ const HeaderEditor = () => {
 		console.log('newobject', { url, text, isCategory: true, links: newArr })
 		const sendData = async obj => {
 			try {
+				const token = await Cookies.get('token')
 				const response = await axios.post(
 					`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheader`,
 					{
 						...obj,
-					}
+					}, 
+					{headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }}
+					
 				)
 				alert(response.data.message)
 			} catch (error) {

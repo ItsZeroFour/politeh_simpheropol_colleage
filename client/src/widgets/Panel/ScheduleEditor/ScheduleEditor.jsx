@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 import style from './ScheduleEditor.module.scss'
+import Cookies from 'js-cookie'
 
 const ScheduleEditor = () => {
 	const [scheduleOne, setScheduleOne] = useState('')
@@ -11,9 +12,10 @@ const ScheduleEditor = () => {
 			const formData = new FormData()
 			formData.append('image', file)
 			console.log(formData)
+			const token = await Cookies.get('token')
 			const { data } = await axios.post(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
-				formData
+				formData,  {headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }}
 			)
 			if (one == 'one') {
 				console.log(one)
@@ -46,13 +48,21 @@ const ScheduleEditor = () => {
 
 			const currentDate = getCurrentDate()
 
-			axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/create`, {
-				scheduleOne,
-				scheduleTwo,
-				date: currentDate,
-			})
-			setScheduleOne('')
-			setScheduleTwo('')
+		const sendingData = async () => {
+			try {
+				const token = await Cookies.get('token')
+				await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/create`, {
+					scheduleOne,
+					scheduleTwo,
+					date: currentDate,
+				},  {headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }})
+				setScheduleOne('')
+				setScheduleTwo('')
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		sendingData();
 		} else {
 			window.alert('Заполните до-конца!')
 		}

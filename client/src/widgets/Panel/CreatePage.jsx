@@ -636,9 +636,7 @@ const CreatePage = () => {
       const token = await Cookies.get("token")
       console.log(formData);
       const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
-        
-        
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,   
           formData,     {headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }}
         
       );
