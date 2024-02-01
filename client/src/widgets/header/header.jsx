@@ -10,9 +10,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import style from "./header.module.scss";
 import MobileLinks from "@features/header/MobileLinks/MobileLinks";
-import { useDispatch, useSelector } from "react-redux";
-import { getHeader } from "@app/store/header/header.slice";
-import { useActions } from "@app/hooks/useActions";
 
 const daysOfWeek = [
   "Воскресенье",
