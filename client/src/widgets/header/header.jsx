@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import style from "./header.module.scss";
 import MobileLinks from "@features/header/MobileLinks/MobileLinks";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getHeader } from "@app/store/header/header.slice";
 
 const daysOfWeek = [
@@ -76,6 +76,7 @@ const menuLinks = [
 
 const Header = () => {
   const { isOpened } = useSelector(getHeader);
+  const dispatch = useDispatch();
 
   const date = new Date();
   const day = date.getDate();
