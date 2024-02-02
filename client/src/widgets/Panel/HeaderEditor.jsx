@@ -35,10 +35,11 @@ const HeaderEditor = () => {
 					params: { url },
 				}
 			)
-			console.log(somedata)
+			//console.log(somedata)
 			setDataUrl(somedata)
 		} catch (error) {
-			console.log(error)
+			alert(error)
+			//console.log(error)
 		}
 	}
 
@@ -56,7 +57,7 @@ const HeaderEditor = () => {
 			url: item.column1,
 			text: item.column2,
 		}))
-		console.log('newobject', { url, text, isCategory: true, links: newArr })
+		//console.log('newobject', { url, text, isCategory: true, links: newArr })
 		const sendData = async obj => {
 			try {
 				const token = await Cookies.get('token')

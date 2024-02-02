@@ -7,6 +7,6 @@ const router = express.Router()
 router.get('/linksheader', LinkHeaderController.LinkOne)
 router.get('/linksheaderall', LinkHeaderController.LinkGetAll)
 router.post('/linksheader', checkAuth, checkUserIsAdmin, LinkHeaderController.LinkCreate)
-router.delete('/linksheader', LinkHeaderController.LinkDeleteGlobalLink)
-router.patch('/linksheader', LinkHeaderController.LinkUpdate)
+router.delete('/linksheader', checkAuth, checkUserIsAdmin, LinkHeaderController.LinkDeleteGlobalLink)
+router.patch('/linksheader', checkAuth, checkUserIsAdmin, LinkHeaderController.LinkUpdate)
 export default router
