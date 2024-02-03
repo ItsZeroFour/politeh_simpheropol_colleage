@@ -1,5 +1,6 @@
 "use client";
 
+import { useActions } from '@app/hooks/useActions'
 import Designed from "@features/global/Designed/Designed";
 import Links from "@features/header/Links/Links";
 import logo from "@public/assets/icons/logo.svg?url";
@@ -81,6 +82,7 @@ const menuLinks = [
 const Header = () => {
   const { isOpened } = useSelector(getHeader);
   const dispatch = useDispatch();
+  const { setIsOpenedMenu } = useActions()
 
   const date = new Date();
   const day = date.getDate();
