@@ -18,6 +18,7 @@ const Links = () => {
           `${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheaderall`
         );
         setLinksServer([...data.data]);
+        console.log([...data.data])
       } catch (error) {
         // alert('error' + error)
       }
