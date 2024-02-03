@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { useState } from 'react'
 const EditableCell = ({ value, onChange }) => {
 	const [editing, setEditing] = useState(false)
@@ -139,10 +140,13 @@ const HeaderEditorUpdate = ({ data }) => {
 		//	setLinks([])
 		const deleteFeatures = async () => {
 			try {
+        alert("Вы действительно хотите удалить раздел?")
 				console.log(data.data.resultLink)
+        const token = await Cookies.get('token')
 				const response = await axios.delete(
 					`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheader`,
-					{ params: { url: data.data.resultLink.url } }
+	{headers:  {Authorization: `Bearer ${token}`},  params: { url: data.data.resultLink.url } } 
+
 				)
 				console.log(response.data.message)
 				alert(response.data.message)
@@ -155,6 +159,7 @@ const HeaderEditorUpdate = ({ data }) => {
 
 	const saveTableData = async () => {
 		try {
+      console.log('true')
 			// Отправляем обновленные данные на сервер
 			// const response = await axios.post('/api/saveTableData', { links })
 			// console.log(response.data)
@@ -164,16 +169,24 @@ const HeaderEditorUpdate = ({ data }) => {
 				links: links, // Предположим, что переменная links содержит нужные ссылки
 			}
 			delete newObject._id // Удаляем старое поле _id
-			console.log(newObject)
+      const token = await Cookies.get('token')
 			const response = await axios.patch(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheader`,
-				{ newObject }
+				{ newObject }, {headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }}
 			)
 			console.log(response)
 		} catch (error) {
 			console.error('Error while saving table data:', error)
 		}
 	}
+  const token = async () => {
+    try {
+      return await Cookies.get('token') 
+    } catch (error) {
+      return error
+    }
+  }
+  const config = {headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }}
 
 	return (
 		<div>

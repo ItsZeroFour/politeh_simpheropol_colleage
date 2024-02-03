@@ -21,6 +21,8 @@ import SaveFilesRouter from "./routes/SaveFilesRoutes.js";
 import { MongoClient } from "mongodb";
 import cron from "node-cron";
 
+import checkAuth from "./utils/checkAuth.js";
+import checkUserIsAdmin from "./utils/checkUserIsAdmin.js";
 dotenv.config({ path: "./.env" });
 const app = express();
 
@@ -59,7 +61,7 @@ const upload = multer({ storage: storage });
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
-app.post("/uploadpdf", upload.single("file"), async (req, res) => {
+app.post("/uploadpdf", checkAuth, checkUserIsAdmin, upload.single("file"), async (req, res) => {
   try {
     if (req.file) {
       const pdfUrl = `http://localhost:${process.env.PORT}/uploads/${req.file.filename}`;
@@ -83,7 +85,7 @@ app.post("/uploadpdf", upload.single("file"), async (req, res) => {
   }
 });
 // Handle image upload
-app.post("/upload", upload.single("image"), async (req, res) => {
+app.post("/upload", checkAuth, checkUserIsAdmin, upload.single("image"), async (req, res) => {
   try {
     if (req.file) {
       const imageUrl = `http://localhost:4444/uploads/${req.file.filename}`;

@@ -16,7 +16,7 @@ export const createPage = async (req, res) => {
 			pageDate,
 			pageImage,
 			titlePage,
-		} = req.body.params
+		} = req.body
 
 		const existingPage = await PageModel.findOne({ pageUrl: URLPage })
 		if (existingPage) {
@@ -155,16 +155,16 @@ export const getPage = async (req, res) => {
 export const deletePage = async (req, res) => {
 	try {
 		const pageUrl = req.query.id
-		console.log(req)
-		console.log(pageUrl)
+		//console.log(req)
+		//console.log(pageUrl)
 		const page = await PageModel.findByIdAndDelete(pageUrl)
 		if (!page) {
 			return res.status(404).json({
-				message: 'Страница не на найдена',
+				message: 'Страница не найдена',
 			})
 		}
-
-		res.status(200).json(page._doc)
+		console.log('p',page._doc)
+		res.status(200).json({message:"объект был удален"})
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
