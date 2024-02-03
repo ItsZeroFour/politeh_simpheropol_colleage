@@ -18,7 +18,7 @@ import scheduleRouter from "./routes/ScheduleRoutes.js";
 import specialityRouter from "./routes/SpecialtiesRoutes.js";
 import userRouter from "./routes/UserRoutes.js";
 import { MongoClient } from "mongodb";
-import cron from 'node-cron'
+import cron from "node-cron";
 
 dotenv.config({ path: "./.env" });
 const app = express();

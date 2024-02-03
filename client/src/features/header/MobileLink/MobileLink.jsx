@@ -1,33 +1,33 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import style from './../../../widgets/header/header.module.scss'
-import Link from 'next/link'
-import Triangle from '@public/assets/icons/triangle.svg'
-import { useDispatch, useSelector } from 'react-redux'
-import { useActions } from '@app/hooks/useActions'
-import { getHeader } from '@app/store/header/header.slice'
+import React, { useState } from "react";
+import style from "./../../../widgets/header/header.module.scss";
+import Link from "next/link";
+import Triangle from "@public/assets/icons/triangle.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { useActions } from "@app/hooks/useActions";
+import { getHeader } from "@app/store/header/header.slice";
 
-const MobileLink = ({ stlye, link }) => {
-  const dispatch = useDispatch()
-  const { setIsOpenedMenu } = useActions()
+const MobileLink = React.memo(function MobileLink({ stlye, link }) {
+  const dispatch = useDispatch();
+  const { setIsOpenedMenu } = useActions();
 
   const onMenuClick = () => {
-    dispatch(setIsOpenedMenu(false))
-  }
+    dispatch(setIsOpenedMenu(false));
+  };
 
-  const [isClicked, setIsClicked] = useState(false)
-  const [isClosing, setIsClosing] = useState(false)
+  const [isClicked, setIsClicked] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const handleClick = () => {
     if (!isClicked) {
-      setIsClicked(true)
-      return setIsClosing(false)
+      setIsClicked(true);
+      return setIsClosing(false);
     }
 
-    setIsClosing(true)
-    setIsClicked(false)
-  }
+    setIsClosing(true);
+    setIsClicked(false);
+  };
 
   return (
     <li
@@ -38,9 +38,11 @@ const MobileLink = ({ stlye, link }) => {
       id={link.nestedObjects.length !== 0 ? link.text : null}
     >
       {link.nestedObjects.length === 0 ? (
-        <Link href={link.url} onClick={onMenuClick}>{link.text}</Link>
+        <Link href={link.url} onClick={onMenuClick}>
+          {link.text}
+        </Link>
       ) : (
-        <span className='header__link__34'>{link.text}</span>
+        <span className="header__link__34">{link.text}</span>
       )}
       {link.nestedObjects.length !== 0 && (
         <Triangle
@@ -56,18 +58,20 @@ const MobileLink = ({ stlye, link }) => {
             isClicked && style.mobileDropdownActive
           }`}
         >
-          <ul className={'overflow-hidden'}>
+          <ul className={"overflow-hidden"}>
             <div className={style.mobileDropdownDelimiter}></div>
             {link.nestedObjects.map((link, index) => (
               <li key={index} className={style.link}>
-                <Link href={link.url} onClick={onMenuClick}>{link.text}</Link>
+                <Link href={link.url} onClick={onMenuClick}>
+                  {link.text}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
       )}
     </li>
-  )
-}
+  );
+});
 
-export default MobileLink
+export default MobileLink;
