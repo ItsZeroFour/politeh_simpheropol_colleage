@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+
 const data = [
   {
     image: partTime,
