@@ -35,7 +35,7 @@ const HeaderEditor = () => {
 					params: { url },
 				}
 			)
-			//console.log(somedata)
+			//console.log(somedat
 			setDataUrl(somedata)
 		} catch (error) {
 			alert(error)
@@ -60,16 +60,16 @@ const HeaderEditor = () => {
 		//console.log('newobject', { url, text, isCategory: true, links: newArr })
 		const sendData = async obj => {
 			try {
-				const token = await Cookies.get('token')
-				const response = await axios.post(
-					`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheader`,
-					{
-						...obj,
-					}, 
-					{headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }}
-					
-				)
-				alert(response.data.message)
+        const token = await Cookies.get('token')
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheader`,
+          {
+            ...obj,
+          }, 
+          {headers:  {Authorization: `Bearer ${token}`} }
+
+        )
+        alert(response.data.message)
 			} catch (error) {
 				console.log(error)
 				alert(error.response.data.message)
