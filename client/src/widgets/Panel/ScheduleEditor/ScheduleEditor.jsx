@@ -5,30 +5,28 @@ import style from './ScheduleEditor.module.scss'
 const ScheduleEditor = () => {
 	const [scheduleOne, setScheduleOne] = useState('')
 	const [scheduleTwo, setScheduleTwo] = useState('')
+
 	const handleImageChange = async (event, one) => {
 		try {
 			const file = event.target.files[0]
 			const formData = new FormData()
 			formData.append('image', file)
-			console.log(formData)
 			const { data } = await axios.post(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
 				formData
 			)
 			if (one == 'one') {
-				console.log(one)
 				setScheduleOne(data.imagelink)
 			}
 			if (one == 'two') {
-				console.log(one)
 				setScheduleTwo(data.imagelink)
 			}
 		} catch (err) {
 			console.log(err)
 		}
 	}
+
 	const onSubmit = (scheduleOne, scheduleTwo) => {
-		console.log('pupuip')
 		if (scheduleOne !== '' && scheduleTwo !== '') {
 			console.log(true)
 			function getCurrentDate() {
@@ -78,7 +76,7 @@ const ScheduleEditor = () => {
 				<input
 					onChange={event => handleImageChange(event, 'one')}
 					type='file'
-          accept="image/png, image/jpeg"
+          accept=".jpg, .png, .jpeg"
 					name=''
 					id=''
 				/>
@@ -99,7 +97,7 @@ const ScheduleEditor = () => {
 				<input
 					onChange={event => handleImageChange(event, 'two')}
 					type='file'
-          accept="image/png, image/jpeg"
+          accept=".jpg, .png, .jpeg"
 					name=''
 					id=''
 				/>

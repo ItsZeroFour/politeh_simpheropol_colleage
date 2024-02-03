@@ -1,9 +1,34 @@
+"use client";
+
 import style from "./DPO.module.scss";
 import dpoImage from "../../../public/assets/images/dpo/dpo.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const DPO = () => {
+  const [files, setFiles] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
+          {
+            params: { forPage: "dpo" },
+          }
+        );
+
+        setFiles(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <section className={style.dpo}>
       <h1>Дополнительное профессиональное образование</h1>
@@ -11,24 +36,21 @@ const DPO = () => {
       <Image src={dpoImage} alt="dpo image" />
 
       <ul className={style.dpo__order}>
-        {[
-          {
-            item: "Приказ об установлении стоимости образовательных услуг",
-            value: "/data/DPO/1.pdf",
-          },
-          {
-            item: "Положение об организации образовательного процесса по программам ДПО и ПО",
-            value: "/data/DPO/2.pdf",
-          },
-          {
-            item: "Правила приема слушателей на обучение по программам дополнительного профессионального образования и профессионального обучения",
-            value: "/data/DPO/3.pdf",
-          },
-        ].map(({ item, value }, index) => (
-          <li key={index}>
-            <a href={value}>{item}</a>
-          </li>
-        ))}
+        {files ? (
+          files.map(({ file, name }) => (
+            <li key={name}>
+              <Link
+                href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
+                target="_blank"
+                rel="norefferer"
+              >
+                {name}
+              </Link>
+            </li>
+          ))
+        ) : (
+          <p>Загрузка...</p>
+        )}
       </ul>
 
       <p>

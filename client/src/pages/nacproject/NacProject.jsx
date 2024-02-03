@@ -116,25 +116,16 @@ const NacProject = () => {
 				</div>
 			</div>
 			<div className={styles.block_desc}>
-				<a
-					href={Polozenye}
-					target='_blank'
-					rel='norefferer'
-					className={styles.block_desc_article}
-				>
-					Положение о деятельности мастерских, созданных на базе ГБПОУ РК
-					«Симферопольский политехнический колледж»
-				</a>
-				{<NacProjectList boolKey={isopened} />}
+				{<NacProjectList />}
 				<div className={styles.centered}>
 					<button
 						onClick={() => openAllList()}
 						className={styles.buttonPolygon}
 					>
-						<span>{!isopened ? 'Смотреть все' : 'Закрыть все'}</span>
-						<div
+						{/* <span>{!isopened ? 'Смотреть все' : 'Закрыть все'}</span> */}
+						{/* <div
 							className={!isopened ? styles.poligon : styles.reversedPoligon}
-						></div>
+						></div> */}
 					</button>
 				</div>
 			</div>

@@ -39,18 +39,6 @@ const months = [
 
 const menuLinks = [
   {
-    url: "/nacproject",
-    text: "НацПроекты",
-  },
-  {
-    url: "/anticorruption",
-    text: "Противодействие коррупции",
-  },
-  {
-    url: "/dpo_",
-    text: "ДПО",
-  },
-  {
     url: "/enrollee",
     text: "Абитуриенту",
   },
@@ -62,19 +50,38 @@ const menuLinks = [
     url: "/schedule",
     text: "Расписание",
   },
+
   {
-    url: "/our-colleage/specialty-study",
-    text: "Изучение выбранной вами специальности",
+    url: "/dpo",
+    text: "ДПО",
   },
-  { url: "/our-colleage/practice", text: "Практика и трудоустройство" },
-  { url: "/our-colleage/olimpiads", text: "Олимпиады" },
+
   {
     url: "/our-colleage/limited-opportunities",
     text: "Условия обучения инвалидов и лиц с ограниченными возможностями здоровья",
   },
+
+  {
+    url: "/our-colleage/specialty-study",
+    text: "Изучение выбранной вами специальности",
+  },
+
+  { url: "/our-colleage/practice", text: "Практика и трудоустройство" },
+
+  { url: "/our-colleage/olimpiads", text: "Олимпиады" },
+
   {
     url: "/water-rules",
     text: "Правила поведения в близи водоемов",
+  },
+
+  {
+    url: "/nacproject",
+    text: "НацПроекты",
+  },
+  {
+    url: "/anti-corruption",
+    text: "Противодействие коррупции",
   },
 ];
 

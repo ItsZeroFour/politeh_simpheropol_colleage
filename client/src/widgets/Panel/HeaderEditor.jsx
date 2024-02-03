@@ -34,7 +34,6 @@ const HeaderEditor = () => {
 					params: { url },
 				}
 			)
-			console.log(somedata)
 			setDataUrl(somedata)
 		} catch (error) {
 			console.log(error)

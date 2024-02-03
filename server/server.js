@@ -17,6 +17,7 @@ import postRouter from "./routes/PostRoutes.js";
 import scheduleRouter from "./routes/ScheduleRoutes.js";
 import specialityRouter from "./routes/SpecialtiesRoutes.js";
 import userRouter from "./routes/UserRoutes.js";
+import SaveFilesRouter from "./routes/SaveFilesRoutes.js";
 import { MongoClient } from "mongodb";
 import cron from "node-cron";
 
@@ -117,6 +118,7 @@ app.use("/page", pageRouter);
 app.use("/mailer", mailer);
 app.use("/schedule", scheduleRouter);
 app.use("/linker", LinkHeader);
+app.use("/files", SaveFilesRouter);
 
 const client = new MongoClient(MONGO_URI, {
   useNewUrlParser: true,

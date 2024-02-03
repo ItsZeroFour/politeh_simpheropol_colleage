@@ -1,23 +1,50 @@
+"use client";
+
 import styles from "@widgets/NacProject/NacProject.module.scss";
-import { arrayDocuments } from "./dataDocuments.js";
-const NacProjectList = ({ boolKey }) => (
-  <ul className={styles.listPol}>
-    {boolKey ? (
-      arrayDocuments.map((el) => (
-        <li key={el.item}>
-          <a target="_blank" rel="norefferer" href={el.item}>
-            {el.name}
-          </a>
-        </li>
-      ))
-    ) : (
-      <li>
-        <a target="_blank" rel="norefferer" href={arrayDocuments[0].item}>
-          {arrayDocuments[0].name}
-        </a>
-      </li>
-    )}
-  </ul>
-);
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Link from "next/link.js";
+const NacProjectList = () => {
+  const [files, setFiles] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
+          {
+            params: { forPage: "nacproject" },
+          }
+        );
+
+        setFiles(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <ul className={styles.listPol}>
+      {files ? (
+        files.map(({ file, name }) => (
+          <li key={name}>
+            <Link
+              target="_blank"
+              rel="norefferer"
+              href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
+            >
+              {name}
+            </Link>
+          </li>
+        ))
+      ) : (
+        <p>Загрузка...</p>
+      )}
+    </ul>
+  );
+};
 
 export default NacProjectList;

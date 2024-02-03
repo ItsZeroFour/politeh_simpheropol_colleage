@@ -23,29 +23,29 @@ const Anticorruption = () => {
 							onClick={() => openAllList()}
 							className={styles1.buttonPolygon}
 						>
-							<span>{!isopened ? 'Смотреть все' : 'Закрыть все'}</span>
+							{/* <span>{!isopened ? 'Смотреть все' : 'Закрыть все'}</span>
 							<div
 								className={!isopened ? styles.poligon : styles1.reversedPoligon}
-							></div>
+							></div> */}
 						</button>
 					</div>
 				</div>
 			</div>
 			<div className={styles.rootWrapperParagraph}>
 				<div className={styles.wrapperParagraph}>
-					<Link href='anticorruption/methods-matherials'>
+					<Link href='our-colleage/methods-matherials'>
 						<span className={styles.paragraph}>Методические материалы</span>
 					</Link>
 				</div>
 				<div className={styles.wrapperParagraph}>
-					<Link href='anticorruption/plans'>
+					<Link href='our-colleage/plans'>
 						<span className={styles.paragraph}>
 							Планы по антикоррупционной политике
 						</span>
 					</Link>
 				</div>
 				<div className={styles.wrapperParagraph}>
-					<Link href='anticorruption/svedeniya'>
+					<Link href='our-colleage/svedeniya'>
 						<span className={styles.paragraph}>
 							Сведения о доходах, расходах, об имуществе и обязательствах
 							имущественного характера

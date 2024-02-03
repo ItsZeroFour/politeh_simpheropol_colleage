@@ -1,31 +1,50 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import style from "./style.module.scss";
+import axios from "axios";
+import Link from "next/link";
 
 const DormitoryFiles = () => {
+  const [files, setFiles] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
+          {
+            params: { forPage: "dormitory-accommodination" },
+          }
+        );
+
+        setFiles(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <section className={style.dormitory__files}>
       <ul>
-        {[
-          {
-            item: "Заявление на поселение в общежитие СОВЕРШЕННОЛЕТНИХ студентов",
-            file: "",
-          },
-          {
-            item: "Заявление на поселение в общежитие НЕСОВЕРШЕННОЛЕТНИХ студентов — Заполняются ОБА бланка",
-            file: "",
-          },
-          {
-            item: "ДОГОВОР найма жилого помещения в общежитии (со студентами)",
-            file: "",
-          },
-          {
-            item: "Об утверждении перечня бытовых приборов, разрешенных и запрещённых для пользования студентами в общежитии колледжа",
-            file: "",
-          },
-        ].map(({ item, file }, index) => (
-          <li key={index}>
-            <a href={file}>{item}</a>
-          </li>
-        ))}
+        {files ? (
+          files.map(({ file, name }) => (
+            <li key={name}>
+              <Link
+                href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
+                target="_blank"
+                rel="norefferer"
+              >
+                {name}
+              </Link>
+            </li>
+          ))
+        ) : (
+          <p>Загрузка...</p>
+        )}
       </ul>
     </section>
   );

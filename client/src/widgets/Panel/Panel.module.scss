@@ -4,6 +4,7 @@
   border: 5px solid var(--color-black);
   border-top-left-radius: var(--border-radius-md);
   border-bottom-left-radius: var(--border-radius-md);
+  color: #ee2828;
 
   ul {
     display: flex;
@@ -77,4 +78,70 @@
     flex-direction: column;
     gap: 20px;
   }
+}
+
+.save__files__start {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    input {
+      width: 100%;
+      padding: 20px;
+      border-radius: var(--border-radius-md);
+      background: var(--color-black);
+    }
+
+    button {
+      width: 100%;
+      padding: 20px;
+      background: #000;
+      border-radius: var(--border-radius-md);
+    }
+  }
+}
+
+.save__files__main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      input {
+        cursor: pointer !important;
+      }
+
+      input[type="text"] {
+        width: 30%;
+        padding: 20px;
+        background: var(--color-black);
+        border-radius: var(--border-radius-md);
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      label {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.save__files__panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
