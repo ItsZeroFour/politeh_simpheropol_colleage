@@ -12,7 +12,7 @@ import Ministries from "@widgets/home/Ministries/Ministries";
 import style from "./home.module.scss";
 import Link from "next/link";
 
-export const Home = () => {
+const Home = () => {
   return (
     <section>
       <Background />
@@ -32,3 +32,5 @@ export const Home = () => {
     </section>
   );
 };
+
+export default Home

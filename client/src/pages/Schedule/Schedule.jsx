@@ -1,22 +1,23 @@
-"use client";
-import { fetchSchedule } from "@app/store/schedule/scheduleSlice";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import style from "./Schedule.module.scss";
-import Link from "next/link";
-import bellImg from "@public/assets/images/schedule/bell.jpg";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
+'use client'
+
+import { fetchSchedule } from '@app/store/schedule/scheduleSlice'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import style from './Schedule.module.scss'
+import Link from 'next/link'
+import bellImg from '@public/assets/images/schedule/bell.jpg'
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 const Schedule = () => {
-  const dispatch = useDispatch();
-  const { schedule } = useSelector((state) => state.schedule);
+  const dispatch = useDispatch()
+  const { schedule } = useSelector((state) => state.schedule)
 
-  const isPostsLoading = schedule.status === "loading";
+  const isPostsLoading = schedule.status === 'loading'
   useEffect(() => {
-    dispatch(fetchSchedule());
-  }, []);
+    dispatch(fetchSchedule())
+  }, [])
 
   const IsRender = ({ isPostsLoading }) => {
     if (!isPostsLoading) {
@@ -48,7 +49,7 @@ const Schedule = () => {
           <section className={style.schedule__block}>
             <ul>
               <li>
-                <Link href="/our-colleage/special-schedule-1">
+                <Link href='/our-colleage/special-schedule-1'>
                   Расписание занятий 2022-{new Date().getFullYear()} учебного
                   года группы: 34зМ, 34зТВ, 34зТМ, 34зТХ, 4зТХ, 34зХ, 34зКС,
                   4зКС заочной формы обучения на период с 10.04.2023 г. по
@@ -57,7 +58,7 @@ const Schedule = () => {
               </li>
 
               <li>
-                <Link href="/our-colleage/special-schedule-2">
+                <Link href='/our-colleage/special-schedule-2'>
                   Расписание занятий установочной сессии 2023-
                   {new Date().getFullYear()} учебного года группы 1 курса
                   заочной формы обучения на период с 15.09.2023 г. по 21.09.2023
@@ -69,7 +70,7 @@ const Schedule = () => {
 
           <Link
             className={style.schedule__correspondence}
-            href="/our-colleage/schedule-for-correspondence"
+            href='/our-colleage/schedule-for-correspondence'
           >
             ГРАФИК УЧЕБНОГО ПРОЦЕССА ПО ЗАОЧНОЙ ФОРМЕ ОБУЧЕНИЯ
           </Link>
@@ -96,29 +97,29 @@ const Schedule = () => {
 
             <Image
               src={bellImg}
-              alt="Расписание звонков"
+              alt='Расписание звонков'
               width={1572}
               height={1163}
             />
           </section>
 
-          <Link className={style.schedule__all__schedule} href="/all-schedules">
+          <Link className={style.schedule__all__schedule} href='/all-schedules'>
             Смотреть все расписания
           </Link>
         </main>
-      );
+      )
     } else {
-      return <div>загрузка данных</div>;
+      return <div>загрузка данных</div>
     }
-  };
+  }
   return (
     <section className={style.schedule}>
       <IsRender isPostsLoading={isPostsLoading} />
     </section>
-  );
-};
+  )
+}
 
-export default Schedule;
+export default Schedule
 {
   /* <DaySelector />
 				<Favourited data={data} />

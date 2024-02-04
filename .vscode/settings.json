@@ -5,6 +5,7 @@
   "workbench.editor.wrapTabs": false,
   "workbench.editor.titleScrollbarSizing": "default",
   "editor.minimap.enabled": false,
+  "editor.fontFamily": "'Consolas ligaturized v3'",
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -16,152 +17,156 @@
     ".vscode": true
   },
   "hide-files.files": [".cssrem", ".vscode"],
+  "editor.fontSize": 18,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 500
 
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": [
-         //following will be in italic
-         "comment",
-         "entity.name.type.class", //class names
-         "keyword", //import, export, return…
-         "constant", //String, Number, Boolean…, this, super
-         "storage.modifier", //static keyword
-         "storage.type.class.js" //class keyword
-        ],
-        "settings": {
-         "fontStyle": "italic"
-        }
-       },
-       {
-        "scope": [
-         //following will be excluded from italics (VSCode has some defaults for italics)
-         "invalid",
-         "keyword.operator",
-         "constant.numeric.css",
-         "keyword.other.unit.px.css",
-         "constant.numeric.decimal.js",
-         "constant.numeric.json"
-        ],
-        "settings": {
-         "fontStyle": ""
-        }
-       }
-      // {
-      //   "name": "Comment",
-      //   "scope": ["comment", "punctuation.definition.comment"],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //     //"foreground": "#4A4A4A"
-      //   }
-      // },
+  // "editor.tokenColorCustomizations": {
+  //   "textMateRules": [
+  //     {
+  //       "scope": [
+  //        //following will be in italic
+  //        "comment",
+  //        "entity.name.type.class", //class names
+  //        "keyword", //import, export, return…
+  //        "constant", //String, Number, Boolean…, this, super
+  //        "storage.modifier", //static keyword
+  //        "storage.type.class.js" //class keyword
+  //       ],
+  //       "settings": {
+  //        "fontStyle": "italic"
+  //       }
+  //      },
+  //      {
+  //       "scope": [
+  //        //following will be excluded from italics (VSCode has some defaults for italics)
+  //        "invalid",
+  //        "keyword.operator",
+  //        "constant.numeric.css",
+  //        "keyword.other.unit.px.css",
+  //        "constant.numeric.decimal.js",
+  //        "constant.numeric.json"
+  //       ],
+  //       "settings": {
+  //        "fontStyle": ""
+  //       }
+  //      }
 
-      // {
-      //   "name": "Keyword, Storage",
-      //   "scope": ["Keyword", "Storage"],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //   }
-      // },
+  // {
+  //   "name": "Comment",
+  //   "scope": ["comment", "punctuation.definition.comment"],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //     //"foreground": "#4A4A4A"
+  //   }
+  // },
 
-      // {
-      //   "name": "Keyword Control",
-      //   "scope": ["keyword.control"],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //   }
-      // },
+  // {
+  //   "name": "Keyword, Storage",
+  //   "scope": ["Keyword", "Storage"],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //   }
+  // },
 
-      // {
-      //   "scope": "entity.other.attribute-name",
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //     //"foreground": "#78dce8"
-      //   }
-      // },
+  // {
+  //   "name": "Keyword Control",
+  //   "scope": ["keyword.control"],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //   }
+  // },
 
-      // {
-      //   "name": "entity.name.method.js",
-      //   "scope": ["entity.name.method.js"],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //     //"foreground": "#82AAFF"
-      //   }
-      // },
+  // {
+  //   "scope": "entity.other.attribute-name",
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //     //"foreground": "#78dce8"
+  //   }
+  // },
 
-      // {
-      //   "name": "Language methods",
-      //   "scope": ["variable.language"],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //     //"foreground": "#FF5370"
-      //   }
-      // },
+  // {
+  //   "name": "entity.name.method.js",
+  //   "scope": ["entity.name.method.js"],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //     //"foreground": "#82AAFF"
+  //   }
+  // },
 
-      // {
-      //   "name": "HTML Attributes",
-      //   "scope": [
-      //     "text.html.basic entity.other.attribute-name.html",
-      //     "text.html.basic entity.other.attribute-name"
-      //   ],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //     //"foreground": "#FFCB6B"
-      //   }
-      // },
+  // {
+  //   "name": "Language methods",
+  //   "scope": ["variable.language"],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //     //"foreground": "#FF5370"
+  //   }
+  // },
 
-      // {
-      //   "name": "Decorators",
-      //   "scope": [
-      //     "tag.decorator.js entity.name.tag.js",
-      //     "tag.decorator.js punctuation.definition.tag.js"
-      //   ],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //     //"foreground": "#82AAFF"
-      //   }
-      // },
+  // {
+  //   "name": "HTML Attributes",
+  //   "scope": [
+  //     "text.html.basic entity.other.attribute-name.html",
+  //     "text.html.basic entity.other.attribute-name"
+  //   ],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //     //"foreground": "#FFCB6B"
+  //   }
+  // },
 
-      // {
-      //   "name": "ES7 Bind Operator",
-      //   "scope": [
-      //     "source.js constant.other.object.key.js string.unquoted.label.js"
-      //   ],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //     //"foreground": "#FF5370"
-      //   }
-      // },
+  // {
+  //   "name": "Decorators",
+  //   "scope": [
+  //     "tag.decorator.js entity.name.tag.js",
+  //     "tag.decorator.js punctuation.definition.tag.js"
+  //   ],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //     //"foreground": "#82AAFF"
+  //   }
+  // },
 
-      // {
-      //   "name": "Markup - Italic",
-      //   "scope": ["markup.italic"],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //     //"foreground": "#f07178"
-      //   }
-      // },
+  // {
+  //   "name": "ES7 Bind Operator",
+  //   "scope": [
+  //     "source.js constant.other.object.key.js string.unquoted.label.js"
+  //   ],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //     //"foreground": "#FF5370"
+  //   }
+  // },
 
-      // {
-      //   "name": "Markup - Quote",
-      //   "scope": ["markup.quote"],
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //     //"foreground": ""
-      //   }
-      // },
-      // {
-      //   "scope": "support.function",
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //   }
-      // },
-      // {
-      //   "scope": "entity.other.attribute-name",
-      //   "settings": {
-      //     "fontStyle": "italic"
-      //   }
-      // }
-    ]
-  }
+  // {
+  //   "name": "Markup - Italic",
+  //   "scope": ["markup.italic"],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //     //"foreground": "#f07178"
+  //   }
+  // },
+
+  // {
+  //   "name": "Markup - Quote",
+  //   "scope": ["markup.quote"],
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //     //"foreground": ""
+  //   }
+  // },
+  // {
+  //   "scope": "support.function",
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //   }
+  // },
+  // {
+  //   "scope": "entity.other.attribute-name",
+  //   "settings": {
+  //     "fontStyle": "italic"
+  //   }
+  // }
+  //     ]
+  //   }
 }
