@@ -197,17 +197,29 @@
       right: 0;
       top: 50%;
 
-      width: 65%;
+      width: 45rem;
       height: 1px;
       background: var(--color-dark-gray);
 
-      @media (max-width: 1455px) {
+      @media (max-width: 1555px) {
         display: none;
+      }
+
+      @media (max-width: 1820px) {
+        width: 40rem;
       }
     }
 
     @media (max-width: 768px) {
       font-size: 48px;
+    }
+
+    @media (max-width: 445px) {
+      font-size: 36px;
+    }
+
+    @media (max-width: 320px) {
+      font-size: 28px;
     }
   }
 
@@ -235,6 +247,10 @@
         object-fit: cover;
         border-top-right-radius: var(--border-radius-md);
         border-top-left-radius: var(--border-radius-md);
+
+        @media (max-width: 768px) {
+          height: 300px;
+        }
       }
 
       .specialityes__main__info {
@@ -343,4 +359,17 @@
     background: var(--color-blue);
     border-radius: var(--border-radius-md);
   }
+}
+
+.specialityes__loading {
+  width: 450px;
+  height: 514px;
+}
+
+.enrollee__links__loading {
+  width: 100%;
+}
+
+.enrollee__links__loading {
+  height: 20px;
 }

@@ -12,8 +12,6 @@ import Web3 from '@public/assets/images/nationproject/veb-3.png'
 import Web4 from '@public/assets/images/nationproject/veb-4.png'
 import Web2 from '@public/assets/images/nationproject/veb2.png'
 
-const Polozenye = '/data/NacProject/Polozhenie.pdf'
-
 import styles from '@widgets/NacProject/NacProject.module.scss'
 import { items } from '@widgets/NacProject/NacProjectArticlesData.js'
 import NacProjectList from '@widgets/NacProject/NacProjectList.jsx'

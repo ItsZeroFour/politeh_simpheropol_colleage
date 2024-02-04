@@ -6,6 +6,9 @@ import SpecialityQuestionAnswer from "@/widgets/Speciality/SpecialityQuestionAns
 import SpecialityResume from "@/widgets/Speciality/SpecialityResume";
 import SpecialityTop from "@/widgets/Speciality/SpecialityTop";
 import { useEffect, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import style from "./style.module.scss";
 
 const Speciality = ({ specialityId }) => {
   const [speciality, setSpeciality] = useState(null);
@@ -24,13 +27,13 @@ const Speciality = ({ specialityId }) => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   }, []);
 
   return (
     <section>
-      {speciality && (
+      {speciality ? (
         <>
           <SpecialityTop speciality={speciality} />
           <SpecialityMainInfo speciality={speciality} />
@@ -38,6 +41,21 @@ const Speciality = ({ specialityId }) => {
           <SpecialityQuestionAnswer speciality={speciality} />
           <SpecialityResume speciality={speciality} />
         </>
+      ) : (
+        <article>
+          <SkeletonTheme baseColor="#202020" highlightColor="#444">
+            <Skeleton className={style.speciality__loading} />
+
+            <div>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                <Skeleton
+                  key={item}
+                  className={style.speciality__loading__text}
+                />
+              ))}
+            </div>
+          </SkeletonTheme>
+        </article>
       )}
     </section>
   );
