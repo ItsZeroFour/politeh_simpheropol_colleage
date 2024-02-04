@@ -1,4 +1,4 @@
-import NacProject from '@/pages/nacproject/NacProject'
+import NacProject from '../../pages/nacproject/NacProject'
 
 const NationsProject = () => {
 	return (

@@ -1,4 +1,4 @@
-import MethodsMaterial from '@widgets/methods-material/MethodsMaterial'
+import MethodsMaterial from '../../../widgets/methods-material/MethodsMaterial'
 import Link from 'next/link'
 
 const MethodsMaterials = () => {

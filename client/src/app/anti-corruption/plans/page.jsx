@@ -1,4 +1,4 @@
-import Plans from '@widgets/anti-corruption/plans/Plans'
+import Plans from '../../../widgets/anti-corruption/plans/Plans'
 import Link from 'next/link'
 
 const page = () => {

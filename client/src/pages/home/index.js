@@ -1,18 +1,18 @@
 import "react-loading-skeleton/dist/skeleton.css";
 
-import FirstScreen from "@/widgets/home/FirstScreen/FirstScreen";
-import Posts from "@/widgets/home/Posts/Posts";
-import HomeSearchBar from "@features/home/HomeSearchBar/HomeSearchBar";
-import About from "@widgets/home/About/About";
-import Background from "@entities/home/Background/Background";
-import ContactForm from "@widgets/home/ContactForm/ContactForm";
-import Departments from "@widgets/home/Departments/Departments";
-import EssentialLinks from "@widgets/home/EssentialLinks/EssentialLinks";
-import Ministries from "@widgets/home/Ministries/Ministries";
+import React from "react";
+import FirstScreen from "../../widgets/home/FirstScreen/FirstScreen";
+import Posts from "../../widgets/home/Posts/Posts";
+import HomeSearchBar from "../../features/home/HomeSearchBar/HomeSearchBar";
+import About from "../../widgets/home/About/About";
+import Background from "../../entities/home/Background/Background";
+import ContactForm from "../../widgets/home/ContactForm/ContactForm";
+import Departments from "../../widgets/home/Departments/Departments";
+import EssentialLinks from "../../widgets/home/EssentialLinks/EssentialLinks";
+import Ministries from "../../widgets/home/Ministries/Ministries";
 import style from "./home.module.scss";
-import Link from "next/link";
 
-export const Home = () => {
+const Home = () => {
   return (
     <section>
       <Background />
@@ -32,3 +32,5 @@ export const Home = () => {
     </section>
   );
 };
+
+export default Home;

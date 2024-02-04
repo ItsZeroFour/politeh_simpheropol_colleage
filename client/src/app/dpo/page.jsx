@@ -1,4 +1,4 @@
-import DPO from "@/pages/DPO/DPO";
+import DPO from "../../pages/DPO/DPO";
 import React from "react";
 
 const page = () => {

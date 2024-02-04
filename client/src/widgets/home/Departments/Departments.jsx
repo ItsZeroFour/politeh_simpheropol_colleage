@@ -3,6 +3,7 @@ import style from "./Departments.module.scss";
 import partTime from "@public/assets/images/home/part_time.png";
 import it from "@public/assets/images/home/it.png";
 import money from "@public/assets/images/home/money.png";
+import full from '@public/assets/images/home/full-deportament.jpg';
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -28,8 +29,9 @@ const data = [
   },
 
   {
+    image: full,
     text: "Отделение общеобразовательной подготовки",
-    link: "",
+    link: "general-education-departament",
   },
 ];
 

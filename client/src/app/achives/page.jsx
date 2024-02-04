@@ -1,4 +1,4 @@
-import Achives from '@widgets/colleage-history/Achives'
+import Achives from '../../widgets/colleage-history/Achives'
 import React from 'react'
 
 const page = () => {

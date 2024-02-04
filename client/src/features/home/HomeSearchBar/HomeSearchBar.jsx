@@ -9,7 +9,7 @@ const searchData = [
 
   {
     keywords: ["ДПО", "LGJ", "Дополнительное профессиональное образование"],
-    link: "/our-colleage/dpo_",
+    link: "/our-colleage/dpo",
     text: "ДПО",
   },
 

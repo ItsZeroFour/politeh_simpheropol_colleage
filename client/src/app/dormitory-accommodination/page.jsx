@@ -1,4 +1,4 @@
-import DormitoryAccommodination from "@pages/DormitoryAccommodination/DormitoryAccommodination";
+import DormitoryAccommodination from "../../pages/DormitoryAccommodination/DormitoryAccommodination";
 import React from "react";
 
 const page = () => {

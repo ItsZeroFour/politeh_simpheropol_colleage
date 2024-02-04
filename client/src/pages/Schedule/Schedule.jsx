@@ -1,27 +1,28 @@
 "use client";
-import { fetchSchedule } from "@app/store/schedule/scheduleSlice";
+
+import { fetchSchedule } from "../../app/store/schedule/scheduleSlice";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Schedule.module.scss";
 import Link from "next/link";
-import bellImg from "@public/assets/images/schedule/bell.jpg";
+import bellImg from "../../../public/assets/images/schedule/bell.jpg";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 
 const Schedule = () => {
   const dispatch = useDispatch();
   const { schedule } = useSelector((state) => state.schedule);
-
   const isPostsLoading = schedule.status === "loading";
+
   useEffect(() => {
     dispatch(fetchSchedule());
-  }, []);
+  }, [dispatch]);
 
-  const IsRender = ({ isPostsLoading }) => {
-    if (!isPostsLoading) {
-      return (
-        <main className={style.scheduleRoot}>
+  return (
+    <main className={style.scheduleRoot}>
+      {!isPostsLoading ? (
+        <>
           <h1 className={style.schedule__title}>Расписание</h1>
           <span>{schedule.items.date}</span>
           <section className={style.wrapperCorpus}>
@@ -105,20 +106,16 @@ const Schedule = () => {
           <Link className={style.schedule__all__schedule} href="/all-schedules">
             Смотреть все расписания
           </Link>
-        </main>
-      );
-    } else {
-      return <div>загрузка данных</div>;
-    }
-  };
-  return (
-    <section className={style.schedule}>
-      <IsRender isPostsLoading={isPostsLoading} />
-    </section>
+        </>
+      ) : (
+        <p>Загрузка данных...</p>
+      )}
+    </main>
   );
 };
 
 export default Schedule;
+
 {
   /* <DaySelector />
 				<Favourited data={data} />

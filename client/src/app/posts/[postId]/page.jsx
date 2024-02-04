@@ -1,6 +1,6 @@
 'use client'
 
-import Post from '@widgets/Posts/[Post]/page'
+import Post from '../../../widgets/Posts/[Post]/page'
 
 const page = ({ params }) => {
 	return <Post params={params} />
