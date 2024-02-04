@@ -1,5 +1,5 @@
 import React from "react";
-import mainImg from "@public/assets/images/departaments/TechnicalDepartament.png";
+import mainImg from "@public/assets/images/departaments/FullDepartament.jpg";
 import style from "./style.module.scss";
 import Image from "next/image";
 import Link from "next/link";

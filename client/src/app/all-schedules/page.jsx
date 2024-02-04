@@ -1,4 +1,4 @@
-import AllSchedules from "@pages/all-schedules/AllSchedules";
+import AllSchedules from "../../pages/all-schedules/AllSchedules";
 import React from "react";
 
 const page = () => {

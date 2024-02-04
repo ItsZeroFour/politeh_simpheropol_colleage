@@ -18,7 +18,6 @@ const Links = React.memo(function Links() {
           `${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheaderall`
         );
         setLinksServer([...data.data]);
-        console.log([...data.data])
       } catch (error) {
         // alert('error' + error)
       }
@@ -60,7 +59,7 @@ const Links = React.memo(function Links() {
             }
           >
             {!link.isCategory ? (
-              <Link href={link.url}>{link.text}</Link>
+              <Link href={link.url} prefetch>{link.text}</Link>
             ) : (
               link.text
             )}

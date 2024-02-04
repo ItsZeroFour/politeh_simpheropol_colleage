@@ -52,7 +52,10 @@ const About = () => {
     Array(links.length).fill('')
   )
 
-  const isMobile = useMediaQuery('only screen and (max-width : 768px)')
+  let isMobile = false
+  if (window) {
+    isMobile = useMediaQuery({ maxWidth: 768 })
+  }
 
   const mobileHandleClick = (linkText, index) => {
     if (!isMobile) return

@@ -1,4 +1,4 @@
-import SvedeniyaRender from '@widgets/anti-corruption/svedeniya/Svedeniya'
+import SvedeniyaRender from '../../../widgets/anti-corruption/svedeniya/Svedeniya'
 import Link from 'next/link'
 
 const page = () => {

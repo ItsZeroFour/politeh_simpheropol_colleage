@@ -1,6 +1,6 @@
 "use client";
 
-import { useActions } from '@app/hooks/useActions'
+import { useActions } from "@app/hooks/useActions";
 import Designed from "@features/global/Designed/Designed";
 import Links from "@features/header/Links/Links";
 import logo from "@public/assets/icons/logo.svg?url";
@@ -42,6 +42,7 @@ const menuLinks = [
   {
     url: "/enrollee",
     text: "Абитуриенту",
+    prefetch: true,
   },
   {
     url: "/contacts",
@@ -50,6 +51,7 @@ const menuLinks = [
   {
     url: "/schedule",
     text: "Расписание",
+    prefetch: true,
   },
 
   {
@@ -89,7 +91,7 @@ const menuLinks = [
 const Header = () => {
   const { isOpened } = useSelector(getHeader);
   const dispatch = useDispatch();
-  const { setIsOpenedMenu } = useActions()
+  const { setIsOpenedMenu } = useActions();
 
   const date = new Date();
   const day = date.getDate();
@@ -148,7 +150,9 @@ const Header = () => {
                 key={index}
                 className={style.menuLink}
               >
-                <Link href={menuLink.url}>{menuLink.text}</Link>
+                <Link href={menuLink.url} prefetch={menuLink.prefetch}>
+                  {menuLink.text}
+                </Link>
               </li>
             ))}
           </ul>

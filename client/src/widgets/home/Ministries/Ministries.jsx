@@ -136,10 +136,12 @@ function Ministries() {
   const sliderNavigationLeft = useRef(null);
   const sliderNavigationRight = useRef(null);
 
-  const isMobile = useMediaQuery('only screen and (max-width : 550px)')
-  const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)')
+  const isMobile =
+    typeof window !== "undefined" && useMediaQuery({ maxWidth: 550 });
+  const isSmallDevice =
+    typeof window !== "undefined" && useMediaQuery({ maxWidth: 768 });
 
-  const slidesPerView = (isMobile && 1) || (isSmallDevice && 2) || 4
+  const slidesPerView = (isMobile && 1) || (isSmallDevice && 2) || 4;
 
   return (
     <>

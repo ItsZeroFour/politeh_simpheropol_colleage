@@ -1,4 +1,4 @@
-import OurCollege from '@widgets/Ourcollege/OurCollege'
+import OurCollege from '../../widgets/Ourcollege/OurCollege'
 const OurCollegeWrapper = () => {
 	return <OurCollege />
 }

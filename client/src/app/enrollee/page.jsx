@@ -1,4 +1,4 @@
-import Enrollee from "@/pages/enrollee/Enrollee";
+import Enrollee from "../../pages/enrollee/Enrollee";
 import React from "react";
 
 const index = () => {
