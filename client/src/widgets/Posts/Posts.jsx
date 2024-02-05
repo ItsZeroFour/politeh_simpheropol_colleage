@@ -1,12 +1,13 @@
 "use client";
+
 import imagePicture from "@public/assets/icons/adminicons/picture2.png";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import MyComponent from "./[Post]/Loader";
 import styles from "./style.module.scss";
+
 const Posts = () => {
   // const dataOurCollege2 = useSelector(
   // 	state => state.counter.present.dataOurCollege
@@ -15,7 +16,7 @@ const Posts = () => {
   let [increment, setIncrement] = useState(0);
   const [data, setData] = useState([]);
   const [picture, setPicture] = useState("");
-  const dispatch = useDispatch();
+
   useEffect(() => {
     const someAsyncFunc = async () => {
       try {

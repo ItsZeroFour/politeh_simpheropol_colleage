@@ -1,3 +1,5 @@
+'use client'
+
 import style from "./Departments.module.scss";
 
 import partTime from "@public/assets/images/home/part_time.png";
@@ -6,9 +8,9 @@ import money from "@public/assets/images/home/money.png";
 import full from '@public/assets/images/home/full-deportament.jpg';
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { motion } from "framer-motion";
+// import { useInView } from "react-intersection-observer";
+// import { Swiper, SwiperSlide } from "swiper/react";
 
 
 const data = [
@@ -36,10 +38,10 @@ const data = [
 ];
 
 function Departments() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
+  // const [ref, inView] = useInView({
+  //   triggerOnce: true,
+  //   threshold: 0.5,
+  // });
 
   const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -62,10 +64,11 @@ function Departments() {
   };
 
   return (
-    <section className={style.departments} ref={ref}>
+    // <section className={style.departments} ref={ref}>
+    <section className={style.departments}>
       <h2 className={style.title}>Отделения</h2>
 
-      {inView && (
+      {/* {inView && (
         <motion.ul
           className={style.all}
           variants={container}
@@ -88,7 +91,7 @@ function Departments() {
             ))}
           </Swiper>
         </motion.ul>
-      )}
+      )} */}
     </section>
   );
 }
