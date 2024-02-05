@@ -35,9 +35,6 @@ export const findAllElements = async (req, res) => {
   const page = Number(req.query.counter);
   const data = req.query.data
   console.log('data', data)
-  console.log(typeof page)
-  console.log(req.query.counter)
-  console.log(req.params)
 if(data !==undefined) {
   const items = await ScheduleImage.findOne( {createdAt: { $gt: new Date(data)}}  )
   console.log('result', items)
