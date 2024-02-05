@@ -8,8 +8,6 @@ import money from '@public/assets/images/home/money.png'
 import full from '@public/assets/images/home/full-deportament.jpg'
 import Image from 'next/image'
 import Link from 'next/link'
-// import { motion } from "framer-motion";
-// import { useInView } from "react-intersection-observer";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useMediaQuery from '@app/hooks/useMediaQuery'
 
@@ -37,60 +35,38 @@ const data = [
   },
 ]
 
+
+const slides = () => {
+  return (
+    <>
+      {data.map(({ image: source, text, link }) => (
+        <SwiperSlide key={text} className={style.slide}>
+          <li className={style.card}>
+            <Link href={link}>
+              <div className={style.image}>
+                <Image src={source} />
+              </div>
+              <p className={style.text}>{text}</p>
+            </Link>
+          </li>
+        </SwiperSlide>
+      ))}
+    </>
+  )
+}
+
+
 function Departments() {
-  // const [ref, inView] = useInView({
-  //   triggerOnce: true,
-  //   threshold: 0.5,
-  // });
-
-  // const container = {
-  //   hidden: { opacity: 1, scale: 0 },
-  //   visible: {
-  //     opacity: 1,
-  //     scale: 1,
-  //     transition: {
-  //       delayChildren: 0.3,
-  //       staggerChildren: 0.2,
-  //     },
-  //   },
-  // }
-
-  // const item = {
-  //   hidden: { y: 20, opacity: 0 },
-  //   visible: {
-  //     y: 0,
-  //     opacity: 1,
-  //   },
-  // }
-
-  // const isDesktop = useMediaQuery('(min-width: 960px)')
+  const isSmallDevice = useMediaQuery('(max-width: 768px)')
+  const slidesPerView = isSmallDevice ? 1 : 3
 
   return (
-    // <section className={style.departments} ref={ref}>
     <section className={style.departments}>
       <h2 className={style.title}>Отделения</h2>
 
-      <ul
-        className={style.all}
-        // variants={container}
-        // initial='hidden'
-        // animate='visible'
-      >
-        <Swiper slidesPerView={3} spaceBetween={30}>
-          {data.map(({ image: source, text, link }) => (
-            <SwiperSlide key={text} style={{ cursor: 'grab' }}>
-              {/* <li className={style.card} variants={item}> */}
-              <li className={style.card}>
-                <Link href={link}>
-                  <div className={style.image}>
-                    <Image src={source} />
-                  </div>
-
-                  <p className={style.text}>{text}</p>
-                </Link>
-              </li>
-            </SwiperSlide>
-          ))}
+      <ul className={style.all}>
+        <Swiper spaceBetween={30} slidesPerView={slidesPerView}>
+          {slides()}
         </Swiper>
       </ul>
     </section>

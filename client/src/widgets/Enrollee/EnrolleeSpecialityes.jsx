@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
+
+
 const Specialityes = React.memo(function Specialityes() {
   const [specialityes, setSpecialityes] = useState([]);
   const [ref, inView] = useInView({
