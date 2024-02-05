@@ -27,6 +27,7 @@ import eduMariImg from "@public/assets/images/home/edu.mari.jpg";
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import useMediaQuery from "@app/hooks/useMediaQuery";
 // import useDevice from "@app/hooks/useDevice";
 
 const handleSlideHover = (e) => {
@@ -136,15 +137,8 @@ function Ministries() {
   const sliderNavigationLeft = useRef(null);
   const sliderNavigationRight = useRef(null);
 
-  // const device = useDevice()
-
-  let isMobile = false
-  let isSmallDevice = false
-
-  // if (device?.isMobile) {
-  //   isSmallDevice = device.isSmallDevice
-  //   isMobile = device.isMobile
-  // }
+  const isMobile = useMediaQuery('(max-width: 550px)')
+  const isSmallDevice = useMediaQuery('(max-width: 768px)')
 
   const slidesPerView = (isMobile && 1) || (isSmallDevice && 2) || 4;
 

@@ -6,6 +6,7 @@ import style from './About.module.scss'
 import { useState } from 'react'
 import logo from '@public/assets/icons/logo.svg?url'
 import Image from 'next/image'
+import useMediaQuery from '@app/hooks/useMediaQuery'
 // import useDevice from '@app/hooks/useDevice'
 
 const links = [
@@ -54,7 +55,7 @@ function About() {
     Array(links.length).fill('')
   )
 
-  let isMobile = false
+  let isMobile = useMediaQuery('(max-width: 768px)')
   // if (device?.isMobile) {
   //   isMobile = device?.isMobile || false
   // }
