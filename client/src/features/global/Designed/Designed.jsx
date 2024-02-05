@@ -86,7 +86,7 @@ const Designed = () => {
             />
           </Link>
           <Link
-            href="https://zero-personal-web.vercel.app/"
+            href="https://amexwebdev.vercel.app/"
             target="_blank"
             className={style.networkLink}
           >

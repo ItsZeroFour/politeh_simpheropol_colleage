@@ -6,7 +6,8 @@ import style from './About.module.scss'
 import { useState } from 'react'
 import logo from '@public/assets/icons/logo.svg?url'
 import Image from 'next/image'
-import { useMediaQuery } from '@uidotdev/usehooks'
+import useMediaQuery from '@app/hooks/useMediaQuery'
+// import useDevice from '@app/hooks/useDevice'
 
 const links = [
   {
@@ -47,12 +48,17 @@ const links = [
   },
 ]
 
-const About = () => {
+function About() {
+  // const device = useDevice()
+
   const [activeSubMenu, setActiveSubMenu] = useState(
     Array(links.length).fill('')
   )
 
-  const isMobile = typeof window !== 'undefined' && useMediaQuery({ maxWidth: 768 });
+  let isMobile = useMediaQuery('(max-width: 768px)')
+  // if (device?.isMobile) {
+  //   isMobile = device?.isMobile || false
+  // }
 
   const mobileHandleClick = (linkText, index) => {
     if (!isMobile) return

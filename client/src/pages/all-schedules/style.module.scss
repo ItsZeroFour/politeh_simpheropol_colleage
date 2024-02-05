@@ -1,3 +1,4 @@
+
 .schedules__list {
   display: flex;
   justify-content: center;
@@ -43,4 +44,23 @@
       }
     }
   }
+}
+.root {
+  color: black;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-top: 50px;
+  width: 200px;
+  height: 40px;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  font-size: medium;
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
 }

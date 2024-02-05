@@ -32,14 +32,26 @@ export const findLastElement = async (req, res) => {
 };
 
 export const findAllElements = async (req, res) => {
-  try {
-    const allElements = await ScheduleImage.find().sort({ createdAt: -1 });
+  const page = Number(req.query.counter);
+  const data = req.query.data
+  console.log('data', data)
+if(data !==undefined) {
+  const items = await ScheduleImage.findOne( {createdAt: { $gt: new Date(data)}}  )
+  console.log('result', items)
+  if(items == null) {
+    return res.status(400).json({message:"К сожалению не удалось найти расписание."})
+  }
+  if(items !== null) {
+    return res.status(200).json([items])
+  } 
+}
+  const limit = 3;
+  const skip = (page - 1) * limit;
 
-    return res.status(200).json(allElements);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      message: "Не удалось найти расписания",
-    });
+  try {
+    const items = await ScheduleImage.find().sort({ createdAt: -1 }).skip(skip).limit(limit);
+    return res.json(items);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
 };
