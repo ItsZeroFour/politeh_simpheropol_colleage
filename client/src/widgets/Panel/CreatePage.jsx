@@ -72,7 +72,18 @@ const CreatePage = () => {
     };
     fetchingData();
   }, [isForm]);
-
+  const [inputValue, setInputValue] = useState("");
+  const onError = (error, e) => console.log("error", error, e);
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    if (!value.includes("/") && !value.includes(" ")) {
+      setInputValue(value);
+    }
+  };
+  const { register, handleSubmit, formState: { errors }, trigger } = useForm({
+    mode: "onBlur",
+    reValidateMode: "onChange"
+  });
   const RenderAll = () => {
     return <Interweave content={textValue} />;
   };
@@ -646,16 +657,13 @@ const CreatePage = () => {
     addImagesArr();
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+
   const onSubmit = (data) => {
     setTypePage(data.TypePage);
     setURLPage(data.URLPage);
     setTitlePage(data.titlePage);
   };
+  
   const addPageInServer = async () => {
     try {
       let newUrl = "";
@@ -706,6 +714,14 @@ const CreatePage = () => {
       console.log(err);
     }
   };
+  const handleChange = (e) => {
+    console.log('just function')
+    const value = e.target.value;
+    if (value.includes("/") || value.includes(" ")) {
+      console.log('true')
+      alert("нельзя вводить эти символы")
+    }
+  }
 
   return (
     <div>
@@ -718,15 +734,34 @@ const CreatePage = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div>
-                <input
-                  className={style.createpage__input}
-                  type="text"
-                  placeholder='пишите адрес без пробелов и без "/":'
-                  {...register("URLPage")}
-                />
-              </div>
+            <form onSubmit={handleSubmit(onSubmit, onError)}>
+            <div>
+  <input
+    className={style.createpage__input}
+    type="text"
+    // onChange={handleChange(onChange)}
+    onChange={(event) => {
+      if (errors.URLPage) {
+        trigger("URLPage");
+      }
+    }}
+    name="URLPage"
+    //onChange={e=>{}}
+    placeholder='пишите адрес без пробелов и без "/":'
+    {...register("URLPage", {
+      required: "Required",
+      pattern: {
+        value: /[\s\/]/,
+        message: "invalid email address"
+      }
+    })}
+    
+  />
+  {console.log(errors)}
+      {errors.URLPage && (
+        <div style={{color:'#fff'}} >{errors.URLPage.message}</div>
+      )}
+</div>
 
               <div>
                 <Popup
@@ -812,6 +847,7 @@ const CreatePage = () => {
                   backgroundColor: "#0066FF",
                 }}
               />
+          
             </form>
             <button
               onClick={async () => {
