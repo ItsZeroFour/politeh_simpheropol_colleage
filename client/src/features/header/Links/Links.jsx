@@ -59,7 +59,9 @@ const Links = React.memo(function Links() {
             }
           >
             {!link.isCategory ? (
-              <Link href={link.url} prefetch>{link.text}</Link>
+              <Link href={link.url} prefetch>
+                {link.text}
+              </Link>
             ) : (
               link.text
             )}

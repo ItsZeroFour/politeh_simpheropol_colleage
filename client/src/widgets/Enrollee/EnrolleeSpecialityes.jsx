@@ -53,7 +53,7 @@ const Specialityes = React.memo(function Specialityes() {
       <h1 className={style.specialityes__title}>Специальности</h1>
       {inView && (
         <motion.ul variants={container} initial="hidden" animate="visible">
-          {specialityes.length > 0
+          {specialityes?.length > 0
             ? specialityes.map((item) => {
                 const src = `${process.env.NEXT_PUBLIC_SERVER_URL}${item.firstImage}`;
 

@@ -46,7 +46,8 @@
     "redux-undo": "^1.1.0",
     "sass": "^1.69.5",
     "sharp": "^0.33.0",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "swr": "^2.2.4"
   },
   "authors": "<ItsZeroFour@gmail.com, wordite123@gmail.com, ametsejdaliev@gmail.com>",
   "devDependencies": {

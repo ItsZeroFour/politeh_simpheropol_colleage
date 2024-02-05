@@ -3,6 +3,7 @@ import styles from "@widgets/NacProject/NacProject.module.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link.js";
+
 const AntiCorruptionList = () => {
   const [files, setFiles] = useState(null);
 
