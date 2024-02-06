@@ -11,24 +11,26 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 
 
-const Specialityes = React.memo(function Specialityes() {
-  const [specialityes, setSpecialityes] = useState([]);
+const Specialityes = React.memo(function Specialityes({ specialityes }) {
+  specialityes = specialityes || []
+
+  // const [specialityes, setSpecialityes] = useState([]);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.5,
   });
 
-  useEffect(() => {
-    const getData = async () => {
-      const query = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpecialities`
-      );
-      const response = await query.json();
-      setSpecialityes(response);
-    };
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const query = await fetch(
+  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpecialities`
+  //     );
+  //     const response = await query.json();
+  //     setSpecialityes(response);
+  //   };
 
-    getData();
-  }, []);
+  //   getData();
+  // }, []);
 
   const container = {
     hidden: { opacity: 1, scale: 0 },
