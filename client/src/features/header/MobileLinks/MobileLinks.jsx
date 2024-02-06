@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import MobileLink from "../MobileLink/MobileLink";
 
 const MobileLinks = React.memo(function MobileLinks({ data: linksServer }) {
+  linksServer = linksServer || []
   // const [linksServer, setLinksServer] = useState([]);
   // useEffect(() => {
   //   const fetchingData = async () => {
