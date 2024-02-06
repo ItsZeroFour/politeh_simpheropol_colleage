@@ -10,6 +10,7 @@ import style from "./../../../widgets/header/header.module.scss";
 
 const Links = React.memo(function Links({data: linksServer}) {
   // const [linksServer, setLinksServer] = useState([]);
+  linksServer = linksServer || []
   const [hoveredLinkId, setHoveredLinkId] = useState(null);
   const [isRemoving, setIsRemoving] = useState(false);
 
