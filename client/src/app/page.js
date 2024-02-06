@@ -33,6 +33,7 @@ const Home = () => {
         <About />
         <Posts />
       </div>
+      
       <ContactForm />
       <EssentialLinks />
 

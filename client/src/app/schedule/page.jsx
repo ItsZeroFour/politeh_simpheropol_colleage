@@ -1,24 +1,44 @@
-'use client'
+"use client";
 
-import { fetchSchedule } from '../../app/store/schedule/scheduleSlice'
-import Image from 'next/image'
-import { useEffect } from 'react'
-import style from '@pages/Schedule/Schedule.module.scss'
-import Link from 'next/link'
-import bellImg from '../../../public/assets/images/schedule/bell.jpg'
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import { useAppDispatch, useAppSelector } from '@app/hooks/redux'
+import { fetchSchedule } from "../../app/store/schedule/scheduleSlice";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import style from "@pages/Schedule/Schedule.module.scss";
+import Link from "next/link";
+import bellImg from "../../../public/assets/images/schedule/bell.jpg";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useAppDispatch, useAppSelector } from "@app/hooks/redux";
 
 export default function Schedule() {
-  const dispatch = useAppDispatch()
-  const { schedule } = useAppSelector((state) => state.schedule)
+  const dispatch = useAppDispatch();
+  const [files, setFiles] = useState(null);
+  const { schedule } = useAppSelector((state) => state.schedule);
 
   useEffect(() => {
-    dispatch(fetchSchedule())
-  }, [dispatch])
+    dispatch(fetchSchedule());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
+          {
+            params: { forPage: "schedule" },
+          }
+        );
+
+        setFiles(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <main className={style.scheduleRoot}>
@@ -26,13 +46,13 @@ export default function Schedule() {
       <span>{schedule.items.date}</span>
       <section className={style.wrapperCorpus}>
         <span>Первый корпус</span>
-        {schedule.status !== 'loading' ? (
+        {schedule.status !== "loading" ? (
           <Zoom zoomMargin={5} zoomZindex={1000}>
             <Image src={schedule.items.scheduleOne} width={800} height={800} />
           </Zoom>
         ) : (
           <article className={style.schedule__loading}>
-            <SkeletonTheme baseColor='#202020' highlightColor='#444'>
+            <SkeletonTheme baseColor="#202020" highlightColor="#444">
               <Skeleton className={style.schedule__loading__skeleton} />
             </SkeletonTheme>
           </article>
@@ -40,13 +60,13 @@ export default function Schedule() {
       </section>
       <section className={style.wrapperCorpus}>
         <span>Второй корпус</span>
-        {schedule.status !== 'loading' ? (
+        {schedule.status !== "loading" ? (
           <Zoom zoomMargin={5} zoomZindex={1000}>
             <Image src={schedule.items.scheduleTwo} width={800} height={800} />
           </Zoom>
         ) : (
           <article className={style.schedule__loading}>
-            <SkeletonTheme baseColor='#202020' highlightColor='#444'>
+            <SkeletonTheme baseColor="#202020" highlightColor="#444">
               <Skeleton className={style.schedule__loading__skeleton} />
             </SkeletonTheme>
           </article>
@@ -55,27 +75,25 @@ export default function Schedule() {
 
       <section className={style.schedule__block}>
         <ul>
-          <li>
-            <Link href='/our-colleage/special-schedule-1'>
-              Расписание занятий 2022-{new Date().getFullYear()} учебного года
-              группы: 34зМ, 34зТВ, 34зТМ, 34зТХ, 4зТХ, 34зХ, 34зКС, 4зКС заочной
-              формы обучения на период с 10.04.2023 г. по 22.04.2023 г.
-            </Link>
-          </li>
-
-          <li>
-            <Link href='/our-colleage/special-schedule-2'>
-              Расписание занятий установочной сессии 2023-
-              {new Date().getFullYear()} учебного года группы 1 курса заочной
-              формы обучения на период с 15.09.2023 г. по 21.09.2023 г.
-            </Link>
-          </li>
+          {files ? (
+            files.map(({ file, name }) => (
+              <li key={name}>
+                <Link
+                  href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
+                >
+                  {name}
+                </Link>
+              </li>
+            ))
+          ) : (
+            <p>Загрузка...</p>
+          )}
         </ul>
       </section>
 
       <Link
         className={style.schedule__correspondence}
-        href='/our-colleage/schedule-for-correspondence'
+        href="/our-colleage/schedule-for-correspondence"
       >
         ГРАФИК УЧЕБНОГО ПРОЦЕССА ПО ЗАОЧНОЙ ФОРМЕ ОБУЧЕНИЯ
       </Link>
@@ -101,21 +119,20 @@ export default function Schedule() {
 
         <Image
           src={bellImg}
-          alt='Расписание звонков'
+          alt="Расписание звонков"
           width={1572}
           height={1163}
         />
       </section>
 
-      <Link className={style.schedule__all__schedule} href='/all-schedules'>
+      <Link className={style.schedule__all__schedule} href="/all-schedules">
         Смотреть все расписания
       </Link>
     </main>
-  )
+  );
 }
 
-
-  /* <DaySelector />
+/* <DaySelector />
 				<Favourited data={data} />
 				<Corpus title='Первый корпус' data={data.first} />
 				<Corpus title='Второй корпус' data={data.second} />

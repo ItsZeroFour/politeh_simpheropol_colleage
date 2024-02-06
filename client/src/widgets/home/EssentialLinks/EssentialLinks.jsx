@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./EssentialLinks.module.scss";
 import Link from "next/link";
+import image from '../../../../public/assets/images/enrollee/mar-capital.jpg'
+import Image from "next/image";
 
 const data = [
   {
@@ -44,6 +46,7 @@ function EssentialLinks() {
       </nav>
 
       <div className={style.links__link}>
+        <Image src={image} alt="image"/>
         <Link href="/our-colleage">Наш колледж</Link>
       </div>
     </>

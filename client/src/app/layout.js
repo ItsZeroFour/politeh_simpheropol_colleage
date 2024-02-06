@@ -1,7 +1,7 @@
 import "@/app/scss/index.scss";
 import Footer from "@/widgets/footer/footer";
 import Header from "@/widgets/header/header";
-// import { Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import StoreProvider from "./store/StoreProvider";
 import Script from "next/script";
 import Head from "next/head";
@@ -19,11 +19,11 @@ export const metadata = {
   },
 };
 
-// const poppins = Poppins({
-//   weight: ["400", "500", "700"],
-//   style: "normal",
-//   subsets: ["latin"],
-// });
+const poppins = Poppins({
+  weight: ["400", "500", "700"],
+  style: "normal",
+  subsets: ["latin"],
+});
 
 const RootLayout = ({ children }) => {
   return (
@@ -34,7 +34,7 @@ const RootLayout = ({ children }) => {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </Head>
-      <body>
+      <body className={poppins.main}>
         <StoreProvider>
           <div className="page">
             <div className="container">
