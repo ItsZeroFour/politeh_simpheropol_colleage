@@ -1,4 +1,4 @@
-import React from "react";
+
 import style from "./EssentialLinks.module.scss";
 import Link from "next/link";
 import image from '../../../../public/assets/images/enrollee/mar-capital.jpg'

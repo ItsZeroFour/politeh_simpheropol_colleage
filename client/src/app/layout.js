@@ -25,7 +25,17 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-const RootLayout = ({ children }) => {
+const getLinksData = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheaderall`, {
+    next: { revalidate: 300 }
+  })
+
+  return await response.json()
+}
+
+const RootLayout = async ({ children }) => {
+  const linksServer = await getLinksData()
+
   return (
     <html len="ru">
       <Head>
@@ -38,7 +48,7 @@ const RootLayout = ({ children }) => {
         <StoreProvider>
           <div className="page">
             <div className="container">
-              <Header />
+              <Header data={linksServer} />
               <main>{children}</main>
             </div>
 

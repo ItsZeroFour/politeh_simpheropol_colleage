@@ -1,7 +1,5 @@
-'use client'
-
 import Post from '@/features/home/Post'
-import { useGetPostsQuery } from '@app/store/header/api/home/posts.api'
+// import { useGetPostsQuery } from '@app/store/header/api/home/posts.api'
 import PostLoading from '@features/home/PostLoading'
 import Link from 'next/link'
 import style from './Posts.module.scss'
@@ -16,8 +14,17 @@ const _posts = data => {
 	})
 }
 
-const Posts = () => {
-	const { data } = useGetPostsQuery()
+const getPosts = async () => {
+	const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getpostspages`, {
+		next: { revalidate: 300 }
+	})
+
+	return await response.json()
+}
+
+const Posts = async () => {
+	// const { data } = useGetPostsQuery()
+	const data = await getPosts()
 
 	return (
 		<section className={style.posts}>

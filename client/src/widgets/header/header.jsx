@@ -88,7 +88,7 @@ const menuLinks = [
   },
 ];
 
-const Header = () => {
+const Header = ({ data }) => {
   const { isOpened } = useSelector(getHeader);
   const dispatch = useDispatch();
   const { setIsOpenedMenu } = useActions();
@@ -103,7 +103,7 @@ const Header = () => {
   useEffect(() => {
     if (!isOpened) document.body.style.overflow = "auto";
     else document.body.style.overflow = "hidden";
-  }, [isOpened]);
+  }, [isOpened])
 
   return (
     <>
@@ -114,13 +114,13 @@ const Header = () => {
       >
         <div className={style.container}>
           <div className={style.logo}>
-            <Link href="/">
+            <Link href="/" onClick={() => dispatch(setIsOpenedMenu(false))}>
               <Image src={logo} />
             </Link>
           </div>
 
           <nav className={style.navigation}>
-            <Links />
+            <Links data={data} />
           </nav>
 
           <div className={style.headerButtons}>
@@ -141,7 +141,7 @@ const Header = () => {
         <nav className={style.menuLinks}>
           <ul>
             <div className={style.mobile__links}>
-              <MobileLinks />
+              <MobileLinks data={data} />
             </div>
 
             {menuLinks.map((menuLink, index) => (
