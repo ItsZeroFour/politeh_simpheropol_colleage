@@ -33,7 +33,7 @@ const Speciality = ({ specialityId }) => {
 
   return (
     <section>
-      {speciality ? (
+      {speciality && speciality.length !== 0 ? (
         <>
           <SpecialityTop speciality={speciality} />
           <SpecialityMainInfo speciality={speciality} />

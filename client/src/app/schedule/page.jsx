@@ -11,6 +11,7 @@ import "react-medium-image-zoom/dist/styles.css";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useAppDispatch, useAppSelector } from "@app/hooks/redux";
+import axios from "axios";
 
 export default function Schedule() {
   const dispatch = useAppDispatch();

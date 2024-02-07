@@ -70,20 +70,13 @@
 }
 
 .links__link {
-  width: 22rem;
+  width: 35rem;
   margin: auto;
   margin-top: 60px;
   text-align: center;
 
-<<<<<<< HEAD
-  img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 100px;
-=======
   @media (max-width: 768px) {
     width: 300px;
->>>>>>> 0e2d9e46eff0a182b533dea396ed150b80bdf27b
   }
 
   a {

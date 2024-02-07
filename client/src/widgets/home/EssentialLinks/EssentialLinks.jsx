@@ -46,7 +46,7 @@ function EssentialLinks() {
       </nav>
 
       <div className={style.links__link}>
-        <Image src={image} alt="image"/>
+        {/* <Image src={image} alt="image"/> */}
         <Link href="/our-colleage">Наш колледж</Link>
       </div>
     </>
