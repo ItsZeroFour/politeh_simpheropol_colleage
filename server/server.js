@@ -32,6 +32,8 @@ const MONGO_URI = process.env.MONGO_URI;
 // const upload = multer({ dest: 'uploads/' })
 /* MIDDLEWARES */
 
+console.log(MONGO_URI);
+
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 app.use(helmet());
