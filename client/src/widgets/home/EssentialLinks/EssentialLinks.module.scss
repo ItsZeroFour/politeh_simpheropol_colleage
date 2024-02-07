@@ -70,7 +70,6 @@
 }
 
 .links__link {
-  width: 35rem;
   margin: auto;
   margin-top: 60px;
   text-align: center;
@@ -79,12 +78,19 @@
     width: 300px;
   }
 
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-md);
+  }
+
   a {
     background: var(--color-blue);
     border-radius: var(--border-radius-sm);
 
     display: inline-block;
     font-size: 1.25rem;
+    margin-top: 1rem;
 
     width: 100%;
     padding: 1.2rem 0;
@@ -94,12 +100,12 @@
       font-size: 16px;
     }
 
-    transition: .4s;
+    transition: 0.4s;
 
     &:hover {
-        background: #0c58cb;
-        box-shadow: 0 0 .6rem .2rem rgba(12,88,203,0.2);
-        transition: .4s;
+      background: #0c58cb;
+      box-shadow: 0 0 0.6rem 0.2rem rgba(12, 88, 203, 0.2);
+      transition: 0.4s;
     }
   }
 }
