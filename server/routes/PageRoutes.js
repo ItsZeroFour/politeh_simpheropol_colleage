@@ -13,8 +13,13 @@ router.post(
 	// pageValidation,
 	PageControllers.createPage
 )
-router.post('/uploadimage', checkAuth,
-checkUserIsAdmin, ImageLoader)
+router.put(
+	'/imagepage',
+	checkAuth,
+	checkUserIsAdmin,
+	PageControllers.updateImagePage
+)
+router.post('/uploadimage', checkAuth, checkUserIsAdmin, ImageLoader)
 router.get('/takecollege', PageControllers.getPageUrl)
 router.put(
 	'/topublic',
@@ -28,7 +33,12 @@ router.get('/getpostspages', PageControllers.getOurPostsPages)
 router.get('/getpagestitle', PageControllers.getPagePostsTitle)
 router.get('/getpagecontent', PageControllers.getPageContent)
 //router.get('/getonepage', PageControllers.getOnePage)
-router.delete('/delete', checkAuth,checkUserIsAdmin,  PageControllers.deletePage)
+router.delete(
+	'/delete',
+	checkAuth,
+	checkUserIsAdmin,
+	PageControllers.deletePage
+)
 router.get('/getonepage', PageControllers.getOnePage)
 // router.get(
 // 	'/update',

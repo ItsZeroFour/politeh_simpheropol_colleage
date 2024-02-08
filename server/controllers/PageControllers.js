@@ -1,6 +1,19 @@
 import { validationResult } from 'express-validator'
 import PageModel from '../models/Page.js'
 
+export const updateImagePage = async (req, res) => {
+	try {
+		const { pageUrl, pageImageUrl } = req.body
+		console.log(pageUrl, pageImageUrl)
+		const updateImagesPage = await PageModel.findByIdAndUpdate(
+			{ pageUrl },
+			{ pageImage: pageImageUrl }
+		)
+		return res.status(200).json({ updateImagesPage })
+	} catch (error) {
+		return res.status(500).json({ message: 'ошибка сервера' })
+	}
+}
 export const createPage = async (req, res) => {
 	try {
 		const errors = validationResult(req)
@@ -163,8 +176,8 @@ export const deletePage = async (req, res) => {
 				message: 'Страница не найдена',
 			})
 		}
-		console.log('p',page._doc)
-		res.status(200).json({message:"объект был удален"})
+		console.log('p', page._doc)
+		res.status(200).json({ message: 'объект был удален' })
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
