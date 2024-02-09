@@ -3,6 +3,7 @@ import PageModel from '../models/Page.js'
 
 export const updateImagePage = async (req, res) => {
 	try {
+    console.log("true")
 		const { pageUrl, pageImageUrl } = req.body
 		console.log(pageUrl, pageImageUrl)
 		const updateImagesPage = await PageModel.findByIdAndUpdate(

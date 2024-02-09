@@ -85,9 +85,10 @@ export default function App() {
 			}
 		})
 	}
-	useEffect(() => {
-		const sendImage = async () => {
+	
+const sendImage = async () => {
 			try {
+      console.log('it a send image', pageUrl, imageUrl)
 				await axios.put(
 					`${process.env.NEXT_PUBLIC_SERVER_URL}/page/imagepage`,
 					{
@@ -99,8 +100,6 @@ export default function App() {
 				alert('произошла ошибка сервера')
 			}
 		}
-		sendImage()
-	}, [imageUrl])
 
 	const handleAddHeadingThree = () => {
 		const isExtend = textValue.includes(selectedText)
@@ -721,6 +720,7 @@ export default function App() {
 			setImageUrl(
 				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
 			)
+      sendImage()
 			console.log(data.imagelink)
 		} catch (err) {
 			console.log(err)
