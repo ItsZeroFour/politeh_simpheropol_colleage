@@ -3,13 +3,14 @@ import PageModel from '../models/Page.js'
 
 export const updateImagePage = async (req, res) => {
 	try {
-    console.log("true")
+		console.log('true')
 		const { pageUrl, pageImageUrl } = req.body
 		console.log(pageUrl, pageImageUrl)
-		const updateImagesPage = await PageModel.findByIdAndUpdate(
+		const updateImagesPage = await PageModel.findOneAndUpdate(
 			{ pageUrl },
 			{ pageImage: pageImageUrl }
 		)
+		console.log('9u', updateImagesPage)
 		return res.status(200).json({ updateImagesPage })
 	} catch (error) {
 		return res.status(500).json({ message: 'ошибка сервера' })

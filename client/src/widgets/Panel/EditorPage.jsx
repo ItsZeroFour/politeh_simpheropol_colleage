@@ -19,7 +19,7 @@ import Vector from '@public/assets/icons/adminicons/Vector'
 import axios from 'axios'
 import { Interweave, Markup } from 'interweave'
 import Cookies from 'js-cookie'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import Popup from 'reactjs-popup'
@@ -85,21 +85,24 @@ export default function App() {
 			}
 		})
 	}
-	
-const sendImage = async () => {
-			try {
-      console.log('it a send image', pageUrl, imageUrl)
-				await axios.put(
-					`${process.env.NEXT_PUBLIC_SERVER_URL}/page/imagepage`,
-					{
-						pageUrl,
-						pageImageUrl: imageUrl,
-					}
-				)
-			} catch (error) {
-				alert('произошла ошибка сервера')
-			}
+
+	const sendImage = async (imageUrl, pageUrl) => {
+		try {
+			console.log('it a send image', pageUrl, imageUrl)
+			const token = await Cookies.get('token')
+			await axios.put(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/imagepage`,
+				{
+					pageUrl,
+					pageImageUrl: imageUrl,
+				},
+				{ headers: { Authorization: `Bearer ${token}` } }
+			)
+		} catch (error) {
+			console.log(error)
+			alert('произошла ошибка сервера')
 		}
+	}
 
 	const handleAddHeadingThree = () => {
 		const isExtend = textValue.includes(selectedText)
@@ -677,6 +680,7 @@ const sendImage = async () => {
 	const addPageInServer = async () => {
 		try {
 			let newUrl = ''
+			sendImage(imageUrl, urlPage)
 			const token = await Cookies.get('token')
 			const someDate = await axios.put(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
@@ -699,6 +703,7 @@ const sendImage = async () => {
 			}
 		} catch (error) {
 			console.log(error)
+
 			alert(
 				`${error.response.data.message}. Текущий статус:${error.response.status}`
 			) // Handle any errors
@@ -720,8 +725,8 @@ const sendImage = async () => {
 			setImageUrl(
 				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
 			)
-      sendImage()
-			console.log(data.imagelink)
+
+			console.log('imagelink', data.imagelink)
 		} catch (err) {
 			console.log(err)
 		}
