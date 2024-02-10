@@ -373,3 +373,32 @@
 .enrollee__links__loading {
   height: 20px;
 }
+
+.specialityes {
+  ul {
+    margin-bottom: 60px;
+  }
+}
+
+.specialityes__quiz {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    width: 50%;
+    background: rgba(0, 26, 255, 0.712);
+    border: 1px solid var(--color-blue);
+    padding: 20px;
+    text-align: center;
+    border-radius: var(--border-radius-lg);
+
+    transition: var(--transition);
+
+    &:hover {
+      background: var(--color-blue);
+    }
+  }
+}

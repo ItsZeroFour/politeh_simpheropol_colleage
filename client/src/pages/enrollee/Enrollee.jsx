@@ -10,6 +10,7 @@ import EnrolleeTop from "@/widgets/Enrollee/EnrolleeTop";
 import EnrolleeSpecialityes from "@/widgets/Enrollee/EnrolleeSpecialityes";
 import EnrolleeNecessary from "@/widgets/Enrollee/EnrolleeNecessary";
 import EnrolleeRequzits from "@/widgets/Enrollee/EnrolleeRequzits";
+import Link from "next/link";
 
 const Enrollee = ({ files, specialityes }) => {
   // const [files, setFiles] = useState(null);

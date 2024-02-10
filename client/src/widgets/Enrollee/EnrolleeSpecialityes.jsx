@@ -9,10 +9,8 @@ import { motion } from "framer-motion";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-
-
 const Specialityes = React.memo(function Specialityes({ specialityes }) {
-  specialityes = specialityes || []
+  specialityes = specialityes || [];
 
   // const [specialityes, setSpecialityes] = useState([]);
   const [ref, inView] = useInView({
@@ -93,6 +91,10 @@ const Specialityes = React.memo(function Specialityes({ specialityes }) {
               ))}
         </motion.ul>
       )}
+
+      <div className={style.specialityes__quiz}>
+        <Link href="/quiz">Какая специальность мне больше подходит?</Link>
+      </div>
     </section>
   );
 });
