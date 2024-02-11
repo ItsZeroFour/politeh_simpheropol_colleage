@@ -18,12 +18,12 @@ import UnderlineIcon from '@public/assets/icons/adminicons/UnderlineIcon'
 import Vector from '@public/assets/icons/adminicons/Vector'
 import axios from 'axios'
 import { Interweave, Markup } from 'interweave'
+import Cookies from 'js-cookie'
 import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import Popup from 'reactjs-popup'
 import { Counter } from './UndoRendoUI'
-import Cookies from 'js-cookie'
 export default function App() {
 	const [isPage, setIsPage] = useState(true)
 	const state = useSelector(state => state)
@@ -45,6 +45,7 @@ export default function App() {
 	const [localrenderImage, setLocalrenderImage] = useState('')
 	const [titleHandler, setTitleHandler] = useState('')
 	const [isButtonClicked, setIsButtonClicked] = useState(false)
+	const [imageUrl, setImageUrl] = useState('')
 	const [imageContentUrl, setImageContentUrl] = useState('')
 	const [replaceTitle, setReplaceTitle] = useState('')
 	const [dataUrl, setDataUrl] = useState('')
@@ -69,8 +70,8 @@ export default function App() {
 	const RenderAll = () => {
 		return <Interweave content={textValue} />
 	}
-	const RenderPredImage = ({ localrenderImage }) => {
-		return <Interweave content={localrenderImage} />
+	const RenderPredImage = () => {
+		return <Interweave content={imageUrl} />
 	}
 	function convertToBase64(file) {
 		return new Promise((resolve, reject) => {
@@ -83,6 +84,24 @@ export default function App() {
 				reject(error)
 			}
 		})
+	}
+
+	const sendImage = async (imageUrl, pageUrl) => {
+		try {
+			console.log('it a send image', pageUrl, imageUrl)
+			const token = await Cookies.get('token')
+			await axios.put(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/imagepage`,
+				{
+					pageUrl,
+					pageImageUrl: imageUrl,
+				},
+				{ headers: { Authorization: `Bearer ${token}` } }
+			)
+		} catch (error) {
+			console.log(error)
+			alert('произошла ошибка сервера')
+		}
 	}
 
 	const handleAddHeadingThree = () => {
@@ -159,7 +178,8 @@ export default function App() {
 			const token = await Cookies.get('token')
 			const { data } = await axios.post(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/uploadpdf`,
-				formData,    { headers: { Authorization: `Bearer ${token}` } }
+				formData,
+				{ headers: { Authorization: `Bearer ${token}` } }
 			)
 			console.log('uploadpdf', data)
 			addLinkFile(data.pdflink)
@@ -613,7 +633,8 @@ export default function App() {
 			const token = await Cookies.get('token')
 			const { data } = await axios.post(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
-				formData,    { headers: { Authorization: `Bearer ${token}` } }
+				formData,
+				{ headers: { Authorization: `Bearer ${token}` } }
 			)
 			console.log(data.imagelink)
 			setDataUrl(data.imagelink)
@@ -658,32 +679,78 @@ export default function App() {
 	}
 	const addPageInServer = async () => {
 		try {
-		  let newUrl = "";
-		  const token = await Cookies.get('token')
-		  const someDate = await axios.put(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
-	  
-			{ URLPage, typePage, textValue, titlePage }, {
-			  headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` },
+			let newUrl = ''
+			sendImage(imageUrl, urlPage)
+			const token = await Cookies.get('token')
+			const someDate = await axios.put(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
+
+				{ URLPage, typePage, textValue, titlePage },
+				{
+					headers: {
+						'Access-Control-Allow-Origin': '*',
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			)
+
+			if (someDate.status == 208) {
+				alert(someDate.data.message)
 			}
-		  );
-		  
-	  
-		  if (someDate.status == 208) {
-			alert(someDate.data.message);
-		  }
-		  if (someDate.status == 200) {
-		   
-			dispatch(textValueFunc(""));
-			alert(someDate.data.message);
-		  }
+			if (someDate.status == 200) {
+				dispatch(textValueFunc(''))
+				alert(someDate.data.message)
+			}
+		} catch (error) {
+			console.log(error)
+
+			alert(
+				`${error.response.data.message}. Текущий статус:${error.response.status}`
+			) // Handle any errors
 		}
-		 catch (error) {
-		  console.log(error)
-		  alert(
-			`${error.response.data.message}. Текущий статус:${error.response.status}`
-		  ); // Handle any errors
-		}}
+	}
+	const deleteImagesPrev = async pageUrl => {
+		try {
+			alert('Вы действительно хотите удалить обложку?')
+			console.log('it a send image', pageUrl)
+			const token = await Cookies.get('token')
+			await axios.delete(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/removeimage`,
+				{
+					data: pageUrl,
+					headers: { Authorization: `Bearer ${token}` },
+				}
+			)
+		} catch (error) {
+			console.log(error)
+			alert(error)
+			console.log(error)
+			alert('произошла ошибка сервера')
+		}
+	}
+	const handleSubmit22 = async event => {
+		try {
+			const file = event.target.files[0]
+			const formData = new FormData()
+			formData.append('image', file)
+			console.log(formData)
+			const token = await Cookies.get('token')
+			const { data } = await axios.post(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
+				formData,
+				{ headers: { Authorization: `Bearer ${token}` } }
+			)
+
+			setImageUrl(
+				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
+			)
+
+			console.log('imagelink', data.imagelink)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
 	const Search = async () => {
 		try {
 			const somedata = await axios.get(
@@ -714,7 +781,6 @@ export default function App() {
 			)
 		)
 	}
-
 	const Checker = ({ dataPage }) => {
 		console.log(dataPage)
 		if (dataPage.status === 200) {
@@ -1054,6 +1120,53 @@ export default function App() {
 										</form>
 									</div>
 								</Popup>
+								<Popup
+									trigger={
+										<button
+											style={{
+												marginTop: 10,
+												marginBottom: 10,
+												padding: 10,
+												fontSize: 18,
+												borderRadius: 10,
+												fontWeight: 500,
+												backgroundColor: '#0066FF',
+											}}
+										>
+											обновить обложку
+										</button>
+									}
+									position='right center'
+								>
+									<div>
+										<input
+											id='create-post-img'
+											type='file'
+											accept='.jpg, .png, .jpeg, .webp'
+											onChange={handleSubmit22}
+											hidden
+										/>
+										<label htmlFor='create-post-img'>
+											Загрузить изображение
+										</label>
+									</div>
+								</Popup>
+
+								<button
+									onClick={() => deleteImagesPrev(URLPage)}
+									style={{
+										marginTop: 10,
+										marginBottom: 10,
+										padding: 10,
+										fontSize: 18,
+										borderRadius: 10,
+										fontWeight: 500,
+										backgroundColor: '#0066FF',
+									}}
+								>
+									удалить обложку
+								</button>
+
 								<div>
 									<input
 										onChange={handleTitleChange}
@@ -1092,6 +1205,7 @@ export default function App() {
 									</div>
 								</Popup>
 							</div>
+
 							<textarea
 								onChange={e => dispatch(textValueFunc(e.target.value))}
 								onMouseUp={e => handleFocus(e)}
@@ -1105,6 +1219,7 @@ export default function App() {
 								type='text'
 								placeholder='Начните писать...'
 							/>
+							<RenderPredImage />
 							<RenderAll />
 						</div>
 					}

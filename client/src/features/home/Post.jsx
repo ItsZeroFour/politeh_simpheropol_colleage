@@ -25,7 +25,8 @@ const Post = ({ data }) => {
 
 	//console.log({ data: { pageTitle: pageTitle, pageUrl } })
 	const { pageTitle, pageUrl, pageImage, pageDate } = data
-
+	console.log(pageImage)
+	console.log('hello')
 	if (pageImage != '') {
 		const str = pageImage
 		const srcRegex = /src\s*=\s*['"]?([^'"\s>]+)['"]?/
