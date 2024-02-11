@@ -1,56 +1,71 @@
-"use client";
+// "use client";
 
 import { fetchSchedule } from "../../app/store/schedule/scheduleSlice";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import style from "@pages/Schedule/Schedule.module.scss";
 import Link from "next/link";
 import bellImg from "../../../public/assets/images/schedule/bell.jpg";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useAppDispatch, useAppSelector } from "@app/hooks/redux";
-import axios from "axios";
+import ScheduleImage from "@features/Schedule/ScheduleImage/ScheduleImage";
+// import { useAppDispatch, useAppSelector } from "@app/hooks/redux";
+// import axios from "axios";
 
-export default function Schedule() {
-  const dispatch = useAppDispatch();
-  const [files, setFiles] = useState(null);
-  const { schedule } = useAppSelector((state) => state.schedule);
+const getFiles = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=schedule`, {
+    next: { revalidate: 900 }
+  })
 
-  useEffect(() => {
-    dispatch(fetchSchedule());
-  }, [dispatch]);
+  return await response.json()
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
-          {
-            params: { forPage: "schedule" },
-          }
-        );
+const getSchedule = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/scheduleone`, {
+    next: { revalidate: 1200 }
+  })
 
-        setFiles(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  return await response.json()
+}
 
-    fetchData();
-  }, []);
+export default async function Schedule() {
+  const schedule = await getSchedule()
+  const files = await getFiles()
+  // const dispatch = useAppDispatch();
+  // const [files, setFiles] = useState(null);
+  // const { schedule } = useAppSelector((state) => state.schedule);
+
+  // useEffect(() => {
+  //   dispatch(fetchSchedule());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
+  //         {
+  //           params: { forPage: "schedule" },
+  //         }
+  //       );
+
+  //       setFiles(data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   return (
     <main className={style.scheduleRoot}>
       <h1 className={style.schedule__title}>Расписание</h1>
-      <span>{schedule.items.date}</span>
+      <span>{schedule.date}</span>
       <section className={style.wrapperCorpus}>
         <span>Первый корпус</span>
         {schedule.status !== "loading" ? (
-          <Zoom zoomMargin={5} zoomZindex={1000}>
-            <Image src={schedule.items.scheduleOne} width={800} height={800} />
-          </Zoom>
+          <ScheduleImage schedule={schedule.scheduleOne} />
         ) : (
           <article className={style.schedule__loading}>
             <SkeletonTheme baseColor="#202020" highlightColor="#444">
@@ -62,9 +77,7 @@ export default function Schedule() {
       <section className={style.wrapperCorpus}>
         <span>Второй корпус</span>
         {schedule.status !== "loading" ? (
-          <Zoom zoomMargin={5} zoomZindex={1000}>
-            <Image src={schedule.items.scheduleTwo} width={800} height={800} />
-          </Zoom>
+          <ScheduleImage schedule={schedule.scheduleTwo} />
         ) : (
           <article className={style.schedule__loading}>
             <SkeletonTheme baseColor="#202020" highlightColor="#444">

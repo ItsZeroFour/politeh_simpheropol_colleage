@@ -4,30 +4,30 @@ import style from "./DPO.module.scss";
 import dpoImage from "../../../public/assets/images/dpo/dpo.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import axios from "axios";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
 
-const DPO = () => {
-  const [files, setFiles] = useState(null);
+const DPO = ({ files }) => {
+  // const [files, setFiles] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
-          {
-            params: { forPage: "dpo" },
-          }
-        );
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
+  //         {
+  //           params: { forPage: "dpo" },
+  //         }
+  //       );
 
-        setFiles(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  //       setFiles(data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <section className={style.dpo}>

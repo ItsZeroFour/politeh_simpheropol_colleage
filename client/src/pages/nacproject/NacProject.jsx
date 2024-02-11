@@ -16,7 +16,7 @@ import styles from '@widgets/NacProject/NacProject.module.scss'
 import { items } from '@widgets/NacProject/NacProjectArticlesData.js'
 import NacProjectList from '@widgets/NacProject/NacProjectList.jsx'
 import { useState } from 'react'
-const NacProject = () => {
+const NacProject = ({ files }) => {
 	const [firstArticle, ...otherArticles] = items
 	const [isopened, setIsOpened] = useState(false)
 	const openAllList = () => {
@@ -114,7 +114,7 @@ const NacProject = () => {
 				</div>
 			</div>
 			<div className={styles.block_desc}>
-				{<NacProjectList />}
+				{<NacProjectList files={files} />}
 				<div className={styles.centered}>
 					<button
 						onClick={() => openAllList()}

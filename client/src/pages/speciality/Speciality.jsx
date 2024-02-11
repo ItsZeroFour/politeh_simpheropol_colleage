@@ -5,31 +5,33 @@ import SpecialityMainInfo from "@/widgets/Speciality/SpecialityMainInfo";
 import SpecialityQuestionAnswer from "@/widgets/Speciality/SpecialityQuestionAnswer";
 import SpecialityResume from "@/widgets/Speciality/SpecialityResume";
 import SpecialityTop from "@/widgets/Speciality/SpecialityTop";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import style from "./style.module.scss";
 
-const Speciality = ({ specialityId }) => {
-  const [speciality, setSpeciality] = useState(null);
 
-  useEffect(() => {
-    const getData = async () => {
-      const query = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpeciality/${specialityId}`
-      );
-      const response = await query.json();
-      setSpeciality(response);
-    };
 
-    getData();
+const Speciality = ({ speciality }) => {
+  // const [speciality, setSpeciality] = useState(null);
 
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const query = await fetch(
+  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpeciality/${specialityId}`
+  //     );
+  //     const response = await query.json();
+  //     setSpeciality(response);
+  //   };
+
+  //   getData();
+
+  //   window.scrollTo({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: "smooth",
+  //   });
+  // }, []);
 
   return (
     <section>

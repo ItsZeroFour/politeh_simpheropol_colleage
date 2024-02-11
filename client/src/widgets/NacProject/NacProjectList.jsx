@@ -1,30 +1,29 @@
-"use client";
-
 import styles from "@widgets/NacProject/NacProject.module.scss";
-import { useEffect, useState } from "react";
-import axios from "axios";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
 import Link from "next/link.js";
-const NacProjectList = () => {
-  const [files, setFiles] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
-          {
-            params: { forPage: "nacproject" },
-          }
-        );
+const NacProjectList = ({ files }) => {
+  // const [files, setFiles] = useState(null);
 
-        setFiles(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
+  //         {
+  //           params: { forPage: "nacproject" },
+  //         }
+  //       );
 
-    fetchData();
-  }, []);
+  //       setFiles(data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   return (
     <ul className={styles.listPol}>
