@@ -3,65 +3,9 @@
 import React, { useState } from "react";
 import style from "./style.module.scss";
 import { motion } from "framer-motion";
-import QuizImage1 from "../../../public/assets/images/quiz/quiz-1.svg";
-import QuizImage2 from "@public/assets/images/quiz/quiz-2.svg";
-
-import QuizImage3 from "../../../public/assets/images/quiz/quiz-3.svg";
-import QuizImage4 from "@public/assets/images/quiz/quiz-4.svg";
-
-import QuizImage5 from "../../../public/assets/images/quiz/quiz-5.svg";
-import QuizImage6 from "@public/assets/images/quiz/quiz-6.svg";
-
-import QuizImage7 from "../../../public/assets/images/quiz/quiz-7.svg";
-import QuizImage8 from "@public/assets/images/quiz/quiz-8.svg";
-
-import QuizImage9 from "../../../public/assets/images/quiz/quiz-9.svg";
-import QuizImage10 from "@public/assets/images/quiz/quiz-10.svg";
-
-import QuizImage11 from "../../../public/assets/images/quiz/quiz-11.svg";
-import QuizImage12 from "@public/assets/images/quiz/quiz-12.svg";
-
-import QuizImage13 from "../../../public/assets/images/quiz/quiz-13.svg";
-import QuizImage14 from "@public/assets/images/quiz/quiz-14.svg";
-
-import QuizImage15 from "../../../public/assets/images/quiz/quiz-15.svg";
-import QuizImage16 from "@public/assets/images/quiz/quiz-16.svg";
-
-import QuizImage17 from "../../../public/assets/images/quiz/quiz-17.svg";
-import QuizImage18 from "@public/assets/images/quiz/quiz-18.svg";
-
-import QuizImage19 from "../../../public/assets/images/quiz/quiz-19.svg";
-import QuizImage20 from "@public/assets/images/quiz/quiz-20.svg";
-
-import QuizImage21 from "../../../public/assets/images/quiz/quiz-21.svg";
-import QuizImage22 from "@public/assets/images/quiz/quiz-22.svg";
-
-import QuizImage23 from "../../../public/assets/images/quiz/quiz-23.svg";
-import QuizImage24 from "@public/assets/images/quiz/quiz-24.svg";
-
-import QuizImage25 from "../../../public/assets/images/quiz/quiz-25.svg";
-import QuizImage26 from "@public/assets/images/quiz/quiz-26.svg";
-
-import QuizImage27 from "../../../public/assets/images/quiz/quiz-27.svg";
-import QuizImage28 from "@public/assets/images/quiz/quiz-28.svg";
-
-import QuizImage29 from "../../../public/assets/images/quiz/quiz-29.svg";
-import QuizImage30 from "@public/assets/images/quiz/quiz-30.svg";
-
-import QuizImage31 from "../../../public/assets/images/quiz/quiz-31.svg";
-import QuizImage32 from "@public/assets/images/quiz/quiz-32.svg";
-
-import QuizImage33 from "../../../public/assets/images/quiz/quiz-33.svg";
-import QuizImage34 from "@public/assets/images/quiz/quiz-34.svg";
-
-import QuizImage35 from "../../../public/assets/images/quiz/quiz-35.svg";
-import QuizImage36 from "@public/assets/images/quiz/quiz-36.svg";
-
-import QuizImage37 from "../../../public/assets/images/quiz/quiz-37.svg";
-import QuizImage38 from "@public/assets/images/quiz/quiz-38.svg";
-
-import QuizImage39 from "../../../public/assets/images/quiz/quiz-39.svg";
-import QuizImage40 from "@public/assets/images/quiz/quiz-40.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import IMG from "../../../public/assets/images/quiz/quiz-1.svg";
 
 const QuizPage = () => {
   const [currentQuizItem, setCurrentQuizItem] = useState(0);
@@ -99,13 +43,13 @@ const QuizPage = () => {
     [
       {
         title: "Ухаживать за животными",
-        image: <QuizImage1 />,
+        image: "../../../public/assets/images/quiz/quiz-1.svg",
         id: 1,
       },
 
       {
         title: "Обслуживать машины, приборы (следить, регулировать)",
-        image: <QuizImage2 />,
+        image: "../../../public/assets/images/quiz/quiz-2.svg",
         id: 2,
       },
     ],
@@ -113,13 +57,13 @@ const QuizPage = () => {
     [
       {
         title: "Помогать больным",
-        image: <QuizImage3 />,
+        image: "../../../public/assets/images/quiz/quiz-3.svg",
         id: 3,
       },
 
       {
         title: "Составлять таблицы, схемы, программы для вычислительных машин",
-        image: <QuizImage4 />,
+        image: "../../../public/assets/images/quiz/quiz-4.svg",
         id: 4,
       },
     ],
@@ -128,13 +72,13 @@ const QuizPage = () => {
       {
         title:
           "Следить за качеством книжных иллюстраций, плакатов, художественных открыток, грампластинок",
-        image: <QuizImage5 />,
+        image: "../../../public/assets/images/quiz/quiz-5.svg",
         id: 5,
       },
 
       {
         title: "Следить за состоянием и развитием растений",
-        image: <QuizImage6 />,
+        image: "../../../public/assets/images/quiz/quiz-6.svg",
         id: 1,
       },
     ],
@@ -143,13 +87,13 @@ const QuizPage = () => {
       {
         title:
           "Обрабатывать материалы (дерево, ткань, металл, пластмассу и др.)",
-        image: <QuizImage7 />,
+        image: "../../../public/assets/images/quiz/quiz-7.svg",
         id: 2,
       },
 
       {
         title: "Доводить товары до потребителя, рекламировать, продавать",
-        image: <QuizImage8 />,
+        image: "../../../public/assets/images/quiz/quiz-8.svg",
         id: 3,
       },
     ],
@@ -157,13 +101,13 @@ const QuizPage = () => {
     [
       {
         title: "Обсуждать научно-популярные книги, статьи",
-        image: <QuizImage9 />,
+        image: "../../../public/assets/images/quiz/quiz-9.svg",
         id: 4,
       },
 
       {
         title: "Обсуждать художественные книги (или пьесы, концерты)",
-        image: <QuizImage10 />,
+        image: "../../../public/assets/images/quiz/quiz-10.svg",
         id: 5,
       },
     ],
@@ -171,14 +115,14 @@ const QuizPage = () => {
     [
       {
         title: "Выращивать молодняк (животных  какой-либо породы)",
-        image: <QuizImage11 />,
+        image: "../../../public/assets/images/quiz/quiz-11.svg",
         id: 1,
       },
 
       {
         title:
           "Тренировать товарищей (или младших) в выполнении каких-либо действий (трудовых, учебных, спортивных)",
-        image: <QuizImage12 />,
+        image: "../../../public/assets/images/quiz/quiz-12.svg",
         id: 3,
       },
     ],
@@ -186,13 +130,13 @@ const QuizPage = () => {
     [
       {
         title: "Копировать рисунки, или настраивать музыкальные инструменты",
-        image: <QuizImage13 />,
+        image: "../../../public/assets/images/quiz/quiz-13.svg",
         id: 5,
       },
 
       {
         title: "Управлять подъёмным краном, трактором, тепловозом и т.п",
-        image: <QuizImage14 />,
+        image: "../../../public/assets/images/quiz/quiz-14.svg",
         id: 2,
       },
     ],
@@ -201,14 +145,14 @@ const QuizPage = () => {
       {
         title:
           "Сообщить, разъяснять людям нужные им сведения (в справочном бюро, на экскурсии и т.д.)",
-        image: <QuizImage15 />,
+        image: "../../../public/assets/images/quiz/quiz-15.svg",
         id: 3,
       },
 
       {
         title:
           "Оформлять выставки, витрины (или участвовать в подготовке пьес, концертов)",
-        image: <QuizImage16 />,
+        image: "../../../public/assets/images/quiz/quiz-16.svg",
         id: 5,
       },
     ],
@@ -216,13 +160,13 @@ const QuizPage = () => {
     [
       {
         title: "Ремонтировать вещи, изделия (одежду, технику), жилище",
-        image: <QuizImage17 />,
+        image: "../../../public/assets/images/quiz/quiz-17.svg",
         id: 2,
       },
 
       {
         title: "Искать и исправлять ошибки в текстах, таблицах, рисунках",
-        image: <QuizImage18 />,
+        image: "../../../public/assets/images/quiz/quiz-18.svg",
         id: 4,
       },
     ],
@@ -230,13 +174,13 @@ const QuizPage = () => {
     [
       {
         title: "Лечить животных",
-        image: <QuizImage19 />,
+        image: "../../../public/assets/images/quiz/quiz-19.svg",
         id: 1,
       },
 
       {
         title: "Выполнять вычисления, расчёты",
-        image: <QuizImage20 />,
+        image: "../../../public/assets/images/quiz/quiz-20.svg",
         id: 4,
       },
     ],
@@ -244,14 +188,14 @@ const QuizPage = () => {
     [
       {
         title: "Выводить новые сорта растений",
-        image: <QuizImage21 />,
+        image: "../../../public/assets/images/quiz/quiz-21.svg",
         id: 1,
       },
 
       {
         title:
           "Конструировать, новые виды промышленных изделий (машины, одежду, дома, продукты питания и т.п.)",
-        image: <QuizImage22 />,
+        image: "../../../public/assets/images/quiz/quiz-22.svg",
         id: 2,
       },
     ],
@@ -260,14 +204,14 @@ const QuizPage = () => {
       {
         title:
           "Разбирать споры, ссоры между людьми, убеждать, разъяснять, наказывать, поощрять",
-        image: <QuizImage23 />,
+        image: "../../../public/assets/images/quiz/quiz-23.svg",
         id: 3,
       },
 
       {
         title:
           "Разбираться в чертежах, схемах, таблицах (проверять, уточнять, приводить в порядок)",
-        image: <QuizImage24 />,
+        image: "../../../public/assets/images/quiz/quiz-24.svg",
         id: 4,
       },
     ],
@@ -276,13 +220,13 @@ const QuizPage = () => {
       {
         title:
           "Наблюдать, изучать работу кружков художественной самодеятельности",
-        image: <QuizImage25 />,
+        image: "../../../public/assets/images/quiz/quiz-25.svg",
         id: 5,
       },
 
       {
         title: "Наблюдать, изучать жизнь микробов",
-        image: <QuizImage26 />,
+        image: "../../../public/assets/images/quiz/quiz-26.svg",
         id: 1,
       },
     ],
@@ -290,14 +234,14 @@ const QuizPage = () => {
     [
       {
         title: "Обслуживать, налаживать медицинские приборы, аппараты",
-        image: <QuizImage27 />,
+        image: "../../../public/assets/images/quiz/quiz-27.svg",
         id: 2,
       },
 
       {
         title:
           "Оказывать людям медицинскую помощь при ранениях, ушибах, ожогах и т.п.",
-        image: <QuizImage28 />,
+        image: "../../../public/assets/images/quiz/quiz-28.svg",
         id: 3,
       },
     ],
@@ -306,14 +250,14 @@ const QuizPage = () => {
       {
         title:
           "Художественно описывать, изображать события (наблюдаемые и представляемые)",
-        image: <QuizImage29 />,
+        image: "../../../public/assets/images/quiz/quiz-29.svg",
         id: 4,
       },
 
       {
         title:
           "Составлять точные описания-отчёты о наблюдаемых явлениях, событиях",
-        image: <QuizImage30 />,
+        image: "../../../public/assets/images/quiz/quiz-30.svg",
         id: 5,
       },
     ],
@@ -321,14 +265,14 @@ const QuizPage = () => {
     [
       {
         title: "Делать лабораторные анализы в больнице",
-        image: <QuizImage31 />,
+        image: "../../../public/assets/images/quiz/quiz-31.svg",
         id: 1,
       },
 
       {
         title:
           "Принимать, осматривать больных, беседовать с ними, назначать лечение",
-        image: <QuizImage32 />,
+        image: "../../../public/assets/images/quiz/quiz-32.svg",
         id: 3,
       },
     ],
@@ -336,13 +280,13 @@ const QuizPage = () => {
     [
       {
         title: "Красить или расписывать стены помещений, поверхность изделий",
-        image: <QuizImage33 />,
+        image: "../../../public/assets/images/quiz/quiz-33.svg",
         id: 5,
       },
 
       {
         title: "Осуществлять монтаж или сборку машин, приборов",
-        image: <QuizImage34 />,
+        image: "../../../public/assets/images/quiz/quiz-34.svg",
         id: 2,
       },
     ],
@@ -351,13 +295,13 @@ const QuizPage = () => {
       {
         title:
           "Организовывать культпоходы сверстников или младших в театры, музеи, экскурсии, туристические походы и т.п.",
-        image: <QuizImage35 />,
+        image: "../../../public/assets/images/quiz/quiz-35.svg",
         id: 3,
       },
 
       {
         title: "Играть на сцене, принимать участие в концертах",
-        image: <QuizImage36 />,
+        image: "../../../public/assets/images/quiz/quiz-36.svg",
         id: 5,
       },
     ],
@@ -366,13 +310,13 @@ const QuizPage = () => {
       {
         title:
           "Изготовлять по чертежам детали, изделия (машины, одежду), строить здания",
-        image: <QuizImage37 />,
+        image: "../../../public/assets/images/quiz/quiz-37.svg",
         id: 2,
       },
 
       {
         title: "Заниматься черчением, копировать чертежи, карты",
-        image: <QuizImage38 />,
+        image: "../../../public/assets/images/quiz/quiz-38.svg",
         id: 4,
       },
     ],
@@ -380,14 +324,14 @@ const QuizPage = () => {
     [
       {
         title: "Вести борьбу с болезнями растений, с вредителями леса, сада.",
-        image: <QuizImage39 />,
+        image: "../../../public/assets/images/quiz/quiz-39.svg",
         id: 1,
       },
 
       {
         title:
           "Работать на клавишных машинах (пишущей машинке, телетайпе, наборной машине и др.)",
-        image: <QuizImage40 />,
+        image: "../../../public/assets/images/quiz/quiz-40.svg",
         id: 4,
       },
     ],
@@ -459,7 +403,9 @@ const QuizPage = () => {
                   : { background: "rgba(0, 85, 255, 0.3)" }
               }
             >
-              {image}
+              <LazyLoadImage src={image} alt={title} />
+              <img src={image} alt="" />
+              <IMG />
               <p>{title}</p>
             </motion.li>
           ))}
