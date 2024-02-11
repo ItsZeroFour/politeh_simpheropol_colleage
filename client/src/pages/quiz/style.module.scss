@@ -84,8 +84,16 @@
           margin-top: auto;
         }
 
-        svg {
+        img {
           cursor: pointer;
+        }
+
+        @media (max-width: 1432px) {
+          height: 400px;
+        }
+
+        @media (max-width: 1232px) {
+          height: 300px;
         }
 
         @media (max-width: 510px) {
@@ -125,8 +133,11 @@
       }
 
       @media (max-width: 1772px) {
-        flex-direction: column;
         gap: 40px;
+      }
+
+      @media (max-width: 952px) {
+        flex-direction: column;
       }
     }
   }
