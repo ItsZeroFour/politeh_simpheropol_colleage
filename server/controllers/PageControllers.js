@@ -16,6 +16,21 @@ export const updateImagePage = async (req, res) => {
 		return res.status(500).json({ message: 'ошибка сервера' })
 	}
 }
+export const deletePageImage = async (req, res) => {
+	try {
+		console.log('true')
+		const { pageUrl } = req.body
+		console.log(pageUrl)
+		const updateImagesPage = await PageModel.findOneAndUpdate(
+			{ pageUrl },
+			{ pageImage: '' }
+		)
+		console.log('9u', updateImagesPage)
+		return res.status(200).json({ updateImagesPage })
+	} catch (error) {
+		return res.status(500).json({ message: 'ошибка сервера' })
+	}
+}
 export const createPage = async (req, res) => {
 	try {
 		const errors = validationResult(req)

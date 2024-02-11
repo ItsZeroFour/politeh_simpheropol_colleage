@@ -13,6 +13,12 @@ router.post(
 	// pageValidation,
 	PageControllers.createPage
 )
+router.delete(
+	'/removeimage',
+	checkAuth,
+	checkUserIsAdmin,
+	PageControllers.deletePageImage
+)
 router.put(
 	'/imagepage',
 	checkAuth,

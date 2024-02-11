@@ -709,6 +709,25 @@ export default function App() {
 			) // Handle any errors
 		}
 	}
+	const deleteImagesPrev = async pageUrl => {
+		try {
+			alert('Вы действительно хотите удалить обложку?')
+			console.log('it a send image', pageUrl)
+			const token = await Cookies.get('token')
+			await axios.delete(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/removeimage`,
+				{
+					data: pageUrl,
+					headers: { Authorization: `Bearer ${token}` },
+				}
+			)
+		} catch (error) {
+			console.log(error)
+			alert(error)
+			console.log(error)
+			alert('произошла ошибка сервера')
+		}
+	}
 	const handleSubmit22 = async event => {
 		try {
 			const file = event.target.files[0]
@@ -1101,6 +1120,53 @@ export default function App() {
 										</form>
 									</div>
 								</Popup>
+								<Popup
+									trigger={
+										<button
+											style={{
+												marginTop: 10,
+												marginBottom: 10,
+												padding: 10,
+												fontSize: 18,
+												borderRadius: 10,
+												fontWeight: 500,
+												backgroundColor: '#0066FF',
+											}}
+										>
+											обновить обложку
+										</button>
+									}
+									position='right center'
+								>
+									<div>
+										<input
+											id='create-post-img'
+											type='file'
+											accept='.jpg, .png, .jpeg, .webp'
+											onChange={handleSubmit22}
+											hidden
+										/>
+										<label htmlFor='create-post-img'>
+											Загрузить изображение
+										</label>
+									</div>
+								</Popup>
+
+								<button
+									onClick={() => deleteImagesPrev(URLPage)}
+									style={{
+										marginTop: 10,
+										marginBottom: 10,
+										padding: 10,
+										fontSize: 18,
+										borderRadius: 10,
+										fontWeight: 500,
+										backgroundColor: '#0066FF',
+									}}
+								>
+									удалить обложку
+								</button>
+
 								<div>
 									<input
 										onChange={handleTitleChange}
@@ -1138,38 +1204,8 @@ export default function App() {
 										</label>
 									</div>
 								</Popup>
-								<Popup
-									trigger={
-										<button
-											style={{
-												marginTop: 10,
-												marginBottom: 10,
-												padding: 10,
-												fontSize: 18,
-												borderRadius: 10,
-												fontWeight: 500,
-												backgroundColor: '#0066FF',
-											}}
-										>
-											обновить обложку
-										</button>
-									}
-									position='right center'
-								>
-									<div>
-										<input
-											id='create-post-img'
-											type='file'
-											accept='.jpg, .png, .jpeg, .webp'
-											onChange={handleSubmit22}
-											hidden
-										/>
-										<label htmlFor='create-post-img'>
-											Загрузить изображение
-										</label>
-									</div>
-								</Popup>
 							</div>
+
 							<textarea
 								onChange={e => dispatch(textValueFunc(e.target.value))}
 								onMouseUp={e => handleFocus(e)}
