@@ -1,6 +1,36 @@
 import { validationResult } from 'express-validator'
 import PageModel from '../models/Page.js'
 
+export const updateImagePage = async (req, res) => {
+	try {
+		console.log('true')
+		const { pageUrl, pageImageUrl } = req.body
+		console.log(pageUrl, pageImageUrl)
+		const updateImagesPage = await PageModel.findOneAndUpdate(
+			{ pageUrl },
+			{ pageImage: pageImageUrl }
+		)
+		console.log('9u', updateImagesPage)
+		return res.status(200).json({ updateImagesPage })
+	} catch (error) {
+		return res.status(500).json({ message: 'ошибка сервера' })
+	}
+}
+export const deletePageImage = async (req, res) => {
+	try {
+		console.log('true')
+		const { pageUrl } = req.body
+		console.log(pageUrl)
+		const updateImagesPage = await PageModel.findOneAndUpdate(
+			{ pageUrl },
+			{ pageImage: '' }
+		)
+		console.log('9u', updateImagesPage)
+		return res.status(200).json({ updateImagesPage })
+	} catch (error) {
+		return res.status(500).json({ message: 'ошибка сервера' })
+	}
+}
 export const createPage = async (req, res) => {
 	try {
 		const errors = validationResult(req)
@@ -163,8 +193,8 @@ export const deletePage = async (req, res) => {
 				message: 'Страница не найдена',
 			})
 		}
-		console.log('p',page._doc)
-		res.status(200).json({message:"объект был удален"})
+		console.log('p', page._doc)
+		res.status(200).json({ message: 'объект был удален' })
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
