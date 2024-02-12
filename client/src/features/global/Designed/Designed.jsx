@@ -55,7 +55,7 @@ const Designed = () => {
             />
           </Link>
           <Link
-            href="https://zero-personal-web.vercel.app/"
+            href="https://wordite.github.io/"
             target="_blank"
             className={style.networkLink}
           >
