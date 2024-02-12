@@ -9,12 +9,15 @@ import style from './Login.module.scss'
 
 const Login = () => {
   const router = useRouter()
+
   const submitForm = async (e) => {
     e.preventDefault()
+
     if (!login || !password) {
       alert('Пожалуйста, заполните все поля')
       return
     }
+    
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,

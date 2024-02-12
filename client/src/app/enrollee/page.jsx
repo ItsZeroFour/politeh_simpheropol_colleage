@@ -4,7 +4,7 @@ const getFiles = async () => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=enrollee`,
     {
-      next: { revalidate: 1 },
+      next: { revalidate: 600 },
     }
   );
 

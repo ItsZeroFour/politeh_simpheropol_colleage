@@ -13,25 +13,6 @@ import style from "./style.module.scss";
 
 
 const Speciality = ({ speciality }) => {
-  // const [speciality, setSpeciality] = useState(null);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const query = await fetch(
-  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpeciality/${specialityId}`
-  //     );
-  //     const response = await query.json();
-  //     setSpeciality(response);
-  //   };
-
-  //   getData();
-
-  //   window.scrollTo({
-  //     top: 0,
-  //     left: 0,
-  //     behavior: "smooth",
-  //   });
-  // }, []);
 
   return (
     <section>

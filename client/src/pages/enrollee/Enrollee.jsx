@@ -13,26 +13,6 @@ import EnrolleeRequzits from "@/widgets/Enrollee/EnrolleeRequzits";
 import Link from "next/link";
 
 const Enrollee = ({ files, specialityes }) => {
-  // const [files, setFiles] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const { data } = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get`,
-  //         {
-  //           params: { forPage: "enrollee" },
-  //         }
-  //       );
-
-  //       setFiles(data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
 
   return (
     <section>
