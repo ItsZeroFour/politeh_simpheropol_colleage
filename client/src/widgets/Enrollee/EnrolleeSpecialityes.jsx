@@ -78,10 +78,6 @@ const Specialityes = React.memo(function Specialityes({ specialityes }) {
               ))}
         </motion.ul>
       )}
-
-      <div className={style.specialityes__quiz}>
-        <Link href="/quiz">Какая специальность мне больше подходит?</Link>
-      </div>
     </section>
   );
 });

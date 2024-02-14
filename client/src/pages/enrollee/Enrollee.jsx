@@ -11,6 +11,7 @@ import EnrolleeSpecialityes from "@/widgets/Enrollee/EnrolleeSpecialityes";
 import EnrolleeNecessary from "@/widgets/Enrollee/EnrolleeNecessary";
 import EnrolleeRequzits from "@/widgets/Enrollee/EnrolleeRequzits";
 import Link from "next/link";
+import EnrolleRecomendations from "@widgets/Enrollee/EnrolleRecomendations";
 
 const Enrollee = ({ files, specialityes }) => {
 
@@ -20,9 +21,10 @@ const Enrollee = ({ files, specialityes }) => {
       <EnrolleeDocuments />
       <EnrolleeOrder files={files ? files[0] : null} />
       <EnrolleeOtherLinks files={files ? files[1] : null} />
-      <EnrolleeMarCapital />
+      <EnrolleRecomendations />
       <EnrolleeSpecialityes specialityes={specialityes} />
       <EnrolleeNecessary />
+      <EnrolleeMarCapital />
 
       <EnrolleeRequzits />
     </section>

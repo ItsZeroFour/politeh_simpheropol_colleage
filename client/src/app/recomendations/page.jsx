@@ -1,9 +1,9 @@
-import React from 'react'
+import Recomendations from "@pages/recomendations/Recomendations"
 
-const page = () => {
+const Page = () => {
   return (
-    <div></div>
+    <Recomendations />
   )
 }
 
-export default page
+export default Page
