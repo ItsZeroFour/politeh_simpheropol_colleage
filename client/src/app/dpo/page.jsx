@@ -1,14 +1,21 @@
 import DPO from "../../pages/DPO/DPO";
 
 const getFiles = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=dpo`,
-    {
-      next: { revalidate: 300 },
-    }
-  );
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=dpo`,
+      {
+        next: { revalidate: 300 },
+      }
+    );
 
-  return await response.json();
+    const data = await response.json();
+
+    return data;
+  } catch {
+    const data = [];
+    return data;
+  }
 };
 
 const page = async () => {

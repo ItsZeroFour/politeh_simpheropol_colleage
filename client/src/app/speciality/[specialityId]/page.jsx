@@ -3,14 +3,21 @@
 import SpecialityContent from "../../../pages/speciality/Speciality";
 
 const getSpecialities = async (specialityId) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpeciality/${specialityId}`,
-    {
-      next: { revalidate: 1488 },
-    }
-  );
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpeciality/${specialityId}`,
+      {
+        next: { revalidate: 1488 },
+      }
+    );
 
-  return await response.json();
+    const data = await response.json();
+
+    return data;
+  } catch {
+    const data = [];
+    return data;
+  }
 };
 
 const Speciality = async ({ params }) => {

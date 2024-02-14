@@ -24,6 +24,7 @@ const Links = React.memo(function Links({ data: linksServer }) {
   return (
     <ul style={{ display: "flex", justifyContent: "space-between" }}>
       {linksServer &&
+        linksServer.length !== 0 &&
         linksServer.map((link, index) => {
           const id = style.link + index;
           link.id = id;

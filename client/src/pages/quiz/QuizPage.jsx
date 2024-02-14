@@ -400,6 +400,8 @@ const QuizPage = () => {
               )}
 
               <section className={style.quiz__wrapper}>
+                <h3>Что Вы предпочитаете?</h3>
+                
                 <motion.ul
                   variants={container}
                   initial={quizItemsAnimation}

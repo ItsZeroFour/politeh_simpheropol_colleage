@@ -1,25 +1,39 @@
 import Enrollee from "../../pages/enrollee/Enrollee";
 
 const getFiles = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=enrollee`,
-    {
-      next: { revalidate: 600 },
-    }
-  );
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=enrollee`,
+      {
+        next: { revalidate: 600 },
+      }
+    );
 
-  return await response.json();
+    const data = await response.json();
+
+    return data;
+  } catch {
+    const data = [];
+    return data;
+  }
 };
 
 const getSpecialities = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpecialities`,
-    {
-      next: { revalidate: 1488 },
-    }
-  );
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpecialities`,
+      {
+        next: { revalidate: 1488 },
+      }
+    );
 
-  return await response.json();
+    const data = await response.json();
+
+    return data;
+  } catch {
+    const data = [];
+    return data;
+  }
 };
 
 const index = async () => {

@@ -236,6 +236,12 @@ const searchData = [
     link: "/nacproject",
     text: "НацПроекты",
   },
+
+  {
+    keywords: ["Еда", "Питание", "Обед", "Ужин"],
+    link: "/nutrition",
+    text: "Организация питания в образовательной организации"
+  }
 ];
 
 const HomeSearchBar = () => {

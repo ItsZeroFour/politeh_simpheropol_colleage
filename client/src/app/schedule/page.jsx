@@ -13,24 +13,44 @@ import ScheduleImage from "@features/Schedule/ScheduleImage/ScheduleImage";
 // import axios from "axios";
 
 const getFiles = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=schedule`, {
-    next: { revalidate: 900 }
-  })
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=schedule`,
+      {
+        next: { revalidate: 900 },
+      }
+    );
 
-  return await response.json()
-}
+    const data = await response.json();
+
+    return data;
+  } catch {
+    const data = [];
+    return data;
+  }
+};
 
 const getSchedule = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/scheduleone`, {
-    next: { revalidate: 1200 }
-  })
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/scheduleone`,
+      {
+        next: { revalidate: 1200 },
+      }
+    );
 
-  return await response.json()
-}
+    const data = await response.json();
+
+    return data;
+  } catch {
+    const data = [];
+    return data;
+  }
+};
 
 export default async function Schedule() {
-  const schedule = await getSchedule()
-  const files = await getFiles()
+  const schedule = await getSchedule();
+  const files = await getFiles();
   // const dispatch = useAppDispatch();
   // const [files, setFiles] = useState(null);
   // const { schedule } = useAppSelector((state) => state.schedule);

@@ -44,7 +44,7 @@ const links = [
   { text: 'Международное сотрудничество', href: '/our-colleage/international' },
   {
     text: 'Организация питания в образовательной организации',
-    href: '/our-colleage/nutrition',
+    href: '/nutrition',
   },
 ]
 

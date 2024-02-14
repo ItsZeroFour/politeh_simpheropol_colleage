@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import style from "./Enrollee.module.scss";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,23 +12,10 @@ import "react-loading-skeleton/dist/skeleton.css";
 const Specialityes = React.memo(function Specialityes({ specialityes }) {
   specialityes = specialityes || [];
 
-  // const [specialityes, setSpecialityes] = useState([]);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.5,
   });
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const query = await fetch(
-  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpecialities`
-  //     );
-  //     const response = await query.json();
-  //     setSpecialityes(response);
-  //   };
-
-  //   getData();
-  // }, []);
 
   const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -65,7 +52,7 @@ const Specialityes = React.memo(function Specialityes({ specialityes }) {
                       <Image
                         loader={() => src}
                         src={src}
-                        alt={`${item.title}`}
+                        alt={`${item.cvalification}`}
                         width={488}
                         height={448}
                       />
@@ -100,18 +87,3 @@ const Specialityes = React.memo(function Specialityes({ specialityes }) {
 });
 
 export default Specialityes;
-
-// export async function getSpecialities() {
-//   const res = await fetch(
-//     `${process.env.NEXT_PUBLIC_SERVER_URL}/speciality/getSpecialities`
-//   );
-//   const specialityes = await res.json();
-
-//   return {
-//     props: {
-//       specialityes,
-//     },
-
-//     revalidate: 10,
-//   };
-// }

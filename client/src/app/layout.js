@@ -26,15 +26,25 @@ const poppins = Poppins({
 });
 
 const getLinksData = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheaderall`, {
-    next: { revalidate: 300 }
-  })
-
-  return await response.json()
-}
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/linker/linksheaderall`,
+      {
+        next: { revalidate: 300 },
+      }
+    );
+  
+    const data = await response.json();
+  
+    return data;
+  } catch {
+    const data = []
+    return data
+  }
+};
 
 const RootLayout = async ({ children }) => {
-  const linksServer = await getLinksData()
+  const linksServer = await getLinksData();
 
   return (
     <html len="ru">
@@ -49,7 +59,7 @@ const RootLayout = async ({ children }) => {
           <div className="page">
             <div className="container">
               <Header data={linksServer} />
-              <main>{children}</main>
+              <>{children}</>
             </div>
 
             <Footer />

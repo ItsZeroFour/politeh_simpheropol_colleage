@@ -22,7 +22,9 @@ const getPosts = async () => {
     }
   );
 
-  return await response.json();
+  const data = await response.json();
+
+  return data;
 };
 
 const Posts = async () => {
