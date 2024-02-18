@@ -1,11 +1,13 @@
 "use client";
 
 import { useInput } from "@app/hooks/useInput";
-import React from "react";
 import axios from "axios";
 
 import style from "./style.module.scss";
 import Link from "next/link";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
+
 
 const Nutrition = ({ files }) => {
   const submitForm = async (e) => {
