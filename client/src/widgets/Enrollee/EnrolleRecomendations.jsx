@@ -12,7 +12,7 @@ const EnrolleRecomendations = () => {
         </Link>
 
         <Link className={style.specialityes__recomended} href='/recomendations-family'>
-          <div>Как выбрать профориентацию подростку</div>
+          <div>Как выбрать профессию подростку</div>
         </Link>
 
         <Link className={style.specialityes__recomended} href='/recomendations'>

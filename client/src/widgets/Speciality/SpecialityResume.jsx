@@ -17,7 +17,7 @@ const SpecialityResume = ({ speciality }) => {
 
           <div className={style.speciality__resume__main__text}>
             <h3>{speciality.speciality}</h3>
-            <h4>Анатолий Шпанин</h4>
+            <h4>Александр Орлов</h4>
 
             <ul>
               <li>
