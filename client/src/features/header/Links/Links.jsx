@@ -1,7 +1,7 @@
 import LinkDropdown from "@features/header/LinkDropdown/LinkDropdown";
 import Triangle from "@public/assets/icons/triangle.svg";
-import { useDebounce } from "@uidotdev/usehooks";
-import axios from "axios";
+// import { useDebounce } from "@uidotdev/usehooks";
+// import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import style from "./../../../widgets/header/header.module.scss";
