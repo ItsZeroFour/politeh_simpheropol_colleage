@@ -114,7 +114,7 @@ const Header = ({ data }) => {
         <div className={style.container}>
           <div className={style.logo}>
             <Link href="/" onClick={() => dispatch(setIsOpenedMenu(false))}>
-              <img src={logo} />
+              <img src={logo.src} />
             </Link>
           </div>
 

@@ -7,7 +7,7 @@ const WaterRuresTop = () => {
       <h1>Памятки, рекомендации, разъяснения прокуратуры</h1>
 
       <div className={style.water__rules__head}>
-        <img src={waterRulesImage} alt="water rules" />
+        <img src={waterRulesImage.src} alt="water rules" />
         <p>
           Водоемы являются опасными в любое время года. Летом они опасны при
           купании и пользовании плавательными средствами. Опасность чаще всего
@@ -19,4 +19,4 @@ const WaterRuresTop = () => {
   );
 };
 
-export default WaterRuresTop;
+export default WaterRuresTop

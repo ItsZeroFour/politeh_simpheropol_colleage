@@ -9,7 +9,7 @@ const DPO = ({ files }) => {
     <section className={style.dpo}>
       <h1>Дополнительное профессиональное образование</h1>
 
-      <img src={dpoImage} alt="dpo image" />
+      <img src={dpoImage.src} alt="dpo image" />
 
       <ul className={style.dpo__order}>
         {files ? (

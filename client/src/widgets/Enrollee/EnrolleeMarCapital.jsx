@@ -5,7 +5,7 @@ const EnrolleeMarCapital = () => {
   return (
     <img
       className={style.mat__capital__image}
-      src={matCapitalImage}
+      src={matCapitalImage.src}
       alt="Материнский капитал"
     />
   );

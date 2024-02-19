@@ -151,7 +151,7 @@ export default async function Schedule() {
         </p>
 
         <img
-          src={bellImg}
+          src={bellImg.src}
           alt="Расписание звонков"
           width={1572}
           height={1163}

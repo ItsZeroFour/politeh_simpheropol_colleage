@@ -7,7 +7,7 @@ import Link from "next/link";
 const FirstScreen = () => {
   return (
     <section className={style.firstScreen}>
-      <img className={style.bubbles} src={bubbles} />
+      <img className={style.bubbles} src={bubbles.src} />
       <h1 className={style.title} data-img={bubbles.src}>
         Симферопольский
         <br />
@@ -26,7 +26,7 @@ const FirstScreen = () => {
       <Link href="https://www.youtube.com/watch?v=StgEg6zgN9o">
         <ButtonIcon
           text="День открытых дверей"
-          iconPath={door}
+          iconPath={door.src}
           className={style.button}
         />
       </Link>

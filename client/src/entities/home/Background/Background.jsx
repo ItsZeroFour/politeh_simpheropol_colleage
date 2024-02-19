@@ -11,13 +11,13 @@ import eqation2 from '@public/assets/images/home/eqation_2.png'
 function Background() {
   return (
     <>
-      <img className={style.background1} src={bg1} alt='background' />
-      <img className={style.background2} src={bg2} alt='background' />
-      <img className={style.background3} src={bg3} alt='background' />
-      <img className={style.background4} src={bg4} alt='background' />
+      <img className={style.background1} src={bg1.src} alt='background' />
+      <img className={style.background2} src={bg2.src} alt='background' />
+      <img className={style.background3} src={bg3.src} alt='background' />
+      <img className={style.background4} src={bg4.src} alt='background' />
 
-      <img className={style.eqation1} src={eqation1} alt='background' />
-      <img className={style.eqation2} src={eqation2} alt='background' />
+      <img className={style.eqation1} src={eqation1.src} alt='background' />
+      <img className={style.eqation2} src={eqation2.src} alt='background' />
     </>
   )
 }

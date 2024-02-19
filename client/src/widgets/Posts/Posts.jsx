@@ -49,7 +49,7 @@ const Posts = () => {
               var matches = str.match(srcRegex);
               var srcValue = matches[1];
             } else {
-              srcValue = imagePicture;
+              srcValue = imagePicture.src;
             }
             // } else {
             // 	setPicture(

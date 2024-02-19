@@ -106,7 +106,7 @@ function About() {
       <div className={style.container}>
         <div className={style.info}>
           <div className={style.logo}>
-            <img src={logo} />
+            <img src={logo.src} />
           </div>
           <p className={style.title}>Современное образование!</p>
         </div>

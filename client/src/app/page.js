@@ -33,7 +33,7 @@ const Home = () => {
         <About />
         <Posts />
       </div>
-      
+
       <ContactForm />
       <EssentialLinks />
 
@@ -43,4 +43,5 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home
+

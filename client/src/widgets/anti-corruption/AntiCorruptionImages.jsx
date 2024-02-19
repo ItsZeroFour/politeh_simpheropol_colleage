@@ -14,12 +14,12 @@ const AntiCorruptionImages = () => {
     <section className={styles.rootImages}>
       <div className={styles.imagesGrid}>
         {imagesArray.map((el, index) => {
-          return <img key={index} src={el} />;
+          return <img key={index} src={el.src} />;
         })}
       </div>
       <img
         className={styles.lastImage}
-        src={lastImage}
+        src={lastImage.src}
         width={1400}
         height={1900}
       />

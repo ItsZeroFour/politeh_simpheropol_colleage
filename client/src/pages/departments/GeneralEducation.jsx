@@ -125,7 +125,7 @@ const TechnicalDepartament = () => {
     <main className={style.departament}>
       <h1>Отделение общеобразовательной подготовки</h1>
 
-      <img src={mainImg} alt="TechnicalDepartament" />
+      <img src={mainImg.src} alt="TechnicalDepartament" />
 
       <h2 className={style.departament__desceplines__title}>
         Дисциплины, которые сюда входят

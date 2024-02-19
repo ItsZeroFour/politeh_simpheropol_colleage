@@ -497,7 +497,7 @@ const QuizPage = () => {
             них, которое более привлекательно для вас
           </p>
 
-          <img src={instructionImg} alt="Инструкция" />
+          <img src={instructionImg.src} alt="Инструкция" />
 
           <button onClick={() => setStartScreen(false)}>Начать тест</button>
         </section>

@@ -43,7 +43,7 @@ const slides = () => {
           <li className={style.card}>
             <Link href={link}>
               <div className={style.image}>
-                <img src={source} placeholder='blur' />
+                <img src={source.src} placeholder='blur' />
               </div>
               <p className={style.text}>{text}</p>
             </Link>

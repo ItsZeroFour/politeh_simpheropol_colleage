@@ -76,7 +76,7 @@ const SearchBar = ({ data, placeholder, classes }) => {
           className={`${style.searchBar} ${classes ?? ''}`}
           onClick={searchBarHandleClick}
         >
-          <img src={search} alt='Иконка поиска' />
+          <img src={search.src} alt='Иконка поиска' />
           <input
             onFocus={openDropdown}
             onInput={() => {

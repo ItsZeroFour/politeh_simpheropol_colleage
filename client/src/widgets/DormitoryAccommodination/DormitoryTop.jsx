@@ -5,7 +5,7 @@ const DormitoryTop = () => {
   return (
     <section className={style.dormitory__top}>
       <div className={style.dormitory__top__main}>
-        <img src={dormitoryImage} alt="Общежитие" width={983} height={623} />
+        <img src={dormitoryImage.src} alt="Общежитие" width={983} height={623} />
 
         <div className={style.dormitory__top__text}>
           <h1>«Об общежитии»</h1>

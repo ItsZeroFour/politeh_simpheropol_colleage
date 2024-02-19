@@ -8,7 +8,7 @@ const OurCollege = () => {
   return (
     <main className={style.our__colleage}>
       <section className={style.our__colleage__main}>
-        <img src={mainImg} alt="Главный корпус" />
+        <img src={mainImg.src} alt="Главный корпус" />
 
         <p>
           Государственное бюджетное профессиональное образовательное учреждение
@@ -80,12 +80,12 @@ const OurCollege = () => {
         </aside>
 
         <aside className={style.our__colleage__second__right}>
-          <img src={secondImg} alt="Второй корпус" />
+          <img src={secondImg.src} alt="Второй корпус" />
         </aside>
       </section>
 
       <section className={style.our__colleage__dormitory}>
-        <img src={dormitoryImg} alt="Общежитие" />
+        <img src={dormitoryImg.src} alt="Общежитие" />
 
         <p>
           ГБПОУ РК «Симферопольский политехнический колледж» предоставляет

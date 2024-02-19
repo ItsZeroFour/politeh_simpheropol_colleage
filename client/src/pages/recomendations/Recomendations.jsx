@@ -5,7 +5,7 @@ const Recomendations = () => {
   return (
     <section className={style.recomendations}>
       <h1>Советы родителям: как избежать типичных ошибок</h1>
-      <img placeholder='blur' src={teenagers} className={style.image} />
+      <img placeholder='blur' src={teenagers.src} className={style.image} />
 
       <h3>Советы родителям: как избежать типичных ошибок</h3>
       <p>

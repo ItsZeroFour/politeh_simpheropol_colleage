@@ -49,22 +49,22 @@ const NacProject = ({ files }) => {
 					<div className={styles.gridRooms}>
 						<img
 							className={styles.gridRoomsElement}
-							src={classroom}
+							src={classroom.src}
 							alt='classroom-do-remonta'
 						/>
 						<img
 							className={styles.gridRoomsElement}
-							src={doRemonta}
+							src={doRemonta.src}
 							alt='parti'
 						/>
 						<img
 							className={styles.gridRoomsElement}
-							src={doRemonta1}
+							src={doRemonta1.src}
 							alt='parti'
 						/>
 						<img
 							className={styles.gridRoomsElement}
-							src={doRemonta2}
+							src={doRemonta2.src}
 							alt='parti'
 						/>
 					</div>
@@ -75,18 +75,18 @@ const NacProject = ({ files }) => {
 				<div>
 					<div className={styles.doubleWeb}>
 						<img
-							src={Web5}
+							src={Web5.src}
 							className={styles.doubleWebElement}
 							alt='cabinet'
 						/>
 						<img
-							src={Web3}
+							src={Web3.src}
 							alt='cabinet'
 							className={styles.doubleWebElement}
 						/>
 					</div>
 					<div>
-						<img src={Web4} alt='cabinet' />
+						<img src={Web4.src} alt='cabinet' />
 					</div>
 				</div>
 			</div>
@@ -97,18 +97,18 @@ const NacProject = ({ files }) => {
 				<div>
 					<div className={styles.doubleWeb}>
 						<img
-							src={S13}
+							src={S13.src}
 							alt='cabinet'
 							className={styles.doubleWebElement}
 						/>
 						<img
-							src={Web2}
+							src={Web2.src}
 							alt='cabinet'
 							className={styles.doubleWebElement}
 						/>
 					</div>
 					<div>
-						<img src={S12} alt='img' />
+						<img src={S12.src} alt='img' />
 					</div>
 				</div>
 			</div>

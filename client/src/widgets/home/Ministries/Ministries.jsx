@@ -119,7 +119,7 @@ const slides = () => {
     >
       <img
         className={style.popupImage}
-        src={sourceImage}
+        src={sourceImage.src}
         alt="Логотип партнёра"
         placeholder='blur'
       />

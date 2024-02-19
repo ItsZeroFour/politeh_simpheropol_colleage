@@ -49,7 +49,7 @@ const RemoteDepartament = () => {
         года 2 месяца (после 9 класса)
       </p>
 
-      <img src={mainImg} alt="RemoteDepartament" />
+      <img src={mainImg.src} alt="RemoteDepartament" />
 
       <h2 className={style.departament__desceplines__title}>
         Дисциплины, которые сюда входят

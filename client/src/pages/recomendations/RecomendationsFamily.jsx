@@ -5,7 +5,7 @@ const RecomendationsFamily = () => {
   return (
     <section className={style.recomendations}>
       <h1>Рекомендации и советы родителям и подросткам</h1>
-      <img src={teenagers} placeholder='blur' className={style.image} />
+      <img src={teenagers.src} placeholder='blur' className={style.image} />
 
       <p className={style.warning__family}>
         Профориентация оказывает огромное влияние на жизнь человека. Но при
