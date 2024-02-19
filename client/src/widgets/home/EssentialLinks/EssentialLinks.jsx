@@ -2,7 +2,6 @@
 import style from "./EssentialLinks.module.scss";
 import Link from "next/link";
 import image from '../../../../public/assets/images/home/main__logo__image.jpg'
-import Image from "next/image";
 
 const data = [
   {
@@ -46,7 +45,7 @@ function EssentialLinks() {
       </nav>
 
       <div className={style.links__link}>
-        <Image src={image} alt="image"/>
+        <img src={image} alt="image"/>
         <Link href="/our-colleage">Наш колледж</Link>
       </div>
     </>

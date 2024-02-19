@@ -1,4 +1,3 @@
-import Image from "next/image";
 import style from "./Speciality.module.scss";
 
 const SpecialityResume = ({ speciality }) => {
@@ -8,7 +7,7 @@ const SpecialityResume = ({ speciality }) => {
 
       <div className={style.speciality__resume__wrapper}>
         <div className={style.speciality__resume__main}>
-          <Image
+          <img
             src="/assets/images/speciality/resume_avatar.jpg"
             alt="resume avatar"
             width={492}
@@ -21,7 +20,7 @@ const SpecialityResume = ({ speciality }) => {
 
             <ul>
               <li>
-                <Image
+                <img
                   src="/assets/images/speciality/letter.svg"
                   alt="letter"
                   width={48}
@@ -31,7 +30,7 @@ const SpecialityResume = ({ speciality }) => {
               </li>
 
               <li>
-                <Image
+                <img
                   src="/assets/images/speciality/phone.svg"
                   alt="letter"
                   width={39}

@@ -2,7 +2,6 @@
 
 import imagePicture from "@public/assets/icons/adminicons/picture2.png";
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import MyComponent from "./[Post]/Loader";
@@ -76,7 +75,7 @@ const Posts = () => {
                         href={`/posts/${el.pageUrl}`}
                       >
                         <div className={styles.post__image}>
-                          <Image
+                          <img
                             src={srcValue}
                             width={400}
                             height={300}

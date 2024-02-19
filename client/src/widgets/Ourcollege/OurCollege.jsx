@@ -3,13 +3,12 @@ import style from "./OurCollege.module.scss";
 import mainImg from "@public/assets/images/our-colleage/our-colleage-1.png";
 import secondImg from "@public/assets/images/our-colleage/our-colleage-2.png";
 import dormitoryImg from "@public/assets/images/our-colleage/our-colleage-3.png";
-import Image from "next/image";
 
 const OurCollege = () => {
   return (
     <main className={style.our__colleage}>
       <section className={style.our__colleage__main}>
-        <Image src={mainImg} alt="Главный корпус" />
+        <img src={mainImg} alt="Главный корпус" />
 
         <p>
           Государственное бюджетное профессиональное образовательное учреждение
@@ -81,12 +80,12 @@ const OurCollege = () => {
         </aside>
 
         <aside className={style.our__colleage__second__right}>
-          <Image src={secondImg} alt="Второй корпус" />
+          <img src={secondImg} alt="Второй корпус" />
         </aside>
       </section>
 
       <section className={style.our__colleage__dormitory}>
-        <Image src={dormitoryImg} alt="Общежитие" />
+        <img src={dormitoryImg} alt="Общежитие" />
 
         <p>
           ГБПОУ РК «Симферопольский политехнический колледж» предоставляет

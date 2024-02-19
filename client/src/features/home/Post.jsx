@@ -1,5 +1,4 @@
 import imagePicture from '@public/assets/icons/adminicons/picture2.png'
-import Image from 'next/image'
 import Link from 'next/link'
 // import { useState } from 'react'
 import style from './Post.module.scss'
@@ -20,7 +19,7 @@ const Post = ({ data }) => {
 
 	return (
 		<Link href={`/posts/${pageUrl}`} className={style.post}>
-			<Image
+			<img
 				className={style.image}
 				fill={true}
 				src={srcValue}

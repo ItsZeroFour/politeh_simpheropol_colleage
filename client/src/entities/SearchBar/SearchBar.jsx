@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import search from '@public/assets/icons/search.svg?url'
 import style from './SearchBar.module.scss'
 import Link from 'next/link'
@@ -77,7 +76,7 @@ const SearchBar = ({ data, placeholder, classes }) => {
           className={`${style.searchBar} ${classes ?? ''}`}
           onClick={searchBarHandleClick}
         >
-          <Image src={search} alt='Иконка поиска' />
+          <img src={search} alt='Иконка поиска' />
           <input
             onFocus={openDropdown}
             onInput={() => {

@@ -1,11 +1,11 @@
-import Image from "next/image";
+
 import colleage from "@public/assets/images/colleage-history/colleage.jpg";
 import style from './ColleageHistory.module.scss'
 
 const HistoryColleage = () => {
   return (
     <section className={style.colleage__history}>
-      <Image src={colleage} alt="colleage" width={953} height={568} />
+      <img src={colleage} alt="colleage" width={953} height={568} />
 
       <p>
         Исследуя материалы архивного фонда Государственного казенного учреждения

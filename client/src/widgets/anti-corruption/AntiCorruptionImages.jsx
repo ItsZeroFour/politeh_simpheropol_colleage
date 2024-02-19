@@ -7,17 +7,17 @@ import fifth from "@public/assets/images/vzyatka/5.png";
 import sixth from "@public/assets/images/vzyatka/6.png";
 import lastImage from "@public/assets/images/vzyatka/7.png";
 import styles from "@widgets/anti-corruption/Anticorruption.module.scss";
-import Image from "next/image";
+
 const AntiCorruptionImages = () => {
   const imagesArray = [first, second, third, fourth, fifth, sixth];
   return (
     <section className={styles.rootImages}>
       <div className={styles.imagesGrid}>
         {imagesArray.map((el, index) => {
-          return <Image key={index} src={el} />;
+          return <img key={index} src={el} />;
         })}
       </div>
-      <Image
+      <img
         className={styles.lastImage}
         src={lastImage}
         width={1400}

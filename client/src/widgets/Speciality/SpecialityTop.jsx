@@ -1,4 +1,3 @@
-import Image from "next/image";
 import style from "./Speciality.module.scss";
 
 const SpecialityTop = ({ speciality }) => {
@@ -13,7 +12,7 @@ const SpecialityTop = ({ speciality }) => {
       </div>
 
       <div className={style.speciality__top__image}>
-        <Image
+        <img
           loader={() => mainSpecialityImg}
           src={mainSpecialityImg}
           alt="speciality image"

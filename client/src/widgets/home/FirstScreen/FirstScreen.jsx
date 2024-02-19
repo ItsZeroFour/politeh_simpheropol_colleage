@@ -1,14 +1,13 @@
 import ButtonIcon from "@/shared/buttons/ButtonIcon/ButtonIcon";
 import door from "@public/assets/icons/door.svg?url";
 import bubbles from "@public/assets/images/home/bubbles.png";
-import Image from "next/image";
 import style from "./Firstscreen.module.scss";
 import Link from "next/link";
 
 const FirstScreen = () => {
   return (
     <section className={style.firstScreen}>
-      <Image className={style.bubbles} src={bubbles} />
+      <img className={style.bubbles} src={bubbles} />
       <h1 className={style.title} data-img={bubbles.src}>
         Симферопольский
         <br />

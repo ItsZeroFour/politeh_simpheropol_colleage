@@ -27,4 +27,4 @@ const EnrolleeDocuments = () => {
   );
 };
 
-export default EnrolleeDocuments;
+export default EnrolleeDocuments

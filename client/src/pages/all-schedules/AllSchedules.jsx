@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import style from "./style.module.scss";
-import Image from "next/image";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import ReactPaginate from "react-paginate";
@@ -92,7 +91,7 @@ const AllSchedules = () => {
               <li key={_id}>
                 <div className={style.schedules__list__items}>
                   <Zoom>
-                    <Image
+                    <img
                       src={scheduleOne}
                       width={400}
                       height={300}
@@ -101,7 +100,7 @@ const AllSchedules = () => {
                   </Zoom>
 
                   <Zoom>
-                    <Image
+                    <img
                       src={scheduleTwo}
                       width={400}
                       height={300}

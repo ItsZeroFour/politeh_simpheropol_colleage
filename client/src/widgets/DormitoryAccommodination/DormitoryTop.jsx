@@ -1,4 +1,3 @@
-import Image from "next/image";
 import style from "./style.module.scss";
 import dormitoryImage from "/public/assets/images/DormitoryAccommodination/Dormitory.jpg";
 
@@ -6,7 +5,7 @@ const DormitoryTop = () => {
   return (
     <section className={style.dormitory__top}>
       <div className={style.dormitory__top__main}>
-        <Image src={dormitoryImage} alt="Общежитие" width={983} height={623} />
+        <img src={dormitoryImage} alt="Общежитие" width={983} height={623} />
 
         <div className={style.dormitory__top__text}>
           <h1>«Об общежитии»</h1>

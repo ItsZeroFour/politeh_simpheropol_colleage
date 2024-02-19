@@ -6,7 +6,6 @@ import Link from "next/link";
 import Triangle from "@public/assets/icons/triangle.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useActions } from "@app/hooks/useActions";
-import { getHeader } from "@app/store/header/header.slice";
 
 const MobileLink = React.memo(function MobileLink({ stlye, link }) {
   const dispatch = useDispatch();

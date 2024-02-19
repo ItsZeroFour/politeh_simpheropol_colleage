@@ -1,7 +1,6 @@
 // "use client";
 
 import { fetchSchedule } from "../../app/store/schedule/scheduleSlice";
-import Image from "next/image";
 // import { useEffect, useState } from "react";
 import style from "@pages/Schedule/Schedule.module.scss";
 import Link from "next/link";
@@ -151,7 +150,7 @@ export default async function Schedule() {
           Республики Крым
         </p>
 
-        <Image
+        <img
           src={bellImg}
           alt="Расписание звонков"
           width={1572}

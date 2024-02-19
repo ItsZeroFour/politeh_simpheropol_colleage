@@ -6,7 +6,6 @@ import Links from "@features/header/Links/Links";
 import logo from "@public/assets/icons/logo.svg?url";
 import VK from "@public/assets/icons/vk.svg";
 import Burger from "@shared/buttons/Burger/Burger";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import style from "./header.module.scss";
@@ -115,7 +114,7 @@ const Header = ({ data }) => {
         <div className={style.container}>
           <div className={style.logo}>
             <Link href="/" onClick={() => dispatch(setIsOpenedMenu(false))}>
-              <Image src={logo} />
+              <img src={logo} />
             </Link>
           </div>
 
@@ -129,7 +128,7 @@ const Header = ({ data }) => {
             </button>
             {/* <button>
               <p>Белая тема</p>
-              <Image src={sunIcon} alt='white theme' width={26} height={26} />
+              <img src={sunIcon} alt='white theme' width={26} height={26} />
             </button> */}
           </div>
 

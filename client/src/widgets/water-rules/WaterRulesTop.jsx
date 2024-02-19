@@ -1,4 +1,3 @@
-import Image from "next/image";
 import style from "./WaterRules.module.scss";
 import waterRulesImage from "@public/assets/images/water-rules/waterRules.jpg";
 
@@ -8,7 +7,7 @@ const WaterRuresTop = () => {
       <h1>Памятки, рекомендации, разъяснения прокуратуры</h1>
 
       <div className={style.water__rules__head}>
-        <Image src={waterRulesImage} alt="water rules" />
+        <img src={waterRulesImage} alt="water rules" />
         <p>
           Водоемы являются опасными в любое время года. Летом они опасны при
           купании и пользовании плавательными средствами. Опасность чаще всего

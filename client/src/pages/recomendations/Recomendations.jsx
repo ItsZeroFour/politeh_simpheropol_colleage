@@ -1,12 +1,11 @@
 import teenagers from '@public/assets/images/recomendations/teenagers.jpg'
-import Image from 'next/image'
 import style from './style.module.scss'
 
 const Recomendations = () => {
   return (
     <section className={style.recomendations}>
       <h1>Советы родителям: как избежать типичных ошибок</h1>
-      <Image src={teenagers} className={style.image} />
+      <img placeholder='blur' src={teenagers} className={style.image} />
 
       <h3>Советы родителям: как избежать типичных ошибок</h3>
       <p>

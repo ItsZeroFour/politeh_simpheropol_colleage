@@ -6,7 +6,6 @@ import partTime from '@public/assets/images/home/part_time.png'
 import it from '@public/assets/images/home/it.png'
 import money from '@public/assets/images/home/money.png'
 import full from '@public/assets/images/home/full-deportament.jpg'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useMediaQuery from '@app/hooks/useMediaQuery'
@@ -44,7 +43,7 @@ const slides = () => {
           <li className={style.card}>
             <Link href={link}>
               <div className={style.image}>
-                <Image src={source} />
+                <img src={source} placeholder='blur' />
               </div>
               <p className={style.text}>{text}</p>
             </Link>

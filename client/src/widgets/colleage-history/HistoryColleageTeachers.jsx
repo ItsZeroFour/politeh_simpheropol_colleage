@@ -3,7 +3,6 @@
 import style from "./ColleageHistory.module.scss";
 import hatImg from "@public/assets/icons/hat.svg";
 import townImg from "@public/assets/icons/town.svg";
-import Image from "next/image";
 
 const HistoryColleageTeachers = () => {
   const tursun = [

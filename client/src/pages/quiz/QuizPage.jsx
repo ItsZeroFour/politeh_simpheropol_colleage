@@ -5,7 +5,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./style.module.scss";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 import QuizResultImg1 from "@public/assets/images/quiz/quizResult-1.svg";
 import QuizResultImg2 from "@public/assets/images/quiz/quizResult-2.svg";
@@ -423,7 +422,7 @@ const QuizPage = () => {
                         }
                       >
                         <div className={style.quizImage}>
-                          <Image
+                          <img
                             layout="fill"
                             src={
                               `${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/quiz/quiz-${itemId}.` +
@@ -498,7 +497,7 @@ const QuizPage = () => {
             них, которое более привлекательно для вас
           </p>
 
-          <Image src={instructionImg} alt="Инструкция" />
+          <img src={instructionImg} alt="Инструкция" />
 
           <button onClick={() => setStartScreen(false)}>Начать тест</button>
         </section>

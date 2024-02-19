@@ -1,4 +1,3 @@
-import Image from "next/image";
 import style from "./style.module.scss";
 import eye from "/public/assets/icons/eye.svg";
 
@@ -7,7 +6,7 @@ const Post = ({ post }) => {
 
   return (
     <section className={style.post}>
-      <Image
+      <img
         className={style.post__image}
         src={src}
         loader={() => src}
@@ -24,7 +23,7 @@ const Post = ({ post }) => {
 
         <div className={style.post__views}>
           <p>{post.viewsCount}</p>
-          <Image src={eye} alt="eye" width={40} height={21} />
+          <img src={eye} alt="eye" width={40} height={21} />
         </div>
       </div>
 

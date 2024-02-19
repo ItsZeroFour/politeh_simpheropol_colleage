@@ -1,7 +1,6 @@
 import React from "react";
 import mainImg from "@public/assets/images/departaments/FullDepartament.jpg";
 import style from "./style.module.scss";
-import Image from "next/image";
 import Link from "next/link";
 
 const TechnicalDepartament = () => {
@@ -126,7 +125,7 @@ const TechnicalDepartament = () => {
     <main className={style.departament}>
       <h1>Отделение общеобразовательной подготовки</h1>
 
-      <Image src={mainImg} alt="TechnicalDepartament" />
+      <img src={mainImg} alt="TechnicalDepartament" />
 
       <h2 className={style.departament__desceplines__title}>
         Дисциплины, которые сюда входят

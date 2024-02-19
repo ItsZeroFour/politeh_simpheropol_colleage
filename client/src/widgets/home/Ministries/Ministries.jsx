@@ -26,7 +26,6 @@ import eduMariImg from "@public/assets/images/home/edu.mari.jpg";
 
 import { useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import useMediaQuery from "@app/hooks/useMediaQuery";
 // import useDevice from "@app/hooks/useDevice";
 
@@ -118,10 +117,11 @@ const slides = () => {
       onMouseLeave={handleSlideMouseOut}
       className={style.slide}
     >
-      <Image
+      <img
         className={style.popupImage}
         src={sourceImage}
         alt="Логотип партнёра"
+        placeholder='blur'
       />
 
       <Link href={url}>

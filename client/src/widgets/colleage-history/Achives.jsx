@@ -18,7 +18,6 @@ import achive15 from "@public/assets/images/colleage-history/achives/15.jpg";
 import achive16 from "@public/assets/images/colleage-history/achives/16.jpg";
 import achive17 from "@public/assets/images/colleage-history/achives/17.jpg";
 import achive18 from "@public/assets/images/colleage-history/achives/18.jpg";
-import Image from "next/image";
 
 const Achives = () => {
   const achives = [
@@ -47,7 +46,7 @@ const Achives = () => {
       <ul className={style.achives__list}>
         {achives.map(({ image, name }, index) => (
           <li key={index}>
-            <Image src={image} alt={name} />
+            <img src={image} alt={name} />
           </li>
         ))}
       </ul>

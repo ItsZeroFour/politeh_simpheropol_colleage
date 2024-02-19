@@ -2,7 +2,6 @@
 
 import React from "react";
 import style from "./Enrollee.module.scss";
-import Image from "next/image";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
@@ -49,7 +48,7 @@ const Specialityes = React.memo(function Specialityes({ specialityes }) {
                 return (
                   <motion.li key={item._id} variants={itemVarian}>
                     <Link href={`/speciality/${item._id}`}>
-                      <Image
+                      <img
                         loader={() => src}
                         src={src}
                         alt={`${item.cvalification}`}

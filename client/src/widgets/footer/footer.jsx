@@ -1,4 +1,3 @@
-import Image from "next/image";
 import style from "./footer.module.scss";
 import logo from "../../../public/assets/icons/logo.svg?url";
 import phone from "../../../public/assets/icons/phone.svg?url";
@@ -16,7 +15,7 @@ const footer = () => {
         <div className={style.footer__wrapper}>
           <div className={style.footer__left}>
             <div className={style.footer__left__logo}>
-              <Image src={logo} alt="logo" width={153} height={154} />
+              <img src={logo} alt="logo" width={153} height={154} />
               <a className={style.footer_college_link} href="www.simfpolyteh.ru">www.simfpolyteh.ru</a>
             </div>
 
@@ -37,7 +36,7 @@ const footer = () => {
               ].map(({ title, icon, link }) => (
                 <li key={title}>
                   <Link href={link}>
-                    <Image src={icon} alt={title} className={style.contactIcon} />
+                    <img src={icon} alt={title} className={style.contactIcon} />
                     <p>{title}</p>
                   </Link>
                 </li>

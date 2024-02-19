@@ -2,7 +2,6 @@
 
 import style from "./DPO.module.scss";
 import dpoImage from "../../../public/assets/images/dpo/dpo.jpg";
-import Image from "next/image";
 import Link from "next/link";
 
 const DPO = ({ files }) => {
@@ -10,7 +9,7 @@ const DPO = ({ files }) => {
     <section className={style.dpo}>
       <h1>Дополнительное профессиональное образование</h1>
 
-      <Image src={dpoImage} alt="dpo image" />
+      <img src={dpoImage} alt="dpo image" />
 
       <ul className={style.dpo__order}>
         {files ? (

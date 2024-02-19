@@ -1,7 +1,6 @@
 import React from "react";
 import mainImg from "@public/assets/images/departaments/RomoteDepartament.jpg";
 import style from "./style.module.scss";
-import Image from "next/image";
 import Link from "next/link";
 
 const RemoteDepartament = () => {
@@ -50,7 +49,7 @@ const RemoteDepartament = () => {
         года 2 месяца (после 9 класса)
       </p>
 
-      <Image src={mainImg} alt="RemoteDepartament" />
+      <img src={mainImg} alt="RemoteDepartament" />
 
       <h2 className={style.departament__desceplines__title}>
         Дисциплины, которые сюда входят

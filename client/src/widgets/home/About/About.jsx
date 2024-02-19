@@ -5,7 +5,6 @@ import Link from 'next/link'
 import style from './About.module.scss'
 import { useState } from 'react'
 import logo from '@public/assets/icons/logo.svg?url'
-import Image from 'next/image'
 import useMediaQuery from '@app/hooks/useMediaQuery'
 // import useDevice from '@app/hooks/useDevice'
 
@@ -107,7 +106,7 @@ function About() {
       <div className={style.container}>
         <div className={style.info}>
           <div className={style.logo}>
-            <Image src={logo} />
+            <img src={logo} />
           </div>
           <p className={style.title}>Современное образование!</p>
         </div>

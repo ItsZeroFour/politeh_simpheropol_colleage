@@ -5,7 +5,6 @@ import doRemonta2 from '@public/assets/images/nationproject/Do-remonta-aud-1.png
 import doRemonta1 from '@public/assets/images/nationproject/Do-remonta-aud.png'
 import classroom from '@public/assets/images/nationproject/V-processe-remonta309.png'
 import Web5 from '@public/assets/images/nationproject/Veb-5.png'
-import Image from 'next/image'
 
 import doRemonta from '@public/assets/images/nationproject/do-remonta-aud.png'
 import Web3 from '@public/assets/images/nationproject/veb-3.png'
@@ -48,22 +47,22 @@ const NacProject = ({ files }) => {
 				<span className={styles.textTitle}>Аудитории до ремонта</span>
 				<div>
 					<div className={styles.gridRooms}>
-						<Image
+						<img
 							className={styles.gridRoomsElement}
 							src={classroom}
 							alt='classroom-do-remonta'
 						/>
-						<Image
+						<img
 							className={styles.gridRoomsElement}
 							src={doRemonta}
 							alt='parti'
 						/>
-						<Image
+						<img
 							className={styles.gridRoomsElement}
 							src={doRemonta1}
 							alt='parti'
 						/>
-						<Image
+						<img
 							className={styles.gridRoomsElement}
 							src={doRemonta2}
 							alt='parti'
@@ -75,19 +74,19 @@ const NacProject = ({ files }) => {
 				<span className={styles.textTitle}>Мастерская Веб-технологии</span>
 				<div>
 					<div className={styles.doubleWeb}>
-						<Image
+						<img
 							src={Web5}
 							className={styles.doubleWebElement}
 							alt='cabinet'
 						/>
-						<Image
+						<img
 							src={Web3}
 							alt='cabinet'
 							className={styles.doubleWebElement}
 						/>
 					</div>
 					<div>
-						<Image src={Web4} alt='cabinet' />
+						<img src={Web4} alt='cabinet' />
 					</div>
 				</div>
 			</div>
@@ -97,19 +96,19 @@ const NacProject = ({ files }) => {
 				</span>
 				<div>
 					<div className={styles.doubleWeb}>
-						<Image
+						<img
 							src={S13}
 							alt='cabinet'
 							className={styles.doubleWebElement}
 						/>
-						<Image
+						<img
 							src={Web2}
 							alt='cabinet'
 							className={styles.doubleWebElement}
 						/>
 					</div>
 					<div>
-						<Image src={S12} alt='img' />
+						<img src={S12} alt='img' />
 					</div>
 				</div>
 			</div>

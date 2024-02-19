@@ -10,7 +10,7 @@ import EnrolleeTop from "@/widgets/Enrollee/EnrolleeTop";
 import EnrolleeSpecialityes from "@/widgets/Enrollee/EnrolleeSpecialityes";
 import EnrolleeNecessary from "@/widgets/Enrollee/EnrolleeNecessary";
 import EnrolleeRequzits from "@/widgets/Enrollee/EnrolleeRequzits";
-import Link from "next/link";
+
 import EnrolleRecomendations from "@widgets/Enrollee/EnrolleRecomendations";
 
 const Enrollee = ({ files, specialityes }) => {
