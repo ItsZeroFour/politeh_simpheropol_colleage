@@ -77,7 +77,11 @@ const CreatePage = () => {
 		return <Interweave content={textValue} />
 	}
 	const RenderPredImage = ({ imageUrl }) => {
-		return <Interweave content={imageUrl} />
+		return (
+			<Interweave
+				content={`<img style="max-width:100%, height: auto;" src=${imageUrl}  alt="name"/>`}
+			/>
+		)
 	}
 
 	const handleAddHeadingThree = () => {
@@ -702,9 +706,7 @@ const CreatePage = () => {
 				{ headers: { Authorization: `Bearer ${token}` } }
 			)
 
-			setImageUrl(
-				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
-			)
+			setImageUrl(data.imagelink)
 		} catch (err) {
 			console.log(err)
 		}
