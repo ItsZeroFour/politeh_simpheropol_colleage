@@ -79,7 +79,9 @@ const CreatePage = () => {
 	const RenderPredImage = ({ imageUrl }) => {
 		return (
 			<Interweave
-				content={`<img style="max-width:100%, height: auto;" src=${imageUrl}  alt="name"/>`}
+				content={`<img style="max-width:100%, height: auto;" src=${
+					`${process.env.NEXT_PUBLIC_SERVER_URL}` + `${imageUrl}`
+				}  alt="name"/>`}
 			/>
 		)
 	}
@@ -615,12 +617,14 @@ const CreatePage = () => {
 			)
 			console.log(data.imagelink)
 			setDataUrl(data.imagelink)
-			console.log(dataUrl)
 			setImageContentUrl(
-				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
+				`<img style="max-width:100%, height: auto;" src=${
+					`${process.env.NEXT_PUBLIC_SERVER_URL}` + `${data.imagelink}`
+				}  alt="name"/>`
 			)
 		} catch (err) {
 			console.log(err)
+			alert('не удалось загрузить изображение')
 		}
 	}
 	const handleFileChange = async event => {

@@ -23,21 +23,28 @@ export default function Post({ params }) {
 					`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getpagecontent`,
 					{ params: { postId: params.postId } }
 				)
+				console.log('somedata.data', somedata.data)
 
-				const imagesRegex = text.match(/\b\d+\.(jpg|png)\b/g)
+				let result = somedata.data // Создаем новую переменную result и присваиваем ей исходный текст
 
-				const somelink = 'http://localhost:4444'
-				if (imagesRegex) {
-					images.map(imagesRegex => {
-						text = text.replace(
-							imagesRegex,
-							`<img src="${somelink}/${imagesRegex}"/>`
-						)
-					})
+				function processText(text) {
+					console.log(text)
+					const images = text.match(/\b\d+\.(jpg|png)\b/g)
+					let result = text
+					const somelink = 'http://localhost:4444'
+					if (images) {
+						images.map(image => {
+							result = result.replace(image, `<img src=${somelink}/${image}/>`)
+						})
+					}
+					if (!images) {
+						return text
+					}
+					return result
 				}
-				console.log(text)
-
-				setData({ ...somedata.data })
+				const result1 = processText(somedata.data.pageContent)
+				console.log(result1)
+				setData({ pageContent: result1 })
 				document.body.scrollTop = 0
 			} catch (error) {
 				console.log(error)

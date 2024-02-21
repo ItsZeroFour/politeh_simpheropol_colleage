@@ -101,7 +101,7 @@ app.post(
 	async (req, res) => {
 		try {
 			if (req.file) {
-				const imageUrl = `${process.env.IP_ADDRESS}/uploads/${req.file.filename}`
+				const imageUrl = `/uploads/${req.file.filename}`
 				const newImage = new Image({
 					filename: req.file.filename,
 					path: imageUrl,
