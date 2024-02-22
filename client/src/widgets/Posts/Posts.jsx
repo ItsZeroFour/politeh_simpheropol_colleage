@@ -67,7 +67,7 @@ const Posts = () => {
 											>
 												<div className={styles.post__image}>
 													<img
-														src={srcValue}
+														src={`${process.env.NEXT_PUBLIC_SERVER_URL}${srcValue}`}
 														width={400}
 														height={300}
 														alt='Picture of the author'

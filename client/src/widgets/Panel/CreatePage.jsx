@@ -671,10 +671,19 @@ const CreatePage = () => {
 		try {
 			let newUrl = ''
 			const token = await Cookies.get('token')
+			const sometext = textValue
+			function removeLocalhostURL(text) {
+				// Используем регулярное выражение для замены ссылки на пустую строку с использованием переменной link
+				const link = process.env.NEXT_PUBLIC_SERVER_URL
+				return text.replace(new RegExp(link, 'g'), '')
+			}
+
+			const resultText = removeLocalhostURL(sometext)
+			console.log('resultText', resultText)
 			const someDate = await axios.put(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
 
-				{ URLPage, typePage, textValue, titlePage },
+				{ URLPage, typePage, textValue: resultText, titlePage },
 				{
 					headers: {
 						'Access-Control-Allow-Origin': '*',
