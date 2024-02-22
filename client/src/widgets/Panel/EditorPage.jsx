@@ -90,6 +90,7 @@ export default function App() {
 		try {
 			console.log('it a send image', pageUrl, imageUrl)
 			const token = await Cookies.get('token')
+
 			await axios.put(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/imagepage`,
 				{
@@ -640,7 +641,9 @@ export default function App() {
 			setDataUrl(data.imagelink)
 			console.log(dataUrl)
 			setImageContentUrl(
-				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
+				`<img style="max-width:100%, height: auto;" src=${
+					`${process.env.NEXT_PUBLIC_SERVER_URL}` + `${data.imagelink}`
+				}  alt="name"/>`
 			)
 			console.log(imageContentUrl)
 		} catch (err) {
@@ -682,10 +685,20 @@ export default function App() {
 			let newUrl = ''
 			sendImage(imageUrl, urlPage)
 			const token = await Cookies.get('token')
+			const sometext = textValue
+			function removeLocalhostURL(text) {
+				// Используем регулярное выражение для замены ссылки на пустую строку с использованием переменной link
+				const link = process.env.NEXT_PUBLIC_SERVER_URL
+				return text.replace(new RegExp(link, 'g'), '')
+			}
+
+			const resultText = removeLocalhostURL(sometext)
+			console.log('resultText', resultText)
+
 			const someDate = await axios.put(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
 
-				{ URLPage, typePage, textValue, titlePage },
+				{ URLPage, typePage, textValue: resultText, titlePage },
 				{
 					headers: {
 						'Access-Control-Allow-Origin': '*',
@@ -742,7 +755,9 @@ export default function App() {
 			)
 
 			setImageUrl(
-				`<img style="max-width:100%, height: auto;" src=${data.imagelink}  alt="name"/>`
+				`<img style="max-width:100%, height: auto;" src=${
+					`${process.env.NEXT_PUBLIC_SERVER_URL}` + `${data.imagelink}`
+				}  alt="name"/>`
 			)
 
 			console.log('imagelink', data.imagelink)

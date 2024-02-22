@@ -27,22 +27,12 @@ export default function Post({ params }) {
 
 				let result = somedata.data // Создаем новую переменную result и присваиваем ей исходный текст
 
-				function processText(text) {
-					console.log(text)
-					const images = text.match(/\b\d+\.(jpg|png)\b/g)
-					let result = text
-					const somelink = 'http://localhost:4444'
-					if (images) {
-						images.map(image => {
-							result = result.replace(image, `<img src=${somelink}/${image}/>`)
-						})
-					}
-					if (!images) {
-						return text
-					}
-					return result
+				function updateImageSource(text) {
+					const link = process.env.NEXT_PUBLIC_SERVER_URL
+					return text.replace(/src=\/uploads/g, `src=${link}/uploads`)
 				}
-				const result1 = processText(somedata.data.pageContent)
+
+				const result1 = updateImageSource(somedata.data.pageContent)
 				console.log(result1)
 				setData({ pageContent: result1 })
 				document.body.scrollTop = 0
