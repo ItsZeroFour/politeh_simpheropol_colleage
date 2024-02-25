@@ -35,9 +35,11 @@ router.put(
 )
 router.get('/get', PageControllers.getPage)
 router.get('/getourcollege', PageControllers.getOurCollegePages)
+router.get('/pageourcollege', PageControllers.getOurCollegePagesOne)
 router.get('/getpostspages', PageControllers.getOurPostsPages)
 router.get('/getpagestitle', PageControllers.getPagePostsTitle)
 router.get('/getpagecontent', PageControllers.getPageContent)
+
 //router.get('/getonepage', PageControllers.getOnePage)
 router.delete(
 	'/delete',

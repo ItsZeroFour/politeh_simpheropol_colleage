@@ -59,6 +59,7 @@ export default function App() {
 	let tmp = '../../app/testing'
 	const [dataPage, setDataPage] = useState([])
 	const [urlPage, setUrlPage] = useState('')
+	const [isUpdatedImage, setIsUpdatedImage] = useState(false)
 	const {
 		register,
 		handleSubmit,
@@ -90,12 +91,22 @@ export default function App() {
 		try {
 			console.log('it a send image', pageUrl, imageUrl)
 			const token = await Cookies.get('token')
+			function extractImagePath(text) {
+				const regex = /\/uploads\/[\w.-]+\.(jpg|jpeg|png|gif)/
+				const result = text.match(regex)
 
+				if (result && result.length > 0) {
+					return result[0]
+				} else {
+					return ''
+				}
+			}
 			await axios.put(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/imagepage`,
 				{
 					pageUrl,
-					pageImageUrl: imageUrl,
+					pageImageUrl: extractImagePath(imageUrl),
+					isUpdatedImage,
 				},
 				{ headers: { Authorization: `Bearer ${token}` } }
 			)
@@ -684,6 +695,7 @@ export default function App() {
 		try {
 			let newUrl = ''
 			sendImage(imageUrl, urlPage)
+
 			const token = await Cookies.get('token')
 			const sometext = textValue
 			function removeLocalhostURL(text) {
@@ -712,6 +724,7 @@ export default function App() {
 			}
 			if (someDate.status == 200) {
 				dispatch(textValueFunc(''))
+				setImageUrl('')
 				alert(someDate.data.message)
 			}
 		} catch (error) {
@@ -721,6 +734,10 @@ export default function App() {
 				`${error.response.data.message}. Текущий статус:${error.response.status}`
 			) // Handle any errors
 		}
+	}
+	function updateImageSource(text) {
+		const link = process.env.NEXT_PUBLIC_SERVER_URL
+		return text.replace(/src=\/uploads/g, `src=${link}/uploads`)
 	}
 	const deleteImagesPrev = async pageUrl => {
 		try {
@@ -759,10 +776,11 @@ export default function App() {
 					`${process.env.NEXT_PUBLIC_SERVER_URL}` + `${data.imagelink}`
 				}  alt="name"/>`
 			)
+			setIsUpdatedImage(true)
 
 			console.log('imagelink', data.imagelink)
 		} catch (err) {
-			console.log(err)
+			alert('произошла ошибка')
 		}
 	}
 
@@ -776,6 +794,7 @@ export default function App() {
 				}
 			)
 			console.log('Search', somedata)
+
 			setDataPage(somedata)
 		} catch (error) {
 			setDataPage([null])
@@ -831,7 +850,10 @@ export default function App() {
 					<button
 						onClick={() => {
 							setIsFound(true)
-							dispatch(textValueFunc(dataPage.data.pageContent))
+							console.log(dataPage.data.pageContent)
+							const result = updateImageSource(dataPage.data.pageContent)
+							console.log(result)
+							dispatch(textValueFunc(result))
 							setURLPage(dataPage.data.pageUrl)
 							setTitlePage(dataPage.data.pageTitle)
 							setTypePage(dataPage.data.pageType)
@@ -839,7 +861,13 @@ export default function App() {
 					>
 						<h1>{dataPage.data.pageTitle}</h1>
 					</button>
-					<Interweave content={dataPage.data.pageImage} />
+					<img
+						src={`${process.env.NEXT_PUBLIC_SERVER_URL}${dataPage.data.pageImage}`}
+						style={{ width: '50%', height: '50%' }}
+						alt=''
+						srcset=''
+					/>
+
 					<div>{dataPage.data.pageDate}</div>
 				</div>
 			)}

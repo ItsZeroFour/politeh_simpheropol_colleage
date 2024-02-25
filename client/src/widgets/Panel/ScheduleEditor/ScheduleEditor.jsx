@@ -1,11 +1,20 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { useState } from 'react'
 import style from './ScheduleEditor.module.scss'
-import Cookies from 'js-cookie'
-
 const ScheduleEditor = () => {
 	const [scheduleOne, setScheduleOne] = useState('')
 	const [scheduleTwo, setScheduleTwo] = useState('')
+	function extractImagePath(text) {
+		const regex = /\/uploads\/[\w.-]+\.(jpg|jpeg|png|gif)/
+		const result = text.match(regex)
+
+		if (result && result.length > 0) {
+			return result[0]
+		} else {
+			return 'Совпадений не найдено'
+		}
+	}
 
 	const handleImageChange = async (event, one) => {
 		try {
@@ -16,14 +25,21 @@ const ScheduleEditor = () => {
 			const token = await Cookies.get('token')
 			const { data } = await axios.post(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
-				formData,  {headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }}
+				formData,
+				{
+					headers: {
+						'Access-Control-Allow-Origin': '*',
+						Authorization: `Bearer ${token}`,
+					},
+				}
 			)
 			if (one == 'one') {
-				setScheduleOne(data.imagelink)
+				setScheduleOne(`${process.env.NEXT_PUBLIC_SERVER_URL}${data.imagelink}`)
 			}
 			if (one == 'two') {
-				setScheduleTwo(data.imagelink)
+				setScheduleTwo(`${process.env.NEXT_PUBLIC_SERVER_URL}${data.imagelink}`)
 			}
+			console.log(data)
 		} catch (err) {
 			console.log(err)
 		}
@@ -47,21 +63,31 @@ const ScheduleEditor = () => {
 
 			const currentDate = getCurrentDate()
 
-		const sendingData = async () => {
-			try {
-				const token = await Cookies.get('token')
-				await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/create`, {
-					scheduleOne,
-					scheduleTwo,
-					date: currentDate,
-				},  {headers: { "Access-Control-Allow-Origin": "*", Authorization: `Bearer ${token}` }})
-				setScheduleOne('')
-				setScheduleTwo('')
-			} catch (error) {
-				console.log(error)
+			const sendingData = async () => {
+				try {
+					const token = await Cookies.get('token')
+
+					await axios.post(
+						`${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/create`,
+						{
+							scheduleOne: extractImagePath(scheduleOne),
+							scheduleTwo: extractImagePath(scheduleTwo),
+							date: currentDate,
+						},
+						{
+							headers: {
+								'Access-Control-Allow-Origin': '*',
+								Authorization: `Bearer ${token}`,
+							},
+						}
+					)
+					setScheduleOne('')
+					setScheduleTwo('')
+				} catch (error) {
+					console.log(error)
+				}
 			}
-		}
-		sendingData();
+			sendingData()
 		} else {
 			window.alert('Заполните до-конца!')
 		}
@@ -87,7 +113,7 @@ const ScheduleEditor = () => {
 				<input
 					onChange={event => handleImageChange(event, 'one')}
 					type='file'
-          accept=".jpg, .png, .jpeg"
+					accept='.jpg, .png, .jpeg'
 					name=''
 					id=''
 				/>
@@ -108,7 +134,7 @@ const ScheduleEditor = () => {
 				<input
 					onChange={event => handleImageChange(event, 'two')}
 					type='file'
-          accept=".jpg, .png, .jpeg"
+					accept='.jpg, .png, .jpeg'
 					name=''
 					id=''
 				/>

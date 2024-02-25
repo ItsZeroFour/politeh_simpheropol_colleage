@@ -4,11 +4,11 @@ import PageModel from '../models/Page.js'
 export const updateImagePage = async (req, res) => {
 	try {
 		console.log('true')
-		const { pageUrl, pageImageUrl } = req.body
+		const { pageUrl, pageImageUrl, isUpdatedImage } = req.body
 		console.log(pageUrl, pageImageUrl)
 		const updateImagesPage = await PageModel.findOneAndUpdate(
 			{ pageUrl },
-			{ pageImage: pageImageUrl }
+			isUpdatedImage && { pageImage: pageImageUrl }
 		)
 		console.log('9u', updateImagesPage)
 		return res.status(200).json({ updateImagesPage })
@@ -102,6 +102,20 @@ export const getOurCollegePages = async (req, res) => {
 		res.send(arrPages)
 	} catch (error) {
 		console.log(error)
+	}
+}
+export const getOurCollegePagesOne = async (req, res) => {
+	try {
+		const { pageUrl } = req.query
+		const arrPages = await PageModel.findOne({ pageUrl, pageType: 'own' })
+		console.log('fdoifj', arrPages)
+		if (null == arrPages) {
+			return res.status(404).json({ message: 'Не удалось найти страницу' })
+		}
+		res.send(arrPages)
+	} catch (error) {
+		console.log(error)
+		res.send(error)
 	}
 }
 
