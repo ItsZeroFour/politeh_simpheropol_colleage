@@ -31,10 +31,15 @@ export default function Post({ params }) {
 					const link = process.env.NEXT_PUBLIC_SERVER_URL
 					return text.replace(/src=\/uploads/g, `src=${link}/uploads`)
 				}
-
+				function insertLocalhostToLinks(html) {
+					const regex = /href=\/uploads/g
+					const replacement = `href=${process.env.NEXT_PUBLIC_SERVER_URL}/uploads`
+					return html.replace(regex, replacement)
+				}
 				const result1 = updateImageSource(somedata.data.pageContent)
-				console.log(result1)
-				setData({ pageContent: result1 })
+				const result2 = insertLocalhostToLinks(result1)
+				console.log(result2)
+				setData({ pageContent: result2 })
 				document.body.scrollTop = 0
 			} catch (error) {
 				console.log(error)

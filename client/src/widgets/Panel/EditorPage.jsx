@@ -194,7 +194,7 @@ export default function App() {
 				{ headers: { Authorization: `Bearer ${token}` } }
 			)
 			console.log('uploadpdf', data)
-			addLinkFile(data.pdflink)
+			addLinkFile(`${process.env.NEXT_PUBLIC_SERVER_URL}${data.pdflink}`)
 		} catch (err) {
 			console.log(err)
 		}
@@ -739,6 +739,13 @@ export default function App() {
 		const link = process.env.NEXT_PUBLIC_SERVER_URL
 		return text.replace(/src=\/uploads/g, `src=${link}/uploads`)
 	}
+	function insertLocalhostToLinks(html) {
+		const link = process.env.NEXT_PUBLIC_SERVER_URL
+		const regex = /href=\/uploads/g
+		const replacement = `href=${link}/uploads`
+		return html.replace(regex, replacement)
+	}
+
 	const deleteImagesPrev = async pageUrl => {
 		try {
 			alert('Вы действительно хотите удалить обложку?')
@@ -852,8 +859,8 @@ export default function App() {
 							setIsFound(true)
 							console.log(dataPage.data.pageContent)
 							const result = updateImageSource(dataPage.data.pageContent)
-							console.log(result)
-							dispatch(textValueFunc(result))
+							const result2 = insertLocalhostToLinks(result)
+							dispatch(textValueFunc(result2))
 							setURLPage(dataPage.data.pageUrl)
 							setTitlePage(dataPage.data.pageTitle)
 							setTypePage(dataPage.data.pageType)

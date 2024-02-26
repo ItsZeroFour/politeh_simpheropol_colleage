@@ -71,7 +71,7 @@ app.post(
 	async (req, res) => {
 		try {
 			if (req.file) {
-				const pdfUrl = `http://localhost:${process.env.PORT}/uploads/${req.file.filename}`
+				const pdfUrl = `/uploads/${req.file.filename}`
 
 				// Save PDF file details to MongoDB
 

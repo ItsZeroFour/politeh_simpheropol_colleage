@@ -21,10 +21,16 @@ export default function CollegePage({ params }) {
 					const link = process.env.NEXT_PUBLIC_SERVER_URL
 					return text.replace(/src=\/uploads/g, `src=${link}/uploads`)
 				}
+				function insertLocalhostToLinks(html) {
+					const regex = /href=\/uploads/g
+					const replacement = `href=${process.env.NEXT_PUBLIC_SERVER_URL}/uploads`
+					return html.replace(regex, replacement)
+				}
 				console.log(somedata)
 				const result = updateImageSource(somedata.data.pageContent)
-				console.log(result)
-				setData(result)
+				const result2 = insertLocalhostToLinks(result)
+				console.log(result2)
+				setData(result2)
 			} catch (error) {
 				console.log(error)
 				console.log('error', error.response.data.message)

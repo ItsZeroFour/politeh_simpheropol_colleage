@@ -640,7 +640,7 @@ const CreatePage = () => {
 				{ headers: { Authorization: `Bearer ${token}` } }
 			)
 
-			addLinkFile(data.pdflink)
+			addLinkFile(`${process.env.NEXT_PUBLIC_SERVER_URL}${data.pdflink}`)
 		} catch (err) {
 			console.log(err)
 		}
@@ -682,7 +682,6 @@ const CreatePage = () => {
 			console.log('resultText', resultText)
 			const someDate = await axios.put(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
-
 				{ URLPage, typePage, textValue: resultText, titlePage },
 				{
 					headers: {
