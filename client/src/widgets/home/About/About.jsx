@@ -118,7 +118,7 @@ function About() {
             <p className={style.subInfoBottom}>студентов</p>
           </div>
           <div className={style.card}>
-            <p className={style.subInfoTop}>целых</p>
+            <p className={style.subInfoTop}>всего</p>
             <p className={style.mainInfo}>10</p>
             <p className={style.subInfoBottom}>специальностей</p>
           </div>

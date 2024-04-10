@@ -29,9 +29,16 @@
 .departament__desceplines {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
 
   li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     padding: 10px;
     width: 340px;
     height: 245px;
@@ -68,7 +75,11 @@
       background: var(--color-red);
     }
 
-    @media (max-width: 741px) {
+    @media (max-width: 1435px) {
+      width: 45%;
+    }
+
+    @media (max-width: 1120px) {
       width: 100%;
       display: flex;
       flex-direction: column;
