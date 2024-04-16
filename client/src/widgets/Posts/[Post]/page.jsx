@@ -36,10 +36,19 @@ export default function Post({ params }) {
 					const replacement = `href=${process.env.NEXT_PUBLIC_SERVER_URL}/uploads`
 					return html.replace(regex, replacement)
 				}
+				function updateLinks(htmlContent) {
+					const updatedContent = htmlContent.replace(
+						/\/our-colleage\//g,
+						'http://localhost:3000/our-colleage/'
+					)
+					return updatedContent
+				}
+
 				const result1 = updateImageSource(somedata.data.pageContent)
 				const result2 = insertLocalhostToLinks(result1)
 				console.log(result2)
-				setData({ pageContent: result2 })
+				const updatedHtml = updateLinks(result2)
+				setData({ pageContent: updatedHtml })
 				document.body.scrollTop = 0
 			} catch (error) {
 				console.log(error)

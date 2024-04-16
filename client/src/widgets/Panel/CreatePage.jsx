@@ -677,12 +677,18 @@ const CreatePage = () => {
 				const link = process.env.NEXT_PUBLIC_SERVER_URL
 				return text.replace(new RegExp(link, 'g'), '')
 			}
+			function removeLocalhostFromHref(htmlString) {
+				const regex = /http:\/\/localhost:3000/g
+				return htmlString.replace(regex, '')
+			}
 
 			const resultText = removeLocalhostURL(sometext)
 			console.log('resultText', resultText)
+
+			const cleanedHtml = removeLocalhostFromHref(resultText)
 			const someDate = await axios.put(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/topublic`,
-				{ URLPage, typePage, textValue: resultText, titlePage },
+				{ URLPage, typePage, textValue: cleanedHtml, titlePage },
 				{
 					headers: {
 						'Access-Control-Allow-Origin': '*',
@@ -710,7 +716,7 @@ const CreatePage = () => {
 			const file = event.target.files[0]
 			const formData = new FormData()
 			formData.append('image', file)
-			console.log(formData)
+
 			const token = await Cookies.get('token')
 			const { data } = await axios.post(
 				`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`,
