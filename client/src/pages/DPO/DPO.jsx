@@ -5,6 +5,8 @@ import dpoImage from "../../../public/assets/images/dpo/dpo.jpg";
 import Link from "next/link";
 
 const DPO = ({ files }) => {
+  const data = files[0];
+
   return (
     <section className={style.dpo}>
       <h1>Дополнительное профессиональное образование</h1>
@@ -13,7 +15,7 @@ const DPO = ({ files }) => {
 
       <ul className={style.dpo__order}>
         {files ? (
-          files.map(({ file, name }) => (
+          data.map(({ file, name }) => (
             <li key={name}>
               <Link
                 href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
