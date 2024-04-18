@@ -209,7 +209,9 @@ export default function App() {
 
 			if (initium_index !== -1) {
 				let newSubString =
-					`<a   target="_blank" href=${somelink}>` + selectedText + '</a>'
+					`<a   target="_blank" style="text-decoration: underline" href=${somelink}>` +
+					selectedText +
+					'</a>'
 				let newString =
 					textValue.substring(0, initium_index) +
 					newSubString +

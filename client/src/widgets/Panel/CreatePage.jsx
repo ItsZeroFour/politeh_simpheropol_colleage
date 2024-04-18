@@ -285,7 +285,9 @@ const CreatePage = () => {
 
 			if (initium_index !== -1) {
 				let newSubString =
-					`<a   target="_blank" href=${linkHref}>` + selectedText + '</a>'
+					`<a  style="text-decoration: underline" target="_blank" href=${linkHref}>` +
+					selectedText +
+					'</a>'
 				let newString =
 					textValue.substring(0, initium_index) +
 					newSubString +
