@@ -1,10 +1,12 @@
-"use client";
-
 import style from "./DPO.module.scss";
 import dpoImage from "../../../public/assets/images/dpo/dpo.jpg";
 import Link from "next/link";
 
 const DPO = ({ files }) => {
+  if (!files || files.length === 0) {
+    return <p>Загрузка...</p>;
+  }
+
   const data = files[0];
 
   return (
@@ -14,21 +16,17 @@ const DPO = ({ files }) => {
       <img src={dpoImage.src} alt="dpo image" />
 
       <ul className={style.dpo__order}>
-        {files ? (
-          data.map(({ file, name }) => (
-            <li key={name}>
-              <Link
-                href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
-                target="_blank"
-                rel="norefferer"
-              >
-                {name}
-              </Link>
-            </li>
-          ))
-        ) : (
-          <p>Загрузка...</p>
-        )}
+        {data.map(({ file, name }) => (
+          <li key={name}>
+            <Link
+              href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
+              target="_blank"
+              rel="norefferer"
+            >
+              {name}
+            </Link>
+          </li>
+        ))}
       </ul>
 
       <p>
