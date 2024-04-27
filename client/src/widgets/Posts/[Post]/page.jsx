@@ -39,7 +39,7 @@ export default function Post({ params }) {
 				function updateLinks(htmlContent) {
 					const updatedContent = htmlContent.replace(
 						/\/our-colleage\//g,
-						'http://localhost:3000/our-colleage/'
+						`${process.env.NEXT_PUBLIC_SERVER_URL}/our-colleage/`
 					)
 					return updatedContent
 				}

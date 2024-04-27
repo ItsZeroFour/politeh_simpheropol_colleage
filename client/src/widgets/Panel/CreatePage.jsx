@@ -680,7 +680,7 @@ const CreatePage = () => {
 				return text.replace(new RegExp(link, 'g'), '')
 			}
 			function removeLocalhostFromHref(htmlString) {
-				const regex = /http:\/\/localhost:3000/g
+				const regex = process.env.NEXT_PUBLIC_SERVER_URL / g
 				return htmlString.replace(regex, '')
 			}
 
