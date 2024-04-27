@@ -29,7 +29,7 @@ export default function CollegePage({ params }) {
 				function updateLinks(htmlContent) {
 					const updatedContent = htmlContent.replace(
 						/\/our-colleage\//g,
-						`${process.env.NEXT_FRONTEND}/our-colleage/`
+						`${process.env.NEXT_PUBLIC_FRONTEND_URL}/our-colleage/`
 					)
 					return updatedContent
 				}
