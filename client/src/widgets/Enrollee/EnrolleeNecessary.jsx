@@ -53,6 +53,7 @@ const EnrolleeNecessary = () => {
 
       <section className={style.enrollee__order__link}>
         <Link href="/order-of-admission">Приказ о зачислении</Link>
+        <Link href="/admission">Рейтинговый список на зачисление</Link>
       </section>
     </React.Fragment>
   );
