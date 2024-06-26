@@ -6,13 +6,33 @@ import Link from "next/link";
 import Triangle from "@public/assets/icons/triangle.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useActions } from "@app/hooks/useActions";
+import { useRouter } from 'next/navigation'
+import axios from "axios";
 
 const MobileLink = React.memo(function MobileLink({ stlye, link }) {
   const dispatch = useDispatch();
   const { setIsOpenedMenu } = useActions();
 
-  const onMenuClick = () => {
+  const router = useRouter()
+	const Clicked = async url => {
+		try {
+			const somedata = await axios.get(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getonepage`,
+				{ params: { url } }
+			)
+
+			if (somedata.status == 200) {
+				console.log(somedata.data.message.pageUrl)
+				router.push('/our-colleage/' + somedata.data.message.pageUrl)
+			}
+		} catch (error) {
+			router.push(`${url}`)
+		}
+	}
+
+  const onMenuClick = (link) => {
     dispatch(setIsOpenedMenu(false));
+    Clicked(link.url)
   };
 
   const [isClicked, setIsClicked] = useState(false);
@@ -63,9 +83,9 @@ const MobileLink = React.memo(function MobileLink({ stlye, link }) {
             <div className={style.mobileDropdownDelimiter}></div>
             {link.nestedObjects.map((link, index) => (
               <li key={index} className={style.link}>
-                <Link href={link.url} onClick={onMenuClick}>
+                <span onClick={() => onMenuClick(link)}>
                   {link.text}
-                </Link>
+                </span>
               </li>
             ))}
           </ul>
