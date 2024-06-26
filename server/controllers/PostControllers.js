@@ -40,8 +40,6 @@ export const getAllPosts = async (req, res) => {
 export const getOnePage = async (req, res) => {
 	try {
 		const { url } = req.params
-		console.log('fdfsdfsdfs')
-		console.log(url)
 		const result = PostModel.findOne({ pageUrl: url })
 		if (result == null) {
 			return res.status(404).json({ message: 'объект не был найден' })

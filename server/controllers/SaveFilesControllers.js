@@ -29,8 +29,6 @@ export const getFileBlocks = async (req, res) => {
   try {
     const { forPage } = req.query;
 
-    console.log(forPage);
-
     if (!forPage) {
       return res.status(400).json({
         message: "Не удалось получить страницу",

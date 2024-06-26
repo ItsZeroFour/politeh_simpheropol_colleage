@@ -41,7 +41,9 @@ const MobileLink = React.memo(function MobileLink({ stlye, link }) {
           {link.text}
         </Link>
       ) : (
-        <span className="header__link__34">{link.text}</span>
+        <span className="header__link__34">
+          {link.text}
+        </span>
       )}
       {link.nestedObjects.length !== 0 && (
         <Triangle

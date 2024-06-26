@@ -192,7 +192,7 @@
     position: relative;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       right: 0;
       top: 50%;
@@ -345,6 +345,7 @@
 
 .enrollee__order__link {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -404,7 +405,6 @@
   width: 32%;
   min-height: 3.5rem;
 
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -412,7 +412,7 @@
   text-align: center;
 
   background: rgba(0, 26, 255, 0.712);
-  border: .05rem solid var(--color-blue);
+  border: 0.05rem solid var(--color-blue);
   border-radius: var(--border-radius-md);
 
   transition: var(--transition);
@@ -425,4 +425,3 @@
     width: 100%;
   }
 }
-
