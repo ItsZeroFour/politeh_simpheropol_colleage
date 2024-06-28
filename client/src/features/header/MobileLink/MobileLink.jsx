@@ -1,58 +1,37 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import style from "./../../../widgets/header/header.module.scss";
-import Link from "next/link";
-import Triangle from "@public/assets/icons/triangle.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { useActions } from "@app/hooks/useActions";
-import { useRouter } from 'next/navigation'
-import axios from "axios";
+import React, { useState } from 'react'
+import style from './../../../widgets/header/header.module.scss'
+import Link from 'next/link'
+import Triangle from '@public/assets/icons/triangle.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { useActions } from '@app/hooks/useActions'
 
 const MobileLink = React.memo(function MobileLink({ stlye, link }) {
-  const dispatch = useDispatch();
-  const { setIsOpenedMenu } = useActions();
+  const dispatch = useDispatch()
+  const { setIsOpenedMenu } = useActions()
+  const isOurColleage = link.text === 'Наш колледж'
 
-  const router = useRouter()
-	const Clicked = async url => {
-		try {
-			const somedata = await axios.get(
-				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getonepage`,
-				{ params: { url } }
-			)
+  const onMenuClick = () => {
+    dispatch(setIsOpenedMenu(false))
+  }
 
-			if (somedata.status == 200) {
-				console.log(somedata.data.message.pageUrl)
-				router.push('/our-colleage/' + somedata.data.message.pageUrl)
-			}
-		} catch (error) {
-			router.push(`${url}`)
-		}
-	}
-
-  const onMenuClick = (link) => {
-    dispatch(setIsOpenedMenu(false));
-    Clicked(link.url)
-  };
-
-  const [isClicked, setIsClicked] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
+  const [isClicked, setIsClicked] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
 
   const handleClick = () => {
     if (!isClicked) {
-      setIsClicked(true);
-      return setIsClosing(false);
+      setIsClicked(true)
+      return setIsClosing(false)
     }
 
-    setIsClosing(true);
-    setIsClicked(false);
-  };
+    setIsClosing(true)
+    setIsClicked(false)
+  }
 
   return (
     <li
-      className={
-        link.nestedObjects.length !== 0 ? style.categoryLink : style.link
-      }
+      className={link.nestedObjects.length !== 0 ? style.categoryLink : style.link}
       onClick={link.nestedObjects.length !== 0 ? handleClick : () => {}}
       id={link.nestedObjects.length !== 0 ? link.text : null}
     >
@@ -61,38 +40,28 @@ const MobileLink = React.memo(function MobileLink({ stlye, link }) {
           {link.text}
         </Link>
       ) : (
-        <span className="header__link__34">
-          {link.text}
-        </span>
+        <span className='header__link__34'>{link.text}</span>
       )}
-      {link.nestedObjects.length !== 0 && (
-        <Triangle
-          className={`${style.dropdownIcon} ${
-            isClicked && style.dropdownIconActive
-          }`}
-        />
-      )}
+      {link.nestedObjects.length !== 0 && <Triangle className={`${style.dropdownIcon} ${isClicked && style.dropdownIconActive}`} />}
 
       {link.nestedObjects.length !== 0 && (
-        <div
-          className={`${style.mobileDropdown} ${
-            isClicked && style.mobileDropdownActive
-          }`}
-        >
-          <ul className={"overflow-hidden"}>
+        <div className={`${style.mobileDropdown} ${isClicked && style.mobileDropdownActive}`}>
+          <ul className={'overflow-hidden'}>
             <div className={style.mobileDropdownDelimiter}></div>
-            {link.nestedObjects.map((link, index) => (
-              <li key={index} className={style.link}>
-                <span onClick={() => onMenuClick(link)}>
+            {link.nestedObjects.map((link, index) => {
+              const url = isOurColleage ? '/our-colleage/' + link.url : link.url
+
+              return <li key={index} className={style.link}>
+                <Link href={url} onClick={onMenuClick}>
                   {link.text}
-                </span>
+                </Link>
               </li>
-            ))}
+            })}
           </ul>
         </div>
       )}
     </li>
-  );
-});
+  )
+})
 
-export default MobileLink;
+export default MobileLink
