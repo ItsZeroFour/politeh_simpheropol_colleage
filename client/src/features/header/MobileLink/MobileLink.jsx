@@ -36,7 +36,7 @@ const MobileLink = React.memo(function MobileLink({ stlye, link }) {
       id={link.nestedObjects.length !== 0 ? link.text : null}
     >
       {link.nestedObjects.length === 0 ? (
-        <Link href={link.url} onClick={onMenuClick}>
+        <Link href={link.url} onClick={() => dispatch(setIsOpenedMenu(false))}>
           {link.text}
         </Link>
       ) : (

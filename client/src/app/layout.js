@@ -5,9 +5,11 @@ import { Poppins } from "next/font/google";
 import StoreProvider from "./store/StoreProvider";
 import Script from "next/script";
 import Head from "next/head";
+import React, { Suspense } from "react";
+import Loader from "./loading";
 
 export const metadata = {
-  title: "Политехнический колледж Симферополя",
+  title: "Симферопольский политехнический колледж",
   description: `Государственное бюджетное профессиональное образовательное учреждение
    Республики Крым «Симферопольский политехнический колледж», создано Советом министров
   Республики Крым на основании распоряжения от 09.12.2014 № 1326-р
@@ -33,13 +35,13 @@ const getLinksData = async () => {
         next: { revalidate: 300 },
       }
     );
-  
+
     const data = await response.json();
-  
+
     return data;
   } catch {
-    const data = []
-    return data
+    const data = [];
+    return data;
   }
 };
 
@@ -59,7 +61,7 @@ const RootLayout = async ({ children }) => {
           <div className="page">
             <div className="container">
               <Header data={linksServer} />
-              <>{children}</>
+              <Suspense fallback={<Loader />}>{children}</Suspense>
             </div>
 
             <Footer />
