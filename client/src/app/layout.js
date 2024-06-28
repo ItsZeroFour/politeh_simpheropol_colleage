@@ -5,6 +5,8 @@ import { Poppins } from "next/font/google";
 import StoreProvider from "./store/StoreProvider";
 import Script from "next/script";
 import Head from "next/head";
+import React, { Suspense } from "react";
+import Loader from "./loading";
 
 export const metadata = {
   title: "Симферопольский политехнический колледж",
@@ -59,15 +61,15 @@ const RootLayout = async ({ children }) => {
           <div className="page">
             <div className="container">
               <Header data={linksServer} />
-              <>{children}</>
+              <Suspense fallback={<Loader />}>{children}</Suspense>
             </div>
 
             <Footer />
           </div>
         </StoreProvider>
 
-        <Script src="https://lidrekon.ru/slep/js/jquery.js" />
-        <Script src="https://lidrekon.ru/slep/js/uhpv-full.min.js" />
+        {/* <Script src="https://lidrekon.ru/slep/js/jquery.js" />
+        <Script src="https://lidrekon.ru/slep/js/uhpv-full.min.js" /> */}
       </body>
     </html>
   );
