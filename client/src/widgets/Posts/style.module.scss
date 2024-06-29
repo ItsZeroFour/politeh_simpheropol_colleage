@@ -26,6 +26,10 @@
     object-fit: cover;
     border-radius: var(--border-radius-md);
   }
+
+  @media (max-width: 483px) {
+    width: 100%;
+  }
 }
 
 .post__image {
@@ -46,6 +50,10 @@
     &:hover {
       transform: scale(1.2);
     }
+  }
+
+  @media (max-width: 483px) {
+    width: 100%;
   }
 }
 
