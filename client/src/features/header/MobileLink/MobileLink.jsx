@@ -1,67 +1,104 @@
 'use client'
 
-import React, { useState } from 'react'
-import style from './../../../widgets/header/header.module.scss'
-import Link from 'next/link'
-import Triangle from '@public/assets/icons/triangle.svg'
-import { useDispatch, useSelector } from 'react-redux'
 import { useActions } from '@app/hooks/useActions'
+import Triangle from '@public/assets/icons/triangle.svg'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import style from './../../../widgets/header/header.module.scss'
 
 const MobileLink = React.memo(function MobileLink({ stlye, link }) {
-  const dispatch = useDispatch()
-  const { setIsOpenedMenu } = useActions()
-  const isOurColleage = link.text === 'Наш колледж'
+	const dispatch = useDispatch()
+	console.log('link', link)
+	const { setIsOpenedMenu } = useActions()
+	const [isOurColleage, setIsOurCollege] = useState(null)
+	const router = useRouter()
+	const Clicked = async url => {
+		try {
+			const somedata = await axios.get(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/page/getonepage`,
+				{ params: { url } }
+			)
 
-  const onMenuClick = () => {
-    dispatch(setIsOpenedMenu(false))
-  }
+			if (somedata.status == 200) {
+				setIsOurCollege(true)
+				//console.log(somedata.data.message.pageUrl)
+				// router.push('/our-colleage/' + somedata.data.message.pageUrl)
+			}
+		} catch (error) {
+			setIsOurCollege(false)
+			//router.push(`${url}`)
+		}
+	}
+	useEffect(() => {
+		Clicked(link.url)
+	}, [])
 
-  const [isClicked, setIsClicked] = useState(false)
-  const [isClosing, setIsClosing] = useState(false)
+	const onMenuClick = () => {
+		dispatch(setIsOpenedMenu(false))
+	}
 
-  const handleClick = () => {
-    if (!isClicked) {
-      setIsClicked(true)
-      return setIsClosing(false)
-    }
+	const [isClicked, setIsClicked] = useState(false)
+	const [isClosing, setIsClosing] = useState(false)
 
-    setIsClosing(true)
-    setIsClicked(false)
-  }
+	const handleClick = () => {
+		if (!isClicked) {
+			setIsClicked(true)
+			return setIsClosing(false)
+		}
 
-  return (
-    <li
-      className={link.nestedObjects.length !== 0 ? style.categoryLink : style.link}
-      onClick={link.nestedObjects.length !== 0 ? handleClick : () => {}}
-      id={link.nestedObjects.length !== 0 ? link.text : null}
-    >
-      {link.nestedObjects.length === 0 ? (
-        <Link href={link.url} onClick={() => dispatch(setIsOpenedMenu(false))}>
-          {link.text}
-        </Link>
-      ) : (
-        <span className='header__link__34'>{link.text}</span>
-      )}
-      {link.nestedObjects.length !== 0 && <Triangle className={`${style.dropdownIcon} ${isClicked && style.dropdownIconActive}`} />}
+		setIsClosing(true)
+		setIsClicked(false)
+	}
 
-      {link.nestedObjects.length !== 0 && (
-        <div className={`${style.mobileDropdown} ${isClicked && style.mobileDropdownActive}`}>
-          <ul className={'overflow-hidden'}>
-            <div className={style.mobileDropdownDelimiter}></div>
-            {link.nestedObjects.map((link, index) => {
-              const url = isOurColleage ? '/our-colleage/' + link.url : link.url
+	return (
+		<li
+			className={
+				link.nestedObjects.length !== 0 ? style.categoryLink : style.link
+			}
+			onClick={link.nestedObjects.length !== 0 ? handleClick : () => {}}
+			id={link.nestedObjects.length !== 0 ? link.text : null}
+		>
+			{link.nestedObjects.length === 0 ? (
+				<Link href={link.url} onClick={() => dispatch(setIsOpenedMenu(false))}>
+					{link.text}
+				</Link>
+			) : (
+				<span className='header__link__34'>{link.text}</span>
+			)}
+			{link.nestedObjects.length !== 0 && (
+				<Triangle
+					className={`${style.dropdownIcon} ${
+						isClicked && style.dropdownIconActive
+					}`}
+				/>
+			)}
 
-              return <li key={index} className={style.link}>
-                <Link href={url} onClick={onMenuClick}>
-                  {link.text}
-                </Link>
-              </li>
-            })}
-          </ul>
-        </div>
-      )}
-    </li>
-  )
+			{link.nestedObjects.length !== 0 && (
+				<div
+					className={`${style.mobileDropdown} ${
+						isClicked && style.mobileDropdownActive
+					}`}
+				>
+					<ul className={'overflow-hidden'}>
+						<div className={style.mobileDropdownDelimiter}></div>
+						{link.nestedObjects.map((link, index) => {
+							const url = isOurColleage ? '/our-colleage/' + link.url : link.url
+
+							return (
+								<li key={index} className={style.link}>
+									<Link href={url} onClick={onMenuClick}>
+										{link.text}
+									</Link>
+								</li>
+							)
+						})}
+					</ul>
+				</div>
+			)}
+		</li>
+	)
 })
 
 export default MobileLink

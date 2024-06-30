@@ -1,0 +1,295 @@
+[33mcommit cbae9eb120f5f9fc3e28984fd7493ae045f80453[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: mickclicker <mick40627@gmail.com>
+Date:   Fri Jun 28 21:41:20 2024 +0300
+
+    fixed links
+
+[33mcommit 9f4ac941cb1dd94c5969dd28fe4144892872ad91[m
+Merge: 42d9df8 13ef8e7
+Author: mickclicker <mick40627@gmail.com>
+Date:   Wed Jun 26 11:23:19 2024 +0300
+
+    Merge branch 'main' of https://github.com/ItsZeroFour/politeh_simpheropol_colleage
+
+[33mcommit 42d9df82196dacdee915e0007e39e953abcb8dae[m
+Author: mickclicker <mick40627@gmail.com>
+Date:   Wed Jun 26 11:22:20 2024 +0300
+
+    fix mobile link
+
+[33mcommit 13ef8e71810d1e4e8e5df4435dc77ac92e1fdff6[m
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Wed Jun 26 11:12:39 2024 +0300
+
+    fix bugs
+
+[33mcommit 588fe164b41c85a333462154dec8a5050c92dd9c[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sat Apr 27 22:35:04 2024 +0300
+
+    need-to-fix-regex
+
+[33mcommit 5d4b68ff34413a3ee82b6309f2f4aa200a151cc4[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sat Apr 27 22:18:25 2024 +0300
+
+    fix
+
+[33mcommit 5914316d7954b212328c5b531ac834523a60a9da[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sat Apr 27 22:10:12 2024 +0300
+
+    fixed-env
+
+[33mcommit 2aba2b7bf378feb87b03e91ee0a5ff3640c3dd48[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sat Apr 27 21:59:27 2024 +0300
+
+    add-newlink
+
+[33mcommit 1f09118b748166d3815452c8b9f0438264ddd037[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sat Apr 27 21:45:14 2024 +0300
+
+    fixed
+
+[33mcommit 9970f51f3eef040aa59a0592b378fd8c6c127fce[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sat Apr 27 21:22:51 2024 +0300
+
+    uploads
+
+[33mcommit 2fab9c0cef3b593ed1b8c5004e4d3007ea110c7a[m
+Author: Amet Seidaliev <ametsejdaliev@gmail.com>
+Date:   Sat Apr 27 21:12:15 2024 +0300
+
+    Update .env
+
+[33mcommit a563ab4a9ba9ee9116ea79e4447896df8e5f5582[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sat Apr 27 21:05:53 2024 +0300
+
+    uploads
+
+[33mcommit 166a6a50e256200e6b4d9968499415be777b4664[m
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Fri Apr 19 12:14:10 2024 +0300
+
+    fix bugs
+
+[33mcommit 8eb8ce0f13907e4eb2c4cdfc76a882f669921d6e[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Thu Apr 18 21:49:29 2024 +0300
+
+    fixed
+
+[33mcommit 3de7208816f0d734aa739d3acb53ef0e4503019f[m
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Tue Apr 16 15:03:15 2024 +0300
+
+    fix bug
+
+[33mcommit 7e3e2f206ee00aa7781889cf73ca2ca6694b99dd[m
+Merge: 66d7afe 40f3b37
+Author: Amet Seidaliev <ametsejdaliev@gmail.com>
+Date:   Tue Apr 16 14:39:00 2024 +0300
+
+    Merge pull request #6 from AmetDev/main
+    
+    fixed jwt token
+
+[33mcommit 40f3b3791223e74cb221d22364f2f64d6df92815[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Tue Apr 16 14:37:02 2024 +0300
+
+    push-fuck
+
+[33mcommit 7165319ecd13f4eaf16eb7802a665709b5061113[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Tue Apr 16 13:29:44 2024 +0300
+
+    fixed
+
+[33mcommit 66d7afe2aff4b627d0c5b7ebdd7078671734ff4c[m
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Wed Apr 10 17:48:49 2024 +0300
+
+    add some changes
+
+[33mcommit 2d73dd5f1e67c2090aa7542676b8a601e6131eab[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Mon Feb 26 15:01:27 2024 +0300
+
+    fixed-pdf
+
+[33mcommit 269bdcddf13d12f1702a346de44e3d66d941d51f[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sun Feb 25 21:19:30 2024 +0300
+
+    flex
+
+[33mcommit 72b62a3addcc72d9ca8d1b26405ea6b91e13aca6[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sun Feb 25 20:01:49 2024 +0300
+
+    fixed-images
+
+[33mcommit 93294eb0d7ae18f9555406cdcbc73899567ef881[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Fri Feb 23 01:21:13 2024 +0300
+
+    need-to-fix-editor
+
+[33mcommit 6dc1531683ab12525f840734b259ca43d0779baa[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Thu Feb 22 20:34:18 2024 +0300
+
+    flex
+
+[33mcommit 8f6db7a952af02e0fe2de7517421f7bdb30ba889[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Wed Feb 21 21:38:38 2024 +0300
+
+    need-to-fix
+
+[33mcommit 9fec2e5df83b5bc666bc7a9155df9aaa53268b1b[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Tue Feb 20 22:15:34 2024 +0300
+
+    fix
+
+[33mcommit 5831dfb508919ae7e11c9f3c3a56d6f0e3ac0f35[m
+Author: wordite <wordite123@gmail.com>
+Date:   Mon Feb 19 21:44:52 2024 +0300
+
+    fixed images again...
+
+[33mcommit e31803475d636e918674fd98fde73fbcc825cf1f[m
+Author: wordite <wordite123@gmail.com>
+Date:   Mon Feb 19 20:12:13 2024 +0300
+
+    replaced Image component on img
+
+[33mcommit b8a58ed9f5a63e03e5a0708c0379605738e07dc4[m
+Author: wordite <wordite123@gmail.com>
+Date:   Sun Feb 18 21:30:56 2024 +0300
+
+    upgrade next to 14
+
+[33mcommit 97acec54cb873bc4302a96e36ad43188337cbd1f[m
+Merge: 42728d9 3e3ed28
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Sun Feb 18 13:20:50 2024 +0300
+
+    Merge branch 'main' of github.com:ItsZeroFour/politeh_simpheropol_colleage
+
+[33mcommit 42728d97e5f148095801be5011f6e0da686eecc9[m
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Sun Feb 18 13:20:45 2024 +0300
+
+    add some changes
+
+[33mcommit 3e3ed28f76212dc1f1bf7be21e2f9a566d0c5832[m
+Author: Amet Seidaliev <ametsejdaliev@gmail.com>
+Date:   Sat Feb 17 18:29:15 2024 +0300
+
+    Update .env
+
+[33mcommit c40757a5fe49b6e1ae8311a803f10aa057149df0[m
+Author: Amet Seidaliev <ametsejdaliev@gmail.com>
+Date:   Sat Feb 17 16:30:15 2024 +0300
+
+    Update .env
+
+[33mcommit eceef4c5376f1c4c36963108eae2e200777bb2b4[m
+Author: wordite <wordite123@gmail.com>
+Date:   Fri Feb 16 20:42:35 2024 +0300
+
+    fixed nutrition page
+
+[33mcommit 9b8c21861ad22f937098508dd03f6c828c866c47[m
+Author: wordite <wordite123@gmail.com>
+Date:   Wed Feb 14 18:00:18 2024 +0300
+
+    add recomendations page, change enrolle page
+
+[33mcommit d9fb8b91617407e44027dc6a789331502b276187[m
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Wed Feb 14 11:41:22 2024 +0300
+
+    add recomendations page and change fetch
+
+[33mcommit e9026b924f56ee67f0057289b5fb4f87b5f3d70a[m
+Merge: d573d69 c3ab062
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Mon Feb 12 12:49:37 2024 +0300
+
+    Merge branch 'main' of github.com:ItsZeroFour/politeh_simpheropol_colleage
+
+[33mcommit d573d694abb19ba06df87f1a9c98a4bfc5d83d14[m
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Mon Feb 12 12:49:25 2024 +0300
+
+    fix something
+
+[33mcommit c3ab062ea0e12c5aa565bdba6b6c01a3e2304bea[m
+Author: wordite <wordite123@gmail.com>
+Date:   Sun Feb 11 21:01:04 2024 +0300
+
+    update link on wordite website
+
+[33mcommit 8400d25cc9d66492c051209cb548f367b8f47f89[m
+Merge: 0f3a6d1 a6122d5
+Author: wordite <wordite123@gmail.com>
+Date:   Sun Feb 11 20:24:41 2024 +0300
+
+    Merge branch 'main' of https://github.com/ItsZeroFour/politeh_simpheropol_colleage
+
+[33mcommit 0f3a6d1eddca22e9888893a1604a9639758dde88[m
+Author: wordite <wordite123@gmail.com>
+Date:   Sun Feb 11 20:24:16 2024 +0300
+
+    replace client qeries on next fetch
+
+[33mcommit a6122d52c3e6d389aa3ebe6d490b76e1cccf2c9c[m
+Merge: 4963aef 435770c
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sun Feb 11 18:54:08 2024 +0300
+
+    Merge branch 'main' of github.com:ItsZeroFour/politeh_simpheropol_colleage
+
+[33mcommit 4963aef2f17b55d923ef5f14c0062715906688ec[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sun Feb 11 18:52:00 2024 +0300
+
+    flexim-ebatb
+
+[33mcommit 435770cae4657c404388f4fac25c68bf835e1fdb[m
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Sun Feb 11 18:16:27 2024 +0300
+
+    add some changes
+
+[33mcommit ee2c1e46bea9f2bccbc4331a63e13bd0654be3fe[m
+Merge: 0b9fbae 756740d
+Author: Amet Seidaliev <ametsejdaliev@gmail.com>
+Date:   Sun Feb 11 16:42:05 2024 +0300
+
+    Merge pull request #5 from ItsZeroFour/new-features-for-panel
+    
+    New features for panel
+
+[33mcommit 756740d07f971c4c7d3807a670fbb6de3efb0d79[m
+Author: AmetDev <ametsejdaliev@gmail.com>
+Date:   Sun Feb 11 16:39:14 2024 +0300
+
+    did-add-new-features-for-panel
+
+[33mcommit 0b9fbae16f29d05fa928cfb24b9e6525c8adb4da[m
+Merge: ed84b72 2038884
+Author: itszerofour <itszerofourx@gmail.com>
+Date:   Sun Feb 11 12:32:54 2024 +0300
+
+    add quiz
+
+[33mcommit ed84b72427e
