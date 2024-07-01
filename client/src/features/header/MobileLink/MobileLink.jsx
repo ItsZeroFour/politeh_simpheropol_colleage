@@ -2,12 +2,11 @@
 
 import { useActions } from '@app/hooks/useActions'
 import Triangle from '@public/assets/icons/triangle.svg'
-import Link from 'next/link'
+import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import style from './../../../widgets/header/header.module.scss'
-
 const MobileLink = React.memo(function MobileLink({ stlye, link }) {
 	const dispatch = useDispatch()
 	console.log('link', link)
@@ -23,12 +22,12 @@ const MobileLink = React.memo(function MobileLink({ stlye, link }) {
 
 			if (somedata.status == 200) {
 				setIsOurCollege(true)
-				//console.log(somedata.data.message.pageUrl)
-				// router.push('/our-colleage/' + somedata.data.message.pageUrl)
+				console.log(somedata.data.message.pageUrl)
+				router.push('/our-colleage/' + somedata.data.message.pageUrl)
 			}
 		} catch (error) {
 			setIsOurCollege(false)
-			//router.push(`${url}`)
+			router.push(`${url}`)
 		}
 	}
 	useEffect(() => {
@@ -61,9 +60,7 @@ const MobileLink = React.memo(function MobileLink({ stlye, link }) {
 			id={link.nestedObjects.length !== 0 ? link.text : null}
 		>
 			{link.nestedObjects.length === 0 ? (
-				<Link href={link.url} onClick={() => dispatch(setIsOpenedMenu(false))}>
-					{link.text}
-				</Link>
+				<div onClick={() => dispatch(setIsOpenedMenu(false))}>{link.text}</div>
 			) : (
 				<span className='header__link__34'>{link.text}</span>
 			)}
@@ -88,9 +85,14 @@ const MobileLink = React.memo(function MobileLink({ stlye, link }) {
 
 							return (
 								<li key={index} className={style.link}>
-									<Link href={url} onClick={onMenuClick}>
+									<div
+										onClick={() => {
+											onMenuClick()
+											Clicked(link.url)
+										}}
+									>
 										{link.text}
-									</Link>
+									</div>
 								</li>
 							)
 						})}
