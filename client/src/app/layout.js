@@ -69,8 +69,8 @@ const RootLayout = async ({ children }) => {
           </div>
         </StoreProvider>
 
-        {/* <Script src="https://lidrekon.ru/slep/js/jquery.js" />
-        <Script src="https://lidrekon.ru/slep/js/uhpv-full.min.js" /> */}
+        <Script src="https://lidrekon.ru/slep/js/jquery.js" />
+        <Script src="https://lidrekon.ru/slep/js/uhpv-full.min.js" />
       </body>
     </html>
   );
