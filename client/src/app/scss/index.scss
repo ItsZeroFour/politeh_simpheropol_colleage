@@ -69,8 +69,7 @@ h2,
 h3,
 h4,
 h5,
-h6,
-a {
+h6 {
   color: inherit;
 }
 h1 {
@@ -235,8 +234,15 @@ i {
   margin-top: 100px;
 }
 
+.files-block {
+  a {
+    font-size: 20px !important;
+    color: var(--color-blue);
+    text-decoration: underline;
+    line-height: 120%;
+  }
+}
 
 img {
   display: block;
 }
-

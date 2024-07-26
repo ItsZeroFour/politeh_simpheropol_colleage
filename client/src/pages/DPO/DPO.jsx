@@ -15,7 +15,7 @@ const DPO = ({ files }) => {
 
       <img src={dpoImage.src} alt="dpo image" />
 
-      <ul className={style.dpo__order}>
+      <ul className={`${style.dpo__order} files-block`}>
         {data.map(({ file, name }) => (
           <li key={name}>
             <Link

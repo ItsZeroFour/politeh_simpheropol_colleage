@@ -27,7 +27,7 @@ const AntiCorruptionList = () => {
   }, []);
 
   return (
-    <ol className={styles.listPol}>
+    <ol className={`${styles.listPol} files-block`}>
       {files ? (
         files.map(({ file, name }) => (
           <li className={styles.antiCorList} key={name}>

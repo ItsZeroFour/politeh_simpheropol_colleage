@@ -5,7 +5,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const EnrolleeOtherLinks = ({ files }) => {
   return (
-    <ol className={style.enrollee__links}>
+    <ol className={`${style.enrollee__links} files-block`}>
       {files
         ? files.map(({ file, name }) => (
             <li key={name}>

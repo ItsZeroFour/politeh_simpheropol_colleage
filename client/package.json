@@ -10,7 +10,7 @@
 		"path": false
 	},
 	"scripts": {
-		"dev": "next dev",
+		"dev": "next dev -p 5500",
 		"build": "next build",
 		"start": "next start -p 5500",
 		"lint": "next lint"

@@ -19,8 +19,8 @@ const Post = ({ data }) => {
 			/>
 			{/* <Interweave content={pageImage} /> */}
 			<div className={style.info}>
-				<h2 className={style.title}>{shortText}</h2>
-				<span className={style.description}>{pageDate}</span>
+				<h2 className={style.title}>{pageTitle}</h2>
+				{/* <span className={style.description}>{pageDate}</span> */}
 			</div>
 		</Link>
 	)

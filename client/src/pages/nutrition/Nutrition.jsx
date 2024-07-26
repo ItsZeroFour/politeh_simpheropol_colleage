@@ -7,8 +7,6 @@ import style from "./style.module.scss";
 import Link from "next/link";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
-
-
 const Nutrition = ({ files }) => {
   const submitForm = async (e) => {
     e.preventDefault();
@@ -105,7 +103,7 @@ const Nutrition = ({ files }) => {
       </p>
 
       <div className={style.nutrition__links}>
-        <ol className={style.enrollee__links}>
+        <ol className={`${style.enrollee__links} files-block`}>
           {files
             ? files.map(({ file, name }) => (
                 <li key={name}>

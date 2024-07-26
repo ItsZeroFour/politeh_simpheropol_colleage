@@ -9,6 +9,10 @@ import useMediaQuery from '@app/hooks/useMediaQuery'
 // import useDevice from '@app/hooks/useDevice'
 
 const links = [
+    {
+    text: "Основные сведения",
+    href: "/our-colleage/basic-information"
+  },
   {
     text: 'Структура и органы управления образовательной организацией',
     href: '/our-colleage/structure',
@@ -459,8 +463,7 @@ function About() {
             ))}
           </ul>
         </div>
-        <Designed />
-      </div>
+             </div>
     </section>
   )
 }

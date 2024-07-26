@@ -1,144 +1,144 @@
 // "use client";
 
 // import { useEffect, useState } from "react";
-import ScheduleImage from '@features/Schedule/ScheduleImage/ScheduleImage'
-import style from '@pages/Schedule/Schedule.module.scss'
-import Link from 'next/link'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import bellImg from '../../../public/assets/images/schedule/bell.jpg'
+import ScheduleImage from "@features/Schedule/ScheduleImage/ScheduleImage";
+import style from "@pages/Schedule/Schedule.module.scss";
+import Link from "next/link";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import bellImg from "../../../public/assets/images/schedule/bell.jpg";
 // import { useAppDispatch, useAppSelector } from "@app/hooks/redux";
 // import axios from "axios";
 
 const getFiles = async () => {
-	try {
-		const response = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=schedule`,
-			{
-				next: { revalidate: 900 },
-			}
-		)
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/files/get?forPage=schedule`,
+      {
+        next: { revalidate: 900 },
+      }
+    );
 
-		const data = await response.json()
+    const data = await response.json();
 
-		return data
-	} catch {
-		const data = []
-		return data
-	}
-}
+    return data;
+  } catch {
+    const data = [];
+    return data;
+  }
+};
 
 const getSchedule = async () => {
-	try {
-		const response = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/scheduleone`,
-			{
-				next: { revalidate: 1200 },
-			}
-		)
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/schedule/scheduleone`,
+      {
+        next: { revalidate: 1200 },
+      }
+    );
 
-		const data = await response.json()
+    const data = await response.json();
 
-		return data
-	} catch {
-		const data = []
-		return data
-	}
-}
+    return data;
+  } catch {
+    const data = [];
+    return data;
+  }
+};
 
 export default async function Schedule() {
-	const schedule = await getSchedule()
-	const files = await getFiles()
-	return (
-		<main className={style.scheduleRoot}>
-			<h1 className={style.schedule__title}>Расписание</h1>
-			<span>{schedule.date}</span>
-			<section className={style.wrapperCorpus}>
-				<span>Первый корпус</span>
-				{schedule.status !== 'loading' ? (
-					<ScheduleImage
-						schedule={`${process.env.NEXT_PUBLIC_SERVER_URL}${schedule.scheduleOne}`}
-					/>
-				) : (
-					<article className={style.schedule__loading}>
-						<SkeletonTheme baseColor='#202020' highlightColor='#444'>
-							<Skeleton className={style.schedule__loading__skeleton} />
-						</SkeletonTheme>
-					</article>
-				)}
-			</section>
-			<section className={style.wrapperCorpus}>
-				<span>Второй корпус</span>
-				{schedule.status !== 'loading' ? (
-					<ScheduleImage
-						schedule={`${process.env.NEXT_PUBLIC_SERVER_URL}${schedule.scheduleTwo}`}
-					/>
-				) : (
-					<article className={style.schedule__loading}>
-						<SkeletonTheme baseColor='#202020' highlightColor='#444'>
-							<Skeleton className={style.schedule__loading__skeleton} />
-						</SkeletonTheme>
-					</article>
-				)}
-			</section>
+  const schedule = await getSchedule();
+  const files = await getFiles();
+  return (
+    <main className={style.scheduleRoot}>
+      <h1 className={style.schedule__title}>Расписание</h1>
+      <span>{schedule.date}</span>
+      <section className={style.wrapperCorpus}>
+        <span>Первый корпус</span>
+        {schedule.status !== "loading" ? (
+          <ScheduleImage
+            schedule={`${process.env.NEXT_PUBLIC_SERVER_URL}${schedule.scheduleOne}`}
+          />
+        ) : (
+          <article className={style.schedule__loading}>
+            <SkeletonTheme baseColor="#202020" highlightColor="#444">
+              <Skeleton className={style.schedule__loading__skeleton} />
+            </SkeletonTheme>
+          </article>
+        )}
+      </section>
+      <section className={style.wrapperCorpus}>
+        <span>Второй корпус</span>
+        {schedule.status !== "loading" ? (
+          <ScheduleImage
+            schedule={`${process.env.NEXT_PUBLIC_SERVER_URL}${schedule.scheduleTwo}`}
+          />
+        ) : (
+          <article className={style.schedule__loading}>
+            <SkeletonTheme baseColor="#202020" highlightColor="#444">
+              <Skeleton className={style.schedule__loading__skeleton} />
+            </SkeletonTheme>
+          </article>
+        )}
+      </section>
 
-			<section className={style.schedule__block}>
-				<ul>
-					{files ? (
-						files.map(({ file, name }) => (
-							<li key={name}>
-								<Link
-									href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
-								>
-									{name}
-								</Link>
-							</li>
-						))
-					) : (
-						<p>Загрузка...</p>
-					)}
-				</ul>
-			</section>
+      <section className={style.schedule__block}>
+        <ul className="files-block">
+          {files ? (
+            files.map(({ file, name }) => (
+              <li key={name}>
+                <Link
+                  href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
+                >
+                  {name}
+                </Link>
+              </li>
+            ))
+          ) : (
+            <p>Загрузка...</p>
+          )}
+        </ul>
+      </section>
 
-			<Link
-				className={style.schedule__correspondence}
-				href='/our-colleage/schedule-for-correspondence'
-			>
-				ГРАФИК УЧЕБНОГО ПРОЦЕССА ПО ЗАОЧНОЙ ФОРМЕ ОБУЧЕНИЯ
-			</Link>
+      <Link
+        className={style.schedule__correspondence}
+        href="/our-colleage/schedule-for-correspondence"
+      >
+        ГРАФИК УЧЕБНОГО ПРОЦЕССА ПО ЗАОЧНОЙ ФОРМЕ ОБУЧЕНИЯ
+      </Link>
 
-			<section className={style.schedule__bell}>
-				<h2>Расписание звонков</h2>
+      <section className={style.schedule__bell}>
+        <h2>Расписание звонков</h2>
 
-				<div className={style.schedule__bell__notification}>
-					<p>Внимание, уважаемые преподаватели и студенты!</p>
-					<p>
-						ВНЕСЕНЫ ИЗМЕНЕНИЯ В РАСПИСАНИЕ ЗВОНКОВ И ПРОДОЛЖИТЕЛЬНОСТИ ПЕРЕМЕН!
-					</p>
-				</div>
+        <div className={style.schedule__bell__notification}>
+          <p>Внимание, уважаемые преподаватели и студенты!</p>
+          <p>
+            ВНЕСЕНЫ ИЗМЕНЕНИЯ В РАСПИСАНИЕ ЗВОНКОВ И ПРОДОЛЖИТЕЛЬНОСТИ ПЕРЕМЕН!
+          </p>
+        </div>
 
-				<p>
-					На основании Рекомендаций по профилактике новой коронавирусной
-					инфекции (COVID-19) в профессиональных образовательных организациях
-					(Методические рекомендации МР 3.1/2.4.0206-20) Федеральной службы по
-					надзору в сфере защиты прав потребителя и благополучия населения, во
-					исполнение письма Министерства образования, науки и молодежи
-					Республики Крым
-				</p>
+        <p>
+          На основании Рекомендаций по профилактике новой коронавирусной
+          инфекции (COVID-19) в профессиональных образовательных организациях
+          (Методические рекомендации МР 3.1/2.4.0206-20) Федеральной службы по
+          надзору в сфере защиты прав потребителя и благополучия населения, во
+          исполнение письма Министерства образования, науки и молодежи
+          Республики Крым
+        </p>
 
-				<img
-					src={bellImg.src}
-					alt='Расписание звонков'
-					width={1572}
-					height={1163}
-				/>
-			</section>
+        <img
+          src={bellImg.src}
+          alt="Расписание звонков"
+          width={1572}
+          height={1163}
+        />
+      </section>
 
-			<Link className={style.schedule__all__schedule} href='/all-schedules'>
-				Смотреть все расписания
-			</Link>
-		</main>
-	)
+      <Link className={style.schedule__all__schedule} href="/all-schedules">
+        Смотреть все расписания
+      </Link>
+    </main>
+  );
 }
 
 /* <DaySelector />

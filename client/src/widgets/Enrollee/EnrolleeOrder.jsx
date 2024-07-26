@@ -5,7 +5,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const EnrolleeOrder = ({ files }) => {
   return (
-    <ul className={style.enrollee__order}>
+    <ul className={`${style.enrollee__order} files-block`}>
       {files
         ? files.map(({ file, name }) => (
             <li key={name}>

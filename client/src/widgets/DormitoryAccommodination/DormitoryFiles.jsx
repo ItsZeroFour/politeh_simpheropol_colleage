@@ -29,9 +29,9 @@ const DormitoryFiles = () => {
 
   return (
     <section className={style.dormitory__files}>
-      <ul>
-        {files ? (
-          files.map(({ file, name }) => (
+      <ul className="files-block">
+        {files && files[0] ? (
+          files[0].map(({ file, name }) => (
             <li key={name}>
               <Link
                 href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}

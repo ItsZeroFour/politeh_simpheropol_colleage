@@ -5,44 +5,44 @@ import hatImg from "@public/assets/icons/hat.svg";
 import townImg from "@public/assets/icons/town.svg";
 
 const HistoryColleageTeachers = () => {
-  const tursun = [
+    const tursun = [
     {
       Icon: hatImg,
       name: "Федоренко Оксана Николаевна",
-      status: "Преподователь",
+      status: "Преподаватель",
     },
     {
       Icon: hatImg,
       name: "Завадская Людмила Викторовна",
-      status: "Преподователь",
+      status: "Преподаватель",
     },
     {
       Icon: hatImg,
       name: "Цыганкова Елена Викторовна",
-      status: "Преподователь",
+      status: "Преподаватель",
     },
-    { Icon: hatImg, name: "Голуб Евдокия Николаевна", status: "Преподователь" },
-    { Icon: hatImg, name: "Золотарев Игорь Иванович", status: "Преподователь" },
+    { Icon: hatImg, name: "Голуб Евдокия Николаевна", status: "Преподаватель" },
+    { Icon: hatImg, name: "Золотарев Игорь Иванович", status: "Преподаватель" },
     {
       Icon: hatImg,
       name: "Бурова Оксана Николаевна",
-      status: "Преподователь, руководитель ЦИТиИ",
+      status: "Преподаватель, руководитель ЦИТиИ",
     },
     {
       Icon: townImg,
       name: "Коврижных Елена Ивановна",
-      status: "Зав. Отделениея, преподователь",
+      status: "Зав. Отделением, Преподаватель",
     },
-    { Icon: hatImg, name: "Сытник Нина Владимировна", status: "Преподователь" },
+    { Icon: hatImg, name: "Сытник Нина Владимировна", status: "Преподаватель" },
     {
       Icon: hatImg,
       name: "Меметова Эльмаз Шевкетовна",
-      status: "Преподователь",
+      status: "Преподаватель",
     },
     {
       Icon: hatImg,
       name: "Головченко Алексей Евгеньевич",
-      status: "Преподователь",
+      status: "Преподаватель",
     },
   ];
 

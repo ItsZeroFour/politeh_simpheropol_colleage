@@ -2,7 +2,7 @@
 import S12 from '@public/assets/images/nationproject/1S-2.png'
 import S13 from '@public/assets/images/nationproject/1S3.png'
 import doRemonta2 from '@public/assets/images/nationproject/Do-remonta-aud-1.png'
-import doRemonta1 from '@public/assets/images/nationproject/Do-remonta-aud.png'
+import doRemonta1 from '@public/assets/images/nationproject/Do-remonta-aud-1.png'
 import classroom from '@public/assets/images/nationproject/V-processe-remonta309.png'
 import Web5 from '@public/assets/images/nationproject/Veb-5.png'
 

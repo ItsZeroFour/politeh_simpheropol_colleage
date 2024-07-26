@@ -26,7 +26,7 @@ const NacProjectList = ({ files }) => {
   // }, []);
 
   return (
-    <ul className={styles.listPol}>
+    <ul className={`${styles.listPol} files-block`}>
       {files ? (
         files.map(({ file, name }) => (
           <li key={name}>

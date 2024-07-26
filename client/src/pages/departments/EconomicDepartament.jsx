@@ -6,17 +6,17 @@ import Link from "next/link";
 const EconomicDepartament = () => {
   const tursunDesceplines = [
     {
-      code: "19.02.03",
+      code: "19.02.11",
       name: "Технология хлеба, кондитерских и макаронных изделий",
     },
 
     {
-      code: "19.02.05",
+      code: "19.02.11",
       name: "Технология бродильных производств и виноделие",
     },
 
     {
-      code: "19.02.08",
+      code: "19.02.12",
       name: "Технология мяса и мясных продуктов",
     },
 
@@ -26,7 +26,7 @@ const EconomicDepartament = () => {
     },
 
     {
-      code: "43.02.14",
+      code: "43.02.16",
       name: "Гостиничное дело",
     },
   ];

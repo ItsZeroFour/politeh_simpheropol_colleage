@@ -1,34 +1,38 @@
 /* itsZeroFour@gmail.com code side */
 
-"use client";
+'use client'
 
-import EnrolleeDocuments from "@/widgets/Enrollee/EnrolleeDocuments";
-import EnrolleeMarCapital from "@/widgets/Enrollee/EnrolleeMarCapital";
-import EnrolleeOrder from "@/widgets/Enrollee/EnrolleeOrder";
-import EnrolleeOtherLinks from "@/widgets/Enrollee/EnrolleeOtherLinks";
-import EnrolleeTop from "@/widgets/Enrollee/EnrolleeTop";
-import EnrolleeSpecialityes from "@/widgets/Enrollee/EnrolleeSpecialityes";
-import EnrolleeNecessary from "@/widgets/Enrollee/EnrolleeNecessary";
-import EnrolleeRequzits from "@/widgets/Enrollee/EnrolleeRequzits";
+import EnrolleeDocuments from '@/widgets/Enrollee/EnrolleeDocuments'
+import EnrolleeMarCapital from '@/widgets/Enrollee/EnrolleeMarCapital'
+import EnrolleeNecessary from '@/widgets/Enrollee/EnrolleeNecessary'
+import EnrolleeOrder from '@/widgets/Enrollee/EnrolleeOrder'
+import EnrolleeOtherLinks from '@/widgets/Enrollee/EnrolleeOtherLinks'
+import EnrolleeRequzits from '@/widgets/Enrollee/EnrolleeRequzits'
+import EnrolleeSpecialityes from '@/widgets/Enrollee/EnrolleeSpecialityes'
+import EnrolleeTop from '@/widgets/Enrollee/EnrolleeTop'
 
-import EnrolleRecomendations from "@widgets/Enrollee/EnrolleRecomendations";
+import EnrolleImg from '@widgets/Enrollee/EnrolleImg/EnrolleImg'
+import EnrolleRecomendations from '@widgets/Enrollee/EnrolleRecomendations'
+import Background from "@entities/home/Background/Background";
 
 const Enrollee = ({ files, specialityes }) => {
+	return (
+		<section>
+                        <Background />			
+                        <EnrolleeTop />
 
-  return (
-    <section>
-      <EnrolleeTop />
-      <EnrolleeDocuments />
-      <EnrolleeOrder files={files ? files[0] : null} />
-      <EnrolleeOtherLinks files={files ? files[1] : null} />
-      <EnrolleRecomendations />
-      <EnrolleeSpecialityes specialityes={specialityes} />
-      <EnrolleeNecessary />
-      <EnrolleeMarCapital />
+			<EnrolleeDocuments />
+			<EnrolleImg />
+			<EnrolleeOrder files={files ? files[0] : null} />
+			<EnrolleeOtherLinks files={files ? files[1] : null} />
+			<EnrolleRecomendations />
+			<EnrolleeSpecialityes specialityes={specialityes} />
+			<EnrolleeNecessary />
+			<EnrolleeMarCapital />
 
-      <EnrolleeRequzits />
-    </section>
-  );
-};
+			<EnrolleeRequzits />
+		</section>
+	)
+}
 
-export default Enrollee;
+export default Enrollee

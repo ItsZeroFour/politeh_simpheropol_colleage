@@ -76,7 +76,7 @@ const Posts = () => {
 
 												{<p className={styles.post_title}>{el.pageTitle}</p>}
 											</Link>
-											<div className={styles.post_date}>{el.pageDate}</div>
+											{/* <div className={styles.post_date}>{el.pageDate}</div> */}
 										</div>
 									</div>
 								</div>
