@@ -8,9 +8,8 @@ const EnrolleeTop = () => {
 
         <ul>
           {[
-            { item: "+7(978) 905 11 27", telephone: "+79789051127" },
+            { item: "+7(978) 617 80 62", telephone: "+79786178062" },
             { item: "+7(978) 905 10 25", telephone: "+79789051025" },
-            { item: "+7(978) 905 11 27", telephone: "+79789051127" },
           ].map(({ item, telephone }) => (
             <li key={telephone}>
               <a href={`tel:${telephone}`}>{item}</a>
